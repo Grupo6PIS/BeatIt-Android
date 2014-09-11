@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">BeatIt!</string>
+    <string name="hello_world">Hola Mundo!</string>
+    <string name="action_settings">Ajustes</string>
+    <string name="challenge">Usain Bolt</string>
+    <string name="logo_description">Logo de Usain Bolt</string>
+    <string name="description">Descripción</string>
+    <string name="description_usain_bolt">En este desafío deberás correr por un minuto a más de 20 km/h.</string>    
+    <string name="start_time">Hora de comienzo:</string>
+    <string name="duration">Duración:</string>
+    <string name="points">A vencer:</string>    
+    <string name="start_time_value">18/08/2014 13:30</string>
+    <string name="duration_value">1 semana</string>
+    <string name="points_value">1280 puntos</string>    
+    <string name="time_left">Tiempo restante:</string>
+    <string name="speed">Velocidad:</string>    
+    <string name="time_left_value">1 minuto</string>
+    <string name="speed_value">18.2 km/h</string>    
+
+</resources>
