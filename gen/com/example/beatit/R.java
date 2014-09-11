@@ -26,26 +26,24 @@ public final class R {
         public static final int ic_usain_bolt=0x7f020001;
     }
     public static final class id {
-        public static final int action_settings=0x7f080012;
-        public static final int caja_roja=0x7f08000e;
-        public static final int caja_verde=0x7f08000a;
+        public static final int action_settings=0x7f080010;
+        public static final int caja_roja=0x7f08000a;
+        public static final int caja_verde=0x7f080009;
         public static final int imageView_Logo=0x7f080000;
-        public static final int menu_back=0x7f080013;
-        public static final int roja=0x7f08000d;
+        public static final int menu_back=0x7f080011;
         public static final int textView_Description=0x7f080003;
         public static final int textView_Description_Value=0x7f080004;
         public static final int textView_Duration=0x7f080002;
         public static final int textView_Duration_Value=0x7f080006;
         public static final int textView_Nombre_Desafio=0x7f080001;
-        public static final int textView_Speed=0x7f08000f;
-        public static final int textView_Speed_Value=0x7f080010;
+        public static final int textView_Speed=0x7f08000d;
+        public static final int textView_Speed_Value=0x7f08000e;
         public static final int textView_Start_Time=0x7f080005;
         public static final int textView_Start_Time_Value=0x7f080008;
         public static final int textView_Time_Left=0x7f08000b;
         public static final int textView_Time_Left_Value=0x7f08000c;
         public static final int textView_To_Beat=0x7f080007;
-        public static final int textView_To_Beat_Value=0x7f080011;
-        public static final int verde=0x7f080009;
+        public static final int textView_To_Beat_Value=0x7f08000f;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;

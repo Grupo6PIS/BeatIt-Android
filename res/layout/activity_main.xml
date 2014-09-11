@@ -102,93 +102,81 @@
         android:text="@string/points"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <LinearLayout
-	    android:id="@+id/verde"
-	    android:orientation="vertical"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
-		android:layout_marginBottom="20dp" >
+   	<View
+   	    android:id="@+id/caja_verde"
+   	    android:layout_width="250dp"
+   	    android:layout_height="40dp"
+   	    android:layout_centerHorizontal="true"
+   	    android:layout_below="@+id/textView_To_Beat"
+   	    android:layout_marginTop="25dp"
+   	    android:background="#008a00"></View>
+   	
+	<View
+   	    android:id="@+id/caja_roja"
+   	    android:layout_width="250dp"
+   	    android:layout_height="40dp"
+   	    android:layout_centerHorizontal="true"
+   	    android:layout_below="@+id/caja_verde"
+   	    android:layout_marginTop="20dp"
+   	    android:background="#D40C34"></View>
 
-		<View
-	   	    android:id="@+id/caja_verde"
-	   	    android:layout_width="250dp"
-	   	    android:layout_height="40dp"
-	   	    android:layout_centerHorizontal="true"
-	   	    android:layout_below="@+id/textView_To_Beat"
-	   	    android:layout_marginTop="25dp"
-	   	    android:background="#008a00"></View>
-	   	
-		<TextView
-		    android:id="@+id/textView_Time_Left"
-	   	    android:gravity="center"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_alignBottom="@+id/caja_verde"
-		    android:layout_marginBottom="13dp"
-		    android:layout_alignEnd="@+id/textView_Start_Time"
-		    android:layout_alignRight="@+id/textView_Start_Time"
-		    android:layout_marginEnd="16dp"
-		    android:layout_marginRight="16dp"
-		    android:text="@string/time_left"
-		    android:textColor="#FFFFFF"
-		    android:textStyle="bold"
-		    android:textSize="14sp" />
-	
-		<TextView
-		    android:id="@+id/textView_Time_Left_Value"
-	   	    android:gravity="center"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_alignBottom="@+id/caja_verde"
-		    android:layout_marginBottom="13dp"
-		    android:layout_toEndOf="@+id/textView_Time_Left"
-		    android:layout_toRightOf="@+id/textView_Time_Left"
-		    android:text="@string/time_left_value"
-		    android:textColor="#FFFFFF"
-		    android:textStyle="bold"
-		    android:textSize="14sp" />
-	</LinearLayout>
+	<TextView
+	    android:id="@+id/textView_Time_Left"
+   	    android:gravity="center"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBottom="@+id/caja_verde"
+	    android:layout_marginBottom="13dp"
+	    android:layout_alignEnd="@+id/textView_Start_Time"
+	    android:layout_alignRight="@+id/textView_Start_Time"
+	    android:layout_marginEnd="16dp"
+	    android:layout_marginRight="16dp"
+	    android:text="@string/time_left"
+	    android:textColor="#FFFFFF"
+	    android:textStyle="bold"
+	    android:textSize="14sp" />
 
-	<LinearLayout
-	    android:id="@+id/roja"
-	    android:orientation="vertical"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
-		android:layout_marginBottom="20dp" >
-	    <View
-	   	    android:id="@+id/caja_roja"
-	   	    android:layout_width="fill_parent"
-	   	    android:layout_height="40dp"
-	   	    android:layout_marginTop="20dp"
-	   	    android:background="#D40C34"></View>
-		<TextView
-		    android:id="@+id/textView_Speed"
-	   	    android:gravity="center"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_alignBottom="@+id/caja_roja"
-		    android:layout_marginBottom="13dp"
-		    android:layout_alignEnd="@+id/textView_Time_Left"
-		    android:layout_alignRight="@+id/textView_Time_Left"
-		    android:text="@string/speed"
-		    android:textColor="#FFFFFF"
-		    android:textStyle="bold"
-		    android:textSize="14sp" />
-		
-		<TextView
-		    android:id="@+id/textView_Speed_Value"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_alignBottom="@+id/caja_roja"
-		    android:layout_marginBottom="13dp"
-		    android:layout_alignStart="@+id/textView_Time_Left_Value"
-		    android:layout_alignLeft="@+id/textView_Time_Left_Value"
-		    android:text="@string/speed_value"
-		    android:textColor="#FFFFFF"
-		    android:textStyle="bold"
-		    android:textSize="14sp" />
-	</LinearLayout>
-	
+	<TextView
+	    android:id="@+id/textView_Time_Left_Value"
+   	    android:gravity="center"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBottom="@+id/caja_verde"
+	    android:layout_marginBottom="13dp"
+	    android:layout_toEndOf="@+id/textView_Time_Left"
+	    android:layout_toRightOf="@+id/textView_Time_Left"
+	    android:text="@string/time_left_value"
+	    android:textColor="#FFFFFF"
+	    android:textStyle="bold"
+	    android:textSize="14sp" />
+
+	<TextView
+	    android:id="@+id/textView_Speed"
+   	    android:gravity="center"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBottom="@+id/caja_roja"
+	    android:layout_marginBottom="13dp"
+	    android:layout_alignEnd="@+id/textView_Time_Left"
+	    android:layout_alignRight="@+id/textView_Time_Left"
+	    android:text="@string/speed"
+	    android:textColor="#FFFFFF"
+	    android:textStyle="bold"
+	    android:textSize="14sp" />
+
+	<TextView
+	    android:id="@+id/textView_Speed_Value"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignBottom="@+id/caja_roja"
+	    android:layout_marginBottom="13dp"
+	    android:layout_alignStart="@+id/textView_Time_Left_Value"
+	    android:layout_alignLeft="@+id/textView_Time_Left_Value"
+	    android:text="@string/speed_value"
+	    android:textColor="#FFFFFF"
+	    android:textStyle="bold"
+	    android:textSize="14sp" />
+
 	<TextView
 	    android:id="@+id/textView_To_Beat_Value"
 	    android:layout_width="wrap_content"
