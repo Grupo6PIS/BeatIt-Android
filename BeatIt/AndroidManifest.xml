@@ -25,9 +25,11 @@
         <activity
             android:name=".ChallengeInProgress"
             android:label="@string/title_activity_challenge_in_progress" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.g6pis.beatit.ChallengesMenu" />
+            android:parentActivityName="com.g6pis.beatit.ChallengesMenu" >
+	        <!-- Parent activity meta-data to support 4.0 and lower -->
+	        <meta-data
+	            android:name="android.support.PARENT_ACTIVITY"
+	            android:value="com.g6pis.beatit.ChallengesMenu" />
         </activity>
         <activity
             android:name=".ChallengesMenu"
@@ -36,6 +38,7 @@
         <activity
             android:name=".Ranking"
             android:label="@string/title_activity_ranking" >
+	        android:parentActivityName="com.g6pis.beatit.ChallengesMenu" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.g6pis.beatit.ChallengesMenu" />
@@ -43,6 +46,7 @@
         <activity
             android:name=".Profile"
             android:label="@string/title_activity_profile" >
+            android:parentActivityName="com.g6pis.beatit.ChallengesMenu" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.g6pis.beatit.ChallengesMenu" />
@@ -50,6 +54,7 @@
         <activity
             android:name=".ChallengeFinished"
             android:label="@string/title_activity_challenge_finished" >
+            android:parentActivityName="com.g6pis.beatit.ChallengesMenu" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.g6pis.beatit.ChallengesMenu" />

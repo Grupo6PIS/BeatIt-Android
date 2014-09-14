@@ -31,5 +31,14 @@
     <string name="title_activity_profile">Profile</string>
     <string name="title_activity_challenge_finished">ChallengeFinished</string>
     <string name="title_activity_login">Login</string>
+    <string name="score">Score</string>
+    <string name="score_value">1503 puntos</string>
+    <string name="max_speed">Max Velocidad</string>
+    <string name="avg_speed">Vel. Promedio</string>
+    <string name="max_speed_value">24.5</string>
+    <string name="avg_speed_value">21.3</string>
+    <string name="end_time">Hora de fin: </string>
+    <string name="end_time_value">20/07/2014 9:50</string>
+    <color name="blanco">#ffffff</color>
 
 </resources>
