@@ -12,6 +12,7 @@ public class ChallengeInProgress extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.challenge_in_progress);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 	}
 
 	@Override

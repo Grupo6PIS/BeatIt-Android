@@ -11,6 +11,8 @@ public class ChallengesMenu extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.challenges_menu);
+		
+		getActionBar().setHomeButtonEnabled(false);
 	}
 
 	@Override

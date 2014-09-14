@@ -22,9 +22,11 @@ public class MainActivity extends Activity {
                 // Perform action on click
             	Intent challenge = new Intent(MainActivity.this, ChallengeInProgress.class);
             	startActivity(challenge);
-            	finish();
             }
         });
+        
+        getActionBar().setHomeButtonEnabled(false);
+
     }
 
 

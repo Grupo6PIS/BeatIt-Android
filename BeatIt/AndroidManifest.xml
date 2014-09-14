@@ -25,11 +25,11 @@
         <activity
             android:name=".ChallengeInProgress"
             android:label="@string/title_activity_challenge_in_progress" >
-            android:parentActivityName="com.g6pis.beatit.ChallengesMenu" >
+            android:parentActivityName="com.g6pis.beatit.MainActivity" >
 	        <!-- Parent activity meta-data to support 4.0 and lower -->
 	        <meta-data
 	            android:name="android.support.PARENT_ACTIVITY"
-	            android:value="com.g6pis.beatit.ChallengesMenu" />
+	            android:value="com.g6pis.beatit.MainActivity" />
         </activity>
         <activity
             android:name=".ChallengesMenu"
