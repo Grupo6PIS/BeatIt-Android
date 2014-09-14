@@ -17,6 +17,11 @@
     <string name="time_left">Tiempo restante:</string>
     <string name="speed">Velocidad:</string>    
     <string name="time_left_value">1 minuto</string>
-    <string name="speed_value">18.2 km/h</string>    
+    <string name="speed_value">18.2 km/h</string>
+    <color name="gris">#f5f5f5</color>
+    <color name="rojo">#d40c34</color>
+    <color name="verde">#008a00</color>
+    <color name="gris_challenge_description">#494949</color>
+    <color name="gris_challenge_values">#6d6d6d</color>    
 
 </resources>

@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gris"
     tools:context=".MainActivity" >
 
 	<ImageView
@@ -24,7 +25,7 @@
 	    android:layout_toRightOf="@+id/textView_Duration"
 	    android:text="@string/challenge"
 	    android:textAppearance="?android:attr/textAppearanceLarge"
-	    android:textColor="#008a00"
+	    android:textColor="@color/verde"
 	    android:textSize="34sp"
 	    android:textStyle="bold" />
 
@@ -46,9 +47,10 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView_Description"
         android:layout_below="@+id/textView_Description"
-        android:layout_marginTop="20dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
         android:text="@string/description_usain_bolt"
+        android:textColor="@color/gris_challenge_description"
         android:textSize="18sp" />
 
 	<TextView
@@ -79,7 +81,7 @@
         android:layout_alignLeft="@+id/textView_Start_Time_Value"
         android:text="@string/duration_value"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="#4C4C4C"
+        android:textColor="@color/gris_challenge_values"
         android:textSize="14sp" />
 
     <TextView
@@ -96,19 +98,21 @@
    	    android:id="@+id/caja_verde"
    	    android:layout_width="250dp"
    	    android:layout_height="40dp"
-   	    android:layout_centerHorizontal="true"
    	    android:layout_below="@+id/textView_To_Beat"
+   	    android:layout_centerHorizontal="true"
    	    android:layout_marginTop="25dp"
-   	    android:background="#008a00"></View>
+   	    android:background="@color/verde" >
+</View>
    	
 	<View
-   	    android:id="@+id/caja_roja"
-   	    android:layout_width="250dp"
-   	    android:layout_height="40dp"
-   	    android:layout_centerHorizontal="true"
-   	    android:layout_below="@+id/caja_verde"
-   	    android:layout_marginTop="20dp"
-   	    android:background="#D40C34"></View>
+	    android:id="@+id/caja_roja"
+	    android:layout_width="250dp"
+	    android:layout_height="40dp"
+	    android:layout_below="@+id/caja_verde"
+	    android:layout_centerHorizontal="true"
+	    android:layout_marginTop="20dp"
+	    android:background="@color/rojo" >
+</View>
 
 	<TextView
 	    android:id="@+id/textView_Time_Left"
@@ -170,7 +174,7 @@
 	    android:layout_alignTop="@+id/textView_To_Beat"
 	    android:text="@string/points_value"
 	    android:textAppearance="?android:attr/textAppearanceMedium"
-	    android:textColor="#4C4C4C"
+	    android:textColor="@color/gris_challenge_values"
 	    android:textSize="14sp" />
 
 	<TextView
@@ -182,7 +186,7 @@
 	    android:layout_marginLeft="15dp"
 	    android:text="@string/start_time_value"
 	    android:textAppearance="?android:attr/textAppearanceMedium"
-	    android:textColor="#4C4C4C"
+	    android:textColor="@color/gris_challenge_values"
 	    android:textSize="14sp" />
 
 </RelativeLayout>
