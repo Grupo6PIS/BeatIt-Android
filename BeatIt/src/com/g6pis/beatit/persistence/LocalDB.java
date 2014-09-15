@@ -1,10 +1,10 @@
-//package com.beatit.persistence;
+//package com.g6pis.beatit.persistence;
 //
 //import java.util.LinkedList;
 //import java.util.List;
 //
-//import com.beatit.challenges.UsainBolt;
-//import com.beatit.entities.Challenge;
+//import com.g6pis.beatit.challenges.UsainBolt;
+//import com.g6pis.beatit.entities.Challenge;
 //
 //import android.content.ContentValues;
 //import android.content.Context;

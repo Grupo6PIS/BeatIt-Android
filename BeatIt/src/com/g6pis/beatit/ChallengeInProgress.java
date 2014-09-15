@@ -1,10 +1,15 @@
-package com.g6pis.beatit;
+/*package com.g6pis.beatit;
+
+import com.g6pis.beatit.challenges.UsainBolt;
+import com.g6pis.beatit.persistence.UsainBoltDAO;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class ChallengeInProgress extends Activity {
 
@@ -13,6 +18,19 @@ public class ChallengeInProgress extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.challenge_in_progress);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+
+		UsainBoltDAO db = new UsainBoltDAO(this);
+
+		UsainBolt challenge = new UsainBolt();
+		challenge.setChallengeId(0);
+		challenge.setName("Usain Bolt");
+		challenge
+				.setDescription("Debes llegar a la velocidad 6km/h en el menor tiempo posible.");
+		challenge.setDuration(1);
+		challenge.setLevel(1);
+
+		db.addUsainBolt(challenge);
+
 	}
 
 	@Override
@@ -21,15 +39,22 @@ public class ChallengeInProgress extends Activity {
 		getMenuInflater().inflate(R.menu.challenge_in_progress, menu);
 		return true;
 	}
-	
+
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-	    switch (item.getItemId()) {
-	    // Respond to the action bar's Up/Home button
-	    case android.R.id.home:
-	        NavUtils.navigateUpFromSameTask(this);
-	        return true;
-	    }
-	    return super.onOptionsItemSelected(item);
+		switch (item.getItemId()) {
+		// Respond to the action bar's Up/Home button
+		case android.R.id.home:
+			NavUtils.navigateUpFromSameTask(this);
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
 	}
-}
+
+	public void usainBoltChallenge(View view) {
+		// Toast.makeText(this, "Click", Toast.LENGTH_LONG).show();;
+		Intent intent = new Intent(ChallengeInProgress.this, UsainBolt.class);
+		startActivity(intent);
+	}
+
+}*/

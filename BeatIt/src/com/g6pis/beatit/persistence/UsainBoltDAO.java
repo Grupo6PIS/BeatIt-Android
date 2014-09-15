@@ -27,8 +27,8 @@ public class UsainBoltDAO extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		String CREATE_USAINBOLT_TABLE = "CREATE TABLE UsainBolt ( "
-				+ "longitude INTEGER, " + "latitude INTEGER, "
-				+ "speed FLOAT, " + "score REAL, " + "challengeId INTEGER, "
+				+ "maxSpeed DOUBLE, " + "avgSpeed DOUBLE, " 
+				+ "score DOUBLE, " + "challengeId INTEGER, "
 				+ "FOREIGN KEY(challengeId) REFERENCES Challenge(challengeId)"
 				+ ");";
 
@@ -58,9 +58,8 @@ public class UsainBoltDAO extends SQLiteOpenHelper {
 		// Create ContentValues to add key column/value
 		ContentValues values = new ContentValues();
 		values.put("challengeId", usainBolt.getChallengeId());
-		values.put("longitude", usainBolt.getLongitude());
-		values.put("latitude", usainBolt.getLatitude());
-		values.put("speed", usainBolt.getSpeed());
+		values.put("maxSpeed", usainBolt.getMaxSpeed());
+		values.put("avgSpeed", usainBolt.getAvgSpeed());
 		values.put("score", usainBolt.getScore());
 
 		// Insert
@@ -78,7 +77,7 @@ public class UsainBoltDAO extends SQLiteOpenHelper {
 
 		// String[] COLUMNS = {"challengeId","name","description", "duration",
 		// "level"};
-		String[] COLUMNS = { "challengeId", "longitude", "latitude", "speed",
+		String[] COLUMNS = { "challengeId", "maxSpeed", "avgSpeed", 
 				"score" };
 		// 2. build query
 		Cursor cursor = db.query("UsainBolt", // a. table
@@ -98,10 +97,9 @@ public class UsainBoltDAO extends SQLiteOpenHelper {
 		// 4. build usianBolt object
 		UsainBolt challenge = new UsainBolt();
 		challenge.setChallengeId(Integer.parseInt(cursor.getString(0)));
-		challenge.setLongitude(Integer.parseInt(cursor.getString(1)));
-		challenge.setLatitude(Integer.parseInt(cursor.getString(2)));
-		challenge.setSpeed(Float.parseFloat(cursor.getString(3)));
-		challenge.setScore(Integer.parseInt(cursor.getString(4)));
+		challenge.setMaxSpeed(Double.parseDouble(cursor.getString(1)));
+		challenge.setAvgSpeed(Double.parseDouble(cursor.getString(2)));
+		challenge.setScore(Integer.parseInt(cursor.getString(3)));
 
 		Log.d("getUsainBolt(" + challengeId + ")", challenge.toString());
 
@@ -129,10 +127,9 @@ public class UsainBoltDAO extends SQLiteOpenHelper {
 				// 4. build challenge object
 				UsainBolt challenge = new UsainBolt();
 				challenge.setChallengeId(Integer.parseInt(cursor.getString(0)));
-				challenge.setLongitude(Integer.parseInt(cursor.getString(1)));
-				challenge.setLatitude(Integer.parseInt(cursor.getString(2)));
-				challenge.setSpeed(Float.parseFloat(cursor.getString(3)));
-				challenge.setScore(Integer.parseInt(cursor.getString(4)));
+				challenge.setMaxSpeed(Double.parseDouble(cursor.getString(1)));
+				challenge.setAvgSpeed(Double.parseDouble(cursor.getString(2)));
+				challenge.setScore(Integer.parseInt(cursor.getString(3)));
 
 				challenges.add(challenge);
 
@@ -151,9 +148,8 @@ public class UsainBoltDAO extends SQLiteOpenHelper {
 		// 2. create ContentValues to add key "column"/value
 		ContentValues values = new ContentValues();
 		//values.put("challengeId", challenge.getChallengeId());
-		values.put("longitude", challenge.getLongitude());
-		values.put("latitude", challenge.getLatitude());
-		values.put("speed", challenge.getSpeed());
+		values.put("maxSpeed", challenge.getMaxSpeed());
+		values.put("avgSpeed", challenge.getAvgSpeed());
 		values.put("score", challenge.getScore());
 
 		// 3. updating row

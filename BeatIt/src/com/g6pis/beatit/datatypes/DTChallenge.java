@@ -7,7 +7,7 @@ public class DTChallenge {
 	private Integer duration;
 	private Integer level;
 	private DTDateTime dateTimeStart;
-	private Integer score;
+
 	
 	public DTChallenge(){
 		
@@ -43,13 +43,7 @@ public class DTChallenge {
 	public void setDateTimeStart(DTDateTime dateTimeStart) {
 		this.dateTimeStart = dateTimeStart;
 	}
-	public Integer getScore() {
-		return score;
-	}
-	public void setScore(Integer score) {
-		this.score = score;
-	}
-	
+
 	
 
 }

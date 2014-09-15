@@ -11,13 +11,19 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.provider.Settings;
+import android.support.v4.app.NavUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.g6pis.beatit.entities.Challenge;
+import com.g6pis.beatit.persistence.ChallengeDAO;
 import com.g6pis.beatit.persistence.UsainBoltDAO;
+import com.g6pis.beatit.ChallengeFinished;
+//import com.g6pis.beatit.persistence.UsainBoltDAO;
 import com.g6pis.beatit.R;
 
 public class UsainBolt extends Challenge implements OnClickListener,
@@ -49,15 +55,21 @@ public class UsainBolt extends Challenge implements OnClickListener,
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		setContentView(R.layout.challenge_in_progress);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 				MIN_TIME, MIN_DISTANCE, this);
 
 		// TODO controlar GPS y enviar al settings si no está conectado
 		// findViewById(R.id.settings_button).setOnClickListener(this);
-
+		
+		
+		//TODO cargar el nivel del desafio segun la BD
+		this.setLevel(getIntent().getExtras().getInt("level"));
+		this.setChallengeId(getIntent().getExtras().getInt("challengeId"));
+		
+			
 		switch (this.getLevel()) {
 
 		case 1: {
@@ -87,13 +99,20 @@ public class UsainBolt extends Challenge implements OnClickListener,
 		this.setLongitude((int) loc.getLongitude());
 		this.setSpeed(loc.getSpeed() * 3.6);
 		this.getSpeeds().add(this.getSpeed());
-		this.setAvgSpeed(this.getSpeeds());
+
+		Double averageSpeed = 0d;
+		for (Double speed : this.getSpeeds()) {
+			averageSpeed += speed;
+		}
+
+		averageSpeed /= this.getSpeeds().size();
+		this.setAvgSpeed(averageSpeed);
 
 		if (this.getSpeed() > this.getMaxSpeed())
 			this.setMaxSpeed(this.getSpeed());
 
 		((TextView) findViewById(R.id.textView_Speed_Value)).setText(Double
-				.toString(this.getSpeed()));
+				.toString(Math.round(this.getSpeed())) + " km/h");
 
 		if (this.getSpeed() >= minSpeed) {
 			// TODO probar timer
@@ -121,8 +140,10 @@ public class UsainBolt extends Challenge implements OnClickListener,
 				timer = null;
 				this.setMaxSpeed(0);
 				this.speeds = new HashSet<Double>();
-				this.setAvgSpeed(this.getSpeeds());
+				this.setAvgSpeed(0d);
 				this.setScore(0);
+				((TextView) findViewById(R.id.textView_Time_Left_Value))
+						.setText(Long.toString(this.getTime()) + " seconds");
 			}
 		}
 
@@ -159,22 +180,45 @@ public class UsainBolt extends Challenge implements OnClickListener,
 		locationManager.removeUpdates(this);
 	}
 
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		// Respond to the action bar's Up/Home button
+		case android.R.id.home:
+			NavUtils.navigateUpFromSameTask(this);
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.challenge_in_progress, menu);
+		return true;
+	}
+	
+	
 	public void completeChallenge() {
 		locationManager.removeUpdates(this);
 		timer = null;
 		this.setScore((this.getMaxSpeed() + this.getAvgSpeed()) * 2);
 
-		// TODO guardar en la BD el puntaje
+		//TODO ver si esto funciona correctamente...
+		UsainBoltDAO db = new UsainBoltDAO(this);
 
-		// UsainBoltDAO db = new UsainBoltDAO(this);
-		//
-		// UsainBolt challenge = (UsainBolt) db.getUsainBolt(0);
-		// challenge.setLatitude(this.getLatitude());
-		// challenge.setLongitude(this.getLongitude());
-		// challenge.setSpeed(this.getSpeed());
-		// challenge.setScore(this.getScore());
-		//
-		// db.updateChallenge(challenge);
+		UsainBolt challenge = (UsainBolt) db.getUsainBolt(0);
+		challenge.setMaxSpeed(this.getMaxSpeed());
+		challenge.setAvgSpeed(this.getAvgSpeed());
+		challenge.setScore(this.getScore());
+		db.updateChallenge(challenge);
+		
+		//Abro la activity de desafío finalizado
+		Intent challengeFinished = new Intent(this, ChallengeFinished.class);
+        challengeFinished.putExtra("maxSpeed", this.getMaxSpeed());
+        challengeFinished.putExtra("avgSpeed", this.getAvgSpeed());
+        challengeFinished.putExtra("score", this.getScore());
+        startActivity(challengeFinished);
 
 	}
 
@@ -246,14 +290,7 @@ public class UsainBolt extends Challenge implements OnClickListener,
 		return avgSpeed;
 	}
 
-	public void setAvgSpeed(Set<Double> speeds) {
-		double avgSpeed = 0;
-		for (double speed : speeds) {
-			avgSpeed += speed;
-		}
-
-		avgSpeed /= speeds.size();
-
+	public void setAvgSpeed(Double avgSpeed) {
 		this.avgSpeed = avgSpeed;
 	}
 

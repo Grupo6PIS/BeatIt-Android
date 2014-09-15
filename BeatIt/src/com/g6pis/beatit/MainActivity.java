@@ -1,5 +1,10 @@
 package com.g6pis.beatit;
 
+
+
+import com.g6pis.beatit.challenges.UsainBolt;
+
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,12 +20,15 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+              
         
         final Button button = (Button) findViewById(R.id.button1);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-            	Intent challenge = new Intent(MainActivity.this, ChallengeInProgress.class);
+            	Intent challenge = new Intent(MainActivity.this, UsainBolt.class);
+            	challenge.putExtra("level", 2);
+            	challenge.putExtra("challengeId", 0);
             	startActivity(challenge);
             }
         });
@@ -48,4 +56,8 @@ public class MainActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+    
+    
+   
+    
 }
