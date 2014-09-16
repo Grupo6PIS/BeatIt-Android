@@ -1,4 +1,8 @@
-/*package com.g6pis.beatit;
+package com.g6pis.beatit;
+
+import java.util.List;
+
+import com.g6pis.beatit.datatypes.DTRanking;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -6,19 +10,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class AdaptadorRanking extends ArrayAdapter<String> {
+public class AdaptadorRanking extends ArrayAdapter<DTRanking> {
   private final Context context;
-  private final String[] posiciones;
+  private final List rs;
 
-  public AdaptadorRanking(Context context, String[] posiciones, String[] nombresDeUsuario, String[] puntajes) {
-    super(context, R.layout.ranking_row, posiciones);
+  public AdaptadorRanking(Context context, List rs) {
+    super(context, R.layout.ranking_row);
     this.context = context;
-    this.posiciones = posiciones;
+    this.rs = rs;
   }
 
   @SuppressLint("ViewHolder") @Override
@@ -35,35 +38,13 @@ public class AdaptadorRanking extends ArrayAdapter<String> {
     TextView nombreUsuario = (TextView) rowView.findViewById(R.id.textView_nombre_usuario);
     TextView puntaje = (TextView) rowView.findViewById(R.id.textView_puntaje);
     
-    posicion.setText(posiciones[position]);
-    
-    // Change the icon for Windows and iPhone
-    String s = posiciones[position];
-    if (s.startsWith("Windows7") || s.startsWith("iPhone")
-        || s.startsWith("Solaris")) {
-      imageFoto.setImageResource(R.drawable.ic_launcher);
-    } else {
-      imageFoto.setImageResource(R.drawable.ic_usain_bolt);
-    }
+    // Agrego los datos a los elementos
+    DTRanking dtr = (DTRanking) rs.get(position);
+    //imageFoto.setImageResource();
+    posicion.setText(dtr.getPosicion());
+    nombreUsuario.setText(dtr.getNombreUsuario());
+    puntaje.setText(dtr.getPuntaje());
 
     return rowView;
   }
-
-@Override
-public int getCount() {
-	// TODO Auto-generated method stub
-	return 0;
-}
-
-@Override
-public Object getItem(int position) {
-	// TODO Auto-generated method stub
-	return null;
-}
-
-@Override
-public long getItemId(int position) {
-	// TODO Auto-generated method stub
-	return 0;
-}
-} */
+} 

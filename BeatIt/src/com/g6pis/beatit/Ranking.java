@@ -1,11 +1,15 @@
 package com.g6pis.beatit;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import com.g6pis.beatit.datatypes.DTRanking;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-
 import android.app.ListActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,13 +20,16 @@ import android.widget.Toast;
 public class Ranking extends ListActivity {
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
-    String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
-        "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-        "Linux", "OS/2" };
-    // use your custom layout
-    ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-        R.layout.ranking_row, values);
-    setListAdapter(adapter);
+    setContentView(R.layout.ranking);
+
+    List rankings = new ArrayList();
+    
+    rankings.add(new DTRanking("Felipe", 2000, 1, "imagen"));
+    rankings.add(new DTRanking("Alejandro", 10, 2, "imagen"));
+    rankings.add(new DTRanking("Luciana", 5, 3, "imagen"));
+    rankings.add(new DTRanking("Martin", 2, 4, "imagen"));
+
+    setListAdapter(new AdaptadorRanking(this, rankings));
   }
 
   @Override
