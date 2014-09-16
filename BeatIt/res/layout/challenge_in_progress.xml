@@ -42,14 +42,14 @@
          />
 
     <TextView
-        android:id="@+id/textView_Description_Value"
+        android:id="@+id/textView_Description_Value_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView_Description"
         android:layout_below="@+id/textView_Description"
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
-        android:text="@string/description_usain_bolt"
+        android:text="@string/description_usain_bolt_2"
         android:textColor="@color/gris_challenge_description"
         android:textSize="18sp" />
 
@@ -57,8 +57,8 @@
 		android:id="@+id/textView_Start_Time"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
-		android:layout_alignLeft="@+id/textView_Description_Value"
-		android:layout_below="@+id/textView_Description_Value"
+		android:layout_alignLeft="@+id/textView_Description_Value_2"
+		android:layout_below="@+id/textView_Description_Value_2"
 		android:layout_marginTop="19dp"
 		android:text="@string/start_time"
 		android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -115,33 +115,6 @@
 </View>
 
 	<TextView
-	    android:id="@+id/textView_Time_Left"
-   	    android:gravity="center"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignBottom="@+id/caja_verde"
-	    android:layout_marginBottom="13dp"
-	    android:layout_alignRight="@+id/textView_Start_Time"
-	    android:layout_marginRight="16dp"
-	    android:text="@string/time_left"
-	    android:textColor="#FFFFFF"
-	    android:textStyle="bold"
-	    android:textSize="14sp" />
-
-	<TextView
-	    android:id="@+id/textView_Time_Left_Value"
-   	    android:gravity="center"
-	    android:layout_width="wrap_content"
-	    android:layout_height="wrap_content"
-	    android:layout_alignBottom="@+id/caja_verde"
-	    android:layout_marginBottom="13dp"
-	    android:layout_toRightOf="@+id/textView_Time_Left"
-	    android:text="@string/time_left_value"
-	    android:textColor="#FFFFFF"
-	    android:textStyle="bold"
-	    android:textSize="14sp" />
-
-	<TextView
 	    android:id="@+id/textView_Speed"
    	    android:gravity="center"
 	    android:layout_width="wrap_content"
@@ -188,5 +161,30 @@
 	    android:textAppearance="?android:attr/textAppearanceMedium"
 	    android:textColor="@color/gris_challenge_values"
 	    android:textSize="14sp" />
+
+	<TextView
+	    android:id="@+id/textView_Time_Left"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignTop="@+id/caja_verde"
+	    android:layout_toLeftOf="@+id/textView_Time_Left_Value"
+	    android:gravity="center"
+	    android:text="@string/time_left"
+	    android:textColor="#FFFFFF"
+	    android:textSize="14sp"
+	    android:textStyle="bold" />
+
+	<TextView
+	    android:id="@+id/textView_Time_Left_Value"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignTop="@+id/caja_verde"
+	    android:layout_marginLeft="28dp"
+	    android:layout_toRightOf="@+id/textView_Description"
+	    android:gravity="center"
+	    android:text="@string/time_left_value_2"
+	    android:textColor="#FFFFFF"
+	    android:textSize="14sp"
+	    android:textStyle="bold" />
 
 </RelativeLayout>

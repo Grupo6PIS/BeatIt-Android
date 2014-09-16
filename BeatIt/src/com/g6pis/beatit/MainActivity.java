@@ -2,8 +2,12 @@ package com.g6pis.beatit;
 
 
 
+import java.util.Random;
+
 import com.g6pis.beatit.challenges.UsainBolt;
 
+
+import com.g6pis.beatit.persistence.UsainBoltDAO;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -20,20 +24,40 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-              
+         
+        Random rand = new Random();
+        final int  level = rand.nextInt(2) + 1;
         
         final Button button = (Button) findViewById(R.id.button1);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
             	Intent challenge = new Intent(MainActivity.this, UsainBolt.class);
-            	challenge.putExtra("level", 2);
+            	challenge.putExtra("level", level);
             	challenge.putExtra("challengeId", 0);
             	startActivity(challenge);
             }
         });
         
+        final Button button2 = (Button) findViewById(R.id.button2);
+        button2.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+            	Intent challenge = new Intent(MainActivity.this, Ranking.class);
+            	startActivity(challenge);
+            }
+        });
+        
         getActionBar().setHomeButtonEnabled(false);
+        
+        UsainBoltDAO db = new UsainBoltDAO(this);
+        
+        
+		UsainBolt challenge = new UsainBolt();
+		challenge.setMaxSpeed(20);
+		challenge.setAvgSpeed(20.0);
+		challenge.setScore(200);
+		db.addUsainBolt(challenge);
 
     }
 
