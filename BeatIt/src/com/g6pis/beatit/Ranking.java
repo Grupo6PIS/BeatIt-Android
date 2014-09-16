@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+
 public class Ranking extends ListActivity {
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
@@ -31,6 +32,7 @@ public class Ranking extends ListActivity {
 
     setListAdapter(new AdaptadorRanking(this, rankings));
   }
+
 
   @Override
   protected void onListItemClick(ListView l, View v, int position, long id) {

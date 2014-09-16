@@ -99,7 +99,7 @@ public class UsainBoltDAO extends SQLiteOpenHelper {
 		challenge.setChallengeId(Integer.parseInt(cursor.getString(0)));
 		challenge.setMaxSpeed(Double.parseDouble(cursor.getString(1)));
 		challenge.setAvgSpeed(Double.parseDouble(cursor.getString(2)));
-		challenge.setScore(Integer.parseInt(cursor.getString(3)));
+		challenge.setScore(Double.parseDouble(cursor.getString(3)));
 
 		Log.d("getUsainBolt(" + challengeId + ")", challenge.toString());
 
@@ -126,10 +126,10 @@ public class UsainBoltDAO extends SQLiteOpenHelper {
 
 				// 4. build challenge object
 				UsainBolt challenge = new UsainBolt();
-				challenge.setChallengeId(Integer.parseInt(cursor.getString(0)));
-				challenge.setMaxSpeed(Double.parseDouble(cursor.getString(1)));
-				challenge.setAvgSpeed(Double.parseDouble(cursor.getString(2)));
-				challenge.setScore(Integer.parseInt(cursor.getString(3)));
+				challenge.setChallengeId(Integer.parseInt(cursor.getString(3)));
+				challenge.setMaxSpeed(Double.parseDouble(cursor.getString(0)));
+				challenge.setAvgSpeed(Double.parseDouble(cursor.getString(1)));
+				challenge.setScore(Double.parseDouble(cursor.getString(2)));
 
 				challenges.add(challenge);
 

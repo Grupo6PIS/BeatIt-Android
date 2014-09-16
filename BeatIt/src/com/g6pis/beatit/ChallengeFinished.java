@@ -1,9 +1,9 @@
 package com.g6pis.beatit;
 
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
@@ -15,19 +15,18 @@ public class ChallengeFinished extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.challenge_finished);
 
-		double maxSpeed = getIntent().getExtras().getDouble("maxSpeed");
-		double avgSpeed = getIntent().getExtras().getDouble("avgSpeed");
-		double score = getIntent().getExtras().getDouble("score");
-		
-		((TextView) findViewById(R.id.textView_max_speed_value)).setText(Double
-				.toString(maxSpeed) + "km/h");
-		
-		((TextView) findViewById(R.id.textView_avg_speed_value)).setText(Double
-				.toString(avgSpeed) + "km/h");
-		
-		((TextView) findViewById(R.id.textView_Score_Value)).setText(Double
-				.toString(score) + " puntos");
+		// double maxSpeed = getIntent().getExtras().getString("maxSpeed");
+		// double avgSpeed = getIntent().getExtras().getString("avgSpeed");
+		// double score = getIntent().getExtras().getString("score");
 
+		((TextView) findViewById(R.id.textView_max_speed_value))
+				.setText(getIntent().getExtras().getString("maxSpeed") + "km/h");
+
+		((TextView) findViewById(R.id.textView_avg_speed_value))
+				.setText(getIntent().getExtras().getString("avgSpeed") + "km/h");
+
+		((TextView) findViewById(R.id.textView_Score_Value))
+				.setText(getIntent().getExtras().getString("score") + " puntos");
 
 	}
 

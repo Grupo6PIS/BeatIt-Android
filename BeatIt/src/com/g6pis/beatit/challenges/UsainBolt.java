@@ -3,7 +3,10 @@ package com.g6pis.beatit.challenges;
 import java.util.HashSet;
 import java.util.Set;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
@@ -12,6 +15,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.provider.Settings;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -34,9 +38,11 @@ public class UsainBolt extends Challenge implements OnClickListener,
 	private static final long MIN_TIME = 0;
 	private static final float MIN_DISTANCE = 0;
 	private static final double MIN_SPEED_LEVEL1 = 20.0;
-	private static final double MIN_SPEED_LEVEL2 = 25;
+	private static final double MIN_SPEED_LEVEL2 = 25.0;
 	private static final long TIME_LEVEL1 = 30000;
-	private static final long TIME_LEVEL2 = 60000;
+	private static final long TIME_LEVEL2 = 90000;
+	private static final int SETTINGS_DIALOG = 10;
+	private static final int SPEED_DIALOG = 20;
 
 	private int longitude;
 	private int latitude;
@@ -50,8 +56,14 @@ public class UsainBolt extends Challenge implements OnClickListener,
 	private Integer level;
 	private double minSpeed;
 	private long time;
-	private CountDownTimer timer = null;
-
+	private CountDownTimer timer;
+	private boolean timerRunning = false;
+	private boolean running = false;
+	
+	private Dialog settingsDialog;
+	private Dialog speedDialog;
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -61,29 +73,60 @@ public class UsainBolt extends Challenge implements OnClickListener,
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 				MIN_TIME, MIN_DISTANCE, this);
 
-		// TODO controlar GPS y enviar al settings si no está conectado
-		// findViewById(R.id.settings_button).setOnClickListener(this);
+		this.settingsDialog = onCreateDialog(SETTINGS_DIALOG);
+		
+		
+		if(!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)){
+			settingsDialog.show();
+		}
+
+
 		
 		
 		//TODO cargar el nivel del desafio segun la BD
 		this.setLevel(getIntent().getExtras().getInt("level"));
 		this.setChallengeId(getIntent().getExtras().getInt("challengeId"));
-		
+
 			
 		switch (this.getLevel()) {
 
 		case 1: {
 			minSpeed = MIN_SPEED_LEVEL1;
 			time = TIME_LEVEL1;
+			((TextView)findViewById(R.id.textView_Description_Value_2)).setText(R.string.description_usain_bolt_1);
+			((TextView)findViewById(R.id.textView_Time_Left_Value)).setText(R.string.time_left_value_1);
+			
 		}
 			break;
 		case 2: {
 			minSpeed = MIN_SPEED_LEVEL2;
 			time = TIME_LEVEL2;
+			((TextView)findViewById(R.id.textView_Description_Value_2)).setText(R.string.description_usain_bolt_2);
+			((TextView)findViewById(R.id.textView_Time_Left_Value)).setText(R.string.time_left_value_2);
 		}
 			break;
 		}
+		
+		timer = new CountDownTimer(time, 1000l) {
+			public void onTick(long millisUntilFinished) {
+				((TextView) findViewById(R.id.textView_Time_Left_Value))
+						.setText(Long
+								.toString(millisUntilFinished / 1000)
+								+ " seconds");
+			}
 
+			public void onFinish() {
+				completeChallenge();
+				Toast.makeText(getApplicationContext(),
+						"Challenge Completed!", Toast.LENGTH_SHORT)
+						.show();
+			}
+		};
+		
+		this.speedDialog = onCreateDialog(SPEED_DIALOG);
+
+
+		
 	}
 
 	@Override
@@ -100,7 +143,7 @@ public class UsainBolt extends Challenge implements OnClickListener,
 		this.setSpeed(loc.getSpeed() * 3.6);
 		this.getSpeeds().add(this.getSpeed());
 
-		Double averageSpeed = 0d;
+		Double averageSpeed = 0.0;
 		for (Double speed : this.getSpeeds()) {
 			averageSpeed += speed;
 		}
@@ -113,37 +156,36 @@ public class UsainBolt extends Challenge implements OnClickListener,
 
 		((TextView) findViewById(R.id.textView_Speed_Value)).setText(Double
 				.toString(Math.round(this.getSpeed())) + " km/h");
-
-		if (this.getSpeed() >= minSpeed) {
+		
+		/*if((this.getSpeed() > 0) && (!this.running))
+			this.speedDialog.show();
+		if((this.getSpeed() == 0) && (!this.running)){
+			this.running = true;
+			this.speedDialog.hide();
+		}*/
+		
+		if ((this.getSpeed() >= minSpeed)
+				//&&(running)
+				) {
 			// TODO probar timer
 			// TODO controlar velocidad inicial sea 0
-			if (timer == null) {
-				timer = new CountDownTimer(time, 1000l) {
-					public void onTick(long millisUntilFinished) {
-						((TextView) findViewById(R.id.textView_Time_Left_Value))
-								.setText(Long
-										.toString(millisUntilFinished / 1000)
-										+ " seconds");
-					}
-
-					public void onFinish() {
-						completeChallenge();
-						Toast.makeText(getApplicationContext(),
-								"Challenge Completed!", Toast.LENGTH_SHORT)
-								.show();
-					}
-				}.start();
+			if (!timerRunning) {
+				this.timer.start();
+				this.timerRunning = true;
 			}
 
 		} else {
-			if (timer != null) {
-				timer = null;
+			if (this.timerRunning) {
+				timer.cancel();
+				this.timerRunning = false;
 				this.setMaxSpeed(0);
 				this.speeds = new HashSet<Double>();
 				this.setAvgSpeed(0d);
 				this.setScore(0);
+				this.running = false;
+				this.speedDialog.show();
 				((TextView) findViewById(R.id.textView_Time_Left_Value))
-						.setText(Long.toString(this.getTime()) + " seconds");
+						.setText(Long.toString(this.getTime()/ 1000) + " seconds");
 			}
 		}
 
@@ -151,13 +193,13 @@ public class UsainBolt extends Challenge implements OnClickListener,
 
 	@Override
 	public void onProviderDisabled(String arg0) {
-		// TODO Auto-generated method stub
+		this.settingsDialog.show();
 
 	}
 
 	@Override
 	public void onProviderEnabled(String arg0) {
-		// TODO Auto-generated method stub
+		this.settingsDialog.hide();
 
 	}
 
@@ -177,6 +219,8 @@ public class UsainBolt extends Challenge implements OnClickListener,
 	@Override
 	protected void onPause() {
 		super.onPause();
+		settingsDialog.dismiss();
+		speedDialog.dismiss();
 		locationManager.removeUpdates(this);
 	}
 
@@ -204,6 +248,20 @@ public class UsainBolt extends Challenge implements OnClickListener,
 		timer = null;
 		this.setScore((this.getMaxSpeed() + this.getAvgSpeed()) * 2);
 
+		
+		
+		//Abro la activity de desafío finalizado
+		Intent challengeFinished = new Intent(this, ChallengeFinished.class);
+		challengeFinished.putExtra("maxSpeed", Double.toString(Math.round(this.getMaxSpeed())));
+		challengeFinished.putExtra("avgSpeed", Double.toString(Math.round(this.getAvgSpeed())));
+		challengeFinished.putExtra("score", Double.toString(Math.round(this.getScore())));
+		
+		Log.d("maxSpeed", Double.toString(challengeFinished.getExtras().getDouble("maxSpeed")));
+		Log.d("avgSpeed", Double.toString(challengeFinished.getExtras().getDouble("avgSpeed")));
+		Log.d("score", Double.toString(challengeFinished.getExtras().getDouble("score")));
+		
+		startActivity(challengeFinished);
+
 		//TODO ver si esto funciona correctamente...
 		UsainBoltDAO db = new UsainBoltDAO(this);
 
@@ -213,15 +271,51 @@ public class UsainBolt extends Challenge implements OnClickListener,
 		challenge.setScore(this.getScore());
 		db.updateChallenge(challenge);
 		
-		//Abro la activity de desafío finalizado
-		Intent challengeFinished = new Intent(this, ChallengeFinished.class);
-        challengeFinished.putExtra("maxSpeed", this.getMaxSpeed());
-        challengeFinished.putExtra("avgSpeed", this.getAvgSpeed());
-        challengeFinished.putExtra("score", this.getScore());
-        startActivity(challengeFinished);
+		this.finish();
+		
 
 	}
 
+
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+	  switch (id) {
+	    case SETTINGS_DIALOG:{
+	    builder.setMessage(R.string.gps_disabled);
+	    builder.setCancelable(true);
+	    builder.setPositiveButton(R.string.ok, new OkOnClickListener());
+	    builder.setNegativeButton(R.string.cancel, new CancelOnClickListener());
+	    return builder.create();
+	    }
+	    
+	    case SPEED_DIALOG:{
+	    	builder.setMessage(R.string.speed_greater_than_zero);
+	    	return builder.create();
+	    }
+
+	  }
+	  return super.onCreateDialog(id);
+	}
+
+	private final class CancelOnClickListener implements
+	  DialogInterface.OnClickListener {
+	  public void onClick(DialogInterface dialog, int which) {
+	  }
+	}
+
+	private final class OkOnClickListener implements
+	  DialogInterface.OnClickListener {
+	  public void onClick(DialogInterface dialog, int which) {
+		  Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+		  startActivity(intent);
+	  }
+	} 
+	
+	
+	
+	
+	
 	/*
 	 * Getter & Setters
 	 */
