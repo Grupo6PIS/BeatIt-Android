@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string name="app_name">BeatIt!</string>
     <string name="hello_world">Hola Mundo!</string>
     <string name="action_settings">Ajustes</string>
@@ -40,5 +38,7 @@
     <string name="end_time">Hora de fin: </string>
     <string name="end_time_value">20/07/2014 9:50</string>
     <color name="blanco">#ffffff</color>
+    <string name="app_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
+    <string name="iniciar_sesion">Iniciar Sesión</string>
 
 </resources>

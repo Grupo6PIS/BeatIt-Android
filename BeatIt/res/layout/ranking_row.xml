@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <LinearLayout
+        android:id="@+id/linear_indicador_soyyo"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@color/verde"
+        android:orientation="vertical" >
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView_posicion"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="5"
+        android:text="TextView" />
+
+    <ImageView
+        android:id="@+id/imageView_foto_ranking"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_weight="8"
+        android:src="@drawable/app_logo" />
+
+    <TextView
+        android:id="@+id/textView_nombre_usuario"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="30"
+        android:gravity="center_vertical"
+        android:text="TextView" />
+
+    <TextView
+        android:id="@+id/textView_puntaje"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="15"
+        android:text="TextView" />
+
+</LinearLayout>
