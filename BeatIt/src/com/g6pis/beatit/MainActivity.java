@@ -25,17 +25,15 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
          
-        Random rand = new Random();
-        final int  level = rand.nextInt(2) + 1;
+//        Random rand = new Random();
+//        final int  level = rand.nextInt(2) + 1;
         
         final Button button = (Button) findViewById(R.id.button1);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-            	Intent challenge = new Intent(MainActivity.this, UsainBolt.class);
-            	challenge.putExtra("level", level);
-            	challenge.putExtra("challengeId", 0);
-            	startActivity(challenge);
+            	Intent challengeMenu = new Intent(MainActivity.this, ChallengesMenu.class);
+            	startActivity(challengeMenu);
             }
         });
         
