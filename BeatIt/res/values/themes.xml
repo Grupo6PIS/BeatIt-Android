@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <resources>
+
     <!-- the theme applied to the application or activity -->
-    <style name="BeatItActionBarTheme"
-           parent="@android:style/Theme.Holo.Light.DarkActionBar">
+    <style name="BeatItActionBarTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/MyActionBar</item>
+        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle</item>
+        <item name="android:tabWidgetStyle">@android:style/Widget.TabWidget</item>
+        
     </style>
 
     <!-- ActionBar styles -->
-    <style name="MyActionBar"
-           parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+    <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
         <item name="android:background">#008a00</item>
         <item name="android:displayOptions">showHome|homeAsUp|showTitle</item>
-		<item name="android:icon">@android:color/transparent</item>
+        <item name="android:backgroundStacked">#ffffff</item>
+        <item name="android:icon">@android:color/transparent</item>
+    </style>
+
+    <style name="ActionBarTabStyle" parent="@android:style/Widget.Holo.Light.ActionBar.TabView">
+        <item name="android:background">@drawable/tab_indicator_ab_example</item>
     </style>
 
 </resources>

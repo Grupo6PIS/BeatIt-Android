@@ -264,12 +264,12 @@ public class UsainBolt extends Challenge implements OnClickListener,
 
 		//TODO ver si esto funciona correctamente...
 		UsainBoltDAO db = new UsainBoltDAO(this);
-
-		UsainBolt challenge = (UsainBolt) db.getUsainBolt(0);
-		challenge.setMaxSpeed(this.getMaxSpeed());
-		challenge.setAvgSpeed(this.getAvgSpeed());
-		challenge.setScore(this.getScore());
-		db.updateChallenge(challenge);
+		db.addUsainBolt(this);
+//		UsainBolt challenge = (UsainBolt) db.getUsainBolt(0);
+//		challenge.setMaxSpeed(this.getMaxSpeed());
+//		challenge.setAvgSpeed(this.getAvgSpeed());
+//		challenge.setScore(this.getScore());
+//		db.updateChallenge(challenge);
 		
 		this.finish();
 		

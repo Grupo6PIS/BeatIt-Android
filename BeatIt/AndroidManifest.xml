@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:theme="@style/BeatItActionBarTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".Login"
             android:label="@string/app_name" 
             android:screenOrientation="portrait">
             <intent-filter>
@@ -24,16 +24,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+            <!-- android:name=".MainActivity"-->
         <activity
             
             android:name=".ChallengeInProgress"
             android:label="@string/title_activity_challenge_in_progress" 
             android:screenOrientation="portrait">
-            android:parentActivityName="com.g6pis.beatit.MainActivity" >
+            android:parentActivityName="com.g6pis.beatit.Home" >
 	        <!-- Parent activity meta-data to support 4.0 and lower -->
 	        <meta-data
 	            android:name="android.support.PARENT_ACTIVITY"
-	            android:value="com.g6pis.beatit.MainActivity" />
+	            android:value="com.g6pis.beatit.Home" />
         </activity>
         <activity
             android:name=".ChallengesMenu"
@@ -48,7 +49,7 @@
 	        <!-- Parent activity meta-data to support 4.0 and lower -->
 	        <meta-data
 	            android:name="android.support.PARENT_ACTIVITY"
-	            android:value="com.g6pis.beatit.MainActivity" />
+	            android:value="com.g6pis.beatit.Home" />
             
         </activity>
         <activity
@@ -73,17 +74,24 @@
             android:name=".ChallengeFinished"
             android:label="@string/title_activity_challenge_finished"
             android:screenOrientation="portrait" >
-            android:parentActivityName="com.g6pis.beatit.ChallengesMenu" >
+            android:parentActivityName="com.g6pis.beatit.Home" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.g6pis.beatit.ChallengesMenu" />
+                android:value="com.g6pis.beatit.Home" />
         </activity>
-        <activity
+       <!--<activity
             android:name=".Login"
             android:label="@string/title_activity_login"
             android:screenOrientation="portrait" >
             
-        </activity>       
+        </activity>  --> 
+        <activity
+            android:name=".Home"
+            android:label="@string/title_activity_home"
+            android:screenOrientation="portrait" >
+            
+        </activity>  
+        
         
     </application>
 

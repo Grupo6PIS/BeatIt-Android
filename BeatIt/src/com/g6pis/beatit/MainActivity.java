@@ -17,6 +17,7 @@ import android.widget.Button;
 
 
 public class MainActivity extends Activity {
+	
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +42,8 @@ public class MainActivity extends Activity {
         button2.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click
-            	Intent challenge = new Intent(MainActivity.this, Ranking.class);
-            	startActivity(challenge);
+//            	Intent challenge = new Intent(MainActivity.this, Ranking.class);
+//            	startActivity(challenge);
             }
         });
         
@@ -79,7 +80,11 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
     
+   
+
+	
     
    
+
     
 }

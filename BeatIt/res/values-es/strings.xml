@@ -41,10 +41,18 @@
     <string name="avg_speed_value">21.3</string>
     <string name="end_time">Hora de fin: </string>
     <string name="end_time_value">20/07/2014 9:50</string>
+
     <color name="blanco">#ffffff</color>
+
     <string name="gps_disabled">Por favor activa el GPS</string>
     <string name="cancel">Cancelar</string>
     <string name="ok">Aceptar</string>
     <string name="speed_greater_than_zero">Debes estar quieto para poder comenzar el desafío</string>
+    <string name="challenges_tab">Desafíos</string>
+    <string name="profile_tab">Perfil</string>
+    <string name="ranking_tab">Ranking</string>
+        <string name="app_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
+    <string name="iniciar_sesion">Iniciar Sesión</string>
+    <string name="title_activity_home">Home</string>
 
 </resources>
