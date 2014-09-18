@@ -53,6 +53,7 @@ public class Home extends FragmentActivity {
 	        actionBar.setDisplayHomeAsUpEnabled(false);
 	        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 	        setTitle(R.string.app_name);
+	        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
 	        
 	        ActionBar.Tab tab1 = actionBar.newTab().setText(R.string.challenges_tab);
 	        ActionBar.Tab tab2 = actionBar.newTab().setText(R.string.ranking_tab);

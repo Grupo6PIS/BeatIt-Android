@@ -55,5 +55,11 @@
     <string name="iniciar_sesion">Iniciar Sesión</string>
     <string name="title_activity_home">Home</string>
     <string name="start_challenge_button">Comenzar Desafío</string>
+     <string name="username">Juan Pérez</string>
+    <string name="user_country">Uruguay</string>
+    <string name="logout">Cerrar Sesión</string>
+    <string name="settings">Configuración</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="public_profile">Perfil Público</string>
 
 </resources>

@@ -4,6 +4,7 @@ import com.g6pis.beatit.datatypes.DTDateTime;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
@@ -13,7 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-public class ChallengeFinished extends Activity {
+public class ChallengeFinished extends Activity implements OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,8 @@ public class ChallengeFinished extends Activity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setTitle(this.getString(R.string.app_name));
-        
+        findViewById(R.id.homeButton).setOnClickListener(this);
+        findViewById(R.id.homeButton).setVisibility(View.VISIBLE);
 		
 		
 		((TextView) findViewById(R.id.textView_max_speed_value))
@@ -74,4 +76,12 @@ public class ChallengeFinished extends Activity {
 		}
 		return super.onOptionsItemSelected(item);
 	}
+	
+	@Override
+	public void onClick(View v) {
+			Intent home = new Intent(this, Home.class);
+			startActivity(home);
+			this.finish();
+	}
+	
 }

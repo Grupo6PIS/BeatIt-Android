@@ -86,7 +86,8 @@ public class UsainBolt extends Challenge implements OnClickListener,
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setTitle(this.getString(R.string.app_name));
-        //findViewById(R.id.homeButton).setOnClickListener(this); 
+        findViewById(R.id.homeButton).setOnClickListener(this); 
+        findViewById(R.id.homeButton).setVisibility(View.VISIBLE);
         
         
         findViewById(R.id.cancelButton).setOnClickListener(this);        
@@ -178,9 +179,19 @@ public class UsainBolt extends Challenge implements OnClickListener,
 
 	@Override
 	public void onClick(View v) {
-		this.setMaxSpeed(0);
-		this.setAvgSpeed(0.0);
-		this.completeChallenge();
+		switch(v.getId()){
+		case R.id.cancelButton:{
+			this.setMaxSpeed(0);
+			this.setAvgSpeed(0.0);
+			this.completeChallenge();
+		}break;
+		case R.id.homeButton:{
+			Intent home = new Intent(this, Home.class);
+			startActivity(home);
+			this.finish();
+		}break;
+		}
+		
 
 	}
 

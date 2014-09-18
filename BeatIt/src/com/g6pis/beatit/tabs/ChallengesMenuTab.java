@@ -78,6 +78,8 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
         	challenge.putExtra("challengeId", 0);
         	
         	startActivity(challenge);
+        	
+        	this.getActivity().finish();
 		}
 		
 	}

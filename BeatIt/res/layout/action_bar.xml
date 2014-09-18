@@ -35,7 +35,7 @@
         android:textColor="#ffffff"
         android:textSize="24sp" />
 
-    <!-- <ImageView
+  <ImageView
         android:id="@+id/homeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
         android:contentDescription="@string/app_name"
         android:hapticFeedbackEnabled="true"
         android:src="@drawable/white_arrow"
-        android:visibility="invisible" />-->
+        android:visibility="invisible" />
 
     <ImageView
         android:id="@+id/cancelButton"
@@ -57,6 +57,6 @@
         android:contentDescription="@string/app_name"
         android:hapticFeedbackEnabled="true"
         android:src="@drawable/white_flag"
-        android:visibility="invisible" />
+        android:visibility="gone" />
 
 </RelativeLayout>
