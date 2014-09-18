@@ -1,6 +1,7 @@
 package com.g6pis.beatit;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
@@ -11,7 +12,11 @@ public class Profile extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.profile);
+		setContentView(R.layout.profile_tab);
+		
+		Intent loggedOut = new Intent(Profile.this, Login.class);
+        startActivity(loggedOut);
+        finish();
 	}
 
 	@Override

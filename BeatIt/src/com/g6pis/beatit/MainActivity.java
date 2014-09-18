@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
         Intent login = new Intent(MainActivity.this, Login.class);
     	this.startActivity(login);
         
-        final Button button = (Button) findViewById(R.id.button1);
+        final Button button = (Button) findViewById(R.id.button_cerrar_sesion);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 // Perform action on click

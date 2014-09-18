@@ -47,6 +47,12 @@
     <string name="challenges_tab">Challenges</string>
     <string name="profile_tab">Profile</string>
     <string name="ranking_tab">Ranking</string>
+    <string name="username">Juan Pérez</string>
+    <string name="user_country">Uruguay</string>
+    <string name="logout">Logout</string>
+    <string name="settings">Settings</string>
+    <string name="notifications">Notifications</string>
+    <string name="public_profile">Public Profile</string>
 
     <color name="blanco">#ffffff</color>
     <string name="app_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>

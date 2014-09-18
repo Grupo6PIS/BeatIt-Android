@@ -25,6 +25,7 @@
         android:layout_toRightOf="@id/challengeIcon"
         android:gravity="center_vertical"
         android:text="Example application"
+        android:textColor="#000000"
         android:textSize="16sp" />
 
     <TextView
@@ -36,6 +37,7 @@
         android:ellipsize="marquee"
         android:singleLine="true"
         android:text="Description"
+        android:textColor="#000000"
         android:textSize="12sp" />
 
 </RelativeLayout> 

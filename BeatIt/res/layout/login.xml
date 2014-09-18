@@ -17,7 +17,7 @@
         android:src="@drawable/app_logo" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/textView_user_country"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/imageView_foto_ranking"
@@ -43,7 +43,7 @@
         android:id="@+id/linear_facebook"
         android:layout_width="180dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/textView2"
+        android:layout_below="@+id/textView_user_country"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:background="@drawable/borde_boton_facebook"
