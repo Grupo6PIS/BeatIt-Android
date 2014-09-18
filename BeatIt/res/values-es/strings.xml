@@ -14,12 +14,12 @@
     <string name="points">A vencer:</string>
     <string name="start_time_value">18/08/2014 13:30</string>
     <string name="duration_value">1 semana</string>
-    <string name="points_value">1280 puntos</string>
+    <string name="points_value">2000 puntos</string>
     <string name="time_left">Tiempo restante:</string>
     <string name="speed">Velocidad:</string>
-    <string name="time_left_value_1">30 segundos</string>
-    <string name="time_left_value_2">90 segundos</string>
-    <string name="speed_value">0.0 km/h</string>
+    <string name="time_left_value_1">Tiempo Restante: 30 segundos</string>
+    <string name="time_left_value_2">Tiempo Restante: 90 segundos</string>
+    <string name="speed_value">Velocidad: 0.0 km/h</string>
 
     <color name="gris">#f5f5f5</color>
     <color name="rojo">#d40c34</color>
@@ -51,8 +51,9 @@
     <string name="challenges_tab">Desafíos</string>
     <string name="profile_tab">Perfil</string>
     <string name="ranking_tab">Ranking</string>
-        <string name="app_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
+    <string name="app_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
     <string name="iniciar_sesion">Iniciar Sesión</string>
     <string name="title_activity_home">Home</string>
+    <string name="start_challenge_button">Comenzar Desafío</string>
 
 </resources>

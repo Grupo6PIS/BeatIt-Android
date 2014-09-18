@@ -1,5 +1,8 @@
 package com.g6pis.beatit;
 
+import com.g6pis.beatit.datatypes.DTDateTime;
+
+import android.app.ActionBar;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -18,7 +21,15 @@ public class ChallengeFinished extends Activity {
 		// double maxSpeed = getIntent().getExtras().getString("maxSpeed");
 		// double avgSpeed = getIntent().getExtras().getString("avgSpeed");
 		// double score = getIntent().getExtras().getString("score");
-
+		
+		ActionBar actionBar = getActionBar();
+        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM); 
+        actionBar.setCustomView(R.layout.action_bar);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setHomeButtonEnabled(true);
+        actionBar.setTitle(this.getString(R.string.app_name));
+		
+		
 		((TextView) findViewById(R.id.textView_max_speed_value))
 				.setText(getIntent().getExtras().getString("maxSpeed") + "km/h");
 
@@ -27,6 +38,19 @@ public class ChallengeFinished extends Activity {
 
 		((TextView) findViewById(R.id.textView_Score_Value))
 				.setText(getIntent().getExtras().getString("score") + " puntos");
+		
+		((TextView) findViewById(R.id.textView_Start_Time_Value))
+		.setText(getIntent().getExtras().getString("dateTimeStart"));
+		
+		DTDateTime finishDate = new DTDateTime();
+		finishDate.setDay(getIntent().getExtras().getInt("day"));
+		finishDate.setMonth(getIntent().getExtras().getInt("month"));
+		finishDate.setYear(getIntent().getExtras().getInt("year"));
+		finishDate.setHour(getIntent().getExtras().getInt("hours"));
+		finishDate.setMinute(getIntent().getExtras().getInt("minutes"));
+		finishDate.setSecond(getIntent().getExtras().getInt("seconds"));
+		
+		((TextView)findViewById(R.id.textView_Duration_Value)).setText(finishDate.toString());
 
 	}
 

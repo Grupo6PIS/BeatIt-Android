@@ -1,9 +1,13 @@
 package com.g6pis.beatit.tabs;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Random;
 
 import com.g6pis.beatit.R;
 import com.g6pis.beatit.challenges.UsainBolt;
+import com.g6pis.beatit.datatypes.DTDateTime;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -60,6 +64,16 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
 			Random rand = new Random();
 	        final int  level = rand.nextInt(2) + 1;
 	        
+        	
+
+        	Calendar calendar = new GregorianCalendar();
+
+        	challenge.putExtra("seconds",calendar.get(Calendar.SECOND));
+        	challenge.putExtra("minutes",calendar.get(Calendar.MINUTE));
+        	challenge.putExtra("hours",calendar.get(Calendar.HOUR));
+        	challenge.putExtra("day",calendar.get(Calendar.DAY_OF_MONTH));
+        	challenge.putExtra("month",calendar.get(Calendar.MONTH));
+        	challenge.putExtra("year",calendar.get(Calendar.YEAR));
         	challenge.putExtra("level", level);
         	challenge.putExtra("challengeId", 0);
         	

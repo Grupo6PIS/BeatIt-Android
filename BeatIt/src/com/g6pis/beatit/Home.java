@@ -48,6 +48,8 @@ public class Home extends FragmentActivity {
 	        
 	        
 	        ActionBar actionBar = getActionBar();
+	        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM); 
+	        actionBar.setCustomView(R.layout.action_bar);
 	        actionBar.setDisplayHomeAsUpEnabled(false);
 	        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 	        setTitle(R.string.app_name);
@@ -59,6 +61,8 @@ public class Home extends FragmentActivity {
 	        Fragment challengesMenuTab = new ChallengesMenuTab();
 	        Fragment rankingTab = new RankingTab();
 	        Fragment profileTab = new ProfileTab();
+	        
+	       
 	        
 	        tab1.setTabListener(new MyTabsListener(challengesMenuTab));
 	        tab2.setTabListener(new MyTabsListener(rankingTab));
