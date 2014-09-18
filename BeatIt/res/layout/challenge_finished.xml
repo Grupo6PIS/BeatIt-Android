@@ -62,11 +62,9 @@
 
     <TableLayout
         android:id="@+id/table_score"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="70dp"
-        android:layout_alignLeft="@id/imageView_Logo"
         android:layout_alignParentBottom="true"
-        android:layout_alignRight="@id/textView_Start_Time_Value"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="48dp" >
 
@@ -111,11 +109,10 @@
 
     <TableLayout
         android:id="@+id/table_speed"
-        android:layout_width="match_parent"
+        android:layout_width="250dp"
         android:layout_height="100dp"
         android:layout_above="@+id/table_score"
-        android:layout_alignLeft="@id/imageView_Logo"
-        android:layout_alignRight="@id/textView_Start_Time_Value"
+        android:layout_centerHorizontal="true"
         android:layout_marginBottom="30dp"
         android:visibility="visible" >
 
