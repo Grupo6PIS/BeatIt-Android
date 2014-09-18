@@ -32,6 +32,7 @@ import com.g6pis.beatit.entities.Challenge;
 import com.g6pis.beatit.persistence.ChallengeDAO;
 import com.g6pis.beatit.persistence.UsainBoltDAO;
 import com.g6pis.beatit.ChallengeFinished;
+import com.g6pis.beatit.Home;
 //import com.g6pis.beatit.persistence.UsainBoltDAO;
 import com.g6pis.beatit.R;
 
@@ -77,13 +78,18 @@ public class UsainBolt extends Challenge implements OnClickListener,
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.challenge_in_progress);
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+
 		
 		ActionBar actionBar = getActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM); 
         actionBar.setCustomView(R.layout.action_bar);
-        actionBar.setTitle(this.getString(R.string.app_name));
+        actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
+        actionBar.setTitle(this.getString(R.string.app_name));
+        //findViewById(R.id.homeButton).setOnClickListener(this); 
+        
+        
+        findViewById(R.id.cancelButton).setOnClickListener(this);        
 		
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
@@ -100,6 +106,7 @@ public class UsainBolt extends Challenge implements OnClickListener,
 								.setVisibility(View.VISIBLE);
 						((TextView) findViewById(R.id.textView_Time_Left_Value))
 								.setVisibility(View.VISIBLE);
+						findViewById(R.id.cancelButton).setVisibility(View.VISIBLE);
 						challengeStarted = true;
 						((TextView) findViewById(R.id.textView_Speed_Value))
 						.setText(getResources().getString(R.string.speed) + " 0.0 km/h");
@@ -171,8 +178,10 @@ public class UsainBolt extends Challenge implements OnClickListener,
 
 	@Override
 	public void onClick(View v) {
-		Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-		startActivity(intent);
+		this.setMaxSpeed(0);
+		this.setAvgSpeed(0.0);
+		this.completeChallenge();
+
 	}
 
 	@Override
@@ -209,6 +218,8 @@ public class UsainBolt extends Challenge implements OnClickListener,
 					.setVisibility(View.INVISIBLE);
 			((TextView) findViewById(R.id.textView_Time_Left_Value))
 					.setVisibility(View.INVISIBLE);
+			findViewById(R.id.cancelButton).setVisibility(View.INVISIBLE);
+			
 
 		}
 		if ((this.getSpeed() == 0) && (!this.challengeStarted)) {
@@ -262,6 +273,7 @@ public class UsainBolt extends Challenge implements OnClickListener,
 				.setVisibility(View.INVISIBLE);
 		((TextView) findViewById(R.id.textView_Time_Left_Value))
 				.setVisibility(View.INVISIBLE);
+		findViewById(R.id.cancelButton).setVisibility(View.INVISIBLE);
 
 	}
 

@@ -9,6 +9,8 @@ import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 public class ChallengeFinished extends Activity {
@@ -28,6 +30,7 @@ public class ChallengeFinished extends Activity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setTitle(this.getString(R.string.app_name));
+        
 		
 		
 		((TextView) findViewById(R.id.textView_max_speed_value))
