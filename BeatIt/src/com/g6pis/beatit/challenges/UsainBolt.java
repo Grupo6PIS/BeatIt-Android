@@ -206,7 +206,7 @@ public class UsainBolt extends Challenge implements OnClickListener,
 						R.string.time_left)
 						+ Double.toString(Math
 								.round(millisUntilFinished / 1000))
-						+ " seconds");
+						+ " " + R.string.seconds);
 			}
 
 			public void onFinish() {
@@ -358,6 +358,10 @@ public class UsainBolt extends Challenge implements OnClickListener,
 				this.speeds = new HashSet<Double>();
 				this.challengeStarted = false;
 				attempts++;
+				textViewTimeLeftValue.setText(getResources().getString(
+						R.string.time_left)
+						+ Double.toString(time/1000)
+						+ " seconds");
 				if (attempts == MAX_ATTEMPTS) {
 					completeChallenge();
 				}

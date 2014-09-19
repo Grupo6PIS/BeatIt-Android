@@ -26,11 +26,13 @@ import android.content.Intent;
 public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemClickListener {
 	private ListView challengeMenu;
     private MyAdapter adapter;
-	
+    Random rand = new Random();
+	private int level = rand.nextInt(2) + 1;;
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.challenge_menu_tab, container, false);
+        
         
         
         challengeMenu = (ListView) rootView.findViewById(R.id.challengesMenu_list);
@@ -61,11 +63,6 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
 			
 			Intent challenge = new Intent(getActivity().getApplicationContext(), UsainBolt.class);
 			
-			Random rand = new Random();
-	        final int  level = rand.nextInt(2) + 1;
-	        
-        	
-
         	Calendar calendar = new GregorianCalendar();
 
         	challenge.putExtra("seconds",calendar.get(Calendar.SECOND));
@@ -109,7 +106,10 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
           String s = objects[position];
           if (s.equals("Usain Bolt")) {
             challengeIcon.setImageResource(R.drawable.ic_usain_bolt);
-            challengeDescription.setText(R.string.description_usain_bolt_2);
+            switch(level){
+            case 1: challengeDescription.setText(R.string.description_usain_bolt_1);break;
+            case 2: challengeDescription.setText(R.string.description_usain_bolt_2);break;
+            }
           } else {
             challengeIcon.setImageResource(R.drawable.ic_launcher);
             challengeDescription.setText(s + " description");
