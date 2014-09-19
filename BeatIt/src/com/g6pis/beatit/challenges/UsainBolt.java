@@ -23,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Button;
@@ -39,8 +40,6 @@ import com.g6pis.beatit.R;
 public class UsainBolt extends Challenge implements OnClickListener,
 		LocationListener {
 
-	private LocationManager locationManager;
-
 	private static final long MIN_TIME = 0;
 	private static final float MIN_DISTANCE = 0;
 	private static final double MIN_SPEED_LEVEL1 = 20.0;
@@ -56,82 +55,60 @@ public class UsainBolt extends Challenge implements OnClickListener,
 	private DTDateTime dateTimeStart;
 	private DTDateTime dateTimeFinish;
 
-	private int longitude;
-	private int latitude;
-	private double speed;
-	private double avgSpeed;
-	private Set<Double> speeds = new HashSet<Double>();
-
-	private double score = 0;
-	private double maxSpeed = 0;
 	private double minSpeed;
 	private long time;
+	
+	private double speed;
+	private Set<Double> speeds = new HashSet<Double>();
+	private LocationManager locationManager;
+	
+	private double avgSpeed;
+	private double score = 0;
+	private double maxSpeed = 0;
+	private int attempts = 0;
+
 	private CountDownTimer timer;
 	private boolean timerRunning = false;
 	private boolean challengeStarted = false;
-	private int attempts = 0;
 
 	private Dialog settingsDialog;
 	private Dialog speedDialog;
 
+	private Button startChallengeButton;
+	private ImageView homeButton;
+	private ImageView cancelButton;
+	private TextView textViewSpeedValue;
+	private TextView textViewTimeLeftValue;
+	
+	/***Activity Functions***/
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.challenge_in_progress);
 
-		
-		ActionBar actionBar = getActionBar();
-        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM); 
-        actionBar.setCustomView(R.layout.action_bar);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setTitle(this.getString(R.string.app_name));
-        findViewById(R.id.homeButton).setOnClickListener(this); 
-        findViewById(R.id.homeButton).setVisibility(View.VISIBLE);
-        
-        
-        findViewById(R.id.cancelButton).setOnClickListener(this);        
-		
+		this.editActionBar();
+		this.viewAssignment();
+
+		homeButton.setOnClickListener(this);
+		homeButton.setVisibility(View.VISIBLE);
+		cancelButton.setOnClickListener(this);
+		startChallengeButton.setOnClickListener(this);
+
+		this.settingsDialog = onCreateDialog(SETTINGS_DIALOG);
+		this.speedDialog = onCreateDialog(SPEED_DIALOG);
+
 		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
 				MIN_TIME, MIN_DISTANCE, this);
-
-		this.settingsDialog = onCreateDialog(SETTINGS_DIALOG);
-
-		((Button) findViewById(R.id.start_challenge_button))
-				.setOnClickListener(new OnClickListener() {
-					public void onClick(View v) {
-						((Button) findViewById(R.id.start_challenge_button))
-								.setVisibility(View.INVISIBLE);
-						((TextView) findViewById(R.id.textView_Speed_Value))
-								.setVisibility(View.VISIBLE);
-						((TextView) findViewById(R.id.textView_Time_Left_Value))
-								.setVisibility(View.VISIBLE);
-						findViewById(R.id.cancelButton).setVisibility(View.VISIBLE);
-						challengeStarted = true;
-						((TextView) findViewById(R.id.textView_Speed_Value))
-						.setText(getResources().getString(R.string.speed) + " 0.0 km/h");
-					}
-				});
-
 		if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 			settingsDialog.show();
-			((Button) findViewById(R.id.start_challenge_button))
-					.setClickable(false);
+			startChallengeButton.setClickable(false);
 		}
 
 		// TODO cargar el nivel del desafio segun la BD
-		DTDateTime startDate = new DTDateTime();
-		startDate.setDay(getIntent().getExtras().getInt("day"));
-		startDate.setMonth(getIntent().getExtras().getInt("month"));
-		startDate.setYear(getIntent().getExtras().getInt("year"));
-		startDate.setHour(getIntent().getExtras().getInt("hours"));
-		startDate.setMinute(getIntent().getExtras().getInt("minutes"));
-		startDate.setSecond(getIntent().getExtras().getInt("seconds"));
-
 		this.setLevel(getIntent().getExtras().getInt("level"));
 		this.setChallengeId(getIntent().getExtras().getInt("challengeId"));
-		this.setDateTimeStart(startDate);
+		this.setDateTimeStart(this.getDateExtras(getIntent().getExtras()));
 
 		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(this
 				.getDateTimeStart().toString());
@@ -143,8 +120,7 @@ public class UsainBolt extends Challenge implements OnClickListener,
 			time = TIME_LEVEL1;
 			((TextView) findViewById(R.id.textView_Description_Value_2))
 					.setText(R.string.description_usain_bolt_1);
-			((TextView) findViewById(R.id.textView_Time_Left_Value))
-					.setText(R.string.time_left_value_1);
+			textViewTimeLeftValue.setText(R.string.time_left_value_1);
 
 		}
 			break;
@@ -153,148 +129,15 @@ public class UsainBolt extends Challenge implements OnClickListener,
 			time = TIME_LEVEL2;
 			((TextView) findViewById(R.id.textView_Description_Value_2))
 					.setText(R.string.description_usain_bolt_2);
-			((TextView) findViewById(R.id.textView_Time_Left_Value))
-					.setText(R.string.time_left_value_2);
+			textViewTimeLeftValue.setText(R.string.time_left_value_2);
 		}
 			break;
 		}
 
-		timer = new CountDownTimer(time, 1000l) {
-			public void onTick(long millisUntilFinished) {
-				((TextView) findViewById(R.id.textView_Time_Left_Value))
-						.setText(getResources().getString(R.string.time_left)
-								+ Double.toString(Math.round(millisUntilFinished/1000)) + " seconds");
-			}
-
-			public void onFinish() {
-				completeChallenge();
-				Toast.makeText(getApplicationContext(), "Challenge Completed!",
-						Toast.LENGTH_SHORT).show();
-			}
-		};
-
-		this.speedDialog = onCreateDialog(SPEED_DIALOG);
+		timer = this.createTimer();
 
 	}
-
-	@Override
-	public void onClick(View v) {
-		switch(v.getId()){
-		case R.id.cancelButton:{
-			this.setMaxSpeed(0);
-			this.setAvgSpeed(0.0);
-			this.completeChallenge();
-		}break;
-		case R.id.homeButton:{
-			Intent home = new Intent(this, Home.class);
-			startActivity(home);
-			this.finish();
-		}break;
-		}
-		
-
-	}
-
-	@Override
-	public void onLocationChanged(Location loc) {
-
-		this.setLatitude((int) loc.getLatitude());
-		this.setLongitude((int) loc.getLongitude());
-		this.setSpeed(loc.getSpeed() * 3.6);
-		this.getSpeeds().add(this.getSpeed());
-
-		Double averageSpeed = 0.0;
-		for (Double speed : this.getSpeeds()) {
-			averageSpeed += speed;
-		}
-
-		averageSpeed /= this.getSpeeds().size();
-		this.setAvgSpeed(averageSpeed);
-
-		if (this.getSpeed() > this.getMaxSpeed())
-			this.setMaxSpeed(this.getSpeed());
-
-		((TextView) findViewById(R.id.textView_Speed_Value))
-				.setText(getResources().getString(R.string.speed)
-						+ Double.toString(Math.round(this.getSpeed()))
-						+ " km/h");
-
-		if ((this.getSpeed() > 0) && (!this.challengeStarted)) {
-			this.speedDialog.show();
-			((Button) findViewById(R.id.start_challenge_button))
-					.setClickable(false);
-			((Button) findViewById(R.id.start_challenge_button))
-					.setVisibility(View.VISIBLE);
-			((TextView) findViewById(R.id.textView_Speed_Value))
-					.setVisibility(View.INVISIBLE);
-			((TextView) findViewById(R.id.textView_Time_Left_Value))
-					.setVisibility(View.INVISIBLE);
-			findViewById(R.id.cancelButton).setVisibility(View.INVISIBLE);
-			
-
-		}
-		if ((this.getSpeed() == 0) && (!this.challengeStarted)) {
-			this.speedDialog.hide();
-			((Button) findViewById(R.id.start_challenge_button))
-					.setClickable(true);
-		}
-
-		if ((this.getSpeed() >= minSpeed) && (challengeStarted)) {
-			// TODO probar timer
-			// TODO controlar velocidad inicial sea 0
-			if (!timerRunning) {
-				this.timer.start();
-				this.timerRunning = true;
-			}
-
-		} else {
-			if (this.timerRunning) {
-				timer.cancel();
-				this.timerRunning = false;
-				this.setMaxSpeed(0);
-				this.speeds = new HashSet<Double>();
-				this.setAvgSpeed(0d);
-				this.setScore(0);
-				this.challengeStarted = false;
-				attempts++;
-				if (attempts == MAX_ATTEMPTS) {
-					completeChallenge();
-				}
-				// this.speedDialog.show();
-				// ((TextView) findViewById(R.id.textView_Time_Left_Value))
-				// .setText(Long.toString(this.getTime()/ 1000) + " seconds");
-				//
-				// ((Button)findViewById(R.id.start_challenge_button)).setClickable(false);
-				// ((Button)findViewById(R.id.start_challenge_button)).setVisibility(View.VISIBLE);
-				// ((TextView)findViewById(R.id.textView_Speed_Value)).setVisibility(View.INVISIBLE);
-				// ((TextView)findViewById(R.id.textView_Time_Left_Value)).setVisibility(View.INVISIBLE);
-			}
-		}
-
-	}
-
-	@Override
-	public void onProviderDisabled(String arg0) {
-		this.settingsDialog.show();
-		((Button) findViewById(R.id.start_challenge_button))
-				.setClickable(false);
-		((Button) findViewById(R.id.start_challenge_button))
-				.setVisibility(View.VISIBLE);
-		((TextView) findViewById(R.id.textView_Speed_Value))
-				.setVisibility(View.INVISIBLE);
-		((TextView) findViewById(R.id.textView_Time_Left_Value))
-				.setVisibility(View.INVISIBLE);
-		findViewById(R.id.cancelButton).setVisibility(View.INVISIBLE);
-
-	}
-
-	@Override
-	public void onProviderEnabled(String arg0) {
-		((Button) findViewById(R.id.start_challenge_button)).setClickable(true);
-		this.settingsDialog.hide();
-
-	}
-
+	
 	@Override
 	public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
 		// TODO Auto-generated method stub
@@ -308,11 +151,9 @@ public class UsainBolt extends Challenge implements OnClickListener,
 				MIN_TIME, MIN_DISTANCE, this);
 		if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 			settingsDialog.show();
-			((Button) findViewById(R.id.start_challenge_button))
-					.setClickable(false);
+			startChallengeButton.setClickable(false);
 		} else
-			((Button) findViewById(R.id.start_challenge_button))
-					.setClickable(true);
+			startChallengeButton.setClickable(true);
 	}
 
 	@Override
@@ -340,13 +181,68 @@ public class UsainBolt extends Challenge implements OnClickListener,
 		getMenuInflater().inflate(R.menu.challenge_in_progress, menu);
 		return true;
 	}
+	/***Activity Functions***/
+	
+	
+	
+	/***Useful Functions***/
+	public DTDateTime getDateExtras(Bundle extras) {
+		DTDateTime date = new DTDateTime();
 
+		date.setDay(extras.getInt("day"));
+		date.setMonth(extras.getInt("month"));
+		date.setYear(extras.getInt("year"));
+		date.setHour(extras.getInt("hours"));
+		date.setMinute(extras.getInt("minutes"));
+		date.setSecond(extras.getInt("seconds"));
+
+		return date;
+	}
+	
+	public CountDownTimer createTimer(){
+		CountDownTimer timer = new CountDownTimer(time, 1000l) {
+			public void onTick(long millisUntilFinished) {
+				textViewTimeLeftValue.setText(getResources().getString(
+						R.string.time_left)
+						+ Double.toString(Math
+								.round(millisUntilFinished / 1000))
+						+ " " + R.string.seconds);
+			}
+
+			public void onFinish() {
+				completeChallenge();
+				Toast.makeText(getApplicationContext(), "Challenge Completed!",
+						Toast.LENGTH_SHORT).show();
+			}
+		};
+		
+		return timer;
+	}
+	
+	public void viewAssignment() {
+		startChallengeButton = (Button) findViewById(R.id.start_challenge_button);
+		homeButton = (ImageView) findViewById(R.id.homeButton);
+		cancelButton = (ImageView) findViewById(R.id.cancelButton);
+		textViewSpeedValue = (TextView) findViewById(R.id.textView_Speed_Value);
+		textViewTimeLeftValue = (TextView) findViewById(R.id.textView_Time_Left_Value);
+	}
+	
 	public void completeChallenge() {
 		locationManager.removeUpdates(this);
 		timer = null;
+
+		// Calculating the average speed
+		Double averageSpeed = 0.0;
+		for (Double speed : this.getSpeeds()) {
+			averageSpeed += speed;
+		}
+		averageSpeed /= this.getSpeeds().size();
+		this.setAvgSpeed(averageSpeed);
+
+		// Calculating the score
 		this.setScore((this.getMaxSpeed() + this.getAvgSpeed()) * 2);
 
-		// Abro la activity de desafío finalizado
+		// Activity Challenge Finished
 		Intent challengeFinished = new Intent(this, ChallengeFinished.class);
 		challengeFinished.putExtra("maxSpeed",
 				Double.toString(Math.round(this.getMaxSpeed())));
@@ -365,30 +261,136 @@ public class UsainBolt extends Challenge implements OnClickListener,
 		challengeFinished.putExtra("year", calendar.get(Calendar.YEAR));
 		challengeFinished.putExtra("dateTimeStart", dateTimeStart.toString());
 
-		Log.d("maxSpeed",
-				Double.toString(challengeFinished.getExtras().getDouble(
-						"maxSpeed")));
-		Log.d("avgSpeed",
-				Double.toString(challengeFinished.getExtras().getDouble(
-						"avgSpeed")));
-		Log.d("score", Double.toString(challengeFinished.getExtras().getDouble(
-				"score")));
-
 		startActivity(challengeFinished);
 
-		// TODO ver si esto funciona correctamente...
+		// Store the finished challenge
+		// TODO verificar puntaje máximo
 		UsainBoltDAO db = new UsainBoltDAO(this);
 		db.addUsainBolt(this);
-		// UsainBolt challenge = (UsainBolt) db.getUsainBolt(0);
-		// challenge.setMaxSpeed(this.getMaxSpeed());
-		// challenge.setAvgSpeed(this.getAvgSpeed());
-		// challenge.setScore(this.getScore());
-		// db.updateChallenge(challenge);
 
 		this.finish();
 
 	}
+	/***Useful Functions***/
+	
+	
+	// Customize ActionBar
+	public void editActionBar() {
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+		actionBar.setCustomView(R.layout.action_bar);
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setHomeButtonEnabled(true);
+		actionBar.setTitle(this.getString(R.string.app_name));
+	}
+	
+	//Buttons onClick Function
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.cancelButton: {
+			this.setMaxSpeed(0);
+			this.setAvgSpeed(0.0);
+			this.completeChallenge();
+		}
+			break;
+		case R.id.homeButton: {
+			Intent home = new Intent(this, Home.class);
+			startActivity(home);
+			this.finish();
+		}
+			break;
+		case R.id.start_challenge_button: {
+			startChallengeButton.setVisibility(View.INVISIBLE);
+			textViewSpeedValue.setVisibility(View.VISIBLE);
+			textViewTimeLeftValue.setVisibility(View.VISIBLE);
+			cancelButton.setVisibility(View.VISIBLE);
+			challengeStarted = true;
+			textViewSpeedValue.setText(getResources().getString(R.string.speed)
+					+ " 0.0 km/h");
+		}
+			break;
+		}
 
+	}
+	
+	
+	/***GPS Functions***/
+	@Override
+	public void onLocationChanged(Location loc) {
+
+		this.setSpeed(loc.getSpeed() * 3.6);
+		this.getSpeeds().add(this.getSpeed());
+
+		if (this.getSpeed() > this.getMaxSpeed())
+			this.setMaxSpeed(this.getSpeed());
+
+		String speedValue = getResources().getString(R.string.speed)
+				+ Double.toString(Math.round(this.getSpeed())) + " km/h";
+
+		textViewSpeedValue.setText(speedValue);
+
+		if ((this.getSpeed() > 0) && (!this.challengeStarted)) {
+			this.speedDialog.show();
+			startChallengeButton.setClickable(false);
+			startChallengeButton.setVisibility(View.VISIBLE);
+			textViewSpeedValue.setVisibility(View.INVISIBLE);
+			textViewTimeLeftValue.setVisibility(View.INVISIBLE);
+			cancelButton.setVisibility(View.INVISIBLE);
+		}
+		
+		if ((this.getSpeed() == 0) && (!this.challengeStarted)) {
+			this.speedDialog.hide();
+			startChallengeButton.setClickable(true);
+		}
+
+		if ((this.getSpeed() >= minSpeed) && (challengeStarted)) {
+			if (!timerRunning) {
+				this.timer.start();
+				this.timerRunning = true;
+			}
+			
+		} else {
+			if (this.timerRunning) {
+				timer.cancel();
+				this.timerRunning = false;
+				this.setMaxSpeed(0);
+				this.speeds = new HashSet<Double>();
+				this.challengeStarted = false;
+				attempts++;
+				textViewTimeLeftValue.setText(getResources().getString(
+						R.string.time_left)
+						+ Double.toString(time/1000)
+						+ " seconds");
+				if (attempts == MAX_ATTEMPTS) {
+					completeChallenge();
+				}
+			}
+		}
+
+	}
+
+	@Override
+	public void onProviderDisabled(String arg0) {
+		this.settingsDialog.show();
+		startChallengeButton.setClickable(false);
+		startChallengeButton.setVisibility(View.VISIBLE);
+		textViewSpeedValue.setVisibility(View.INVISIBLE);
+		textViewTimeLeftValue.setVisibility(View.INVISIBLE);
+		cancelButton.setVisibility(View.INVISIBLE);
+
+	}
+
+	@Override
+	public void onProviderEnabled(String arg0) {
+		startChallengeButton.setClickable(true);
+		this.settingsDialog.hide();
+
+	}
+	/***GPS Functions***/
+	
+	
+	/***Dialogs Functions***/
 	@Override
 	protected Dialog onCreateDialog(int id) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -424,27 +426,10 @@ public class UsainBolt extends Challenge implements OnClickListener,
 			startActivity(intent);
 		}
 	}
-
-	/*
-	 * Getter & Setters
-	 */
-
-	public int getLongitude() {
-		return longitude;
-	}
-
-	public void setLongitude(int longitude) {
-		this.longitude = longitude;
-	}
-
-	public int getLatitude() {
-		return latitude;
-	}
-
-	public void setLatitude(int latitude) {
-		this.latitude = latitude;
-	}
-
+	/***Dialogs Functions***/
+	
+	
+	/***Getter & Setters***/
 	public double getSpeed() {
 		return speed;
 	}
@@ -532,13 +517,7 @@ public class UsainBolt extends Challenge implements OnClickListener,
 	public void setDateTimeFinish(DTDateTime dateTimeFinish) {
 		this.dateTimeFinish = dateTimeFinish;
 	}
-
-	@Override
-	public String toString() {
-
-		return "UsainBolt[speed=" + this.getSpeed() + ", score="
-				+ this.getScore() + "]" + super.toString();
-
-	}
+	/***Getters & Setters***/
+	
 
 }

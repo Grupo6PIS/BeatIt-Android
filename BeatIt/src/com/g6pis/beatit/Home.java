@@ -95,7 +95,7 @@ public class Home extends FragmentActivity {
 	    	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
 	    	    ft.remove(fragment);
 	    	}
-	    	}
+	    }
 
 	    
 	    @Override
