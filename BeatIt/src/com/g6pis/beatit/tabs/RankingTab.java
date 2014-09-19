@@ -5,10 +5,13 @@ import java.util.List;
 
 
 
+
+
 //import com.g6pis.beatit.AdaptadorRanking;
 import com.g6pis.beatit.R;
-
 import com.g6pis.beatit.datatypes.DTRanking;
+
+
 
 
 
@@ -23,11 +26,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import android.app.Fragment;
 import android.content.Context;
 
@@ -47,10 +49,11 @@ public class RankingTab extends Fragment implements OnItemClickListener  {
 		
         List<DTRanking> rankings = new ArrayList<DTRanking>();
         
-        rankings.add(new DTRanking("Felipe", 2000, 1, "imagen"));
-        rankings.add(new DTRanking("Alejandro", 10, 2, "imagen"));
-        rankings.add(new DTRanking("Luciana", 5, 3, "imagen"));
-        rankings.add(new DTRanking("Martin", 2, 4, "imagen"));
+        rankings.add(new DTRanking("Felipe García", 2000, 1, "imagen"));
+        rankings.add(new DTRanking("Juan Pérez", 1500, 2, "image"));
+        rankings.add(new DTRanking("Alejandro Brusco", 10, 3, "imagen"));
+        rankings.add(new DTRanking("Luciana Martínez", 5, 4, "imagen"));
+        rankings.add(new DTRanking("Martín Steglich", 2, 5, "imagen"));
 
         //setListAdapter(new AdaptadorRanking(this, rankings));
         
@@ -86,8 +89,8 @@ public class RankingTab extends Fragment implements OnItemClickListener  {
           LayoutInflater inflater = (LayoutInflater) context
               .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
           View rowView = inflater.inflate(R.layout.ranking_row,parent,false);
-          //View rowView = inflater.inflate(R.layout.ranking_row, parent, false);
-          
+
+          LinearLayout user = (LinearLayout)rowView.findViewById(R.id.linear_indicador_soyyo);
           TextView position = (TextView) rowView.findViewById(R.id.textView_posicion);
           TextView userName = (TextView) rowView.findViewById(R.id.textView_nombre_usuario);
           TextView score = (TextView) rowView.findViewById(R.id.textView_puntaje);
@@ -97,6 +100,16 @@ public class RankingTab extends Fragment implements OnItemClickListener  {
           position.setText(Integer.toString(ranking.getPosicion()));
           userName.setText(ranking.getNombreUsuario());
           score.setText(Integer.toString(ranking.getPuntaje()));
+          String name = (String) getResources().getText(R.string.username);
+          if(ranking.getNombreUsuario().equals(name)){
+        	  user.setVisibility(View.VISIBLE);
+        	  rowView.setBackgroundColor(getResources().getColor(R.color.blanco));
+          }else{
+        	  user.setVisibility(View.INVISIBLE);
+        	  rowView.setBackgroundColor(getResources().getColor(R.color.gris));
+          }
+     
+        	  
 
           return rowView;
         }
