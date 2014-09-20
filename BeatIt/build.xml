@@ -42,6 +42,10 @@
     </target>
   	<target name="debug">
   	</target>
+    <target name="installt">
+    </target>
+  	<target name="test">
+  	</target>
     <target depends="clean" name="cleanall"/>
     <target depends="build-subprojects,build-project" name="build"/>
     <target name="build-subprojects"/>
