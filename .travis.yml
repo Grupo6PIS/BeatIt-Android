@@ -8,3 +8,5 @@ android:
     
 notifications:
   email: false
+  
+before_script: cd BeatIt
