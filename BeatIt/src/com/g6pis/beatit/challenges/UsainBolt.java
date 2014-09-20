@@ -178,7 +178,7 @@ public class UsainBolt extends Challenge implements OnClickListener,
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.challenge_in_progress, menu);
+		// getMenuInflater().inflate(R.menu.challenge_in_progress, menu);
 		return true;
 	}
 	/***Activity Functions***/
@@ -264,7 +264,7 @@ public class UsainBolt extends Challenge implements OnClickListener,
 		startActivity(challengeFinished);
 
 		// Store the finished challenge
-		// TODO verificar puntaje máximo
+		// TODO verificar puntaje mï¿½ximo
 		UsainBoltDAO db = new UsainBoltDAO(this);
 		db.addUsainBolt(this);
 
