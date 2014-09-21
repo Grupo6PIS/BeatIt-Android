@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="?android:attr/listPreferredItemHeight" >
+    android:layout_height="46dp" >
 
     <LinearLayout
         android:id="@+id/linear_indicador_soyyo"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="2"
+        android:layout_weight="1"
         android:background="@color/verde"
         android:orientation="vertical" 
         android:visibility="invisible">
@@ -27,7 +27,7 @@
     <ImageView
         android:id="@+id/imageView_foto_ranking"
         android:layout_width="0dp"
-        android:layout_height="50dp"
+        android:layout_height="25dp"
         android:layout_gravity="center"
         android:layout_weight="8"
         android:src="@drawable/default_profile" />

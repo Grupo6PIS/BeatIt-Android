@@ -51,9 +51,15 @@ public class RankingTab extends Fragment implements OnItemClickListener  {
         
         rankings.add(new DTRanking("Felipe García", 2000, 1, "imagen"));
         rankings.add(new DTRanking("Juan Pérez", 1500, 2, "image"));
-        rankings.add(new DTRanking("Alejandro Brusco", 10, 3, "imagen"));
-        rankings.add(new DTRanking("Luciana Martínez", 5, 4, "imagen"));
-        rankings.add(new DTRanking("Martín Steglich", 2, 5, "imagen"));
+        rankings.add(new DTRanking("Alejandro Brusco", 1000, 3, "imagen"));
+        rankings.add(new DTRanking("Luciana Martínez", 500, 4, "imagen"));
+        rankings.add(new DTRanking("Martín Steglich", 402, 5, "imagen"));
+        rankings.add(new DTRanking("Martín Berguer", 302, 6, "imagen"));
+        rankings.add(new DTRanking("Martín Alayón", 122, 7, "imagen"));
+        rankings.add(new DTRanking("Gonzalo Javiel", 102, 8, "imagen"));
+        rankings.add(new DTRanking("Pablo Olivera", 92, 9, "imagen"));
+        rankings.add(new DTRanking("Cristian Bauza", 82, 10, "imagen"));
+        
 
         //setListAdapter(new AdaptadorRanking(this, rankings));
         
