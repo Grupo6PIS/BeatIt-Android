@@ -20,11 +20,7 @@
     <string name="hello_world">Hola Mundo!</string>
 	<string name="action_settings">Ajustes</string>
     <string name="app_name">BeatIt!</string>
-    <string name="challenge">Usain Bolt</string>
     <string name="description">Descripción</string>
-    <string name="description_usain_bolt_1">En este desafío deberás correr por 30 segundos a más de 20 km/h.</string>
-    <string name="description_usain_bolt_2">En este desafío deberás correr por 90 segundos a más de 25 km/h.</string>
-    <string name="logo_description">Logo de Usain Bolt</string>
     <string name="duration">Duración:</string>
     <string name="duration_value">1 semana</string>
     <string name="points">A vencer:</string>
@@ -58,8 +54,6 @@
     <string name="challenges_tab">Desafíos</string>
     <string name="profile_tab">Perfil</string>
     <string name="ranking_tab">Ranking</string>
-    <string name="username">Juan Pérez</string>
-    <string name="user_country">Uruguay</string>
     <string name="logout">Cerrar Sesión</string>
     <string name="settings">Configuración</string>
     <string name="notifications">Notificaciones</string>
@@ -70,6 +64,18 @@
     <string name="start_challenge_button">Comenzar Desafío</string>
 
     
+    <!-- Profile Strings -->
+
+    <string name="username">Juan Pérez</string>
+    <string name="user_country">Uruguay</string>
+    
+    
     <!-- Strings del desafío Usain Bolt -->
+    
+    <string name="challenge">Usain Bolt</string>
+    <string name="description_usain_bolt_1">En este desafío deberás correr por 30 segundos a más de 20 km/h.</string>
+    <string name="description_usain_bolt_2">En este desafío deberás correr por 90 segundos a más de 25 km/h.</string>
+    <string name="logo_description">Logo de Usain Bolt</string>
+        
     
 </resources>
