@@ -1,17 +1,14 @@
 package com.g6pis.beatit.tabs;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Random;
 
-import com.g6pis.beatit.R;
-import com.g6pis.beatit.challenges.UsainBolt;
-import com.g6pis.beatit.datatypes.DTDateTime;
-
+import android.app.Fragment;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -19,9 +16,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.app.Fragment;
-import android.content.Context;
-import android.content.Intent;
+
+import com.g6pis.beatit.R;
+import com.g6pis.beatit.challenges.UsainBolt;
  
 public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemClickListener {
 	private ListView challengeMenu;

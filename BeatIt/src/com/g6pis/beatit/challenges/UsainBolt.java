@@ -18,24 +18,22 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.provider.Settings;
 import android.support.v4.app.NavUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Button;
 
-import com.g6pis.beatit.datatypes.DTDateTime;
-import com.g6pis.beatit.entities.Challenge;
-import com.g6pis.beatit.persistence.ChallengeDAO;
-import com.g6pis.beatit.persistence.UsainBoltDAO;
 import com.g6pis.beatit.ChallengeFinished;
 import com.g6pis.beatit.Home;
 //import com.g6pis.beatit.persistence.UsainBoltDAO;
 import com.g6pis.beatit.R;
+import com.g6pis.beatit.datatypes.DTDateTime;
+import com.g6pis.beatit.entities.Challenge;
+import com.g6pis.beatit.persistence.UsainBoltDAO;
 
 public class UsainBolt extends Challenge implements OnClickListener,
 		LocationListener {
