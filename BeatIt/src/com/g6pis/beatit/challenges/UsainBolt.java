@@ -255,7 +255,7 @@ public class UsainBolt extends Challenge implements OnClickListener,
 
 		challengeFinished.putExtra("seconds", calendar.get(Calendar.SECOND));
 		challengeFinished.putExtra("minutes", calendar.get(Calendar.MINUTE));
-		challengeFinished.putExtra("hours", calendar.get(Calendar.HOUR));
+		challengeFinished.putExtra("hours", calendar.get(Calendar.HOUR_OF_DAY));
 		challengeFinished.putExtra("day", calendar.get(Calendar.DAY_OF_MONTH));
 		challengeFinished.putExtra("month", calendar.get(Calendar.MONTH));
 		challengeFinished.putExtra("year", calendar.get(Calendar.YEAR));

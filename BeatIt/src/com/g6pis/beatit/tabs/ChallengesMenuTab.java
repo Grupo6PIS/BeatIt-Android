@@ -67,7 +67,7 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
 
         	challenge.putExtra("seconds",calendar.get(Calendar.SECOND));
         	challenge.putExtra("minutes",calendar.get(Calendar.MINUTE));
-        	challenge.putExtra("hours",calendar.get(Calendar.HOUR));
+        	challenge.putExtra("hours",calendar.get(Calendar.HOUR_OF_DAY));
         	challenge.putExtra("day",calendar.get(Calendar.DAY_OF_MONTH));
         	challenge.putExtra("month",calendar.get(Calendar.MONTH));
         	challenge.putExtra("year",calendar.get(Calendar.YEAR));
