@@ -5,14 +5,18 @@
     <style name="BeatItActionBarTheme" parent="@android:style/Theme.Holo.Light.DarkActionBar">
         <item name="android:actionBarStyle">@style/MyActionBar</item>
         <item name="android:actionBarTabStyle">@style/ActionBarTabStyle</item>
-        <item name="android:actionBarTabTextStyle">@style/ActionBarTabTextStyle.BeatItActionBarTheme</item>
         <item name="android:tabWidgetStyle">@android:style/Widget.TabWidget</item>
-        
+        <item name="android:actionBarTabTextStyle">@style/MyActionBarTabTextStyle</item>
+        <item name="android:actionBarDivider">@drawable/tab_space</item>
+    </style>
+    
+    <style name="MyActionBarTabTextStyle" parent="android:style/Widget.Holo.Light.ActionBar.TabText">
+        <item name="android:textColor">@color/tab_text_color</item>
     </style>
 
     <!-- ActionBar styles -->
     <style name="MyActionBar" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
-        <item name="android:background">#008a00</item>
+        <item name="android:background">@color/verde</item>
         <item name="android:displayOptions">showHome|homeAsUp|showTitle</item>
         <item name="android:backgroundStacked">#ffffff</item>
         <item name="android:icon">@android:color/transparent</item>
@@ -21,9 +25,5 @@
     <style name="ActionBarTabStyle" parent="@android:style/Widget.Holo.Light.ActionBar.TabView">
         <item name="android:background">@drawable/tab_indicator_ab_example</item>
     </style>
-    
-    <style name="ActionBarTabTextStyle.BeatItActionBarTheme" parent="@android:style/Widget.Holo.Light.ActionBar.TabText">
-    	<item name="android:textColor">@color/verde</item>        
-	</style>
 
 </resources>

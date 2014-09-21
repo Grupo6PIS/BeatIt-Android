@@ -1,18 +1,16 @@
 package com.g6pis.beatit.tabs;
 
-import com.g6pis.beatit.ChallengeFinished;
-import com.g6pis.beatit.Login;
-import com.g6pis.beatit.R;
-
-import android.widget.Button;
-import android.widget.TextView;
+import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
-import android.app.Fragment;
-import android.content.Intent;
+import android.view.ViewGroup;
+import android.widget.Button;
+
+import com.g6pis.beatit.Login;
+import com.g6pis.beatit.R;
  
 public class ProfileTab extends Fragment implements OnClickListener {
 

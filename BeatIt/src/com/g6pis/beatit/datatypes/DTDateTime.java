@@ -1,7 +1,5 @@
 package com.g6pis.beatit.datatypes;
 
-import java.text.SimpleDateFormat;
-
 public class DTDateTime {
 	
 	private Integer day;

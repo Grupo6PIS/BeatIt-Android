@@ -1,18 +1,17 @@
 package com.g6pis.beatit;
 
-import com.g6pis.beatit.datatypes.DTDateTime;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+
+import com.g6pis.beatit.datatypes.DTDateTime;
 
 public class ChallengeFinished extends Activity implements OnClickListener {
 
@@ -62,7 +61,7 @@ public class ChallengeFinished extends Activity implements OnClickListener {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.challenge_finished, menu);
+		// getMenuInflater().inflate(R.menu.challenge_finished, menu);
 		return true;
 	}
 

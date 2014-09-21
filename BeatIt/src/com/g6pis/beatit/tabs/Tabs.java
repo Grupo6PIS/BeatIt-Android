@@ -1,10 +1,5 @@
 package com.g6pis.beatit.tabs;
 
-import com.g6pis.beatit.R;
-import com.g6pis.beatit.R.layout;
-
-import android.app.ActionBar;
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
@@ -35,7 +30,7 @@ public class Tabs extends FragmentActivity {
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
  
         // Set Tab Icon and Titles
-        Tab1 = actionBar.newTab().setText("Listado de desafíos");
+        Tab1 = actionBar.newTab().setText("Listado de desafï¿½os");
         Tab2 = actionBar.newTab().setText("Tab2");
         Tab3 = actionBar.newTab().setText("Tab3");
  

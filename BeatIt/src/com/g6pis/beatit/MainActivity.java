@@ -2,11 +2,6 @@ package com.g6pis.beatit;
 
 
 
-import java.util.Random;
-
-import com.g6pis.beatit.challenges.UsainBolt;
-import com.g6pis.beatit.persistence.UsainBoltDAO;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +9,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+import com.g6pis.beatit.challenges.UsainBolt;
+import com.g6pis.beatit.persistence.UsainBoltDAO;
 
 
 public class MainActivity extends Activity {

@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
+
+<!-- En este documento se encuentran todos los Strings utilizados en la aplicación en español -->
+
 <resources>
-
-    <string name="app_name">BeatIt!</string>
-    <string name="hello_world">Hola Mundo!</string>
-    <string name="action_settings">Ajustes</string>
-    <string name="challenge">Usain Bolt</string>
-    <string name="logo_description">Logo de Usain Bolt</string>
-    <string name="description">Descripción</string>
-    <string name="description_usain_bolt_1">En este desafío deberás correr por 30 segundos a más de 20 km/h.</string>
-    <string name="description_usain_bolt_2">En este desafío deberás correr por 90 segundos a más de 25 km/h.</string>
-    <string name="start_time">Hora de comienzo:</string>
-    <string name="duration">Duración:</string>
-    <string name="points">A vencer:</string>
-    <string name="start_time_value">18/08/2014 13:30</string>
-    <string name="duration_value">1 semana</string>
-    <string name="points_value">2000 puntos</string>
-    <string name="time_left">Tiempo restante:</string>
-    <string name="seconds">segundos</string>
-    <string name="speed">Velocidad:</string>
-    <string name="time_left_value_1">Tiempo Restante: 30 segundos</string>
-    <string name="time_left_value_2">Tiempo Restante: 90 segundos</string>
-    <string name="speed_value">Velocidad: 0.0 km/h</string>
-
-    <color name="gris">#f5f5f5</color>
+    
+	<!-- Definición de colores -->
+	
+	<color name="gris">#f5f5f5</color>
     <color name="rojo">#d40c34</color>
     <color name="verde">#008a00</color>
+    <color name="blanco">#ffffff</color>
     <color name="gris_challenge_description">#494949</color>
     <color name="gris_challenge_values">#6d6d6d</color>
-
+    <color name="gris_tab_text_notselected">#ABABAB</color>
+    
+    
+    <!-- Strings generales de la aplicación -->
+    
+    <string name="hello_world">Hola Mundo!</string>
+	<string name="action_settings">Ajustes</string>
+    <string name="app_name">BeatIt!</string>
+    <string name="description">Descripción</string>
+    <string name="duration">Duración:</string>
+    <string name="duration_value">1 semana</string>
+    <string name="points">A vencer:</string>
+    <string name="points_value">2000 puntos</string>
+    <string name="speed">Velocidad:</string>
+    <string name="speed_value">Velocidad: 0.0 km/h</string>
+    <string name="start_time">Hora de comienzo:</string>
+    <string name="start_time_value">18/08/2014 13:30</string>
+    <string name="time_left">Tiempo restante:</string>
+    <string name="seconds">segundos</string>
+    <string name="time_left_value_1">Tiempo Restante: 30 segundos</string>
+    <string name="time_left_value_2">Tiempo Restante: 90 segundos</string>
     <string name="title_activity_challenge_in_progress">ChallengeInProgress</string>
     <string name="title_activity_challenges_menu">ChallengesMenu</string>
     <string name="title_activity_ranking">Ranking</string>
@@ -42,9 +47,6 @@
     <string name="avg_speed_value">21.3</string>
     <string name="end_time">Hora de fin: </string>
     <string name="end_time_value">20/07/2014 9:50</string>
-
-    <color name="blanco">#ffffff</color>
-
     <string name="gps_disabled">Por favor activa el GPS</string>
     <string name="cancel">Cancelar</string>
     <string name="ok">Aceptar</string>
@@ -52,15 +54,28 @@
     <string name="challenges_tab">Desafíos</string>
     <string name="profile_tab">Perfil</string>
     <string name="ranking_tab">Ranking</string>
+    <string name="logout">Cerrar Sesión</string>
+    <string name="settings">Configuración</string>
+    <string name="notifications">Notificaciones</string>
+    <string name="public_profile">Perfil Público</string>    
     <string name="app_description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </string>
     <string name="iniciar_sesion">Iniciar Sesión</string>
     <string name="title_activity_home">Home</string>
     <string name="start_challenge_button">Comenzar Desafío</string>
-     <string name="username">Juan Pérez</string>
-    <string name="user_country">Uruguay</string>
-    <string name="logout">Cerrar Sesión</string>
-    <string name="settings">Configuración</string>
-    <string name="notifications">Notificaciones</string>
-    <string name="public_profile">Perfil Público</string>
 
+    
+    <!-- Profile Strings -->
+
+    <string name="username">Juan Pérez</string>
+    <string name="user_country">Uruguay</string>
+    
+    
+    <!-- Strings del desafío Usain Bolt -->
+    
+    <string name="challenge">Usain Bolt</string>
+    <string name="description_usain_bolt_1">En este desafío deberás correr por 30 segundos a más de 20 km/h.</string>
+    <string name="description_usain_bolt_2">En este desafío deberás correr por 90 segundos a más de 25 km/h.</string>
+    <string name="logo_description">Logo de Usain Bolt</string>
+        
+    
 </resources>
