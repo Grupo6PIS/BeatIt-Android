@@ -2,13 +2,9 @@ package com.g6pis.beatit.tabs;
 
 
  
-import com.g6pis.beatit.R;
-import com.g6pis.beatit.R.id;
-
+import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.app.ActionBar;
  
 public class TabListener implements ActionBar.TabListener {
  
