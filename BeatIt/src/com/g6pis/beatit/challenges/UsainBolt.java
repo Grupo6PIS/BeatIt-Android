@@ -72,8 +72,8 @@ public class UsainBolt extends Challenge implements OnClickListener,
 	private Dialog settingsDialog;
 	private Dialog speedDialog;
 
-	private Button startChallengeButton;
-	private ImageView homeButton;
+	private TextView startChallengeButton;
+	//private ImageView homeButton;
 	private ImageView cancelButton;
 	private TextView textViewSpeedValue;
 	private TextView textViewTimeLeftValue;
@@ -87,8 +87,8 @@ public class UsainBolt extends Challenge implements OnClickListener,
 		this.editActionBar();
 		this.viewAssignment();
 
-		homeButton.setOnClickListener(this);
-		homeButton.setVisibility(View.VISIBLE);
+		/*homeButton.setOnClickListener(this);
+		homeButton.setVisibility(View.VISIBLE);*/
 		cancelButton.setOnClickListener(this);
 		startChallengeButton.setOnClickListener(this);
 
@@ -162,16 +162,7 @@ public class UsainBolt extends Challenge implements OnClickListener,
 		locationManager.removeUpdates(this);
 	}
 
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		// Respond to the action bar's Up/Home button
-		case android.R.id.home:
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
@@ -218,8 +209,8 @@ public class UsainBolt extends Challenge implements OnClickListener,
 	}
 	
 	public void viewAssignment() {
-		startChallengeButton = (Button) findViewById(R.id.start_challenge_button);
-		homeButton = (ImageView) findViewById(R.id.homeButton);
+		startChallengeButton = (TextView) findViewById(R.id.start_challenge_button);
+		//homeButton = (ImageView) findViewById(R.id.homeButton);
 		cancelButton = (ImageView) findViewById(R.id.cancelButton);
 		textViewSpeedValue = (TextView) findViewById(R.id.textView_Speed_Value);
 		textViewTimeLeftValue = (TextView) findViewById(R.id.textView_Time_Left_Value);
@@ -292,12 +283,12 @@ public class UsainBolt extends Challenge implements OnClickListener,
 			this.completeChallenge();
 		}
 			break;
-		case R.id.homeButton: {
+		/*case R.id.homeButton: {
 			Intent home = new Intent(this, Home.class);
 			startActivity(home);
 			this.finish();
 		}
-			break;
+			break;*/
 		case R.id.start_challenge_button: {
 			startChallengeButton.setVisibility(View.INVISIBLE);
 			textViewSpeedValue.setVisibility(View.VISIBLE);
@@ -312,6 +303,25 @@ public class UsainBolt extends Challenge implements OnClickListener,
 
 	}
 	
+	@Override
+	public void onBackPressed(){
+		Intent home = new Intent(this, Home.class);
+		startActivity(home);
+		this.finish();
+		super.onBackPressed();
+	}
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+	    switch (item.getItemId()) {
+	    // Respond to the action bar's Up/Home button
+	    case android.R.id.home:
+	    	Intent home = new Intent(this, Home.class);
+			startActivity(home);
+			this.finish();
+	        return true;
+	    }
+	    return super.onOptionsItemSelected(item);
+	}
 	
 	/***GPS Functions***/
 	@Override

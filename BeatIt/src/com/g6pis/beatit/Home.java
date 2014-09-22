@@ -7,6 +7,7 @@ import com.g6pis.beatit.tabs.RankingTab;
 
 import android.app.ActionBar;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ActionBar.Tab;
 import android.content.Context;
@@ -15,6 +16,7 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTabHost;
 
 public class Home extends FragmentActivity {
 	
@@ -122,5 +124,10 @@ public class Home extends FragmentActivity {
 	            finish();
 	        }
 	        super.onRestart();
+	    }
+	    
+	    public void goToProfileFragment(){
+			getActionBar().selectTab(getActionBar().getTabAt(2));
+			
 	    }
 }

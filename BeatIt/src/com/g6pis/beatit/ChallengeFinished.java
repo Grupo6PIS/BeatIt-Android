@@ -30,8 +30,8 @@ public class ChallengeFinished extends Activity implements OnClickListener {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setTitle(this.getString(R.string.app_name));
-        findViewById(R.id.homeButton).setOnClickListener(this);
-        findViewById(R.id.homeButton).setVisibility(View.VISIBLE);
+       /* findViewById(R.id.homeButton).setOnClickListener(this);
+        findViewById(R.id.homeButton).setVisibility(View.VISIBLE);*/
 		
 		
 		((TextView) findViewById(R.id.textView_max_speed_value))
@@ -70,7 +70,9 @@ public class ChallengeFinished extends Activity implements OnClickListener {
 		switch (item.getItemId()) {
 		// Respond to the action bar's Up/Home button
 		case android.R.id.home:
-			NavUtils.navigateUpFromSameTask(this);
+			Intent home = new Intent(this, Home.class);
+			startActivity(home);
+			this.finish();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
@@ -81,6 +83,14 @@ public class ChallengeFinished extends Activity implements OnClickListener {
 			Intent home = new Intent(this, Home.class);
 			startActivity(home);
 			this.finish();
+	}
+	
+	@Override
+	public void onBackPressed(){
+		Intent home = new Intent(this, Home.class);
+		startActivity(home);
+		this.finish();
+		super.onBackPressed();
 	}
 	
 }

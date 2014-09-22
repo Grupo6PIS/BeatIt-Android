@@ -10,6 +10,7 @@ import java.util.List;
 //import com.g6pis.beatit.AdaptadorRanking;
 import com.g6pis.beatit.R;
 import com.g6pis.beatit.datatypes.DTRanking;
+import com.g6pis.beatit.Home;
 
 
 
@@ -73,9 +74,12 @@ public class RankingTab extends Fragment implements OnItemClickListener  {
     @Override
    	public void onItemClick(AdapterView<?> parent, View view, int position,
    			long id) {
-    	String item = adapter.getItem(position).toString();
-    	Toast.makeText(getActivity().getApplicationContext(), item + " selected", Toast.LENGTH_LONG).show();
-
+    	String item = adapter.getItem(position).getNombreUsuario();
+    	if(item.equals(getResources().getText(R.string.username))){
+    		((Home)this.getActivity()).goToProfileFragment();
+    		
+    	}
+    	
    		
    	}
     
