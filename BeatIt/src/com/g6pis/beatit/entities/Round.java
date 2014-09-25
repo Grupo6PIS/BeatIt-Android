@@ -1,5 +1,7 @@
 package com.g6pis.beatit.entities;
 
+import java.util.Map;
+
 import com.g6pis.beatit.datatypes.DTDateTime;
 
 public class Round {
@@ -7,14 +9,18 @@ public class Round {
 	private String roundId;
 	private DTDateTime dateTimeStart;
 	private DTDateTime dateTimeFinish;
+	private Map<String,Challenge> challenges;
+	
+	
 	
 	
 	public Round(String roundId, DTDateTime dateTimeStart,
-			DTDateTime dateTimeFinish) {
+			DTDateTime dateTimeFinish, Map<String, Challenge> challenges) {
 		super();
 		this.roundId = roundId;
 		this.dateTimeStart = dateTimeStart;
 		this.dateTimeFinish = dateTimeFinish;
+		this.challenges = challenges;
 	}
 	
 	public String getRoundId() {
@@ -35,6 +41,17 @@ public class Round {
 	public void setDateTimeFinish(DTDateTime dateTimeFinish) {
 		this.dateTimeFinish = dateTimeFinish;
 	}
+	
+	public Map<String, Challenge> getChallenges() {
+		return challenges;
+	}
+
+
+	public void setChallenges(Map<String, Challenge> challenges) {
+		this.challenges = challenges;
+	}
+
+
 	
 	
 

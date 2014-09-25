@@ -7,10 +7,15 @@ import java.util.List;
 
 
 
+
+
+import com.facebook.widget.ProfilePictureView;
 //import com.g6pis.beatit.AdaptadorRanking;
 import com.g6pis.beatit.R;
 import com.g6pis.beatit.datatypes.DTRanking;
 import com.g6pis.beatit.Home;
+
+
 
 
 
@@ -39,6 +44,13 @@ public class RankingTab extends Fragment implements OnItemClickListener  {
 	
 	private ListView ranking;
     private MyAdapter adapter;
+    private Home activity;
+    
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        activity = (Home) getActivity();
+    }
     
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -75,7 +87,7 @@ public class RankingTab extends Fragment implements OnItemClickListener  {
    	public void onItemClick(AdapterView<?> parent, View view, int position,
    			long id) {
     	String item = adapter.getItem(position).getNombreUsuario();
-    	if(item.equals(getResources().getText(R.string.username))){
+    	if(item.equals(activity.username)){
     		((Home)this.getActivity()).goToProfileFragment();
     		
     	}
@@ -104,16 +116,19 @@ public class RankingTab extends Fragment implements OnItemClickListener  {
           TextView position = (TextView) rowView.findViewById(R.id.textView_posicion);
           TextView userName = (TextView) rowView.findViewById(R.id.textView_nombre_usuario);
           TextView score = (TextView) rowView.findViewById(R.id.textView_puntaje);
+          ProfilePictureView profilePictureView = (ProfilePictureView) rowView.findViewById(R.id.imageView_foto_ranking);
+          profilePictureView.setCropped(true);
           
           DTRanking ranking = objects.get(location);
           
           position.setText(Integer.toString(ranking.getPosicion()));
           userName.setText(ranking.getNombreUsuario());
           score.setText(Integer.toString(ranking.getPuntaje()));
-          String name = (String) getResources().getText(R.string.username);
-          if(ranking.getNombreUsuario().equals(name)){
+          if(ranking.getNombreUsuario().equals(activity.username)){
         	  user.setVisibility(View.VISIBLE);
         	  rowView.setBackgroundColor(getResources().getColor(R.color.blanco));
+        	  profilePictureView.setProfileId(activity.userId);
+        	  
           }else{
         	  user.setVisibility(View.INVISIBLE);
         	  rowView.setBackgroundColor(getResources().getColor(R.color.gris));

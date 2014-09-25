@@ -1,5 +1,8 @@
 package com.g6pis.beatit.datatypes;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 public class DTDateTime {
 	
 	private Integer day;
@@ -10,7 +13,24 @@ public class DTDateTime {
 	private Integer second;
 	
 	public DTDateTime(){
+		Calendar calendar = new GregorianCalendar();
+
+    	second = calendar.get(Calendar.SECOND);
+    	minute = calendar.get(Calendar.MINUTE);
+    	hour = calendar.get(Calendar.HOUR_OF_DAY);
+    	day = calendar.get(Calendar.DAY_OF_MONTH);
+    	month = calendar.get(Calendar.MONTH);
+    	year = calendar.get(Calendar.YEAR);
 		
+	}
+	
+	public DTDateTime(Integer day, Integer month, Integer year, Integer hour, Integer minute, Integer second){
+		this.day = day;
+		this.month = month;
+		this.year = year;
+		this.hour = hour;
+		this.minute = minute;
+		this.second = second;
 	}
 	
 	public Integer getDay() {

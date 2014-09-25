@@ -31,6 +31,8 @@ public class Home extends FragmentActivity {
 	     SharedPreferences sharedPrefs;
 	     Editor editor;
 	     private boolean isUserLoggedIn;
+	     public String username;
+	     public String userId;
 	   
 	 
 	    @Override
@@ -39,15 +41,23 @@ public class Home extends FragmentActivity {
 	        setContentView(R.layout.tabs);
 	               
 	        sharedPrefs = getApplicationContext().getSharedPreferences(APP_SHARED_PREFS, Context.MODE_PRIVATE);
-	        isUserLoggedIn = sharedPrefs.getBoolean("userLoggedInState", false);
-	        if (!isUserLoggedIn) {
+	        username = sharedPrefs.getString("username", "");
+	        userId = sharedPrefs.getString("userId", "");
+	        
+	        /*if (!isUserLoggedIn) {
 	            Intent intent = new Intent(this, MainActivity.class);
 	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	            startActivity(intent);
 	            finish();
-	        }
+	        }*/
 	        
 	        
+	        /*username = "";
+	        userId = "";
+	        if(getIntent() != null){
+	        	username = getIntent().getExtras().getString("username");
+	        	userId = getIntent().getExtras().getString("userId");
+	        }*/
 	        
 	        ActionBar actionBar = getActionBar();
 	        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM); 
@@ -102,27 +112,27 @@ public class Home extends FragmentActivity {
 	    
 	    @Override
 	    protected void onResume() {
-	        sharedPrefs = getApplicationContext().getSharedPreferences(APP_SHARED_PREFS, Context.MODE_PRIVATE);
+	        /*sharedPrefs = getApplicationContext().getSharedPreferences(APP_SHARED_PREFS, Context.MODE_PRIVATE);
 	        isUserLoggedIn = sharedPrefs.getBoolean("userLoggedInState", false);
 	        if (!isUserLoggedIn) {
 	            Intent intent = new Intent(this, MainActivity.class);
 	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	            startActivity(intent);
 	            finish();
-	        }
+	        }*/
 	        super.onResume();
 	    }
 
 	    @Override
 	    protected void onRestart() {
-	        sharedPrefs = getApplicationContext().getSharedPreferences(APP_SHARED_PREFS, Context.MODE_PRIVATE);
+	        /*sharedPrefs = getApplicationContext().getSharedPreferences(APP_SHARED_PREFS, Context.MODE_PRIVATE);
 	        isUserLoggedIn = sharedPrefs.getBoolean("userLoggedInState", false);
 	        if (!isUserLoggedIn) {
 	            Intent intent = new Intent(this, MainActivity.class);
 	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 	            startActivity(intent);
 	            finish();
-	        }
+	        }*/
 	        super.onRestart();
 	    }
 	    

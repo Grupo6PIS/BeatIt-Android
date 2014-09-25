@@ -2,19 +2,32 @@ package com.g6pis.beatit.entities;
 
 import android.app.Activity;
 
-public class Challenge extends Activity{
+public  class Challenge{
 	
-	private int challengeId;
+	private String challengeId;
 	private String name;
 	private String description;
-	private Integer duration;
-	private Integer level;
+	private int duration;
+	private int level;
 	private int maxAttempt;
 	
-	public int getChallengeId() {
+	
+	
+	protected Challenge(String challengeId, String name, String description,
+			Integer duration, Integer level, int maxAttempt) {
+		this.challengeId = challengeId;
+		this.name = name;
+		this.description = description;
+		this.duration = duration;
+		this.level = level;
+		this.maxAttempt = maxAttempt;
+	}
+	
+	
+	public String getChallengeId() {
 		return challengeId;
 	}
-	public void setChallengeId(int challengeId) {
+	public void setChallengeId(String challengeId) {
 		this.challengeId = challengeId;
 	}
 	public String getName() {
@@ -29,13 +42,13 @@ public class Challenge extends Activity{
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public Integer getDuration() {
+	public int getDuration() {
 		return duration;
 	}
 	public void setDuration(Integer duration) {
 		this.duration = duration;
 	}
-	public Integer getLevel() {
+	public int getLevel() {
 		return level;
 	}
 	public void setLevel(Integer level) {
@@ -57,6 +70,7 @@ public class Challenge extends Activity{
 		this.maxAttempt = maxAttempt;
 	}
 	
+	//protected abstract double calculateScore();
 	
 
 }

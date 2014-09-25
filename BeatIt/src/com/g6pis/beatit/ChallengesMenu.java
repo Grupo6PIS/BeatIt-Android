@@ -2,7 +2,7 @@ package com.g6pis.beatit;
 
 import java.util.Random;
 
-import com.g6pis.beatit.challenges.UsainBolt;
+import com.g6pis.beatit.challenges.usainbolt.UsainBoltUI;
 
 import android.app.Activity;
 import android.content.Context;
@@ -68,7 +68,7 @@ public class ChallengesMenu extends Activity implements AdapterView.OnItemClickL
 			long id) {
 		if(adapter.getItem(position).equals("Usain Bolt")){
 			
-			Intent challenge = new Intent(this, UsainBolt.class);
+			Intent challenge = new Intent(this, UsainBoltUI.class);
 			
 			Random rand = new Random();
 	        final int  level = rand.nextInt(2) + 1;

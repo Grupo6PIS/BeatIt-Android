@@ -76,6 +76,8 @@
     <string name="description_usain_bolt_1">En este desafío deberás correr por 30 segundos a más de 20 km/h.</string>
     <string name="description_usain_bolt_2">En este desafío deberás correr por 90 segundos a más de 25 km/h.</string>
     <string name="logo_description">Logo de Usain Bolt</string>
-        
+    
+    <!-- Facebook app ID -->
+    <string name="facebook_app_id">829846350380023</string>
     
 </resources>

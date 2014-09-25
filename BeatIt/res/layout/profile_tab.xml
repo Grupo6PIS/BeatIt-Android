@@ -4,15 +4,14 @@
     android:layout_height="match_parent"
     android:background="@color/gris" >
 
-    <ImageView
+    <com.facebook.widget.ProfilePictureView
         android:id="@+id/imageView_profile"
         android:layout_width="75dp"
         android:layout_height="75dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
-		android:src="@drawable/default_profile" />
+        android:layout_marginTop="30dp" />
 
     <TextView
         android:id="@+id/textView_username"
@@ -21,7 +20,6 @@
         android:layout_alignTop="@+id/imageView_profile"
         android:layout_marginLeft="25dp"
         android:layout_toRightOf="@+id/imageView_profile"
-        android:text="@string/username"
         android:textSize="19sp" />
 
     <TextView

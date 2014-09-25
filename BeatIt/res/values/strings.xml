@@ -77,5 +77,8 @@
     <string name="description_usain_bolt_2">In this challenge you have to run faster than 25 km/h for 90 seconds</string>   
     <string name="logo_description">Logo Usain Bolt</string>
     
+    <!-- Facebook app ID -->
+    <string name="facebook_app_id">829846350380023</string>
+    
 
 </resources>

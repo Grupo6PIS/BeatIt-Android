@@ -18,7 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.g6pis.beatit.R;
-import com.g6pis.beatit.challenges.UsainBolt;
+import com.g6pis.beatit.challenges.usainbolt.UsainBoltUI;
  
 public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemClickListener {
 	private ListView challengeMenu;
@@ -58,7 +58,7 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
 			long id) {
 		if(adapter.getItem(position).equals("Usain Bolt")){
 			
-			Intent challenge = new Intent(getActivity().getApplicationContext(), UsainBolt.class);
+			Intent challenge = new Intent(getActivity().getApplicationContext(), UsainBoltUI.class);
 			
         	Calendar calendar = new GregorianCalendar();
 

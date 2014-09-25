@@ -1,4 +1,4 @@
-package com.g6pis.beatit.challenges;
+package com.g6pis.beatit.challenges.usainbolt;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import android.app.ActionBar;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
@@ -33,9 +34,9 @@ import com.g6pis.beatit.Home;
 import com.g6pis.beatit.R;
 import com.g6pis.beatit.datatypes.DTDateTime;
 import com.g6pis.beatit.entities.Challenge;
-import com.g6pis.beatit.persistence.UsainBoltDAO;
+//import com.g6pis.beatit.persistence.UsainBoltDAO;
 
-public class UsainBolt extends Challenge implements OnClickListener,
+public class UsainBoltUI extends Activity implements OnClickListener,
 		LocationListener {
 
 	private static final long MIN_TIME = 0;
@@ -48,7 +49,7 @@ public class UsainBolt extends Challenge implements OnClickListener,
 	private static final int SPEED_DIALOG = 20;
 	private static final int MAX_ATTEMPTS = 3;
 
-	private int challengeId;
+	private String challengeId;
 	private Integer level;
 	private DTDateTime dateTimeStart;
 	private DTDateTime dateTimeFinish;
@@ -78,6 +79,8 @@ public class UsainBolt extends Challenge implements OnClickListener,
 	private TextView textViewSpeedValue;
 	private TextView textViewTimeLeftValue;
 	
+	
+
 	/***Activity Functions***/
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -103,9 +106,10 @@ public class UsainBolt extends Challenge implements OnClickListener,
 			startChallengeButton.setClickable(false);
 		}
 
-		// TODO cargar el nivel del desafio segun la BD
+		// TODO instanciar la clase UsainBolt a través del DataManager.
+		
 		this.setLevel(getIntent().getExtras().getInt("level"));
-		this.setChallengeId(getIntent().getExtras().getInt("challengeId"));
+		//this.setChallengeId(getIntent().getExtras().getInt("challengeId"));
 		this.setDateTimeStart(this.getDateExtras(getIntent().getExtras()));
 
 		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(this
@@ -254,8 +258,8 @@ public class UsainBolt extends Challenge implements OnClickListener,
 
 		// Store the finished challenge
 		// TODO verificar puntaje mï¿½ximo
-		UsainBoltDAO db = new UsainBoltDAO(this);
-		db.addUsainBolt(this);
+		/*UsainBoltDAO db = new UsainBoltDAO(this);
+		db.addUsainBolt(this);*/
 
 		this.finish();
 
@@ -454,11 +458,11 @@ public class UsainBolt extends Challenge implements OnClickListener,
 		this.score = score;
 	}
 
-	public int getChallengeId() {
+	public String getChallengeId() {
 		return challengeId;
 	}
 
-	public void setChallengeId(int challengeId) {
+	public void setChallengeId(String challengeId) {
 		this.challengeId = challengeId;
 	}
 
