@@ -73,8 +73,8 @@
     <!-- Usain Bolt's Strings -->
     
     <string name="challenge">Usain Bolt</string>
-    <string name="description_usain_bolt_1">In this challenge you have to run faster than 20 km/h for 30 seconds</string>
-    <string name="description_usain_bolt_2">In this challenge you have to run faster than 25 km/h for 90 seconds</string>   
+    <string name="description_usain_bolt_1">In this challenge you have to run faster than 10 km/h for 30 seconds</string>
+    <string name="description_usain_bolt_2">In this challenge you have to run faster than 15 km/h for 45 seconds</string>   
     <string name="logo_description">Logo Usain Bolt</string>
     
     <!-- Facebook app ID -->

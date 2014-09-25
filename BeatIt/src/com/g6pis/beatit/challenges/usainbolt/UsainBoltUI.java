@@ -41,10 +41,10 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 
 	private static final long MIN_TIME = 0;
 	private static final float MIN_DISTANCE = 0;
-	private static final double MIN_SPEED_LEVEL1 = 20.0;
-	private static final double MIN_SPEED_LEVEL2 = 25.0;
+	private static final double MIN_SPEED_LEVEL1 = 10.0;
+	private static final double MIN_SPEED_LEVEL2 = 15.0;
 	private static final long TIME_LEVEL1 = 30000;
-	private static final long TIME_LEVEL2 = 90000;
+	private static final long TIME_LEVEL2 = 45000;
 	private static final int SETTINGS_DIALOG = 10;
 	private static final int SPEED_DIALOG = 20;
 	private static final int MAX_ATTEMPTS = 3;
