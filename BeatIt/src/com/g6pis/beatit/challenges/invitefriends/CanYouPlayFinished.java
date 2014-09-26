@@ -1,28 +1,25 @@
-package com.g6pis.beatit;
+package com.g6pis.beatit.challenges.invitefriends;
+
+import com.g6pis.beatit.Home;
+import com.g6pis.beatit.R;
+import com.g6pis.beatit.datatypes.DTDateTime;
 
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-import com.g6pis.beatit.datatypes.DTDateTime;
-
-public class ChallengeFinished extends Activity implements OnClickListener {
-
+public class CanYouPlayFinished extends Activity {
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.challenge_finished);
+		setContentView(R.layout.can_you_play_finished);
 
-		// double maxSpeed = getIntent().getExtras().getString("maxSpeed");
-		// double avgSpeed = getIntent().getExtras().getString("avgSpeed");
-		// double score = getIntent().getExtras().getString("score");
 		
 		ActionBar actionBar = getActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM); 
@@ -33,17 +30,17 @@ public class ChallengeFinished extends Activity implements OnClickListener {
        /* findViewById(R.id.homeButton).setOnClickListener(this);
         findViewById(R.id.homeButton).setVisibility(View.VISIBLE);*/
 		
-		
-		((TextView) findViewById(R.id.textView_max_speed_value))
-				.setText(getIntent().getExtras().getString("maxSpeed") + "km/h");
+		//TODO pedirle el state correspondiente al DataManager
+		/*((TextView) findViewById(R.id.sms_sent_value))
+				.setText(getIntent().getExtras().getString("sms"));
 
-		((TextView) findViewById(R.id.textView_avg_speed_value))
-				.setText(getIntent().getExtras().getString("avgSpeed") + "km/h");
+		((TextView) findViewById(R.id.fb_post_value))
+				.setText(getIntent().getExtras().getString("fb"));
 
 		((TextView) findViewById(R.id.textView_Score_Value))
-				.setText(getIntent().getExtras().getString("score") + getResources().getString(R.string.points));
+				.setText(getIntent().getExtras().getString("score") + getResources().getString(R.string.points));*/
 		
-		((TextView) findViewById(R.id.textView_Start_Time_Value))
+		/*((TextView) findViewById(R.id.textView_Start_Time_Value))
 		.setText(getIntent().getExtras().getString("dateTimeStart"));
 		
 		DTDateTime finishDate = new DTDateTime();
@@ -54,7 +51,7 @@ public class ChallengeFinished extends Activity implements OnClickListener {
 		finishDate.setMinute(getIntent().getExtras().getInt("minutes"));
 		finishDate.setSecond(getIntent().getExtras().getInt("seconds"));
 		
-		((TextView)findViewById(R.id.textView_Duration_Value)).setText(finishDate.toString());
+		((TextView)findViewById(R.id.textView_Duration_Value)).setText(finishDate.toString());*/
 
 	}
 
@@ -79,18 +76,10 @@ public class ChallengeFinished extends Activity implements OnClickListener {
 	}
 	
 	@Override
-	public void onClick(View v) {
-			Intent home = new Intent(this, Home.class);
-			startActivity(home);
-			this.finish();
-	}
-	
-	@Override
 	public void onBackPressed(){
 		Intent home = new Intent(this, Home.class);
 		startActivity(home);
 		this.finish();
 		super.onBackPressed();
 	}
-	
 }

@@ -59,7 +59,7 @@ public class ProfileTab extends Fragment implements OnClickListener {
 		View rootView = inflater
 				.inflate(R.layout.profile_tab, container, false);
 
-		((Button) rootView.findViewById(R.id.button_cerrar_sesion))
+		((Button) rootView.findViewById(R.id.logout_button))
 				.setOnClickListener(this);
 
 		profilePictureView = (ProfilePictureView) rootView

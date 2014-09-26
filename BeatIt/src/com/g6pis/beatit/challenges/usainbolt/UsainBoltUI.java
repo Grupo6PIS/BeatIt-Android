@@ -216,7 +216,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 		startChallengeButton = (TextView) findViewById(R.id.start_challenge_button);
 		//homeButton = (ImageView) findViewById(R.id.homeButton);
 		cancelButton = (ImageView) findViewById(R.id.cancelButton);
-		textViewSpeedValue = (TextView) findViewById(R.id.textView_Speed_Value);
+		textViewSpeedValue = (TextView) findViewById(R.id.textView_Friends_Value);
 		textViewTimeLeftValue = (TextView) findViewById(R.id.textView_Time_Left_Value);
 	}
 	

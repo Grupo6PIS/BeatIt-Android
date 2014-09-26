@@ -30,16 +30,7 @@
         android:layout_alignLeft="@+id/textView_username"
         android:layout_marginBottom="10dp"
         android:textSize="14sp" />
-
-    <Button
-        android:id="@+id/button_cerrar_sesion"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_alignBaseline="@+id/textView_user_country"
-        android:layout_marginLeft="30dp"
-        android:layout_toRightOf="@+id/textView_user_country"
-        android:text="@string/logout"
-        android:textSize="14sp" />
+        <!--  android:layout_toRightOf="@+id/textView_user_country"-->
 
     <LinearLayout
         android:id="@+id/linea"
@@ -71,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView_settings"
         android:layout_below="@+id/textView_settings"
-        android:layout_marginRight="15dp"
+        android:layout_marginRight="16dp"
         android:layout_marginTop="15dp"
         android:text="@string/notifications" />
 
@@ -84,5 +75,15 @@
         android:layout_marginRight="16dp"
         android:layout_marginTop="15dp"
         android:text="@string/public_profile" />
+
+    <Button
+        android:id="@+id/logout_button"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_alignRight="@+id/switch_public_profile"
+        android:layout_below="@+id/switch_public_profile"
+        android:layout_marginTop="15dp"
+        android:text="@string/logout"
+        android:textSize="14sp" />
  
 </RelativeLayout>

@@ -77,6 +77,18 @@
     <string name="description_usain_bolt_2">En este desafío deberás correr por 45 segundos a más de 15 km/h.</string>
     <string name="logo_description">Logo de Usain Bolt</string>
     
+        <!-- Can You Play's Strings  -->
+	<string name="can_you_play">Invita a tus amigos!</string>
+    <string name="select_contact">Elige un contacto</string>
+    <string name="send_sms">Enviar SMS</string>
+    <string name="facebook_post">Publica en Facebook</string>
+    <string name="done">Listo!</string>
+    <string name="sms_text">Prueba BeatIt!</string>
+    <string name="sms_failed">No se ha enviado el mensaje..</string>
+    <string name="sms_success">Su mensaje se ha enviado con éxito!</string>
+    <string name="fb_posts">Posts en Facebook</string>
+    <string name="sms_sent">SMS enviados</string>
+    
     <!-- Facebook app ID -->
     <string name="facebook_app_id">829846350380023</string>
     

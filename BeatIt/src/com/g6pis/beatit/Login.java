@@ -58,6 +58,7 @@ public class Login extends Activity {
 		permissions.add("public_profile");
 		permissions.add("user_location");
 		permissions.add("user_hometown");
+//		permission.add("user_friends");
 		((LoginButton) findViewById(R.id.login_button))
 				.setReadPermissions(permissions);
 		

@@ -3,9 +3,20 @@ package com.g6pis.beatit.challenges.usainbolt;
 import java.util.HashSet;
 import java.util.Set;
 
+import android.widget.TextView;
+
+import com.g6pis.beatit.R;
 import com.g6pis.beatit.entities.Challenge;
 
 public class UsainBolt extends Challenge {
+	private static final double MIN_SPEED_LEVEL1 = 10.0;
+	private static final double MIN_SPEED_LEVEL2 = 15.0;
+	private static final long TIME_LEVEL1 = 30000;
+	private static final long TIME_LEVEL2 = 45000;
+	
+	private double minSpeed;
+	private long time;
+	
 	private double maxSpeed;
 	private Set<Double> speeds;
 	private double avgSpeed;
@@ -17,6 +28,21 @@ public class UsainBolt extends Challenge {
 		this.maxSpeed = 0;
 		this.avgSpeed = 0;
 		this.speeds = new HashSet<Double>();
+		
+		switch (level) {
+
+		case 1: {
+			minSpeed = MIN_SPEED_LEVEL1;
+			time = TIME_LEVEL1;
+		}
+			break;
+		case 2: {
+			minSpeed = MIN_SPEED_LEVEL2;
+			time = TIME_LEVEL2;
+		}
+			break;
+		}
+	
 	}
 
 	public double getMaxSpeed() {

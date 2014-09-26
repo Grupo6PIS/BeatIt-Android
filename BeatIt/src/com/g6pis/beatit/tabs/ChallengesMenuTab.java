@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.g6pis.beatit.R;
+import com.g6pis.beatit.challenges.invitefriends.CanYouPlayUI;
 import com.g6pis.beatit.challenges.usainbolt.UsainBoltUI;
  
 public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemClickListener {
@@ -37,7 +38,8 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
 		
 		String[] items=new String[10];
 		items[0] = "Usain Bolt";
-        for(int index=1;index<=9;index++){
+		items[1] = "Can You Play?";
+        for(int index=2;index<=9;index++){
             items[index] = "Challenge "+index;
         }
         adapter = new MyAdapter(getActivity().getApplicationContext(),items);
@@ -72,9 +74,25 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
         	challenge.putExtra("challengeId", 0);
         	
         	startActivity(challenge);
-        	
-        	this.getActivity().finish();
 		}
+		if(adapter.getItem(position).equals("Can You Play?")){
+			Intent challenge = new Intent(getActivity().getApplicationContext(), CanYouPlayUI.class);
+			
+        	Calendar calendar = new GregorianCalendar();
+
+        	challenge.putExtra("seconds",calendar.get(Calendar.SECOND));
+        	challenge.putExtra("minutes",calendar.get(Calendar.MINUTE));
+        	challenge.putExtra("hours",calendar.get(Calendar.HOUR_OF_DAY));
+        	challenge.putExtra("day",calendar.get(Calendar.DAY_OF_MONTH));
+        	challenge.putExtra("month",calendar.get(Calendar.MONTH));
+        	challenge.putExtra("year",calendar.get(Calendar.YEAR));
+        	challenge.putExtra("level", level);
+        	challenge.putExtra("challengeId", 1);
+        	
+        	startActivity(challenge);
+        	
+		}
+    	this.getActivity().finish();
 		
 	}
     
@@ -107,6 +125,11 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
             case 1: challengeDescription.setText(R.string.description_usain_bolt_1);break;
             case 2: challengeDescription.setText(R.string.description_usain_bolt_2);break;
             }
+            rowView.setBackgroundColor(getResources().getColor(R.color.blanco));
+          } else if (s.equals("Can You Play?")){
+        	  challengeIcon.setImageResource(R.drawable.ic_can_you_play);
+        	  challengeDescription.setText(s + " description");
+        	  rowView.setBackgroundColor(getResources().getColor(R.color.blanco));
           } else {
             challengeIcon.setImageResource(R.drawable.ic_launcher);
             challengeDescription.setText(s + " description");

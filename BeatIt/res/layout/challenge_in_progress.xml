@@ -23,7 +23,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="15dp"
         android:layout_toRightOf="@+id/textView_Duration"
-        android:text="@string/challenge"
+        android:text="@string/usain_bolt"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/verde"
         android:textSize="34sp"
@@ -53,7 +53,7 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/textView_Speed_Value"
+        android:id="@+id/textView_Friends_Value"
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_alignLeft="@+id/textView_Time_Left_Value"
@@ -94,7 +94,7 @@
         android:layout_alignLeft="@+id/textView_Duration"
         android:layout_below="@+id/textView_Duration"
         android:layout_marginTop="28dp"
-        android:text="@string/points"
+        android:text="@string/to_beat"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
@@ -116,7 +116,7 @@
         android:id="@+id/start_challenge_button"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_above="@+id/textView_Speed_Value"
+        android:layout_above="@+id/textView_Friends_Value"
         android:layout_alignLeft="@+id/textView_Time_Left_Value"
         android:background="@color/verde"
         android:text="@string/start_challenge_button"
