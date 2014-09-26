@@ -1,38 +1,33 @@
 package com.g6pis.beatit;
 
 
-import com.g6pis.beatit.tabs.ChallengesMenuTab;
-import com.g6pis.beatit.tabs.ProfileTab;
-import com.g6pis.beatit.tabs.RankingTab;
-
 import android.app.ActionBar;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
 import android.app.ActionBar.Tab;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTabHost;
 
-public class Home extends FragmentActivity {
+import com.g6pis.beatit.controllers.DataManager;
+import com.g6pis.beatit.tabs.ChallengesMenuTab;
+import com.g6pis.beatit.tabs.ProfileTab;
+import com.g6pis.beatit.tabs.RankingTab;
+
+public class Home extends FragmentActivity { 
 	
 	// Declare Tab Variable
 		public static Context appContext;
 	    ActionBar.Tab Tab1, Tab2, Tab3;
-//	    Fragment challengesMenuTab = new ChallengesMenuTab();
-//	    Fragment rankingTab = new RankingTab();
-//	    Fragment profileTab = new ProfileTab();
+
 	    
 	     private static final String APP_SHARED_PREFS = "asdasd_preferences";
 	     SharedPreferences sharedPrefs;
 	     Editor editor;
 	     private boolean isUserLoggedIn;
-	     public String username;
-	     public String userId;
+	     public DataManager datamanager;
 	   
 	 
 	    @Override
@@ -40,24 +35,7 @@ public class Home extends FragmentActivity {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.tabs);
 	               
-	        sharedPrefs = getApplicationContext().getSharedPreferences(APP_SHARED_PREFS, Context.MODE_PRIVATE);
-	        username = sharedPrefs.getString("username", "");
-	        userId = sharedPrefs.getString("userId", "");
-	        
-	        /*if (!isUserLoggedIn) {
-	            Intent intent = new Intent(this, MainActivity.class);
-	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            startActivity(intent);
-	            finish();
-	        }*/
-	        
-	        
-	        /*username = "";
-	        userId = "";
-	        if(getIntent() != null){
-	        	username = getIntent().getExtras().getString("username");
-	        	userId = getIntent().getExtras().getString("userId");
-	        }*/
+
 	        
 	        ActionBar actionBar = getActionBar();
 	        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM); 
@@ -112,27 +90,11 @@ public class Home extends FragmentActivity {
 	    
 	    @Override
 	    protected void onResume() {
-	        /*sharedPrefs = getApplicationContext().getSharedPreferences(APP_SHARED_PREFS, Context.MODE_PRIVATE);
-	        isUserLoggedIn = sharedPrefs.getBoolean("userLoggedInState", false);
-	        if (!isUserLoggedIn) {
-	            Intent intent = new Intent(this, MainActivity.class);
-	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            startActivity(intent);
-	            finish();
-	        }*/
 	        super.onResume();
 	    }
 
 	    @Override
 	    protected void onRestart() {
-	        /*sharedPrefs = getApplicationContext().getSharedPreferences(APP_SHARED_PREFS, Context.MODE_PRIVATE);
-	        isUserLoggedIn = sharedPrefs.getBoolean("userLoggedInState", false);
-	        if (!isUserLoggedIn) {
-	            Intent intent = new Intent(this, MainActivity.class);
-	            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	            startActivity(intent);
-	            finish();
-	        }*/
 	        super.onRestart();
 	    }
 	    

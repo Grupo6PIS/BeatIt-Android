@@ -29,7 +29,6 @@
         android:layout_alignBottom="@+id/imageView_profile"
         android:layout_alignLeft="@+id/textView_username"
         android:layout_marginBottom="10dp"
-        android:text="@string/user_country"
         android:textSize="14sp" />
 
     <Button

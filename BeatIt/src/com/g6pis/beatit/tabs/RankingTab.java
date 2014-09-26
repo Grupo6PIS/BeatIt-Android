@@ -87,7 +87,13 @@ public class RankingTab extends Fragment implements OnItemClickListener  {
    	public void onItemClick(AdapterView<?> parent, View view, int position,
    			long id) {
     	String item = adapter.getItem(position).getNombreUsuario();
-    	if(item.equals(activity.username)){
+    	
+    	String username = activity.datamanager.getInstance().getUser()
+  				.getFirstName()
+  				+ " "
+  				+ activity.datamanager.getInstance().getUser().getLastName();
+    	
+    	if(item.equals(username)){
     		((Home)this.getActivity()).goToProfileFragment();
     		
     	}
@@ -124,10 +130,15 @@ public class RankingTab extends Fragment implements OnItemClickListener  {
           position.setText(Integer.toString(ranking.getPosicion()));
           userName.setText(ranking.getNombreUsuario());
           score.setText(Integer.toString(ranking.getPuntaje()));
-          if(ranking.getNombreUsuario().equals(activity.username)){
+          String username = activity.datamanager.getInstance().getUser()
+  				.getFirstName()
+  				+ " "
+  				+ activity.datamanager.getInstance().getUser().getLastName();
+          if(ranking.getNombreUsuario().equals(username)){
         	  user.setVisibility(View.VISIBLE);
         	  rowView.setBackgroundColor(getResources().getColor(R.color.blanco));
-        	  profilePictureView.setProfileId(activity.userId);
+        	  profilePictureView.setProfileId(activity.datamanager.getInstance()
+      				.getUser().getFbId()); 
         	  
           }else{
         	  user.setVisibility(View.INVISIBLE);

@@ -19,6 +19,7 @@ import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.model.GraphUser;
 import com.g6pis.beatit.challenges.usainbolt.UsainBoltUI;
+import com.g6pis.beatit.controllers.DataManager;
 
 public class MainActivity extends Activity {
 	private static final String APP_SHARED_PREFS = "asdasd_preferences";
@@ -30,21 +31,26 @@ public class MainActivity extends Activity {
 				Exception exception) {
 			onSessionStateChange(session, state, exception);
 		}
-	};
+	}; 
 
-	Intent home;
-	Intent login;
+	private Intent home;
+	private Intent login;
 	
-	String username;
-	String userId;
-	 SharedPreferences sharedPrefs;
-     Editor editor;
+	private String firstName;
+	private String fbId;
+	private String lastName;
+	private String country;
+	
+	private SharedPreferences sharedPrefs;
+	private Editor editor;
+	
+	private DataManager datamanager;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
 		this.getActionBar().hide();
-
+		
 		uiHelper = new UiLifecycleHelper(this, callback);
 		uiHelper.onCreate(savedInstanceState);
 
@@ -52,53 +58,21 @@ public class MainActivity extends Activity {
 		login = new Intent(this, Login.class);
 
 		setContentView(R.layout.activity_main);
-		/*if(getIntent().getExtras() != null){
-			username = getIntent().getExtras().getString("username");
-			userId = getIntent().getExtras().getString("userId");
-		}*/
-
-
 		
-		/*Session.getActiveSession().addCallback(new Session.StatusCallback() {
-
-			// callback when session changes state
-			@Override
-			public void call(Session session, SessionState state,
-					Exception exception) {
-				if (session.isOpened()) {
-					Request.newMeRequest(session,
-							new Request.GraphUserCallback() {
-
-								// callback after Graph API response with user
-								// object
-								@Override
-								public void onCompleted(GraphUser user,
-										Response response) {
-									if (user != null) {
-										username = user.getUsername();
-										userId = user.getId();
-
-									}
-								}
-							}).executeAsync();
-
-				}
-
-			}
-		});*/
 		sharedPrefs = getApplicationContext().getSharedPreferences(APP_SHARED_PREFS, Context.MODE_PRIVATE);
-        username = sharedPrefs.getString("username", "");
-        userId = sharedPrefs.getString("userId", "");
+        firstName = sharedPrefs.getString("firstName", "");
+        fbId = sharedPrefs.getString("fbId", "");
+        lastName = sharedPrefs.getString("lastName", "");
+        country = sharedPrefs.getString("country", "");
 		
-		// TODO comprobar si está logueado.
+        
 		Session session = Session.getActiveSession();
 		boolean isClosed = session.getState().isClosed();
-		if (username.isEmpty()) {
+		if (fbId.isEmpty()) {
 			startActivity(login);
 			finish();
 		} else {
-			home.putExtra("username", username);
-            home.putExtra("userId", userId);
+			DataManager.getInstance().login(fbId, firstName, lastName, country);
 			startActivity(home);
 			finish();
 		}
@@ -148,8 +122,7 @@ public class MainActivity extends Activity {
 			// be showing.
 			if (state.equals(SessionState.OPENED)) {
 				makeMeRequest(session);
-				home.putExtra("username", username);
-	            home.putExtra("userId", userId);
+				DataManager.getInstance().login(fbId, firstName, lastName, country);
 				startActivity(home);
 			} else if (state.isClosed()) {
 				startActivity(login);
@@ -165,8 +138,10 @@ public class MainActivity extends Activity {
             public void onCompleted(GraphUser user, Response response) {
                 if (session == Session.getActiveSession()) {
                     if (user != null) {
-                    	username = user.getUsername();
-                        userId =  user.getId();
+                    	firstName = user.getFirstName();
+                    	lastName = user.getLastName();
+                        fbId =  user.getId();
+                        country = user.getLocation().getName();
                     }
                 }
                 if (response.getError() != null) {

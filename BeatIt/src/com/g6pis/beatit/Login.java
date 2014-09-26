@@ -1,6 +1,12 @@
 package com.g6pis.beatit;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import android.app.Activity;
 import android.content.Context;
@@ -42,61 +48,20 @@ public class Login extends Activity {
 		setContentView(R.layout.login);
 
 		
-		  uiHelper = new UiLifecycleHelper(this, callback);
+		  uiHelper = new UiLifecycleHelper(this, callback); 
 		  uiHelper.onCreate(savedInstanceState);
 		 
 
 		this.getActionBar().hide();
-
+		List<String> permissions = new ArrayList<String>();
+		permissions.add("email");
+		permissions.add("public_profile");
+		permissions.add("user_location");
+		permissions.add("user_hometown");
 		((LoginButton) findViewById(R.id.login_button))
-				.setReadPermissions(Arrays.asList("public_profile"));
-
-
-
-		/*
-		 * final LinearLayout ll = (LinearLayout)
-		 * findViewById(R.id.linear_facebook); ll.setOnClickListener(new
-		 * View.OnClickListener() { public void onClick(View v) { // Perform
-		 * action on click /*Intent challenge = new Intent(Login.this,
-		 * Home.class); startActivity(challenge);
-		 * 
-		 * sharedPrefs =
-		 * getApplicationContext().getSharedPreferences(APP_SHARED_PREFS,
-		 * Context.MODE_PRIVATE); isUserLoggedIn =
-		 * sharedPrefs.getBoolean("userLoggedInState", false); editor =
-		 * sharedPrefs.edit(); editor.putBoolean("userLoggedInState", true);
-		 * editor.commit();
-		 * 
-		 * Intent signupSuccessHome = new Intent(Login.this, Home.class);
-		 * signupSuccessHome.putExtra("reqFrom", "login");
-		 * startActivity(signupSuccessHome); finish();
-		 * 
-		 * 
-		 * } });
-		 */
-		// isUserLoggedIn = sharedPrefs.getBoolean("userLoggedInState", false);
-		// if (isUserLoggedIn) {
-		// Intent intent = new Intent(this, Home.class);
-		// intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-		// startActivity(intent);
-		// finish();
-		// }
+				.setReadPermissions(permissions);
+		
 	}
-
-	/*
-	 * @Override public boolean onCreateOptionsMenu(Menu menu) { // Inflate the
-	 * menu; this adds items to the action bar if it is present.
-	 * getMenuInflater().inflate(R.menu.login, menu); return true; }
-	 */
-
-	/*
-	 * @Override public boolean onOptionsItemSelected(MenuItem item) { // Handle
-	 * action bar item clicks here. The action bar will // automatically handle
-	 * clicks on the Home/Up button, so long // as you specify a parent activity
-	 * in AndroidManifest.xml. int id = item.getItemId(); if (id ==
-	 * R.id.action_settings) { return true; } return
-	 * super.onOptionsItemSelected(item); }
-	 */
 
 	@Override
 	public void onResume() {
@@ -139,11 +104,8 @@ public class Login extends Activity {
 	private void onSessionStateChange(Session session, SessionState state,
 			Exception exception) {
 		if (state.equals(SessionState.OPENED)) {
-			makeMeRequest(session);
-			
-		} else if (state.isClosed()) {
+			makeMeRequest(session);	
 		}
-		// finish();
 	}
 
 	private void makeMeRequest(final Session session) {
@@ -157,10 +119,11 @@ public class Login extends Activity {
 										  getApplicationContext().getSharedPreferences(APP_SHARED_PREFS,
 										  Context.MODE_PRIVATE);
 								editor = sharedPrefs.edit();
-								editor.putString("username", user.getName());
-								editor.putString("userId", user.getId());
+								editor.putString("firstName", user.getFirstName());
+								editor.putString("fbId", user.getId());
+								editor.putString("lastName", user.getLastName());
+								editor.putString("country", user.getLocation().getName());
 								editor.commit();
-								
 								Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
 								startActivity(mainActivity);
 								finish();

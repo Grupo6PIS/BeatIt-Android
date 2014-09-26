@@ -1,4 +1,4 @@
-package com.g6pis.beatit.classes;
+package com.g6pis.beatit.entities;
 
 import static org.junit.Assert.*;
 
@@ -9,10 +9,10 @@ public class UserTest {
 	@Test
 	public void constructorTest() {
 
-		User user = new User("userId", "fbId", "firstName", "lastName",
+		User user = new User(/*"userId",*/ "fbId", "firstName", "lastName",
 				"country");
 
-		assertEquals("userId", user.getUserId());
+		//assertEquals("userId", user.getUserId());
 		assertEquals("fbId", user.getFbId());
 		assertEquals("firstName", user.getFirstName());
 		assertEquals("lastName", user.getLastName());
@@ -22,16 +22,16 @@ public class UserTest {
 
 	@Test
 	public void settersTest(){
-		User user = new User("userId", "fbId", "firstName", "lastName",
+		User user = new User(/*"userId",*/ "fbId", "firstName", "lastName",
 				"country");
 		
-			user.setUserId("123456");
+			//user.setUserId("123456");
 			user.setFbId("987654");
 			user.setFirstName("Johnnie");
 			user.setLastName("Walker");
 			user.setCountry("Uruguay");
 			
-			assertEquals("123456",user.getUserId());
+			//assertEquals("123456",user.getUserId());
 			assertEquals("987654",user.getFbId());
 			assertEquals("Johnnie",user.getFirstName());
 			assertEquals("Walker",user.getLastName());

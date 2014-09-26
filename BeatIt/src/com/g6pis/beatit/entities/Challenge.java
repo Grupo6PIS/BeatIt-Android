@@ -55,14 +55,6 @@ public  class Challenge{
 		this.level = level;
 	}
 	
-	@Override
-	public String toString() {
-	
-		return "Challenge [challengeId=" + this.getChallengeId() + ", name=" + this.getName() +
-				", description=" + this.getDescription() + ", duration=" + this.getDuration() + ", level=" + this.getLevel() + "]";
-				
-		
-	}
 	public int getMaxAttempt() {
 		return maxAttempt;
 	}

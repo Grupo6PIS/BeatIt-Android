@@ -1,30 +1,29 @@
-package com.g6pis.beatit.classes;
+package com.g6pis.beatit.entities;
 
 public class User {
-	private String userId;
+	//private String userId;
 	private String fbId;
 	private String firstName;
 	private String lastName;
 	private String country;
 	//TODO profilePicture
 	
-	public User(String userId, String fbId, String firstName, String lastName,
+	public User(/*String userId,*/ String fbId, String firstName, String lastName,
 			String country) {
-		super();
-		this.userId = userId;
+		//this.userId = userId;
 		this.fbId = fbId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.country = country;
 	}
 
-	public String getUserId() {
+	/*public String getUserId() {
 		return userId;
 	}
 
 	public void setUserId(String userId) {
 		this.userId = userId;
-	}
+	}*/
 
 	public String getFbId() {
 		return fbId;

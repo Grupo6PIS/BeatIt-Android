@@ -1,6 +1,5 @@
 package com.g6pis.beatit.entities;
 
-import com.g6pis.beatit.classes.User;
 import com.g6pis.beatit.datatypes.DTDateTime;
 
 
