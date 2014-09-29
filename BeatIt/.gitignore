@@ -10,7 +10,11 @@
 
 # Generated files
 bin/
+<<<<<<< HEAD
 #gen/
+=======
+# gen/
+>>>>>>> 164e6d888628238856855bfc06d746b28090541c
 
 # Gradle files
 .gradle/

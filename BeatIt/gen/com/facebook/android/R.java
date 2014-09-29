@@ -69,7 +69,11 @@ public final class R {
 		public static final int com_facebook_list_section_header_background = 0x7f02000f;
 		public static final int com_facebook_loginbutton_silver = 0x7f020010;
 		public static final int com_facebook_logo = 0x7f020011;
+<<<<<<< HEAD
 		public static final int com_facebook_picker_default_separator_color = 0x7f02003b;
+=======
+		public static final int com_facebook_picker_default_separator_color = 0x7f02003a;
+>>>>>>> 164e6d888628238856855bfc06d746b28090541c
 		public static final int com_facebook_picker_item_background = 0x7f020012;
 		public static final int com_facebook_picker_list_focused = 0x7f020013;
 		public static final int com_facebook_picker_list_longpressed = 0x7f020014;
