@@ -89,6 +89,14 @@
     <string name="fb_posts">Posts en Facebook</string>
     <string name="sms_sent">SMS enviados</string>
     
+    
+    <!-- Despertame A Tiempo Strings -->
+
+    <string name="despertame_a_tiempo">Despertame A Tiempo</string>
+    <string name="description_despertame_a_tiempo">En este desafío deberás agitar el celular cuando la cuenta regresiva llegue a 0 segundos.</string>
+    <string name="logo_despertame_a_tiempo">Logo Despertame A Tiempo</string>
+    
+    
     <!-- Facebook app ID -->
     <string name="facebook_app_id">829846350380023</string>
     

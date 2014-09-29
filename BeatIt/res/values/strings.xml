@@ -87,6 +87,12 @@
     <string name="sms_success">Your sms has successfully sent!</string>
     <string name="fb_posts">Facebook Posts</string>
     <string name="sms_sent">SMS sent</string>
+    
+    <!-- Despertame A Tiempo Strings -->
+
+    <string name="despertame_a_tiempo">Despertame A Tiempo</string>
+    <string name="description_despertame_a_tiempo">In this challenge you have to shake your phone when the countdown reaches 0 seconds.</string>
+    <string name="logo_despertame_a_tiempo">Logo Despertame A Tiempo</string>
 	
 	
     <!-- Facebook app ID -->

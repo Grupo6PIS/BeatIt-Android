@@ -125,6 +125,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.g6pis.beatit.Home" />
         </activity>
+        <activity android:name=".challenges.despertameatiempo.DespertameATiempoUI"></activity>
     </application>
 
 </manifest>
