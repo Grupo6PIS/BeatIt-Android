@@ -1,6 +1,6 @@
 package com.g6pis.beatit.entities;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 

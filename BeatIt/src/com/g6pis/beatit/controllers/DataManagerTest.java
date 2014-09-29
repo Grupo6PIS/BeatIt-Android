@@ -1,6 +1,7 @@
 package com.g6pis.beatit.controllers;
 
-import static org.junit.Assert.*;
+//import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
