@@ -4,6 +4,8 @@ import java.util.concurrent.TimeUnit;
 import java.lang.Math;
 
 import com.g6pis.beatit.R;
+import com.g6pis.beatit.datatypes.DTDateTime;
+
 import android.app.Activity;
 import android.content.Context;
 import android.hardware.Sensor;
@@ -20,6 +22,8 @@ import android.widget.TextView;
 public class DespertameATiempoUI extends Activity implements SensorEventListener, OnClickListener {
 	private SensorManager senSensorManager;
 	private Sensor senAccelerometer;
+	
+	private DTDateTime dateTimeStart;
 	
 	private boolean timerRunning = false;
 	private long lastUpdate = 0;
@@ -47,6 +51,10 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 		startButton = (Button) findViewById(R.id.start_button);
 		startButton.setOnClickListener(this);
 		
+		this.setDateTimeStart(this.getDateExtras(getIntent().getExtras()));
+		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(this
+				.getDateTimeStart().toString());
+		
 		/* ACELEROMETRO */
         senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -63,6 +71,20 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 		
 		timer = this.createTimer();
 		
+	}
+	
+	/***Useful Functions***/
+	public DTDateTime getDateExtras(Bundle extras) {
+		DTDateTime date = new DTDateTime();
+
+		date.setDay(extras.getInt("day"));
+		date.setMonth(extras.getInt("month"));
+		date.setYear(extras.getInt("year"));
+		date.setHour(extras.getInt("hours"));
+		date.setMinute(extras.getInt("minutes"));
+		date.setSecond(extras.getInt("seconds"));
+
+		return date;
 	}
 	
 	public CountDownTimer createTimer(){
@@ -86,7 +108,8 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 			}
 
 			public void onFinish() {
-				textViewResult.setText("Perdiste :(");
+				frenarTimer();
+				textViewTimeLeftValue.setText("Demoraste mucho !");
 			}
 		};
 		
@@ -149,7 +172,6 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 			textViewResult.setText("Ganaste ;)");
 		}
 		else {
-			texto = String.format("+%d", g_millis - tope);
 			textViewResult.setText("Perdiste :(");
 		}
 		timer.cancel();
@@ -182,4 +204,13 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	        }
 	    }
 	}
+	
+	public DTDateTime getDateTimeStart() {
+		return dateTimeStart;
+	}
+	
+	public void setDateTimeStart(DTDateTime dateTimeStart) {
+		this.dateTimeStart = dateTimeStart;
+	}
+	
 }
