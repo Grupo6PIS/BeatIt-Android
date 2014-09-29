@@ -5,7 +5,9 @@ android:
     
     # The SDK version used to compile your project
     - android-14
-    
+
+install: ant debug corrertests
+
 notifications:
   email: false
   

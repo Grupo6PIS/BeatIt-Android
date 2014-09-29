@@ -67,7 +67,7 @@
             -pre-clean
     -->
     
-<target name="jojo" >
+<target name="corrertests" >
 
 	    <mkdir dir="./reports/tests"/>
 	
