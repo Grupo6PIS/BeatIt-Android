@@ -1,13 +1,19 @@
 package com.g6pis.beatit.challenges.despertameatiempo;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.concurrent.TimeUnit;
 import java.lang.Math;
 
+import com.g6pis.beatit.ChallengeFinished;
 import com.g6pis.beatit.R;
+import com.g6pis.beatit.challenges.invitefriends.CanYouPlayFinished;
 import com.g6pis.beatit.datatypes.DTDateTime;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -42,6 +48,8 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	private TextView textViewTimeLeftValue;
 	
 	private CountDownTimer timer;
+	private double score = 0;
+	private double tiempo = 0;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -146,6 +154,18 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	    super.onResume();
 	    senSensorManager.registerListener(this, senAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 	}
+	
+
+	// Customize ActionBar
+	public void editActionBar() {
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+		actionBar.setCustomView(R.layout.action_bar);
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setHomeButtonEnabled(true);
+		actionBar.setTitle(this.getString(R.string.app_name));
+	}
+	
 
 	@Override
 	public void onAccuracyChanged(Sensor arg0, int arg1) {
@@ -156,15 +176,24 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 		textViewResult.setVisibility(View.VISIBLE);
 		String texto;
 		time = g_millis - tope;
+		long result_segs;
+		long result_milis;
+		System.out.println("--- Time: " + time);
+		result_segs = Math.abs(TimeUnit.MILLISECONDS.toSeconds(time));
+		result_milis = Math.abs(TimeUnit.MILLISECONDS.toMillis(time) - TimeUnit.MILLISECONDS.toSeconds(time) * 1000);
+		setTiempo(result_segs, result_milis);
+		System.out.println("--- Segs: " + result_segs);
+		System.out.println("--- Milis: " + result_milis);
+		
 		if (TimeUnit.MILLISECONDS.toMillis(time) >= 0) {
 			texto = String.format("+%d,%d", 
-					Math.abs(TimeUnit.MILLISECONDS.toSeconds(time)),
-					Math.abs(TimeUnit.MILLISECONDS.toMillis(time) - TimeUnit.MILLISECONDS.toSeconds(time) * 1000));
+					result_segs,
+					result_milis);
 		}
 		else {
 			texto = String.format("-%d,%d", 
-					Math.abs(TimeUnit.MILLISECONDS.toSeconds(time)),
-					Math.abs(TimeUnit.MILLISECONDS.toMillis(time) - TimeUnit.MILLISECONDS.toSeconds(time) * 1000));
+					result_segs,
+					result_milis);
 		}
 		textViewTimeLeftValue.setText(texto);
 		
@@ -175,6 +204,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 			textViewResult.setText("Perdiste :(");
 		}
 		timer.cancel();
+		completeChallenge();
 	}
 	
 
@@ -203,6 +233,46 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	            last_z = z;
 	        }
 	    }
+	}
+	
+	public void completeChallenge() {
+		senSensorManager.unregisterListener(this);
+		timer = null;
+		
+		// Calculating the score
+		long veces_exito = 4;
+		this.setScore((veces_exito)*20);
+
+		// Activity Challenge Finished
+		Intent despertameATiempoFinished = new Intent(this, DespertameATiempoFinished.class);
+		System.out.println("--- Get Tiempo: " + getTiempo());
+		despertameATiempoFinished.putExtra("maxSpeed",
+				getTiempo());
+		despertameATiempoFinished.putExtra("avgSpeed",
+				getTiempo());
+		despertameATiempoFinished.putExtra("score",
+				Double.toString(Math.round(this.getScore())));
+
+		startActivity(despertameATiempoFinished);
+
+		this.finish();
+	}
+	
+	public double getTiempo() {
+		return tiempo;
+	}
+
+	public void setTiempo(double segs, double milis) {
+		this.tiempo = segs + milis/1000;
+		System.out.println("--- Tiempo: " + tiempo);
+	}
+	
+	public double getScore() {
+		return score;
+	}
+
+	public void setScore(double score) {
+		this.score = score;
 	}
 	
 	public DTDateTime getDateTimeStart() {

@@ -259,10 +259,10 @@ containing a value of this type.
         public static final int white_flag=0x7f02003a;
     }
     public static final class id {
-        public static final int Ranking_list=0x7f040058;
+        public static final int Ranking_list=0x7f04005a;
         public static final int TableRow01=0x7f04001d;
         public static final int TableRow02=0x7f04001a;
-        public static final int action_settings=0x7f04005a;
+        public static final int action_settings=0x7f04005c;
         public static final int cancelButton=0x7f040004;
         public static final int challengeDescription=0x7f04002a;
         public static final int challengeIcon=0x7f040028;
@@ -297,17 +297,17 @@ containing a value of this type.
         public static final int facebook_post_button=0x7f040013;
         public static final int fb_post_value=0x7f04001f;
         public static final int fb_posts=0x7f04001c;
-        public static final int fragment_placeholder=0x7f040059;
+        public static final int fragment_placeholder=0x7f04005b;
         public static final int imageView_Logo=0x7f04000f;
-        public static final int imageView_foto_ranking=0x7f040049;
-        public static final int imageView_profile=0x7f04004e;
+        public static final int imageView_foto_ranking=0x7f04004b;
+        public static final int imageView_profile=0x7f040050;
         public static final int large=0x7f040002;
-        public static final int linea=0x7f040050;
-        public static final int linear_facebook=0x7f04004c;
-        public static final int linear_indicador_soyyo=0x7f040055;
-        public static final int login_button=0x7f04004d;
-        public static final int login_relative_layout=0x7f040048;
-        public static final int logout_button=0x7f040054;
+        public static final int linea=0x7f040052;
+        public static final int linear_facebook=0x7f04004e;
+        public static final int linear_indicador_soyyo=0x7f040057;
+        public static final int login_button=0x7f04004f;
+        public static final int login_relative_layout=0x7f04004a;
+        public static final int logout_button=0x7f040056;
         public static final int normal=0x7f040001;
         public static final int pager=0x7f040005;
         public static final int picker_subtitle=0x7f04003b;
@@ -318,8 +318,8 @@ containing a value of this type.
         public static final int sms_sent_value=0x7f04001e;
         public static final int start_button=0x7f040046;
         public static final int start_challenge_button=0x7f040027;
-        public static final int switch_notifications=0x7f040052;
-        public static final int switch_public_profile=0x7f040053;
+        public static final int switch_notifications=0x7f040054;
+        public static final int switch_public_profile=0x7f040055;
         public static final int tableRow1=0x7f040015;
         public static final int tableRow2=0x7f040017;
         public static final int table_performance=0x7f040019;
@@ -343,12 +343,14 @@ containing a value of this type.
         public static final int textView_avg_speed_value=0x7f040024;
         public static final int textView_max_speed=0x7f040021;
         public static final int textView_max_speed_value=0x7f040023;
-        public static final int textView_nombre_usuario=0x7f040056;
-        public static final int textView_posicion=0x7f04004a;
-        public static final int textView_puntaje=0x7f040057;
-        public static final int textView_settings=0x7f040051;
-        public static final int textView_user_country=0x7f04004b;
-        public static final int textView_username=0x7f04004f;
+        public static final int textView_nombre_usuario=0x7f040058;
+        public static final int textView_posicion=0x7f04004c;
+        public static final int textView_puntaje=0x7f040059;
+        public static final int textView_settings=0x7f040053;
+        public static final int textView_user_country=0x7f04004d;
+        public static final int textView_username=0x7f040051;
+        public static final int tiempo=0x7f040048;
+        public static final int tiempo2=0x7f040049;
         public static final int title=0x7f040003;
     }
     public static final class layout {
@@ -378,13 +380,14 @@ containing a value of this type.
         public static final int com_facebook_tooltip_bubble=0x7f030017;
         public static final int com_facebook_usersettingsfragment=0x7f030018;
         public static final int despertame_a_tiempo=0x7f030019;
-        public static final int login=0x7f03001a;
-        public static final int profile=0x7f03001b;
-        public static final int profile_tab=0x7f03001c;
-        public static final int ranking=0x7f03001d;
-        public static final int ranking_row=0x7f03001e;
-        public static final int ranking_tab=0x7f03001f;
-        public static final int tabs=0x7f030020;
+        public static final int despertame_a_tiempo_finished=0x7f03001a;
+        public static final int login=0x7f03001b;
+        public static final int profile=0x7f03001c;
+        public static final int profile_tab=0x7f03001d;
+        public static final int ranking=0x7f03001e;
+        public static final int ranking_row=0x7f03001f;
+        public static final int ranking_tab=0x7f030020;
+        public static final int tabs=0x7f030021;
     }
     public static final class menu {
         public static final int can_you_play_ui=0x7f090000;
