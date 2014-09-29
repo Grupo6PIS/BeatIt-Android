@@ -6,11 +6,11 @@ android:
     # The SDK version used to compile your project
     - android-14
 
-install: ant debug corrertests
-
 notifications:
   email: false
   
 before_script:
 - cd BeatIt
 - ls
+
+install: ant debug corrertests
