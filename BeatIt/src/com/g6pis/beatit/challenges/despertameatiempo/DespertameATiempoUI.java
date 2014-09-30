@@ -215,26 +215,28 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	public void onSensorChanged(SensorEvent sensorEvent) {
 	    Sensor mySensor = sensorEvent.sensor;
 	    
-	    if (mySensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-	        float x = sensorEvent.values[0];
-	        float y = sensorEvent.values[1];
-	        float z = sensorEvent.values[2];
-	 
-	        long curTime = System.currentTimeMillis();
-	 
-	        if ((curTime - lastUpdate) > 100) {
-	            long diffTime = (curTime - lastUpdate);
-	            lastUpdate = curTime;
-	 
-	            float speed = Math.abs(x + y + z - last_x - last_y - last_z)/ diffTime * 10000;
-	            if (speed > SHAKE_THRESHOLD) {
-	            	frenarTimer();
-	            }
-	 
-	            last_x = x;
-	            last_y = y;
-	            last_z = z;
-	        }
+	    if (timerRunning) {
+	    	if (mySensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+		        float x = sensorEvent.values[0];
+		        float y = sensorEvent.values[1];
+		        float z = sensorEvent.values[2];
+		 
+		        long curTime = System.currentTimeMillis();
+		 
+		        if ((curTime - lastUpdate) > 100) {
+		            long diffTime = (curTime - lastUpdate);
+		            lastUpdate = curTime;
+		 
+		            float speed = Math.abs(x + y + z - last_x - last_y - last_z)/ diffTime * 10000;
+		            if (speed > SHAKE_THRESHOLD) {
+		            	frenarTimer();
+		            }
+		 
+		            last_x = x;
+		            last_y = y;
+		            last_z = z;
+		        }
+		    }
 	    }
 	}
 	
@@ -255,6 +257,17 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 				Double.toString(this.getTiempo()));
 		despertameATiempoFinished.putExtra("score",
 				Double.toString(Math.round(this.getScore())));
+		despertameATiempoFinished.putExtra("dateTimeStart", getDateTimeStart().toString());
+		
+		Calendar calendar = new GregorianCalendar();
+
+		despertameATiempoFinished.putExtra("seconds", calendar.get(Calendar.SECOND));
+		despertameATiempoFinished.putExtra("minutes", calendar.get(Calendar.MINUTE));
+		despertameATiempoFinished.putExtra("hours", calendar.get(Calendar.HOUR_OF_DAY));
+		despertameATiempoFinished.putExtra("day", calendar.get(Calendar.DAY_OF_MONTH));
+		despertameATiempoFinished.putExtra("month", calendar.get(Calendar.MONTH));
+		despertameATiempoFinished.putExtra("year", calendar.get(Calendar.YEAR));
+		despertameATiempoFinished.putExtra("dateTimeStart", dateTimeStart.toString());
 
 		startActivity(despertameATiempoFinished);
 

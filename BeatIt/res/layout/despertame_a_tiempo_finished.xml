@@ -71,7 +71,7 @@
         <TableRow
             android:id="@+id/tableRow1"
             android:layout_width="wrap_content"
-            android:background="@color/azul"
+            android:background="@color/rojo"
             android:gravity="center"
             android:minHeight="30dp" >
 
@@ -121,7 +121,7 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:background="@color/azul"
+            android:background="@color/rojo"
             android:gravity="center"
             android:minHeight="50dp" >
 
@@ -131,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Tiempo"
+                android:text="Resultado"
                 android:textColor="#ffffff"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -191,7 +191,7 @@
         android:layout_toRightOf="@id/imageView_Logo"
         android:text="@string/despertame_a_tiempo"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/azul"
+        android:textColor="@color/rojo"
         android:textSize="34sp"
         android:textStyle="bold" />
 
