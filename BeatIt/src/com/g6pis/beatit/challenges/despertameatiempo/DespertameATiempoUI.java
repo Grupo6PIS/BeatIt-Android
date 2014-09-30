@@ -50,6 +50,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	private CountDownTimer timer;
 	private double score = 0;
 	private double tiempo = 0;
+	private boolean gano = false;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -199,9 +200,11 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 		
 		if (TimeUnit.MILLISECONDS.toMillis(g_millis - tope) < tolerancia && TimeUnit.MILLISECONDS.toMillis(g_millis - tope) > -tolerancia) {
 			textViewResult.setText("Ganaste ;)");
+			this.setGano(true);
 		}
 		else {
 			textViewResult.setText("Perdiste :(");
+			this.setGano(false);
 		}
 		timer.cancel();
 		completeChallenge();
@@ -246,10 +249,10 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 		// Activity Challenge Finished
 		Intent despertameATiempoFinished = new Intent(this, DespertameATiempoFinished.class);
 		System.out.println("--- Get Tiempo: " + getTiempo());
-		despertameATiempoFinished.putExtra("maxSpeed",
-				getTiempo());
+		despertameATiempoFinished.putExtra("resultado",
+				this.getGano());
 		despertameATiempoFinished.putExtra("avgSpeed",
-				getTiempo());
+				Double.toString(this.getTiempo()));
 		despertameATiempoFinished.putExtra("score",
 				Double.toString(Math.round(this.getScore())));
 
@@ -273,6 +276,14 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 
 	public void setScore(double score) {
 		this.score = score;
+	}
+	
+	public boolean getGano() {
+		return gano;
+	}
+
+	public void setGano(boolean gano) {
+		this.gano = gano;
 	}
 	
 	public DTDateTime getDateTimeStart() {

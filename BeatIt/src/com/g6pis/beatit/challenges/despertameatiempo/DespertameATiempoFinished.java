@@ -6,9 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.g6pis.beatit.Home;
 import com.g6pis.beatit.R;
+import com.g6pis.beatit.datatypes.DTDateTime;
 
 public class DespertameATiempoFinished extends Activity  {
 
@@ -50,6 +52,35 @@ public class DespertameATiempoFinished extends Activity  {
 		
 		((TextView)findViewById(R.id.textView_Duration_Value)).setText(finishDate.toString());*/
 
+
+        if (getIntent().getExtras().getBoolean("resultado") == true) {
+        	((TextView) findViewById(R.id.tiempo)).setText("Ganaste !");
+        }
+        else {
+        	((TextView) findViewById(R.id.tiempo)).setText("Perdiste ;(");
+        }
+		
+
+		((TextView) findViewById(R.id.tiempo2))
+				.setText(getIntent().getExtras().getString("avgSpeed") + "s");
+
+		((TextView) findViewById(R.id.textView_Score_Value))
+				.setText(getIntent().getExtras().getString("score") + getResources().getString(R.string.points));
+		
+		((TextView) findViewById(R.id.textView_Start_Time_Value))
+		.setText(getIntent().getExtras().getString("dateTimeStart"));
+		
+		DTDateTime finishDate = new DTDateTime();
+		finishDate.setDay(getIntent().getExtras().getInt("day"));
+		finishDate.setMonth(getIntent().getExtras().getInt("month"));
+		finishDate.setYear(getIntent().getExtras().getInt("year"));
+		finishDate.setHour(getIntent().getExtras().getInt("hours"));
+		finishDate.setMinute(getIntent().getExtras().getInt("minutes"));
+		finishDate.setSecond(getIntent().getExtras().getInt("seconds"));
+		
+		((TextView)findViewById(R.id.textView_Duration_Value)).setText(finishDate.toString());
+
+        
 	}
 
 	@Override

@@ -131,7 +131,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/sms_sent"
+                android:text="Tiempo"
                 android:textColor="#ffffff"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -142,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="@string/fb_posts"
+                android:text="Tiempo"
                 android:textColor="@color/blanco"
                 android:textSize="18sp"
                 android:textStyle="bold" />
