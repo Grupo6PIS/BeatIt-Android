@@ -4,6 +4,7 @@ import com.g6pis.beatit.entities.State;
 
 public class DTState {
 	private String challengeId;
+	private String roundId;
 	private String challengeName;
 	private String challengeDescription;
 	private int challengeLevel;
@@ -12,9 +13,10 @@ public class DTState {
 	private double score;
 	private DTDateTime dateTimeStart;
 	private int currentAttempt;
-	
+
 	public DTState(State state) {
 		challengeId = state.getChallenge().getChallengeId();
+		roundId = state.getRound().getRoundId();
 		challengeName = state.getChallenge().getName();
 		challengeDescription = state.getChallenge().getDescription();
 		challengeLevel = state.getChallenge().getLevel();
@@ -25,6 +27,16 @@ public class DTState {
 		currentAttempt = state.getCurrentAttempt();
 	}
 
+	public DTState(String challengeId, String roundId, double score,
+			int currentAttempt, boolean finished) {
+		super();
+		this.challengeId = challengeId;
+		this.roundId = roundId;
+		this.finished = finished;
+		this.score = score;
+		this.currentAttempt = currentAttempt;
+	}
+
 	public String getChallengeId() {
 		return challengeId;
 	}
@@ -32,7 +44,6 @@ public class DTState {
 	public String getChallengeName() {
 		return challengeName;
 	}
-
 
 	public String getChallengeDescription() {
 		return challengeDescription;
@@ -54,7 +65,6 @@ public class DTState {
 		return score;
 	}
 
-
 	public DTDateTime getDateTimeStart() {
 		return dateTimeStart;
 	}
@@ -63,8 +73,28 @@ public class DTState {
 		return currentAttempt;
 	}
 
-	
-	
-	
-	
+	public String getRoundId() {
+		return roundId;
+	}
+
+	public void setChallengeName(String challengeName) {
+		this.challengeName = challengeName;
+	}
+
+	public void setChallengeDescription(String challengeDescription) {
+		this.challengeDescription = challengeDescription;
+	}
+
+	public void setChallengeLevel(int challengeLevel) {
+		this.challengeLevel = challengeLevel;
+	}
+
+	public void setChallengeDuration(int challengeDuration) {
+		this.challengeDuration = challengeDuration;
+	}
+
+	public void setDateTimeStart(DTDateTime dateTimeStart) {
+		this.dateTimeStart = dateTimeStart;
+	}
+
 }

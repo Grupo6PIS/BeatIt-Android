@@ -3,41 +3,25 @@ package com.g6pis.beatit.tabs;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
-
-
-
-
-import com.facebook.widget.ProfilePictureView;
-//import com.g6pis.beatit.AdaptadorRanking;
-import com.g6pis.beatit.R;
-import com.g6pis.beatit.datatypes.DTRanking;
-import com.g6pis.beatit.Home;
-
-
-
-
-
-
-
-
-
-
-
+import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.app.Fragment;
-import android.content.Context;
+
+import com.facebook.widget.ProfilePictureView;
+import com.g6pis.beatit.Home;
+//import com.g6pis.beatit.AdaptadorRanking;
+import com.g6pis.beatit.R;
+import com.g6pis.beatit.controllers.DataManager;
+import com.g6pis.beatit.datatypes.DTRanking;
 
  
 public class RankingTab extends Fragment implements OnItemClickListener  {
@@ -59,6 +43,7 @@ public class RankingTab extends Fragment implements OnItemClickListener  {
         
         ranking = (ListView) rootView.findViewById(R.id.Ranking_list);
 		ranking.setOnItemClickListener(this);
+		
 		
         List<DTRanking> rankings = new ArrayList<DTRanking>();
         

@@ -85,7 +85,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.challenge_in_progress);
+		setContentView(R.layout.usain_bolt);
 
 		this.editActionBar();
 		this.viewAssignment();

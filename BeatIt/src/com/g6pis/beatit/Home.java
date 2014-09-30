@@ -1,6 +1,8 @@
 package com.g6pis.beatit;
 
 
+import java.util.List;
+
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Fragment;
@@ -12,6 +14,7 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 
 import com.g6pis.beatit.controllers.DataManager;
+import com.g6pis.beatit.datatypes.DTRanking;
 import com.g6pis.beatit.tabs.ChallengesMenuTab;
 import com.g6pis.beatit.tabs.ProfileTab;
 import com.g6pis.beatit.tabs.RankingTab;
@@ -53,7 +56,6 @@ public class Home extends FragmentActivity {
 	        Fragment rankingTab = new RankingTab();
 	        Fragment profileTab = new ProfileTab();
 	        
-	       
 	        
 	        tab1.setTabListener(new MyTabsListener(challengesMenuTab));
 	        tab2.setTabListener(new MyTabsListener(rankingTab));
