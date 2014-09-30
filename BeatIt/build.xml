@@ -73,7 +73,7 @@
 	
 	    <junit printsummary="yes" haltonfailure="yes">
 	      <classpath>
-	        <pathelement location="tests/junit.jar"/>
+	        <pathelement location="./tests/junit.jar"/>
 	        <pathelement location="bin"/>
 	      </classpath>
 	
