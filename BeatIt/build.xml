@@ -2,50 +2,54 @@
 <project name="BeatIt" default="help">
 
 
-    <property file="local.properties" />
-    <property file="ant.properties" />
-    <property environment="env" />
-    <condition property="sdk.dir" value="${env.ANDROID_HOME}">
-        <isset property="env.ANDROID_HOME" />
-    </condition>
-
-    <loadproperties srcFile="project.properties" />
-
-    <fail
-            message="sdk.dir is missing. Make sure to generate local.properties using 'android update project' or to inject it through the ANDROID_HOME environment variable."
-            unless="sdk.dir"
-    />
-    
-    <path id="_classpath">
-        <pathelement location="tests/junit.jar"/>
+	<property file="local.properties" />
+	<property file="ant.properties" />
+	<property environment="env" />
+	<condition property="sdk.dir" value="${env.ANDROID_HOME}">
+	<isset property="env.ANDROID_HOME" />
+	</condition>
+	
+	<loadproperties srcFile="project.properties" />
+	
+	<fail
+	    message="sdk.dir is missing. Make sure to generate local.properties using 'android update project' or to inject it through the ANDROID_HOME environment variable."
+	    unless="sdk.dir"
+	/>
+	
+	<path id="_classpath">
+	<pathelement location="tests/junit.jar"/>
 	<pathelement location="bin"/>
 	<pathelement location="src"/>
-    </path>
+	</path>
+
+	<target name="clean">
+		<delete dir="gen"/>
+	</target>
     
- <target name="compile" description="compile the source " >
-    <javac srcdir="src" destdir="bin"/>
-    <classpath refid="_classpath"/>
-</target>
-  
-<target name="corrertests" >
-
-    <mkdir dir="./reports/tests"/>
-
-    <junit printsummary="yes" haltonfailure="yes">
-      <classpath refid="_classpath"/>
-
-      <formatter type="plain"/>
-      <formatter type="xml"/>
-
-      <batchtest fork="yes" todir="./reports/tests">
-        <fileset dir="src">
-          <include name="**/*Test*.java"/>
-        </fileset>
-      </batchtest>
-
-    </junit>
-
-</target>
+	<target name="compile" description="compile the source " >
+	    <javac srcdir="src" destdir="bin"/>
+	    <classpath refid="_classpath"/>
+	</target>
+	  
+	<target name="corrertests" >
 	
+	    <mkdir dir="./reports/tests"/>
+	
+	    <junit printsummary="yes" haltonfailure="yes">
+	      <classpath refid="_classpath"/>
+	
+	      <formatter type="plain"/>
+	      <formatter type="xml"/>
+	
+	      <batchtest fork="yes" todir="./reports/tests">
+	        <fileset dir="src">
+	          <include name="**/*Test*.java"/>
+	        </fileset>
+	      </batchtest>
+	
+	    </junit>
+	
+	</target>
+		
 
 </project>
