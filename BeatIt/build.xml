@@ -29,26 +29,23 @@
   
 <target name="corrertests" >
 
-	    <mkdir dir="./reports/tests"/>
-	
-	    <junit printsummary="yes" haltonfailure="yes">
-	      <classpath refid="_classpath"/>
-	
-	      <formatter type="plain"/>
-	      <formatter type="xml"/>
-	
-	      <batchtest fork="yes" todir="./reports/tests">
-	        <fileset dir="src">
-	          <include name="**/*Test*.java"/>
-	        </fileset>
-	      </batchtest>
-	
-	    </junit>
-	
-	</target>
-	
-    <import file="custom_rules.xml" optional="true" />
+    <mkdir dir="./reports/tests"/>
 
-    <import file="${sdk.dir}/tools/ant/build.xml" />
+    <junit printsummary="yes" haltonfailure="yes">
+      <classpath refid="_classpath"/>
+
+      <formatter type="plain"/>
+      <formatter type="xml"/>
+
+      <batchtest fork="yes" todir="./reports/tests">
+        <fileset dir="src">
+          <include name="**/*Test*.java"/>
+        </fileset>
+      </batchtest>
+
+    </junit>
+
+</target>
+	
 
 </project>
