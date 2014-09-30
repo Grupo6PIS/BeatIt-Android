@@ -66,14 +66,9 @@
             -post-build
             -pre-clean
     -->
- <target name="compile"
-        description="compile the source " >
+ <target name="compile" classpath="./tests/junit.jar" description="compile the source " >
     <!-- Compile the java code from ${src} into ${build} -->
-    <javac srcdir="src" destdir="bin">
-	    <classpath>
-		<pathelement location="./tests/junit.jar"/>
-	    </classpath>
-    </javac>
+    <javac srcdir="src" destdir="bin"/>
 </target>
   
 <target name="corrertests" >
