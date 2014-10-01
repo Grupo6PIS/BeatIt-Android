@@ -125,12 +125,29 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.g6pis.beatit.Home" />
         </activity>
-        <activity android:name=".challenges.despertameatiempo.DespertameATiempoUI" android:screenOrientation="portrait">
-            <meta-data android:value="com.g6pis.beatit.Home" android:name="android.support.PARENT_ACTIVITY"/>
+
+        <activity android:name="com.g6pis.beatit.challenges.despertameatiempo.DespertameATiempoUI" android:screenOrientation="portrait">
+             android:parentActivityName="com.g6pis.beatit.MainActivity" >
+
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.g6pis.beatit.Home" />
         </activity>
-        <activity android:name=".challenges.despertameatiempo.DespertameATiempoFinished" android:label="@string/title_activity_challenge_finished" android:screenOrientation="portrait">
-            <meta-data android:value="com.g6pis.beatit.Home" android:name="android.support.PARENT_ACTIVITY"/>
+
+		<activity
+            android:name=".challenges.despertameatiempo.DespertameATiempoFinished"
+            android:label="@string/challenge"
+            android:screenOrientation="portrait" >
+	        android:parentActivityName="com.g6pis.beatit.MainActivity" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.g6pis.beatit.Home" />
         </activity>
+        
     </application>
 
 </manifest>

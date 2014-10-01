@@ -6,6 +6,7 @@ import java.util.concurrent.TimeUnit;
 import java.lang.Math;
 
 import com.g6pis.beatit.ChallengeFinished;
+import com.g6pis.beatit.Home;
 import com.g6pis.beatit.R;
 import com.g6pis.beatit.challenges.invitefriends.CanYouPlayFinished;
 import com.g6pis.beatit.datatypes.DTDateTime;
@@ -20,6 +21,8 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -77,6 +80,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 		
 		textViewResult = (TextView) findViewById(R.id.textView_Result);
 		textViewResult.setText("Resultado");
+		editActionBar();
 		
 		timer = this.createTimer();
 		
@@ -156,6 +160,34 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	    senSensorManager.registerListener(this, senAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 	}
 	
+	@Override
+	public void onBackPressed(){
+		Intent home = new Intent(this, Home.class);
+		startActivity(home);
+		this.finish();
+		super.onBackPressed();
+	}
+	
+	
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		// getMenuInflater().inflate(R.menu.challenge_finished, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		// Respond to the action bar's Up/Home button
+		case android.R.id.home:
+			Intent home = new Intent(this, Home.class);
+			startActivity(home);
+			this.finish();
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
 
 	// Customize ActionBar
 	public void editActionBar() {
