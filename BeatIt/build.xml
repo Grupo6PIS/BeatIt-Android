@@ -25,12 +25,6 @@
 	<target name="clean">
 		<delete dir="gen"/>
 	</target>
-    
-	<target name="compile" description="compile the source " >
-	    <mkdir dir="./bin"/>
-	    <javac srcdir="src" destdir="bin"/>
-	    <classpath refid="_classpath"/>
-	</target>
 	  
 	<target name="corrertests" >
 	
