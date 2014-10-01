@@ -44,5 +44,5 @@
 		</junit>
 	</target>
 
-	<import file="${sdk.dir}/tools/ant/uibuild.xml" />
+	<import file="${sdk.dir}/tools/ant/build.xml" />
 </project>
