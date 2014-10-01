@@ -32,7 +32,7 @@
 		</javac>
 	</target>
 	
-	<target name="corrertests" >
+	<target name="tests" >
 		<mkdir dir="./reports/tests"/>
 		<junit printsummary="yes" haltonfailure="yes">
 			<classpath refid="_classpath"/>
