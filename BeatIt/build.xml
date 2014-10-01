@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="BeatIt" default="help">
 
-
 	<property file="local.properties" />
 	<property file="ant.properties" />
 	<property environment="env" />
@@ -27,9 +26,7 @@
 	</target>
 	  
 	<target name="corrertests" >
-	
 	    <mkdir dir="./reports/tests"/>
-	
 	    <junit printsummary="yes" haltonfailure="yes">
 	      <classpath refid="_classpath"/>
 	
@@ -41,12 +38,9 @@
 	          <include name="**/*Test*.java"/>
 	        </fileset>
 	      </batchtest>
-	
 	    </junit>
-	
 	</target>
 	
 	<import file="custom_rules.xml" optional="true" />
 	<import file="${sdk.dir}/tools/ant/build.xml" />
-	
 </project>
