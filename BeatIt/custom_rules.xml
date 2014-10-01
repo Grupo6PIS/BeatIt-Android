@@ -7,8 +7,11 @@
 	</path>
 	
 	<target name="compile" description="compile the source NUESTRO" >
-		 <classpath refid="_classpath2"/>
+		 
 	  	<mkdir dir="./bin"/>
-		<javac srcdir="src" destdir="bin"/>
+		<javac srcdir="src" destdir="bin">
+		
+		<classpath refid="_classpath2"/>	
+		</javac>
 	</target>
 </project>
