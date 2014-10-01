@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="BeatIt" default="help">
 
+	<path id="_classpath">
+		<pathelement location="tests/junit.jar"/>
+		<pathelement location="bin"/>
+		<pathelement location="src"/>
+	</path>
+	
 	<target name="compile" description="compile the source NUESTRO" >
-		<classpath>
-	  	    <pathelement location="tests/junit.jar"/>
-	  	    <pathelement location="src"/>
-		</classpath>
-	  	
+		 <classpath refid="_classpath"/>
 	  	<mkdir dir="./bin"/>
-		    
 		<javac srcdir="src" destdir="bin"/>
 	</target>
 </project>
