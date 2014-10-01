@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="BeatIt" default="help">
+
+  <target name="compile" description="compile the source NUESTRO" >
+      <!-- Compile the java code from ${src} into ${build} -->
+      
+      <classpath>
+  	    <pathelement location="./tests/junit.jar"/>
+  	    <pathelement location="bin"/>
+  	    <pathelement location="src"/>
+	    </classpath>
+	    
+      <javac srcdir="src" destdir="bin"/>
+      
+  </target>
+  
+</project>
