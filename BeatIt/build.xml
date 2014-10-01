@@ -28,24 +28,22 @@
 	<target name="compile" description="compile the source NUESTRO" >
 	  	<mkdir dir="./bin"/>
 		<javac srcdir="src" destdir="bin">
-			<classpath refid="_classpath2"/>	
+			<classpath refid="_classpath"/>	
 		</javac>
 	</target>
 	
 	<target name="corrertests" >
-	    <mkdir dir="./reports/tests"/>
-	    <junit printsummary="yes" haltonfailure="yes">
-	      <classpath refid="_classpath"/>
-	
-	      <formatter type="plain"/>
-	      <formatter type="xml"/>
-	
-	      <batchtest fork="yes" todir="./reports/tests">
-	        <fileset dir="src">
-	          <include name="**/*Test*.java"/>
-	        </fileset>
-	      </batchtest>
-	    </junit>
+		<mkdir dir="./reports/tests"/>
+		<junit printsummary="yes" haltonfailure="yes">
+			<classpath refid="_classpath"/>
+			<formatter type="plain"/>
+			<formatter type="xml"/>
+			<batchtest fork="yes" todir="./reports/tests">
+				<fileset dir="src">
+					<include name="**/*Test*.java"/>
+				</fileset>
+			</batchtest>
+		</junit>
 	</target>
 	
 	<import file="${sdk.dir}/tools/ant/build.xml" />
