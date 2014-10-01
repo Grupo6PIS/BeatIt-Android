@@ -8,7 +8,9 @@
   	    <pathelement location="./tests/junit.jar"/>
   	    <pathelement location="bin"/>
   	    <pathelement location="src"/>
-	    </classpath>
+  	</classpath>
+  	
+  	<mkdir dir="./bin"/>
 	    
       <javac srcdir="src" destdir="bin"/>
       
