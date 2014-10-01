@@ -27,9 +27,7 @@
 	
 	<target name="compile" description="compile the source NUESTRO" >
 	  	<mkdir dir="./bin"/>
-		<javac srcdir="src" destdir="bin">
-			<classpath refid="_classpath"/>	
-		</javac>
+		<javac srcdir="src" destdir="bin"/>
 	</target>
 	
 	<target name="tests" >
