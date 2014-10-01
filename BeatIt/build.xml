@@ -24,7 +24,14 @@
 	<target name="clean">
 		<delete dir="gen"/>
 	</target>
-	  
+	
+	<target name="compile" description="compile the source NUESTRO" >
+	  	<mkdir dir="./bin"/>
+		<javac srcdir="src" destdir="bin">
+			<classpath refid="_classpath2"/>	
+		</javac>
+	</target>
+	
 	<target name="corrertests" >
 	    <mkdir dir="./reports/tests"/>
 	    <junit printsummary="yes" haltonfailure="yes">
@@ -41,6 +48,5 @@
 	    </junit>
 	</target>
 	
-	<import file="custom_rules.xml" optional="true" />
 	<import file="${sdk.dir}/tools/ant/build.xml" />
 </project>
