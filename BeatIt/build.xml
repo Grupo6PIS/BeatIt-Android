@@ -30,7 +30,13 @@
 		<javac srcdir="src" destdir="bin"/>
 	</target>
 	
-	<target name="tests" >
+	<target name="compileTests" description="" >
+		<javac srcdir="src" verbose="true">
+			<classpath refid="_classpath"/>
+		</javac>
+	</target>
+	
+	<target name="runTests" >
 		<mkdir dir="./reports/tests"/>
 		<junit printsummary="yes" haltonfailure="yes">
 			<classpath refid="_classpath"/>
@@ -44,4 +50,5 @@
 		</junit>
 	</target>
 
+	<import file="${sdk.dir}/tools/ant/build.xml" />
 </project>
