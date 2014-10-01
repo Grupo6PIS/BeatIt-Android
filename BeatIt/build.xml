@@ -30,12 +30,6 @@
 		<javac srcdir="src" destdir="bin"/>
 	</target>
 	
-	<target name="compileTests" description="" >
-		<javac srcdir="src" verbose="true">
-			<classpath refid="_classpath"/>
-		</javac>
-	</target>
-	
 	<target name="runTests" >
 		<mkdir dir="./reports/tests"/>
 		<junit printsummary="yes" haltonfailure="yes">
