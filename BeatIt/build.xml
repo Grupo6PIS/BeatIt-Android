@@ -16,9 +16,9 @@
 	/>
 	
 	<path id="_classpath">
+		<pathelement location="src"/>
 		<pathelement location="tests/junit.jar"/>
 		<pathelement location="bin"/>
-		<pathelement location="src"/>
 	</path>
 
 	<target name="clean">
@@ -44,5 +44,4 @@
 		</junit>
 	</target>
 
-	<import file="${sdk.dir}/tools/ant/build.xml" />
 </project>
