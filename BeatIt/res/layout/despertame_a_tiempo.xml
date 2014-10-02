@@ -151,6 +151,14 @@
         android:textSize="14sp"
         android:textStyle="bold"
         android:visibility="invisible" />
-    
+
+	<TextView
+	    android:id="@+id/attemps"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignRight="@+id/start_button"
+	    android:layout_below="@+id/textView_Start_Time_Value"
+	    android:text="Small Text"
+	    android:textAppearance="?android:attr/textAppearanceSmall" />
     
 </RelativeLayout>
