@@ -4,6 +4,8 @@
     <!-- The local.properties file is created and updated by the 'android' tool.
          It contains the path to the SDK. It should *NOT* be checked into
          Version Control Systems. -->
+    <property name="src" value="."/>
+    <property name="build" value="build"/>
     <property file="local.properties" />
 
     <!-- The ant.properties file can be created by you. It is only edited by the
@@ -66,7 +68,16 @@
             -post-build
             -pre-clean
     -->
-
+    <target name="init">
+          <mkdir dir="${build}"/>
+     </target>
+     
+    <target name="compile" depends="init">
+          <!-- Compile the java code -->
+          
+          <javac srcdir="${src}" destdir="${build}"/>
+     </target>
+     
     <import file="custom_rules.xml" optional="true" />
 
     <!-- Import the actual build file.
