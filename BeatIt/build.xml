@@ -1,27 +1,39 @@
 <?xml version="1.0"?>
 <!-- to save as "build.xml" -->
 <project name="BeatIt" default="run" basedir=".">
-    <path id="junit_classpath"> 
-        <pathelement location="tests/junit.jar"/>
+    <property name="target.dir"   value="${basedir}/target"/>
+    <property name="main.destdir" value="${target.dir}/classes"/>
+    <property name="test.srcdir"  value="${basedir}/src/test/java"/>
+    <property name="test.destdir" value="${target.dir}/test-classes"/>
+    
+    <!-- Path for all jars required for compiling your actual source -->
+    <path id="main.classpath">
+         <fileset dir="${basedir}/lib"/>
+    <path>
+    
+    <!-- Includes JUnit.jar and the main.classpath jars too -->
+    <path id="test.classpath">
+         <fileset dir="${basedir}/test-lib"/>
+         <fileset dir="${basedir}/lib"/>
     </path>
+    <mkdir dir="${test.destdir}"/>
+    <javac destdir="${test.destdir}" fork="false"/>
+    <src path="${test.srcdir}"/>
+    <classpath refid="test.classpath"/>
+    <classpath refid="${main.destdir}"/>
 
-    <fileset dir="libs" includes="*.jar"/>
-
-    <target name="build">   
-        <javac srcdir="${basedir}"/>
-        <echo message="Build done" />
-    </target>
-
-    <target name="run" depends="build">
-        <java taskname="Test" classname="MockTester" fork="true" failonerror="true" />
-        <echo message="Unit Tests done" />
-    </target>
-
-    <target name="clean">
-        <delete>
-            <fileset dir="${basedir}" includes="*.class" />
-        </delete>
-        <echo message="clean done" />
-    </target>
-
+    <junit fork="true"
+        maxmemory="128m"
+        includeAntRuntime="true">
+        <classpath>
+            <pathelement path="${main.destdir}"/>
+            <pathelement path="${test.destdir}"/>
+        </classpath>
+        <classpath refid="test.classpath"/>
+        <formatter type="plain"/>
+        <batchtest
+            todir="${junit.batchtest.todir}">
+            <fileset dir="${test.destdir}"/>
+        </batchtest>
+    </junit>
 </project>
