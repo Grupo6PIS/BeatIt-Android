@@ -71,6 +71,7 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
         	challenge.putExtra("challengeId", 0);
         	
         	startActivity(challenge);
+        	this.getActivity().finish();
 		}
 		if(adapter.getItem(position).equals("Can You Play?")){
 			Intent challenge = new Intent(getActivity().getApplicationContext(), CanYouPlayUI.class);
@@ -87,6 +88,7 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
         	challenge.putExtra("challengeId", 1);
         	
         	startActivity(challenge);
+        	this.getActivity().finish();
         	
 		}
 		if(adapter.getItem(position).equals("Despertame A Tiempo")){
@@ -102,9 +104,10 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
         	challenge.putExtra("level", level);
         	challenge.putExtra("challengeId", 2);
         	startActivity(challenge);
+        	this.getActivity().finish();
         	
 		}
-    	this.getActivity().finish();
+    	
 	}
     
     private class MyAdapter extends ArrayAdapter<String>{
