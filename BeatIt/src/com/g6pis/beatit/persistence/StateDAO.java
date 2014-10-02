@@ -110,7 +110,7 @@ public class StateDAO extends SQLiteOpenHelper {
 		List<DTState> states = new LinkedList<DTState>();
 
 		// 1. build the query
-		String query = "SELECT  * FROM " + "UsainBolt";
+		String query = "SELECT  * FROM " + "State";
 
 		// 2. get reference to writable DB
 		SQLiteDatabase db = this.getWritableDatabase();
@@ -168,7 +168,7 @@ public class StateDAO extends SQLiteOpenHelper {
 		SQLiteDatabase db = this.getWritableDatabase();
 
 		// 2. delete
-		db.delete("UsainBolt", "challengeId" + " = ?",
+		db.delete("State", "challengeId" + " = ?",
 				new String[] { String.valueOf(state.getChallengeId()) });
 
 		// 3. close
