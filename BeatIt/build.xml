@@ -66,6 +66,36 @@
             -post-build
             -pre-clean
     -->
+    <path id="_classpath">
+		<pathelement location="src"/>
+		<pathelement location="tests/junit.jar"/>
+		<pathelement location="bin"/>
+	</path>
+
+	<target name="clean">
+		<delete dir="gen"/>
+	</target>
+	
+	<target name="compile" description="compile the source NUESTRO" >
+	  	<mkdir dir="./bin"/>
+		<javac srcdir="src" destdir="bin"/>
+	</target>
+	
+	<target name="runTests" >
+		<mkdir dir="./reports/tests"/>
+		<junit printsummary="yes" haltonfailure="yes">
+			<classpath refid="_classpath"/>
+			<formatter type="plain"/>
+			<formatter type="xml"/>
+			<batchtest fork="yes" todir="./reports/tests">
+				<fileset dir="src">
+					<include name="**/*Test*.java"/>
+				</fileset>
+			</batchtest>
+		</junit>
+	</target>
+
+
     <import file="custom_rules.xml" optional="true" />
 
     <!-- Import the actual build file.
