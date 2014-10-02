@@ -9,7 +9,7 @@
     <!-- Path for all jars required for compiling your actual source -->
     <path id="main.classpath">
          <fileset dir="${basedir}/lib"/>
-    <path>
+    </path>
     
     <!-- Includes JUnit.jar and the main.classpath jars too -->
     <path id="test.classpath">
