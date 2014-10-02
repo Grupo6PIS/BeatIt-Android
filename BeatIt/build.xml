@@ -46,10 +46,7 @@
     <pathelement path="${sdk.dir}/tools/lib/apkbuilder.jar" /> 
     <pathelement path="${sdk.dir}/tools/lib/jarutils.jar" /> 
   </path> 
-  <taskdef name="setup" 
-           classname="com.android.ant.SetupTask" 
-           classpathref="android.antlibs" /> 
-  <setup /> 
+  <taskdef name="setup" classname="com.android.ant.SetupTask" classpathref="android.antlibs" /> 
   
     <!-- The project.properties file is created and updated by the 'android'
          tool, as well as ADT.
