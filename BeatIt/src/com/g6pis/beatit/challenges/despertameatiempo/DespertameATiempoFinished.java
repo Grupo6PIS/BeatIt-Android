@@ -63,6 +63,9 @@ public class DespertameATiempoFinished extends Activity  {
 
 		((TextView) findViewById(R.id.tiempo2))
 				.setText(getIntent().getExtras().getString("avgSpeed") + "s");
+		
+		((TextView) findViewById(R.id.attemps))
+		.setText(getIntent().getExtras().getString("attemps") + "/3");
 
 		((TextView) findViewById(R.id.textView_Score_Value))
 				.setText(getIntent().getExtras().getString("score") + getResources().getString(R.string.points));

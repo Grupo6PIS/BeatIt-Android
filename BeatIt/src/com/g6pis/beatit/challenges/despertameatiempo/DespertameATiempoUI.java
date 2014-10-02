@@ -54,35 +54,42 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	private double score = 0;
 	private double tiempo = 0;
 	private boolean gano = false;
+	private long attemps = 0;
+	private long max_attemps = 3;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.despertame_a_tiempo);
 		
-		startButton = (Button) findViewById(R.id.start_button);
-		startButton.setOnClickListener(this);
-		
-		this.setDateTimeStart(this.getDateExtras(getIntent().getExtras()));
-		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(this
-				.getDateTimeStart().toString());
-		
-		/* ACELEROMETRO */
-        senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        senSensorManager.registerListener(this, senAccelerometer , SensorManager.SENSOR_DELAY_NORMAL);
-        /* FIN ACELEROMETRO */
-		
-		String t_valor_inicial_contador = String.format("%d", valor_inicial_contador/1000);
-		
-		textViewTimeLeftValue = (TextView) findViewById(R.id.textView_Time_Left_Value);
-		textViewTimeLeftValue.setText(t_valor_inicial_contador);
-		
-		textViewResult = (TextView) findViewById(R.id.textView_Result);
-		textViewResult.setText("Resultado");
-		editActionBar();
-		
-		timer = this.createTimer();
+		if (attemps < max_attemps) {
+			startButton = (Button) findViewById(R.id.start_button);
+			startButton.setOnClickListener(this);
+			
+			this.setDateTimeStart(this.getDateExtras(getIntent().getExtras()));
+			((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(this
+					.getDateTimeStart().toString());
+			
+			/* ACELEROMETRO */
+	        senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+	        senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+	        senSensorManager.registerListener(this, senAccelerometer , SensorManager.SENSOR_DELAY_NORMAL);
+	        /* FIN ACELEROMETRO */
+			
+			String t_valor_inicial_contador = String.format("%d", valor_inicial_contador/1000);
+			
+			textViewTimeLeftValue = (TextView) findViewById(R.id.textView_Time_Left_Value);
+			textViewTimeLeftValue.setText(t_valor_inicial_contador);
+			
+			textViewResult = (TextView) findViewById(R.id.textView_Result);
+			textViewResult.setText("Resultado");
+			editActionBar();
+			
+			timer = this.createTimer();
+		}
+		else {
+			completeChallenge();
+		}
 		
 	}
 	
@@ -276,13 +283,14 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 		senSensorManager.unregisterListener(this);
 		timer = null;
 		
+		attemps++;
+		
 		// Calculating the score
 		long veces_exito = 4;
 		this.setScore((veces_exito)*20);
 
 		// Activity Challenge Finished
 		Intent despertameATiempoFinished = new Intent(this, DespertameATiempoFinished.class);
-		System.out.println("--- Get Tiempo: " + getTiempo());
 		despertameATiempoFinished.putExtra("resultado",
 				this.getGano());
 		despertameATiempoFinished.putExtra("avgSpeed",
@@ -290,6 +298,9 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 		despertameATiempoFinished.putExtra("score",
 				Double.toString(Math.round(this.getScore())));
 		despertameATiempoFinished.putExtra("dateTimeStart", getDateTimeStart().toString());
+		
+		despertameATiempoFinished.putExtra("attemps",
+				attemps);
 		
 		Calendar calendar = new GregorianCalendar();
 
