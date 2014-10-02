@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.g6pis.beatit.R;
+import com.g6pis.beatit.challenges.callaalperro.CallaAlPerroUI;
 import com.g6pis.beatit.challenges.despertameatiempo.DespertameATiempoUI;
 import com.g6pis.beatit.challenges.invitefriends.CanYouPlayUI;
 import com.g6pis.beatit.challenges.usainbolt.UsainBoltUI;
@@ -41,7 +42,8 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
 		items[0] = "Usain Bolt";
 		items[1] = "Can You Play?";
 		items[2] = "Despertame A Tiempo";
-        for(int index=3;index<=9;index++){
+		items[3] = "Calla Al Perro";
+        for(int index=4;index<=9;index++){
             items[index] = "Challenge "+index;
         }
         adapter = new MyAdapter(getActivity().getApplicationContext(),items);
@@ -104,6 +106,21 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
         	startActivity(challenge);
         	
 		}
+		if(adapter.getItem(position).equals("Calla Al Perro")){
+			Intent challenge = new Intent(getActivity().getApplicationContext(), CallaAlPerroUI.class);
+        	Calendar calendar = new GregorianCalendar();
+
+        	challenge.putExtra("seconds",calendar.get(Calendar.SECOND));
+        	challenge.putExtra("minutes",calendar.get(Calendar.MINUTE));
+        	challenge.putExtra("hours",calendar.get(Calendar.HOUR_OF_DAY));
+        	challenge.putExtra("day",calendar.get(Calendar.DAY_OF_MONTH));
+        	challenge.putExtra("month",calendar.get(Calendar.MONTH));
+        	challenge.putExtra("year",calendar.get(Calendar.YEAR));
+        	challenge.putExtra("level", level);
+        	challenge.putExtra("challengeId", 2);
+        	startActivity(challenge);
+        	
+		}
     	this.getActivity().finish();
 	}
     
@@ -143,6 +160,10 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
         	  rowView.setBackgroundColor(getResources().getColor(R.color.blanco));
           } else if (s.equals("Despertame A Tiempo")){
         	  challengeIcon.setImageResource(R.drawable.ic_despertame_a_tiempo);
+        	  challengeDescription.setText(s + " description");
+        	  rowView.setBackgroundColor(getResources().getColor(R.color.blanco));
+          } else if (s.equals("Calla Al Perro")){
+        	  challengeIcon.setImageResource(R.drawable.ic_calla_al_perro);
         	  challengeDescription.setText(s + " description");
         	  rowView.setBackgroundColor(getResources().getColor(R.color.blanco));
           } else {

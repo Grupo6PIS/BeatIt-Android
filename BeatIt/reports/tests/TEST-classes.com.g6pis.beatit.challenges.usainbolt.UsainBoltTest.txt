@@ -2,14 +2,9 @@ Testsuite: classes.com.g6pis.beatit.challenges.usainbolt.UsainBoltTest
 Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0 sec
 
 	Caused an ERROR
-classes/com/g6pis/beatit/challenges/usainbolt/UsainBoltTest (wrong name: com/g6pis/beatit/challenges/usainbolt/UsainBoltTest)
-java.lang.NoClassDefFoundError: classes/com/g6pis/beatit/challenges/usainbolt/UsainBoltTest (wrong name: com/g6pis/beatit/challenges/usainbolt/UsainBoltTest)
-	at java.lang.ClassLoader.defineClass1(Native Method)
-	at java.lang.ClassLoader.defineClass(ClassLoader.java:760)
-	at java.security.SecureClassLoader.defineClass(SecureClassLoader.java:142)
-	at java.net.URLClassLoader.defineClass(URLClassLoader.java:455)
-	at java.net.URLClassLoader.access$100(URLClassLoader.java:73)
-	at java.net.URLClassLoader$1.run(URLClassLoader.java:367)
+classes.com.g6pis.beatit.challenges.usainbolt.UsainBoltTest
+java.lang.ClassNotFoundException: classes.com.g6pis.beatit.challenges.usainbolt.UsainBoltTest
+	at java.net.URLClassLoader$1.run(URLClassLoader.java:372)
 	at java.net.URLClassLoader$1.run(URLClassLoader.java:361)
 	at java.security.AccessController.doPrivileged(Native Method)
 	at java.net.URLClassLoader.findClass(URLClassLoader.java:360)

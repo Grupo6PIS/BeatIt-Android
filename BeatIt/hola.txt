@@ -1,0 +1,627 @@
+Buildfile: C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\build.xml
+
+-set-mode-check:
+
+-set-debug-files:
+
+-check-env:
+ [checkenv] Android SDK Tools Revision 23.0.2
+ [checkenv] Installed at C:\Users\Felipe\AppData\Local\Android\android-sdk
+
+-setup:
+     [echo] Project Name: BeatIt
+  [gettype] Project Type: Application
+
+-set-debug-mode:
+
+-debug-obfuscation-check:
+
+-pre-build:
+
+-build-setup:
+[getbuildtools] Using latest Build Tools: 20.0.0
+     [echo] Resolving Build Target for BeatIt...
+[gettarget] Project Target:   Android 4.0
+[gettarget] API level:        14
+     [echo] ----------
+     [echo] Creating output directories if needed...
+    [mkdir] Created dir: C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\bin\rsObj
+    [mkdir] Created dir: C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\bin\rsLibs
+     [echo] ----------
+     [echo] Resolving Dependencies for BeatIt...
+[dependency] Library dependencies:
+[dependency] 
+[dependency] ------------------
+[dependency] Ordered libraries:
+[dependency] 
+[dependency] ------------------
+[dependency] API<=15: Adding annotations.jar to the classpath.
+[dependency] WARNING: Found both android-support-v4 and android-support-v13 in the dependency list.
+[dependency] Because v13 includes v4, using only v13.
+     [echo] ----------
+     [echo] Building Libraries with 'debug'...
+
+nodeps:
+
+-set-mode-check:
+
+-set-debug-files:
+
+-check-env:
+ [checkenv] Android SDK Tools Revision 23.0.2
+ [checkenv] Installed at C:\Users\Felipe\AppData\Local\Android\android-sdk
+
+-setup:
+     [echo] Project Name: facebook
+  [gettype] Project Type: Android Library
+
+-set-debug-mode:
+
+-debug-obfuscation-check:
+
+-pre-build:
+
+-build-setup:
+[getbuildtools] Using latest Build Tools: 20.0.0
+     [echo] Resolving Build Target for facebook...
+[gettarget] Project Target:   Android 4.0
+[gettarget] API level:        14
+     [echo] ----------
+     [echo] Creating output directories if needed...
+    [mkdir] Created dir: C:\Users\Felipe\Documents\GitHub\BeatIt-Android\facebook-android-sdk-3.18.1\facebook\bin\rsObj
+    [mkdir] Created dir: C:\Users\Felipe\Documents\GitHub\BeatIt-Android\facebook-android-sdk-3.18.1\facebook\bin\rsLibs
+     [echo] ----------
+     [echo] Resolving Dependencies for facebook...
+[dependency] Library dependencies:
+[dependency] No Libraries
+[dependency] 
+[dependency] ------------------
+[dependency] API<=15: Adding annotations.jar to the classpath.
+
+-code-gen:
+[mergemanifest] Found Deleted Target File
+[mergemanifest] Merging AndroidManifest files into one.
+[mergemanifest] Manifest merger disabled. Using project manifest only.
+     [echo] Handling aidl files...
+     [aidl] No AIDL files to compile.
+     [echo] ----------
+     [echo] Handling RenderScript files...
+     [echo] ----------
+     [echo] Handling Resources...
+     [aapt] Found Deleted Target File
+     [aapt] Generating resource IDs...
+     [echo] ----------
+     [echo] Handling BuildConfig class...
+[buildconfig] No need to generate new BuildConfig.
+
+-pre-compile:
+
+-compile:
+    [javac] Compiling 1 source file to C:\Users\Felipe\Documents\GitHub\BeatIt-Android\facebook-android-sdk-3.18.1\facebook\bin\classes
+    [javac] warning: [options] source value 1.5 is obsolete and will be removed in a future release
+    [javac] warning: [options] target value 1.5 is obsolete and will be removed in a future release
+    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+    [javac] 3 warnings
+     [echo] Creating library output jar file...
+
+-post-compile:
+
+-obfuscate:
+
+-dex:
+     [echo] Library project: do not convert bytecode...
+
+-crunch:
+   [crunch] Crunching PNG Files in source dir: C:\Users\Felipe\Documents\GitHub\BeatIt-Android\facebook-android-sdk-3.18.1\facebook\res
+   [crunch] To destination dir: C:\Users\Felipe\Documents\GitHub\BeatIt-Android\facebook-android-sdk-3.18.1\facebook\bin\res
+   [crunch] Crunched 0 PNG files to update cache
+
+-package-resources:
+     [echo] Library project: do not package resources...
+
+-package:
+     [echo] Library project: do not package apk...
+
+-post-package:
+
+-do-debug:
+     [echo] Library project: do not create apk...
+[propertyfile] Updating property file: C:\Users\Felipe\Documents\GitHub\BeatIt-Android\facebook-android-sdk-3.18.1\facebook\bin\build.prop
+[propertyfile] Updating property file: C:\Users\Felipe\Documents\GitHub\BeatIt-Android\facebook-android-sdk-3.18.1\facebook\bin\build.prop
+[propertyfile] Updating property file: C:\Users\Felipe\Documents\GitHub\BeatIt-Android\facebook-android-sdk-3.18.1\facebook\bin\build.prop
+[propertyfile] Updating property file: C:\Users\Felipe\Documents\GitHub\BeatIt-Android\facebook-android-sdk-3.18.1\facebook\bin\build.prop
+
+-post-build:
+
+debug:
+
+-code-gen:
+[mergemanifest] Found Deleted Target File
+[mergemanifest] Merging AndroidManifest files into one.
+[mergemanifest] Manifest merger disabled. Using project manifest only.
+     [echo] Handling aidl files...
+     [aidl] No AIDL files to compile.
+     [echo] ----------
+     [echo] Handling RenderScript files...
+     [echo] ----------
+     [echo] Handling Resources...
+     [aapt] Found Deleted Target File
+     [aapt] Generating resource IDs...
+     [aapt] aapt: warning: string 'challenge' has no default translation in C:\Users\Felipe\Documents\GitHub\BeatIt-Android\facebook-android-sdk-3.18.1\facebook\res; found: es
+     [aapt]     (skipping file '.gitignore' due to ANDROID_AAPT_IGNORE pattern '.*')
+     [echo] ----------
+     [echo] Handling BuildConfig class...
+[buildconfig] Generating BuildConfig class.
+
+-pre-compile:
+
+-compile:
+    [javac] Compiling 41 source files to C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\bin\classes
+    [javac] warning: [options] source value 1.5 is obsolete and will be removed in a future release
+    [javac] warning: [options] target value 1.5 is obsolete and will be removed in a future release
+    [javac] warning: [options] To suppress warnings about obsolete options, use -Xlint:-options.
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\challenges\invitefriends\CanYouPlayUI.java:241: warning: unmappable character for encoding UTF-8
+    [javac] 		//TODO calcular el puntaje mediante la l?gica
+    [javac] 		                                        ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\challenges\usainbolt\UsainBoltUI.java:109: warning: unmappable character for encoding UTF-8
+    [javac] 		// TODO instanciar la clase UsainBolt a trav?s del DataManager.
+    [javac] 		                                            ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\tabs\RankingTab.java:65: warning: unmappable character for encoding UTF-8
+    [javac]         rankings.add(new DTRanking("Felipe Garc?a", 2000, 1, "imagen"));
+    [javac]                                                ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\tabs\RankingTab.java:66: warning: unmappable character for encoding UTF-8
+    [javac]         rankings.add(new DTRanking("Juan P?rez", 1500, 2, "image"));
+    [javac]                                           ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\tabs\RankingTab.java:68: warning: unmappable character for encoding UTF-8
+    [javac]         rankings.add(new DTRanking("Luciana Mart?nez", 500, 4, "imagen"));
+    [javac]                                                 ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\tabs\RankingTab.java:69: warning: unmappable character for encoding UTF-8
+    [javac]         rankings.add(new DTRanking("Mart?n Steglich", 402, 5, "imagen"));
+    [javac]                                         ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\tabs\RankingTab.java:70: warning: unmappable character for encoding UTF-8
+    [javac]         rankings.add(new DTRanking("Mart?n Berguer", 302, 6, "imagen"));
+    [javac]                                         ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\tabs\RankingTab.java:71: warning: unmappable character for encoding UTF-8
+    [javac]         rankings.add(new DTRanking("Mart?n Alay?n", 122, 7, "imagen"));
+    [javac]                                         ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\tabs\RankingTab.java:71: warning: unmappable character for encoding UTF-8
+    [javac]         rankings.add(new DTRanking("Mart?n Alay?n", 122, 7, "imagen"));
+    [javac]                                                ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\challenges\usainbolt\UsainBoltTest.java:3: error: package org.junit does not exist
+    [javac] import static org.junit.Assert.assertEquals;
+    [javac]                        ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\challenges\usainbolt\UsainBoltTest.java:3: error: static import only from classes and interfaces
+    [javac] import static org.junit.Assert.assertEquals;
+    [javac] ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\challenges\usainbolt\UsainBoltTest.java:5: error: package org.junit does not exist
+    [javac] import org.junit.Test;
+    [javac]                 ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\controllers\DataManagerTest.java:4: error: package org.junit does not exist
+    [javac] import static org.junit.Assert.assertEquals;
+    [javac]                        ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\controllers\DataManagerTest.java:4: error: static import only from classes and interfaces
+    [javac] import static org.junit.Assert.assertEquals;
+    [javac] ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\controllers\DataManagerTest.java:6: error: package org.junit does not exist
+    [javac] import org.junit.Test;
+    [javac]                 ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\ChallengeTest.java:3: error: package org.junit does not exist
+    [javac] import static org.junit.Assert.assertEquals;
+    [javac]                        ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\ChallengeTest.java:3: error: static import only from classes and interfaces
+    [javac] import static org.junit.Assert.assertEquals;
+    [javac] ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\ChallengeTest.java:5: error: package org.junit does not exist
+    [javac] import org.junit.Test;
+    [javac]                 ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\RoundTest.java:3: error: package org.junit does not exist
+    [javac] import static org.junit.Assert.assertEquals;
+    [javac]                        ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\RoundTest.java:3: error: static import only from classes and interfaces
+    [javac] import static org.junit.Assert.assertEquals;
+    [javac] ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\RoundTest.java:8: error: package org.junit does not exist
+    [javac] import org.junit.Test;
+    [javac]                 ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\StateTest.java:3: error: package org.junit does not exist
+    [javac] import static org.junit.Assert.assertEquals;
+    [javac]                        ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\StateTest.java:3: error: static import only from classes and interfaces
+    [javac] import static org.junit.Assert.assertEquals;
+    [javac] ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\StateTest.java:4: error: package org.junit does not exist
+    [javac] import static org.junit.Assert.assertFalse;
+    [javac]                        ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\StateTest.java:4: error: static import only from classes and interfaces
+    [javac] import static org.junit.Assert.assertFalse;
+    [javac] ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\StateTest.java:5: error: package org.junit does not exist
+    [javac] import static org.junit.Assert.assertTrue;
+    [javac]                        ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\StateTest.java:5: error: static import only from classes and interfaces
+    [javac] import static org.junit.Assert.assertTrue;
+    [javac] ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\StateTest.java:10: error: package org.junit does not exist
+    [javac] import org.junit.Test;
+    [javac]                 ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\UserTest.java:3: error: package org.junit does not exist
+    [javac] import static org.junit.Assert.assertEquals;
+    [javac]                        ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\UserTest.java:3: error: static import only from classes and interfaces
+    [javac] import static org.junit.Assert.assertEquals;
+    [javac] ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\UserTest.java:5: error: package org.junit does not exist
+    [javac] import org.junit.Test;
+    [javac]                 ^
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\challenges\usainbolt\UsainBoltTest.java:13: error: cannot find symbol
+    [javac] 	@Test
+    [javac] 	 ^
+    [javac]   symbol:   class Test
+    [javac]   location: class UsainBoltTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\challenges\usainbolt\UsainBoltTest.java:29: error: cannot find symbol
+    [javac] 	@Test
+    [javac] 	 ^
+    [javac]   symbol:   class Test
+    [javac]   location: class UsainBoltTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\challenges\usainbolt\UsainBoltTest.java:59: error: cannot find symbol
+    [javac] 	@Test
+    [javac] 	 ^
+    [javac]   symbol:   class Test
+    [javac]   location: class UsainBoltTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\controllers\DataManagerTest.java:10: error: cannot find symbol
+    [javac] 	@Test
+    [javac] 	 ^
+    [javac]   symbol:   class Test
+    [javac]   location: class DataManagerTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\ChallengeTest.java:9: error: cannot find symbol
+    [javac] 	@Test
+    [javac] 	 ^
+    [javac]   symbol:   class Test
+    [javac]   location: class ChallengeTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\ChallengeTest.java:21: error: cannot find symbol
+    [javac] 	@Test
+    [javac] 	 ^
+    [javac]   symbol:   class Test
+    [javac]   location: class ChallengeTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\RoundTest.java:14: error: cannot find symbol
+    [javac] 	@Test
+    [javac] 	 ^
+    [javac]   symbol:   class Test
+    [javac]   location: class RoundTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\RoundTest.java:36: error: cannot find symbol
+    [javac] 	@Test
+    [javac] 	 ^
+    [javac]   symbol:   class Test
+    [javac]   location: class RoundTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\StateTest.java:16: error: cannot find symbol
+    [javac] 	@Test
+    [javac] 	 ^
+    [javac]   symbol:   class Test
+    [javac]   location: class StateTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\StateTest.java:41: error: cannot find symbol
+    [javac] 	@Test
+    [javac] 	 ^
+    [javac]   symbol:   class Test
+    [javac]   location: class StateTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\UserTest.java:9: error: cannot find symbol
+    [javac] 	@Test
+    [javac] 	 ^
+    [javac]   symbol:   class Test
+    [javac]   location: class UserTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\UserTest.java:23: error: cannot find symbol
+    [javac] 	@Test
+    [javac] 	 ^
+    [javac]   symbol:   class Test
+    [javac]   location: class UserTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\challenges\usainbolt\UsainBoltTest.java:18: error: cannot find symbol
+    [javac] 		assertEquals("1",usain.getChallengeId());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(String,String)
+    [javac]   location: class UsainBoltTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\challenges\usainbolt\UsainBoltTest.java:19: error: cannot find symbol
+    [javac] 		assertEquals("Usain Bolt",usain.getName());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(String,String)
+    [javac]   location: class UsainBoltTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\challenges\usainbolt\UsainBoltTest.java:20: error: cannot find symbol
+    [javac] 		assertEquals("Usain Bolt description", usain.getDescription());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(String,String)
+    [javac]   location: class UsainBoltTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\challenges\usainbolt\UsainBoltTest.java:21: error: cannot find symbol
+    [javac] 		assertEquals(7,usain.getDuration());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(int,int)
+    [javac]   location: class UsainBoltTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\challenges\usainbolt\UsainBoltTest.java:22: error: cannot find symbol
+    [javac] 		assertEquals(2,usain.getLevel());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(int,int)
+    [javac]   location: class UsainBoltTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\challenges\usainbolt\UsainBoltTest.java:23: error: cannot find symbol
+    [javac] 		assertEquals(3,usain.getMaxAttempt());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(int,int)
+    [javac]   location: class UsainBoltTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\challenges\usainbolt\UsainBoltTest.java:24: error: cannot find symbol
+    [javac] 		assertEquals(0,usain.getMaxSpeed(),0.0);
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(int,double,double)
+    [javac]   location: class UsainBoltTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\challenges\usainbolt\UsainBoltTest.java:25: error: cannot find symbol
+    [javac] 		assertEquals(0,usain.getAvgSpeed(),0.0);
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(int,double,double)
+    [javac]   location: class UsainBoltTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\challenges\usainbolt\UsainBoltTest.java:26: error: cannot find symbol
+    [javac] 		assertEquals(speeds,usain.getSpeeds());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(Set<Double>,Set<Double>)
+    [javac]   location: class UsainBoltTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\challenges\usainbolt\UsainBoltTest.java:52: error: cannot find symbol
+    [javac] 		assertEquals(maxSpeed,usain.getMaxSpeed(), 0.0);
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(Double,double,double)
+    [javac]   location: class UsainBoltTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\challenges\usainbolt\UsainBoltTest.java:53: error: cannot find symbol
+    [javac] 		assertEquals(score,usain.calculateScore(),0.0);
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(double,double,double)
+    [javac]   location: class UsainBoltTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\challenges\usainbolt\UsainBoltTest.java:54: error: cannot find symbol
+    [javac] 		assertEquals(avgSpeed,usain.getAvgSpeed(),0.0);
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(Double,double,double)
+    [javac]   location: class UsainBoltTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\challenges\usainbolt\UsainBoltTest.java:85: error: cannot find symbol
+    [javac] 		assertEquals(maxSpeed,usain.getMaxSpeed(), 0.0);
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(Double,double,double)
+    [javac]   location: class UsainBoltTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\challenges\usainbolt\UsainBoltTest.java:86: error: cannot find symbol
+    [javac] 		assertEquals(speeds,usain.getSpeeds());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(Set<Double>,Set<Double>)
+    [javac]   location: class UsainBoltTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\challenges\usainbolt\UsainBoltTest.java:87: error: cannot find symbol
+    [javac] 		assertEquals(avgSpeed,usain.getAvgSpeed(),0.0);
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(Double,double,double)
+    [javac]   location: class UsainBoltTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\controllers\DataManagerTest.java:16: error: cannot find symbol
+    [javac] 		assertEquals("123",dataManager.getUser().getFbId());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(String,String)
+    [javac]   location: class DataManagerTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\controllers\DataManagerTest.java:17: error: cannot find symbol
+    [javac] 		assertEquals("Johnnie",dataManager.getUser().getFirstName());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(String,String)
+    [javac]   location: class DataManagerTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\controllers\DataManagerTest.java:18: error: cannot find symbol
+    [javac] 		assertEquals("Walker",dataManager.getUser().getLastName());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(String,String)
+    [javac]   location: class DataManagerTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\controllers\DataManagerTest.java:19: error: cannot find symbol
+    [javac] 		assertEquals("Scotland",dataManager.getUser().getCountry());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(String,String)
+    [javac]   location: class DataManagerTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\controllers\DataManagerTest.java:23: error: cannot find symbol
+    [javac] 		assertEquals(null,dataManager.getUser());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(<null>,User)
+    [javac]   location: class DataManagerTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\ChallengeTest.java:13: error: cannot find symbol
+    [javac] 		assertEquals("1",challenge.getChallengeId());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(String,String)
+    [javac]   location: class ChallengeTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\ChallengeTest.java:14: error: cannot find symbol
+    [javac] 		assertEquals("Challenge 1",challenge.getName());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(String,String)
+    [javac]   location: class ChallengeTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\ChallengeTest.java:15: error: cannot find symbol
+    [javac] 		assertEquals("Challenge 1 description", challenge.getDescription());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(String,String)
+    [javac]   location: class ChallengeTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\ChallengeTest.java:16: error: cannot find symbol
+    [javac] 		assertEquals(7,challenge.getDuration());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(int,int)
+    [javac]   location: class ChallengeTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\ChallengeTest.java:17: error: cannot find symbol
+    [javac] 		assertEquals(2, challenge.getLevel());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(int,int)
+    [javac]   location: class ChallengeTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\ChallengeTest.java:18: error: cannot find symbol
+    [javac] 		assertEquals(3,challenge.getMaxAttempt());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(int,int)
+    [javac]   location: class ChallengeTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\ChallengeTest.java:33: error: cannot find symbol
+    [javac] 		assertEquals("2",challenge.getChallengeId());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(String,String)
+    [javac]   location: class ChallengeTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\ChallengeTest.java:34: error: cannot find symbol
+    [javac] 		assertEquals("Challenge 2",challenge.getName());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(String,String)
+    [javac]   location: class ChallengeTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\ChallengeTest.java:35: error: cannot find symbol
+    [javac] 		assertEquals("Challenge 2 description", challenge.getDescription());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(String,String)
+    [javac]   location: class ChallengeTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\ChallengeTest.java:36: error: cannot find symbol
+    [javac] 		assertEquals(3,challenge.getDuration());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(int,int)
+    [javac]   location: class ChallengeTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\ChallengeTest.java:37: error: cannot find symbol
+    [javac] 		assertEquals(1, challenge.getLevel());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(int,int)
+    [javac]   location: class ChallengeTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\ChallengeTest.java:38: error: cannot find symbol
+    [javac] 		assertEquals(4,challenge.getMaxAttempt());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(int,int)
+    [javac]   location: class ChallengeTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\RoundTest.java:28: error: cannot find symbol
+    [javac] 		assertEquals("Round 1", round.getRoundId());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(String,String)
+    [javac]   location: class RoundTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\RoundTest.java:29: error: cannot find symbol
+    [javac] 		assertEquals(dateTimeStart,round.getDateTimeStart());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(DTDateTime,DTDateTime)
+    [javac]   location: class RoundTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\RoundTest.java:30: error: cannot find symbol
+    [javac] 		assertEquals(dateTimeFinish, round.getDateTimeFinish());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(DTDateTime,DTDateTime)
+    [javac]   location: class RoundTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\RoundTest.java:31: error: cannot find symbol
+    [javac] 		assertEquals(challenges,round.getChallenges());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(Map<String,Challenge>,Map<String,Challenge>)
+    [javac]   location: class RoundTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\RoundTest.java:93: error: cannot find symbol
+    [javac] 		assertEquals("Round 2", round.getRoundId());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(String,String)
+    [javac]   location: class RoundTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\RoundTest.java:94: error: cannot find symbol
+    [javac] 		assertEquals(dateTimeStart,round.getDateTimeStart());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(DTDateTime,DTDateTime)
+    [javac]   location: class RoundTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\RoundTest.java:95: error: cannot find symbol
+    [javac] 		assertEquals(dateTimeFinish, round.getDateTimeFinish());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(DTDateTime,DTDateTime)
+    [javac]   location: class RoundTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\RoundTest.java:96: error: cannot find symbol
+    [javac] 		assertEquals(challenges,round.getChallenges());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(Map<String,Challenge>,Map<String,Challenge>)
+    [javac]   location: class RoundTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\StateTest.java:32: error: cannot find symbol
+    [javac] 		assertEquals(round, state.getRound());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(Round,Round)
+    [javac]   location: class StateTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\StateTest.java:33: error: cannot find symbol
+    [javac] 		assertEquals(challenge, state.getChallenge());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(Challenge,Challenge)
+    [javac]   location: class StateTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\StateTest.java:34: error: cannot find symbol
+    [javac] 		assertEquals(user, state.getUser());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(User,User)
+    [javac]   location: class StateTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\StateTest.java:35: error: cannot find symbol
+    [javac] 		assertEquals(dateTime,state.getDateTimeStart());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(DTDateTime,DTDateTime)
+    [javac]   location: class StateTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\StateTest.java:36: error: cannot find symbol
+    [javac] 		assertEquals(0,state.getCurrentAttempt());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(int,int)
+    [javac]   location: class StateTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\StateTest.java:37: error: cannot find symbol
+    [javac] 		assertEquals(0,state.getScore(),0);
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(int,double,int)
+    [javac]   location: class StateTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\StateTest.java:38: error: cannot find symbol
+    [javac] 		assertFalse(state.isFinished());
+    [javac] 		^
+    [javac]   symbol:   method assertFalse(boolean)
+    [javac]   location: class StateTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\StateTest.java:79: error: cannot find symbol
+    [javac] 		assertEquals(round, state.getRound());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(Round,Round)
+    [javac]   location: class StateTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\StateTest.java:80: error: cannot find symbol
+    [javac] 		assertEquals(challenge, state.getChallenge());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(Challenge,Challenge)
+    [javac]   location: class StateTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\StateTest.java:81: error: cannot find symbol
+    [javac] 		assertEquals(user, state.getUser());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(User,User)
+    [javac]   location: class StateTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\StateTest.java:82: error: cannot find symbol
+    [javac] 		assertEquals(dateTime,state.getDateTimeStart());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(DTDateTime,DTDateTime)
+    [javac]   location: class StateTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\StateTest.java:83: error: cannot find symbol
+    [javac] 		assertEquals(3,state.getCurrentAttempt());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(int,int)
+    [javac]   location: class StateTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\StateTest.java:84: error: cannot find symbol
+    [javac] 		assertEquals(320,state.getScore(),0);
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(int,double,int)
+    [javac]   location: class StateTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\StateTest.java:85: error: cannot find symbol
+    [javac] 		assertTrue(state.isFinished());
+    [javac] 		^
+    [javac]   symbol:   method assertTrue(boolean)
+    [javac]   location: class StateTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\UserTest.java:16: error: cannot find symbol
+    [javac] 		assertEquals("fbId", user.getFbId());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(String,String)
+    [javac]   location: class UserTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\UserTest.java:17: error: cannot find symbol
+    [javac] 		assertEquals("firstName", user.getFirstName());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(String,String)
+    [javac]   location: class UserTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\UserTest.java:18: error: cannot find symbol
+    [javac] 		assertEquals("lastName", user.getLastName());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(String,String)
+    [javac]   location: class UserTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\UserTest.java:19: error: cannot find symbol
+    [javac] 		assertEquals("country", user.getCountry());
+    [javac] 		^
+    [javac]   symbol:   method assertEquals(String,String)
+    [javac]   location: class UserTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\UserTest.java:35: error: cannot find symbol
+    [javac] 			assertEquals("987654",user.getFbId());
+    [javac] 			^
+    [javac]   symbol:   method assertEquals(String,String)
+    [javac]   location: class UserTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\UserTest.java:36: error: cannot find symbol
+    [javac] 			assertEquals("Johnnie",user.getFirstName());
+    [javac] 			^
+    [javac]   symbol:   method assertEquals(String,String)
+    [javac]   location: class UserTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\UserTest.java:37: error: cannot find symbol
+    [javac] 			assertEquals("Walker",user.getLastName());
+    [javac] 			^
+    [javac]   symbol:   method assertEquals(String,String)
+    [javac]   location: class UserTest
+    [javac] C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src\com\g6pis\beatit\entities\UserTest.java:38: error: cannot find symbol
+    [javac] 			assertEquals("Uruguay",user.getCountry());
+    [javac] 			^
+    [javac]   symbol:   method assertEquals(String,String)
+    [javac]   location: class UserTest
+    [javac] 96 errors
+    [javac] 12 warnings

@@ -123,7 +123,7 @@ public class Login extends Activity {
 								editor.putString("firstName", user.getFirstName());
 								editor.putString("fbId", user.getId());
 								editor.putString("lastName", user.getLastName());
-								editor.putString("country", user.getLocation().getName());
+								editor.putString("country", ""/*user.getLocation().getName()*/);
 								editor.commit();
 								Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
 								startActivity(mainActivity);
