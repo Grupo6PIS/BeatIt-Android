@@ -1,6 +1,7 @@
 package com.g6pis.beatit;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,17 +51,14 @@ public class Login extends Activity {
 		
 		  uiHelper = new UiLifecycleHelper(this, callback); 
 		  uiHelper.onCreate(savedInstanceState);
-		 
+		
+		Session session = Session.getActiveSession();
 
 		this.getActionBar().hide();
-		List<String> permissions = new ArrayList<String>();
-		permissions.add("email");
-		permissions.add("public_profile");
-		permissions.add("user_location");
-		permissions.add("user_hometown");
+
 //		permission.add("user_friends");
-		((LoginButton) findViewById(R.id.login_button))
-				.setReadPermissions(permissions);
+		LoginButton loginButton = ((LoginButton) findViewById(R.id.login_button));
+				loginButton.setReadPermissions(Arrays.asList("email", "public_profile", "user_location", "user_hometown"));
 		
 	}
 
@@ -123,7 +121,8 @@ public class Login extends Activity {
 								editor.putString("firstName", user.getFirstName());
 								editor.putString("fbId", user.getId());
 								editor.putString("lastName", user.getLastName());
-								editor.putString("country", user.getLocation().getName());
+								String country = user.getLocation().getName();
+								editor.putString("country", country);
 								editor.commit();
 								Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
 								startActivity(mainActivity);
