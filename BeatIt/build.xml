@@ -17,7 +17,8 @@
          <fileset dir="${basedir}/lib"/>
     </path>
     <mkdir dir="${test.destdir}"/>
-    <javac destdir="${test.destdir}" fork="false"/>
+    
+    <javac destdir="${test.destdir}" srcdir="src" fork="false"/>
     <src path="${test.srcdir}"/>
     <classpath refid="test.classpath"/>
     <classpath refid="${main.destdir}"/>
