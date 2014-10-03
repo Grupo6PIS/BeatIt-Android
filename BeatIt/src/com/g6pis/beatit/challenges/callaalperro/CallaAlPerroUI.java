@@ -1,15 +1,18 @@
 package com.g6pis.beatit.challenges.callaalperro;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.g6pis.beatit.ChallengeFinished;
 import com.g6pis.beatit.R;
+import com.g6pis.beatit.datatypes.DTDateTime;
 
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -27,6 +30,9 @@ public class CallaAlPerroUI extends Activity implements SensorEventListener {
 	private MediaPlayer mp;
 	private Timer timerContador;
 	
+	private DTDateTime dateTimeStart;
+	private DTDateTime dateTimeFinish;
+	
   	int rangoMin = 5;
   	int rangoMax = 15;
 	private int segundosTranscurridos;
@@ -40,7 +46,95 @@ public class CallaAlPerroUI extends Activity implements SensorEventListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.calla_al_perro);
 		
+		this.setDateTimeStart(this.getDateExtras(getIntent().getExtras()));
+
 		this.editActionBar();
+	}
+	
+	/***Useful Functions***/
+	public DTDateTime getDateExtras(Bundle extras) {
+		DTDateTime date = new DTDateTime();
+
+		date.setDay(extras.getInt("day"));
+		date.setMonth(extras.getInt("month"));
+		date.setYear(extras.getInt("year"));
+		date.setHour(extras.getInt("hours"));
+		date.setMinute(extras.getInt("minutes"));
+		date.setSecond(extras.getInt("seconds"));
+
+		return date;
+	}
+
+	public Timer getTimerContador() {
+		return timerContador;
+	}
+
+	public void setTimerContador(Timer timerContador) {
+		this.timerContador = timerContador;
+	}
+
+	public DTDateTime getDateTimeStart() {
+		return dateTimeStart;
+	}
+
+	public void setDateTimeStart(DTDateTime dateTimeStart) {
+		this.dateTimeStart = dateTimeStart;
+	}
+
+	public DTDateTime getDateTimeFinish() {
+		return dateTimeFinish;
+	}
+
+	public void setDateTimeFinish(DTDateTime dateTimeFinish) {
+		this.dateTimeFinish = dateTimeFinish;
+	}
+
+	public int getRangoMin() {
+		return rangoMin;
+	}
+
+	public void setRangoMin(int rangoMin) {
+		this.rangoMin = rangoMin;
+	}
+
+	public int getRangoMax() {
+		return rangoMax;
+	}
+
+	public void setRangoMax(int rangoMax) {
+		this.rangoMax = rangoMax;
+	}
+
+	public int getSegundosTranscurridos() {
+		return segundosTranscurridos;
+	}
+
+	public void setSegundosTranscurridos(int segundosTranscurridos) {
+		this.segundosTranscurridos = segundosTranscurridos;
+	}
+
+	public int getDemoraMaxima() {
+		return demoraMaxima;
+	}
+
+	public void setDemoraMaxima(int demoraMaxima) {
+		this.demoraMaxima = demoraMaxima;
+	}
+
+	public boolean isGano() {
+		return gano;
+	}
+
+	public void setGano(boolean gano) {
+		this.gano = gano;
+	}
+
+	public double getScore() {
+		return score;
+	}
+
+	public void setScore(double score) {
+		this.score = score;
 	}
 
 	@Override
@@ -122,6 +216,7 @@ public class CallaAlPerroUI extends Activity implements SensorEventListener {
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setTitle(this.getString(R.string.app_name));
+		actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.callaalperro)));
 	}
 		
 	 protected void onPause() {
@@ -148,13 +243,21 @@ public class CallaAlPerroUI extends Activity implements SensorEventListener {
 			  score = segundosTranscurridos;
 			  
 			  //Abro el desafio finalizado
-			  Intent callaAlPerroFinished = new Intent(this, ChallengeFinished.class);
-			  callaAlPerroFinished.putExtra("resultado",
-						this.gano);
-			  callaAlPerroFinished.putExtra("score",
-						Double.toString(this.score));
-			  startActivity(callaAlPerroFinished);
-			  this.finish();
+			  Intent callaAlPerroFinished = new Intent(this, CallaAlPerroFinished.class);
+			  callaAlPerroFinished.putExtra("resultado", this.gano);
+			  callaAlPerroFinished.putExtra("score", Double.toString(this.score));			  
+			  
+			Calendar calendar = new GregorianCalendar();
+			
+			callaAlPerroFinished.putExtra("seconds", calendar.get(Calendar.SECOND));
+			callaAlPerroFinished.putExtra("minutes", calendar.get(Calendar.MINUTE));
+			callaAlPerroFinished.putExtra("hours", calendar.get(Calendar.HOUR_OF_DAY));
+			callaAlPerroFinished.putExtra("day", calendar.get(Calendar.DAY_OF_MONTH));
+			callaAlPerroFinished.putExtra("month", calendar.get(Calendar.MONTH));
+			callaAlPerroFinished.putExtra("year", calendar.get(Calendar.YEAR));
+			callaAlPerroFinished.putExtra("dateTimeStart", dateTimeStart.toString());
+			startActivity(callaAlPerroFinished);
+			this.finish();
 		  }
 	  } else {
 		  //Esta lejos
