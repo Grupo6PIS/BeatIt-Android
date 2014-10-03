@@ -14,6 +14,26 @@
     <color name="gris_challenge_values">#6d6d6d</color>
     <color name="gris_tab_text_notselected">#ABABAB</color>
     
+	<color name="cobalt">#0050EF</color>
+    <color name="color_texto">#0050EF</color>
+    <color name="red">#E51400</color>
+    <color name="bouncing">#E51400</color>
+    <color name="emerald">#008A00</color>
+    <color name="usain_bolt">#008A00</color>
+    <color name="teal">#00ABA9</color>
+    <color name="despertame">#00ABA9</color>
+    <color name="orange">#FA6800</color>
+    <color name="flappy">#FA6800</color>
+    <color name="magenta">#D80073</color>
+    <color name="atrapame">#D80073</color>
+    <color name="yellow">#E3C800</color>
+    <color name="sigueme">#E3C800</color>
+    <color name="violet">#AA00FF</color>
+    <color name="volador">#AA00FF</color>
+    <color name="steel">#647687</color>
+    <color name="callar_perro">#647687</color>
+    <color name="fb_blue">#3B5998</color>
+    <color name="invita_amigos">#3B5998</color>
     
     <!-- Strings generales de la aplicación -->
     

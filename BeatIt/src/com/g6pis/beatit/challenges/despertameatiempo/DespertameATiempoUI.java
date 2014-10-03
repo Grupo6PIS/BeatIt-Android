@@ -15,6 +15,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -38,21 +39,33 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	private long lastUpdate = 0;
 	private float last_x, last_y, last_z;
 	private static final int SHAKE_THRESHOLD = 300;
+	private String challengeId;
+	private Integer level = 2;
+	private Integer cant_repeticiones = 4;
+	private static final long TIME_LEVEL1_1 = 3;
+	private static final long TIME_LEVEL1_2 = 4;
+	private static final long TIME_LEVEL1_3 = 5;
+	private static final long TIME_LEVEL2_1 = 3;
+	private static final long TIME_LEVEL2_2 = 5;
+	private static final long TIME_LEVEL2_3 = 7;
+	private static final long TIME_LEVEL2_4 = 9;
+	private long segs_ocultos = 0; // Este valor se puede modificar para cambiar la dificultad
 	
 	private long tolerancia = 500; // En milisegundos
-	private long segs_ocultos = 3; // Este valor se puede modificar para cambiar la dificultad
+	//private long segs_ocultos = 3; // Este valor se puede modificar para cambiar la dificultad
 	private long tope = 10000; // Es el límite para detener el contador automáticamente porque ya perdió por mucho	
 	private long time = 0; // Cuenta regresiva real
 	private long g_millis = 0; // Cuenta regresiva ficticia porque incluye el valor del tope
 	private long valor_inicial_contador = 10000; // En milisegundos
 	
 	private TextView startButton;
-	private TextView textViewResult;
 	private TextView textViewTimeLeftValue;
+	private TextView textViewResult;
 	
 	private CountDownTimer timer;
 	private double score = 0;
-	private double tiempo = 0;
+	private long exitos = 0;
+	private double tiempo_acum = 0;
 	private boolean gano = false;
 	private long attemps = 0;
 	private long max_attemps = 3;
@@ -63,6 +76,17 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 		setContentView(R.layout.despertame_a_tiempo);
 		
 		if (attemps < max_attemps) {
+			switch (level) {
+				case 1: {
+					segs_ocultos = TIME_LEVEL1_3;
+				}
+					break;
+				case 2: {
+					segs_ocultos = TIME_LEVEL2_4;
+				}
+					break;	
+			}
+			
 			startButton = (Button) findViewById(R.id.start_button);
 			startButton.setOnClickListener(this);
 			
@@ -82,12 +106,13 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 			textViewTimeLeftValue.setText(t_valor_inicial_contador);
 			
 			textViewResult = (TextView) findViewById(R.id.textView_Result);
-			textViewResult.setText("Resultado");
+			
 			editActionBar();
 			
 			timer = this.createTimer();
 		}
 		else {
+			// INCOMPLETO !!!!!!!!
 			completeChallenge();
 		}
 		
@@ -123,13 +148,14 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 					hms = String.format("??");
 				}
 				
-				System.out.println(hms);
+				//System.out.println(hms);
 				textViewTimeLeftValue.setText(hms);
 			}
 
 			public void onFinish() {
 				frenarTimer();
 				textViewTimeLeftValue.setText("Demoraste mucho !");
+				textViewResult.setText("Demoraste mucho !");
 			}
 		};
 		
@@ -143,6 +169,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 				case R.id.start_button: {
 					startButton.setVisibility(View.INVISIBLE);
 					textViewTimeLeftValue.setVisibility(View.VISIBLE);
+					textViewResult.setVisibility(View.INVISIBLE);
 					this.timer.start();
 					this.timerRunning = true;
 				}
@@ -204,6 +231,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setTitle(this.getString(R.string.app_name));
+		actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.despertame)));
 	}
 	
 
@@ -213,18 +241,19 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	}
 	
 	private void frenarTimer() {
-		textViewResult.setVisibility(View.VISIBLE);
+		timerRunning = false;
 		String texto;
 		time = g_millis - tope;
 		long result_segs;
 		long result_milis;
-		System.out.println("--- Time: " + time);
+		//System.out.println("--- Time: " + time);
 		result_segs = Math.abs(TimeUnit.MILLISECONDS.toSeconds(time));
 		result_milis = Math.abs(TimeUnit.MILLISECONDS.toMillis(time) - TimeUnit.MILLISECONDS.toSeconds(time) * 1000);
-		setTiempo(result_segs, result_milis);
-		System.out.println("--- Segs: " + result_segs);
-		System.out.println("--- Milis: " + result_milis);
+		//setTiempo(result_segs, result_milis);
+		//System.out.println("--- Segs: " + result_segs);
+		//System.out.println("--- Milis: " + result_milis);
 		
+		/*
 		if (TimeUnit.MILLISECONDS.toMillis(time) >= 0) {
 			texto = String.format("+%d,%d", 
 					result_segs,
@@ -236,17 +265,70 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 					result_milis);
 		}
 		textViewTimeLeftValue.setText(texto);
+		*/
 		
-		if (TimeUnit.MILLISECONDS.toMillis(g_millis - tope) < tolerancia && TimeUnit.MILLISECONDS.toMillis(g_millis - tope) > -tolerancia) {
-			textViewResult.setText("Ganaste ;)");
+		/*if (TimeUnit.MILLISECONDS.toMillis(g_millis - tope) < tolerancia && TimeUnit.MILLISECONDS.toMillis(g_millis - tope) > -tolerancia) {
 			this.setGano(true);
 		}
 		else {
-			textViewResult.setText("Perdiste :(");
 			this.setGano(false);
 		}
+		*/
+		System.out.println("----- Time:" + time);
+		System.out.println("----- Tolerancia:" + tolerancia);
+		if (Math.abs(time) < tolerancia) {
+			setCantExitos(getCantExitos() + 1);
+		}			
+		System.out.println("----- Exitos:" + getCantExitos());
+		
+		textViewResult.setVisibility(View.VISIBLE);
+		textViewResult.setText(Double.toString(time));
+		//setTiempo(result_segs, result_milis);
 		timer.cancel();
-		completeChallenge();
+		
+		cant_repeticiones--;
+		if (cant_repeticiones > 0) {
+			switch (level) {
+				case 1: {
+					switch (cant_repeticiones) {
+						case 1: {
+							segs_ocultos = TIME_LEVEL1_1;
+						}
+							break;
+						case 2: {
+							segs_ocultos = TIME_LEVEL1_2;
+						}
+							break;
+					}
+				}
+					break;
+				case 2: {
+					switch (cant_repeticiones) {
+						case 1: {
+							segs_ocultos = TIME_LEVEL2_1;
+						}
+							break;
+						case 2: {
+							segs_ocultos = TIME_LEVEL2_2;
+						}
+							break;
+						case 3: {
+							segs_ocultos = TIME_LEVEL2_3;
+						}
+							break;
+					}
+				}
+					break;	
+			}
+			this.createTimer();
+			
+			startButton.setVisibility(View.VISIBLE);
+			textViewTimeLeftValue.setVisibility(View.INVISIBLE);
+			
+		}
+		else {
+			completeChallenge();
+		}
 	}
 	
 
@@ -283,24 +365,23 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 		senSensorManager.unregisterListener(this);
 		timer = null;
 		
-		attemps++;
+		setAttemps(getAttemps()+1);
 		
 		// Calculating the score
-		long veces_exito = 4;
-		this.setScore((veces_exito)*20);
+		this.setScore(getCantExitos()*20);
 
 		// Activity Challenge Finished
 		Intent despertameATiempoFinished = new Intent(this, DespertameATiempoFinished.class);
 		despertameATiempoFinished.putExtra("resultado",
-				this.getGano());
-		despertameATiempoFinished.putExtra("avgSpeed",
-				Double.toString(this.getTiempo()));
+			this.getGano());
+		despertameATiempoFinished.putExtra("cantExitos",
+			Long.toString(this.getCantExitos()));
 		despertameATiempoFinished.putExtra("score",
-				Double.toString(Math.round(this.getScore())));
+			Double.toString(Math.round(this.getScore())));
 		despertameATiempoFinished.putExtra("dateTimeStart", getDateTimeStart().toString());
 		
 		despertameATiempoFinished.putExtra("attemps",
-				attemps);
+			Long.toString(Math.round(this.getAttemps())));
 		
 		Calendar calendar = new GregorianCalendar();
 
@@ -317,13 +398,12 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 		this.finish();
 	}
 	
-	public double getTiempo() {
-		return tiempo;
+	public long getCantExitos() {
+		return exitos;
 	}
 
-	public void setTiempo(double segs, double milis) {
-		this.tiempo = segs + milis/1000;
-		System.out.println("--- Tiempo: " + tiempo);
+	public void setCantExitos(long exitos) {
+		this.exitos = exitos;
 	}
 	
 	public double getScore() {
@@ -332,6 +412,14 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 
 	public void setScore(double score) {
 		this.score = score;
+	}
+	
+	public long getAttemps() {
+		return attemps;
+	}
+
+	public void setAttemps(long attemps) {
+		this.attemps = attemps;
 	}
 	
 	public boolean getGano() {

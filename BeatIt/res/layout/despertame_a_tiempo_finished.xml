@@ -71,7 +71,7 @@
         <TableRow
             android:id="@+id/tableRow1"
             android:layout_width="wrap_content"
-            android:background="@color/rojo"
+            android:background="@color/despertame"
             android:gravity="center"
             android:minHeight="30dp" >
 
@@ -121,7 +121,7 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:background="@color/rojo"
+            android:background="@color/despertame"
             android:gravity="center"
             android:minHeight="50dp" >
 
@@ -142,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Tiempo"
+                android:text="CantExitos"
                 android:textColor="@color/blanco"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -191,18 +191,16 @@
         android:layout_toRightOf="@id/imageView_Logo"
         android:text="@string/despertame_a_tiempo"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/rojo"
+        android:textColor="@color/despertame"
         android:textSize="34sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/attemps"
+        android:id="@+id/textView_attemps"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView_Duration_Value"
-        android:layout_alignRight="@+id/table_performance"
-        android:layout_marginRight="15dp"
-        android:text="Small Text"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:layout_above="@+id/table_score"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14dp" />
 
 </RelativeLayout>

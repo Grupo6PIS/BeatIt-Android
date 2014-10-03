@@ -64,7 +64,7 @@
 <!--         android:layout_below="@+id/textView_To_Beat_Value" -->
 <!--         android:layout_centerHorizontal="true" -->
 <!--         android:layout_marginTop="18dp" -->
-<!--         android:background="@color/azul" -->
+<!--         android:background="@color/invita_amigos" -->
 <!--         android:gravity="center" -->
 <!--         android:text="@string/friends" -->
 <!--         android:textColor="@color/blanco" -->
@@ -115,7 +115,7 @@
         android:layout_toRightOf="@+id/imageView_Logo"
         android:text="@string/can_you_play"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/azul"
+        android:textColor="@color/invita_amigos"
         android:textSize="25sp"
         android:textStyle="bold" />
 
@@ -137,7 +137,7 @@
         android:layout_alignLeft="@+id/done_button"
         android:layout_below="@+id/textView_To_Beat_Value"
         android:layout_marginTop="18dp"
-        android:background="@color/azul"
+        android:background="@color/invita_amigos"
         android:gravity="center"
         android:text="@string/select_contact"
         android:textColor="@color/blanco"
@@ -150,7 +150,7 @@
         android:layout_below="@+id/send_SMS_button"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
-        android:background="@color/azul"
+        android:background="@color/invita_amigos"
         android:text="@string/done"
         android:textColor="@color/blanco"/>
 
@@ -161,7 +161,7 @@
         android:layout_alignBaseline="@+id/send_SMS_button"
         android:layout_alignBottom="@+id/send_SMS_button"
         android:layout_alignRight="@+id/done_button"
-        android:background="@color/azul"
+        android:background="@color/invita_amigos"
         android:gravity="center"
         android:text="@string/facebook_post"
         android:textColor="@color/blanco"
@@ -180,6 +180,6 @@
         android:textSize="12sp"
         android:textColor="@color/blanco"
         android:gravity="center"
-        android:background="@color/azul" />
+        android:background="@color/invita_amigos" />
 
 </RelativeLayout>

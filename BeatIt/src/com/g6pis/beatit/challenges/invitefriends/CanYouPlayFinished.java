@@ -7,6 +7,7 @@ import com.g6pis.beatit.datatypes.DTDateTime;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +28,7 @@ public class CanYouPlayFinished extends Activity {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setTitle(this.getString(R.string.app_name));
+		actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.invita_amigos)));
        /* findViewById(R.id.homeButton).setOnClickListener(this);
         findViewById(R.id.homeButton).setVisibility(View.VISIBLE);*/
 		

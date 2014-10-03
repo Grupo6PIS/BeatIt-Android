@@ -187,7 +187,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setTitle(this.getString(R.string.app_name));
-		actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.azul)));
+		actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.invita_amigos)));
 
 	}
 
@@ -247,7 +247,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 
 	public void completeChallenge() {
 		Intent finished = new Intent(this, CanYouPlayFinished.class);
-		// TODO calcular el puntaje mediante la lógica
+		// TODO calcular el puntaje mediante la lï¿½gica
 		startActivity(finished);
 		this.finish();
 	}

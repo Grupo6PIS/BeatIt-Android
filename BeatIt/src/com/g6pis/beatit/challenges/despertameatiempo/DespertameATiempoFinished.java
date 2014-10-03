@@ -3,6 +3,7 @@ package com.g6pis.beatit.challenges.despertameatiempo;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -26,6 +27,7 @@ public class DespertameATiempoFinished extends Activity  {
         actionBar.setDisplayHomeAsUpEnabled(true);
         actionBar.setHomeButtonEnabled(true);
         actionBar.setTitle(this.getString(R.string.app_name));
+		actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.despertame)));
        /* findViewById(R.id.homeButton).setOnClickListener(this);
         findViewById(R.id.homeButton).setVisibility(View.VISIBLE);*/
 		
@@ -62,16 +64,16 @@ public class DespertameATiempoFinished extends Activity  {
 		
 
 		((TextView) findViewById(R.id.tiempo2))
-				.setText(getIntent().getExtras().getString("avgSpeed") + "s");
+			.setText(getIntent().getExtras().getString("cantExitos") + " exitos");
 		
-		((TextView) findViewById(R.id.attemps))
-		.setText(getIntent().getExtras().getString("attemps") + "/3");
+		((TextView) findViewById(R.id.textView_attemps))
+			.setText(getIntent().getExtras().getLong("attemps") + "/3");
 
 		((TextView) findViewById(R.id.textView_Score_Value))
-				.setText(getIntent().getExtras().getString("score") + getResources().getString(R.string.points));
+			.setText(getIntent().getExtras().getString("score") + getResources().getString(R.string.points));
 		
 		((TextView) findViewById(R.id.textView_Start_Time_Value))
-		.setText(getIntent().getExtras().getString("dateTimeStart"));
+			.setText(getIntent().getExtras().getString("dateTimeStart"));
 		
 		DTDateTime finishDate = new DTDateTime();
 		finishDate.setDay(getIntent().getExtras().getInt("day"));
@@ -83,7 +85,6 @@ public class DespertameATiempoFinished extends Activity  {
 		
 		((TextView)findViewById(R.id.textView_Duration_Value)).setText(finishDate.toString());
 
-        
 	}
 
 	@Override
