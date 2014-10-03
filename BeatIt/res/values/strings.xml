@@ -14,6 +14,7 @@
     <color name="gris_challenge_values">#6d6d6d</color>
     <color name="gris_tab_text_notselected">#ABABAB</color>
     <color name="azul">#3B5998</color>
+     <color name="callaalperro">#6A659C</color>
     
     <color name="cobalt">#0050EF</color>
     <color name="color_texto">#0050EF</color>
@@ -117,10 +118,13 @@
     <string name="despertame_a_tiempo">Despertame A Tiempo</string>
     <string name="description_despertame_a_tiempo">In this challenge you have to shake your phone when the countdown reaches 0 seconds.</string>
     <string name="logo_despertame_a_tiempo">Logo Despertame A Tiempo</string>
+    
+    <!-- Calla Al Perro Strings -->
+    <string name="calla_al_perro">Calla Al Perro</string>
+    <string name="description_calla_al_perro">In this challenge you have to shut the barking dog up by putting your hand close to the phone as soon as possible!</string>
+    <string name="logo_calla_al_perro">Logo Calla al Perro</string>
 	
 	
     <!-- Facebook app ID -->
     <string name="facebook_app_id">829846350380023</string>
-
-
 </resources>

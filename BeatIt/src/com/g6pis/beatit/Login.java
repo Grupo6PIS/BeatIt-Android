@@ -122,9 +122,10 @@ public class Login extends Activity {
 								editor.putString("firstName", user.getFirstName());
 								editor.putString("fbId", user.getId());
 								editor.putString("lastName", user.getLastName());
-								String country = user.getLocation().getName();
+								String country = "";//user.getLocation().getName();
 								editor.putString("country", country);
 								editor.putString("accessToken", session.getAccessToken());
+								editor.putString("country", ""/*user.getLocation().getName()*/);
 								editor.commit();
 								Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
 								startActivity(mainActivity);

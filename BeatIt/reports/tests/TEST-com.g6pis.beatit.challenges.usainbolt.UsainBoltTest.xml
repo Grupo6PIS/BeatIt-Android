@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="1" failures="0" hostname="Felipe-Laptop" name="com.g6pis.beatit.challenges.usainbolt.UsainBoltTest" skipped="0" tests="1" time="0.0" timestamp="2014-09-29T06:27:53">
+<testsuite errors="1" failures="0" hostname="Felipe-Laptop" name="com.g6pis.beatit.challenges.usainbolt.UsainBoltTest" skipped="0" tests="1" time="0.0" timestamp="2014-09-29T22:51:37">
   <properties>
     <property name="file.encoding.pkg" value="sun.io" />
     <property name="build.is.packaging.debug" value="true" />
@@ -24,12 +24,11 @@
     <property name="env.ProgramFiles(x86)" value="C:\Program Files (x86)" />
     <property name="java.version" value="1.8.0_20" />
     <property name="sun.stdout.encoding" value="cp437" />
-    <property name="env.ANDROID_HOME" value="C:\Users\Felipe\AppData\Local\Android\android-sdk" />
     <property name="dex.file.name" value="classes.dex" />
     <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/" />
     <property name="env.USERPROFILE" value="C:\Users\Felipe" />
     <property name="project.minSdkVersion" value="14" />
-    <property name="ant.project.invoked-targets" value="debug,jojo" />
+    <property name="ant.project.invoked-targets" value="debug,corrertests" />
     <property name="env.SystemRoot" value="C:\Windows" />
     <property name="out.manifest.abs.file" value="C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\bin\AndroidManifest.xml" />
     <property name="manifest.file" value="AndroidManifest.xml" />
@@ -59,7 +58,7 @@
     <property name="ant.project.default-target" value="help" />
     <property name="adb" value="C:\Users\Felipe\AppData\Local\Android\android-sdk\platform-tools\adb.exe" />
     <property name="aapt" value="C:\Users\Felipe\AppData\Local\Android\android-sdk\build-tools\20.0.0\aapt.exe" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner com.g6pis.beatit.challenges.usainbolt.UsainBoltTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=true formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.PlainJUnitResultFormatter,C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\reports\tests\TEST-com.g6pis.beatit.challenges.usainbolt.UsainBoltTest.txt formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\reports\tests\TEST-com.g6pis.beatit.challenges.usainbolt.UsainBoltTest.xml crashfile=C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\junitvmwatcher5347699828975298421.properties propsfile=C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\junit8498725687160687834.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner com.g6pis.beatit.challenges.usainbolt.UsainBoltTest skipNonTests=false filtertrace=true haltOnError=false haltOnFailure=true formatter=org.apache.tools.ant.taskdefs.optional.junit.SummaryJUnitResultFormatter showoutput=false outputtoformatters=true logfailedtests=true threadid=0 logtestlistenerevents=false formatter=org.apache.tools.ant.taskdefs.optional.junit.PlainJUnitResultFormatter,C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\reports\tests\TEST-com.g6pis.beatit.challenges.usainbolt.UsainBoltTest.txt formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\reports\tests\TEST-com.g6pis.beatit.challenges.usainbolt.UsainBoltTest.xml crashfile=C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\junitvmwatcher1985389274675967769.properties propsfile=C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\junit723167664792781676.properties" />
     <property name="env.NUMBER_OF_PROCESSORS" value="4" />
     <property name="env.APPDATA" value="C:\Users\Felipe\AppData\Roaming" />
     <property name="ant.file" value="C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\build.xml" />
@@ -105,7 +104,7 @@
     <property name="java.specification.vendor" value="Oracle Corporation" />
     <property name="source.absolute.dir" value="C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\src" />
     <property name="project.libraries.target" value="debug" />
-    <property name="android.library.reference.1" value="../../facebook-android-sdk-3.18.1/facebook" />
+    <property name="android.library.reference.1" value="../facebook-android-sdk-3.18.1/facebook" />
     <property name="env.TMP" value="C:\Users\Felipe\AppData\Local\Temp" />
     <property name="java.vm.name" value="Java HotSpot(TM) Client VM" />
     <property name="env.ProgramData" value="C:\ProgramData" />
@@ -113,13 +112,13 @@
     <property name="gen.absolute.dir" value="C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\gen" />
     <property name="build.packaging.nocrunch" value="true" />
     <property name="out.dex.input.absolute.dir" value="C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt\bin\classes" />
-    <property name="java.library.path" value="C:\Progra~2\Java\jdk1.8.0_20\jre\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Haskell\bin;C:\Program Files\Haskell Platform\2014.2.0.0\lib\extralibs\bin;C:\Program Files\Haskell Platform\2014.2.0.0\bin;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Haskell Platform\2014.2.0.0\mingw\bin; C:\Users\Felipe\AppData\Local\Android\android-sdk\tools; C:\Progra~2\Java\jdk1.8.0_20\jre\bin; C:\java\apache-ant-1.9.4\bin; C:\Users\Felipe\Desktop\apache-maven-3.2.3\bin; C:\Users\Felipe\AppData\Roaming\cabal\bin; C:\Program Files (x86)\Java\jdk1.8.0_20\bin; C:\Program Files (x86)\Android\android-sdk\tools;C:\Progra~2\Java\jdk1.8.0_20\bin;C:\Users\Felipe\AppData\Local\Android\android-sdk\tools;C:\Users\Felipe\AppData\Local\Android\android-sdk\platform-tools;C:\java\apache-ant-1.9.4\bin;." />
+    <property name="java.library.path" value="C:\Progra~2\Java\jdk1.8.0_20\jre\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Program Files\Haskell\bin;C:\Program Files\Haskell Platform\2014.2.0.0\lib\extralibs\bin;C:\Program Files\Haskell Platform\2014.2.0.0\bin;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Haskell Platform\2014.2.0.0\mingw\bin;C:\Users\Felipe\AppData\Local\Android\android-sdk\tools;C:\Progra~2\Java\jdk1.8.0_20\jre\bin;C:\java\apache-ant-1.9.4\bin;C:\Users\Felipe\AppData\Local\Android\android-sdk\platform-tools; C:\Users\Felipe\Desktop\apache-maven-3.2.3\bin; C:\Users\Felipe\AppData\Roaming\cabal\bin; C:\Program Files (x86)\Java\jdk1.8.0_20\bin; C:\Program Files (x86)\Android\android-sdk\tools;." />
     <property name="lint.out.html" value="bin/lint-results.html" />
     <property name="ant.java.version" value="1.8" />
     <property name="basedir" value="C:\Users\Felipe\Documents\GitHub\BeatIt-Android\BeatIt" />
     <property name="java.class.version" value="52.0" />
     <property name="ant.home" value="C:\java\apache-ant-1.9.4\bin\.." />
-    <property name="env.Path" value="C:\Program Files\Haskell\bin;C:\Program Files\Haskell Platform\2014.2.0.0\lib\extralibs\bin;C:\Program Files\Haskell Platform\2014.2.0.0\bin;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Haskell Platform\2014.2.0.0\mingw\bin; C:\Users\Felipe\AppData\Local\Android\android-sdk\tools; C:\Progra~2\Java\jdk1.8.0_20\jre\bin; C:\java\apache-ant-1.9.4\bin; C:\Users\Felipe\Desktop\apache-maven-3.2.3\bin; C:\Users\Felipe\AppData\Roaming\cabal\bin; C:\Program Files (x86)\Java\jdk1.8.0_20\bin; C:\Program Files (x86)\Android\android-sdk\tools;C:\Progra~2\Java\jdk1.8.0_20\bin;C:\Users\Felipe\AppData\Local\Android\android-sdk\tools;C:\Users\Felipe\AppData\Local\Android\android-sdk\platform-tools;C:\java\apache-ant-1.9.4\bin" />
+    <property name="env.Path" value="C:\Program Files\Haskell\bin;C:\Program Files\Haskell Platform\2014.2.0.0\lib\extralibs\bin;C:\Program Files\Haskell Platform\2014.2.0.0\bin;C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Haskell Platform\2014.2.0.0\mingw\bin;C:\Users\Felipe\AppData\Local\Android\android-sdk\tools;C:\Progra~2\Java\jdk1.8.0_20\jre\bin;C:\java\apache-ant-1.9.4\bin;C:\Users\Felipe\AppData\Local\Android\android-sdk\platform-tools; C:\Users\Felipe\Desktop\apache-maven-3.2.3\bin; C:\Users\Felipe\AppData\Roaming\cabal\bin; C:\Program Files (x86)\Java\jdk1.8.0_20\bin; C:\Program Files (x86)\Android\android-sdk\tools" />
     <property name="build.last.is.packaging.debug" value="true" />
     <property name="aapt.resource.filter" value="" />
     <property name="dx" value="C:\Users\Felipe\AppData\Local\Android\android-sdk\build-tools\20.0.0\dx.bat" />
@@ -188,7 +187,7 @@
     <property name="file.separator" value="\" />
     <property name="build.target" value="debug" />
     <property name="renderscript.debug.opt.level" value="O0" />
-    <property name="env.ANT_CMD_LINE_ARGS" value=" debug jojo -Dsdk.dir C:\Users\Felipe\AppData\Local\Android\android-sdk" />
+    <property name="env.ANT_CMD_LINE_ARGS" value=" debug corrertests" />
     <property name="java.runtime.version" value="1.8.0_20-b26" />
     <property name="sun.boot.class.path" value="C:\Progra~2\Java\jdk1.8.0_20\jre\lib\resources.jar;C:\Progra~2\Java\jdk1.8.0_20\jre\lib\rt.jar;C:\Progra~2\Java\jdk1.8.0_20\jre\lib\sunrsasign.jar;C:\Progra~2\Java\jdk1.8.0_20\jre\lib\jsse.jar;C:\Progra~2\Java\jdk1.8.0_20\jre\lib\jce.jar;C:\Progra~2\Java\jdk1.8.0_20\jre\lib\charsets.jar;C:\Progra~2\Java\jdk1.8.0_20\jre\lib\jfr.jar;C:\Progra~2\Java\jdk1.8.0_20\jre\classes" />
     <property name="env.ComSpec" value="C:\Windows\system32\cmd.exe" />
@@ -209,6 +208,7 @@
     <property name="renderscript.opt.level" value="O0" />
     <property name="java.specification.version" value="1.8" />
     <property name="aapt.ignore.assets" value="" />
+    <property name="env.=ExitCode" value="00000000" />
     <property name="sun.arch.data.model" value="32" />
   </properties>
   <error message="com.g6pis.beatit.challenges.usainbolt.UsainBoltTest" type="java.lang.ClassNotFoundException">java.lang.ClassNotFoundException: com.g6pis.beatit.challenges.usainbolt.UsainBoltTest

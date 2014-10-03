@@ -924,3 +924,4 @@ containing a value of this type.
         public static final int com_facebook_profile_picture_view_preset_size = 0;
     };
 }
+
