@@ -40,6 +40,9 @@ public class MainActivity extends Activity {
 	private String fbId;
 	private String lastName;
 	private String country;
+	private String userId;
+	private String accessToken;
+	private String imageURL;
 	
 	private SharedPreferences sharedPrefs;
 	private Editor editor;
@@ -64,7 +67,9 @@ public class MainActivity extends Activity {
         fbId = sharedPrefs.getString("fbId", "");
         lastName = sharedPrefs.getString("lastName", "");
         country = sharedPrefs.getString("country", "");
-		
+        userId = sharedPrefs.getString("userId", "");
+        accessToken = sharedPrefs.getString("accessToken", "");
+		imageURL = "https://graph.facebook.com/"+fbId+"/picture?type=sqare&access_token="+accessToken;
         
 		Session session = Session.getActiveSession();
 		boolean isClosed = session.getState().isClosed();
@@ -72,7 +77,10 @@ public class MainActivity extends Activity {
 			startActivity(login);
 			finish();
 		} else {
-			DataManager.getInstance().login(fbId, firstName, lastName, country);
+			userId = DataManager.getInstance().login(userId,fbId, firstName, lastName, country, imageURL);
+			Editor editor = sharedPrefs.edit();
+			editor.putString("userId", userId);
+			editor.commit();
 			startActivity(home);
 			finish();
 		}
@@ -121,8 +129,10 @@ public class MainActivity extends Activity {
 			// OPENED_TOKEN_UPDATED state, the selection fragment should already
 			// be showing.
 			if (state.equals(SessionState.OPENED)) {
-				makeMeRequest(session);
-				DataManager.getInstance().login(fbId, firstName, lastName, country);
+				userId = DataManager.getInstance().login(userId,fbId, firstName, lastName, country, imageURL);
+				Editor editor = sharedPrefs.edit();
+				editor.putString("userId", userId);
+				editor.commit();
 				startActivity(home);
 			} else if (state.isClosed()) {
 				startActivity(login);

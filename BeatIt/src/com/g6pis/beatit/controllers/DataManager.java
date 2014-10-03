@@ -18,7 +18,7 @@ import com.g6pis.beatit.entities.User;
 
 public class DataManager {
 
-	
+	//TODO cada vez que se actualizan los states, se persisten
 	
 	private static DataManager instance = new DataManager();
 
@@ -69,14 +69,14 @@ public class DataManager {
 		return ranking;
 	}
 
-	public void login(String fbId, String firstName, String lastName,
-			String country) {
+	public String login(String userId, String fbId, String firstName, String lastName,
+			String country, String imageURL) {
 
 		try {
-			LoginClass login = (LoginClass) new LoginClass().execute(fbId,
-					firstName, lastName);
-			String userId = login.get();
-			user = new User(userId, fbId, firstName, lastName, country);
+			LoginClass login = (LoginClass) new LoginClass().execute(userId,fbId,
+					firstName, lastName, imageURL);
+			userId = login.get();
+			user = new User(userId, fbId, firstName, lastName, country, imageURL);
 			
 			RoundClass roundClass = (RoundClass) new RoundClass().execute();
 			String round = roundClass.get();
@@ -87,7 +87,7 @@ public class DataManager {
 		} catch (ExecutionException e) {
 		}
 		
-		
+		return userId;
 	}
 
 	public void logout() {
@@ -98,6 +98,11 @@ public class DataManager {
 		//TODO pedir ranking al servidor
 		
 		return ranking;
+	}
+	
+	public void saveScore(String challengeId, double score){
+		//TODO actualizar el campo lastScore del state correspondiente
+		//Si todos los states tienen por lo menos un intento, enviar los datos al servidor
 	}
 
 }

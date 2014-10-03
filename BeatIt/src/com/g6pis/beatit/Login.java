@@ -124,6 +124,7 @@ public class Login extends Activity {
 								editor.putString("lastName", user.getLastName());
 								String country = user.getLocation().getName();
 								editor.putString("country", country);
+								editor.putString("accessToken", session.getAccessToken());
 								editor.commit();
 								Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
 								startActivity(mainActivity);

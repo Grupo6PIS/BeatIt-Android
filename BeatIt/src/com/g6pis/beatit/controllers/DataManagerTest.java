@@ -11,12 +11,14 @@ public class DataManagerTest {
 	public void DataManagerLoginTest() {
 		DataManager dataManager = DataManager.getInstance();
 		
-		dataManager.login("123", "Johnnie", "Walker", "Scotland");
+		dataManager.login("asda","123", "Johnnie", "Walker", "Scotland", "facebook.com");
 		
+		assertEquals("asda", dataManager.getUser().getUserId());
 		assertEquals("123",dataManager.getUser().getFbId());
 		assertEquals("Johnnie",dataManager.getUser().getFirstName());
 		assertEquals("Walker",dataManager.getUser().getLastName());
 		assertEquals("Scotland",dataManager.getUser().getCountry());
+		assertEquals("facebook.com",dataManager.getUser().getImageURL());
 		
 		dataManager.logout();
 		

@@ -100,7 +100,7 @@ public class ProfileTab extends Fragment implements OnClickListener {
 	private void onSessionStateChange(final Session session,
 			SessionState state, Exception exception) {
 		if (session != null && session.isOpened()) {
-			makeMeRequest(session);
+			//makeMeRequest(session);
 		} else {
 			profilePictureView.setProfileId(null);
 		}
@@ -131,29 +131,29 @@ public class ProfileTab extends Fragment implements OnClickListener {
 		activity = null;
 	}
 
-	private void makeMeRequest(final Session session) {
-		Request.newMeRequest(session, new Request.GraphUserCallback() {
-			@Override
-			public void onCompleted(GraphUser user, Response response) {
-				if (session == Session.getActiveSession()) {
-					if (user != null) {
-						activity.datamanager.getInstance().login(user.getId(), user.getFirstName(), user.getLastName(), user.getLocation().getName());
-						username.setText(activity.datamanager.getInstance().getUser()
-								.getFirstName()
-								+ " "
-								+ activity.datamanager.getInstance().getUser().getLastName());
-
-						country.setText(activity.datamanager.getInstance().getUser()
-								.getCountry());
-
-						profilePictureView.setProfileId(activity.datamanager.getInstance()
-								.getUser().getFbId());
-					}
-				}
-				if (response.getError() != null) {
-				}
-			}
-		}).executeAsync();
-
-	}
+//	private void makeMeRequest(final Session session) {
+//		Request.newMeRequest(session, new Request.GraphUserCallback() {
+//			@Override
+//			public void onCompleted(GraphUser user, Response response) {
+//				if (session == Session.getActiveSession()) {
+//					if (user != null) {
+//						activity.datamanager.getInstance().login(user.getId(), user.getFirstName(), user.getLastName(), user.getLocation().getName());
+//						username.setText(activity.datamanager.getInstance().getUser()
+//								.getFirstName()
+//								+ " "
+//								+ activity.datamanager.getInstance().getUser().getLastName());
+//
+//						country.setText(activity.datamanager.getInstance().getUser()
+//								.getCountry());
+//
+//						profilePictureView.setProfileId(activity.datamanager.getInstance()
+//								.getUser().getFbId());
+//					}
+//				}
+//				if (response.getError() != null) {
+//				}
+//			}
+//		}).executeAsync();
+//
+//	}
 }

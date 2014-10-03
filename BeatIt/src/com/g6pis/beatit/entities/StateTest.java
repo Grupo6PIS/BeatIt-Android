@@ -24,7 +24,7 @@ public class StateTest {
 		
 		Round round = new Round("Round 1", dateTimeStart, dateTimeFinish, challenges);
 		
-		User user = new User("123", "456", "Johnnie", "Walker", "USA");
+		User user = new User("123", "456", "Johnnie", "Walker", "USA", "facebook.com");
 		
 		State state = new State(round, challenge, user);
 		DTDateTime dateTime = state.getDateTimeStart();
@@ -50,7 +50,7 @@ public class StateTest {
 		
 		Round round = new Round("Round 1", dateTimeStart, dateTimeFinish, challenges);
 		
-		User user = new User("123", "456", "Johnnie", "Walker", "USA");
+		User user = new User("123", "456", "Johnnie", "Walker", "USA", "facebook.com");
 		
 		State state = new State(round, challenge, user);
 		
@@ -61,7 +61,7 @@ public class StateTest {
 		
 		round = new Round("Round 2", dateTimeStart, dateTimeFinish, challenges);
 		
-		user = new User("789", "987", "William", "Lawson", "England");
+		user = new User("789", "987", "William", "Lawson", "England", "facebook.com");
 		
 		
 		DTDateTime dateTime = new DTDateTime(6, 3, 1992, 9, 30, 0);

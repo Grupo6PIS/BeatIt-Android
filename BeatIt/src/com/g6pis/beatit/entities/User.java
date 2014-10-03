@@ -6,15 +6,16 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String country;
-	//TODO profilePicture
+	private String imageURL;
 	
 	public User(String userId, String fbId, String firstName, String lastName,
-			String country) {
+			String country, String imageURL) {
 		this.userId = userId;
 		this.fbId = fbId;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.country = country;
+		this.imageURL = imageURL;
 	}
 
 	public String getUserId() {
@@ -55,6 +56,14 @@ public class User {
 
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+	public String getImageURL() {
+		return imageURL;
+	}
+
+	public void setImageURL(String imageURL) {
+		this.imageURL = imageURL;
 	}
 	
 	
