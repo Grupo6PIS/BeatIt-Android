@@ -13,7 +13,7 @@
     <color name="gris_challenge_description">#494949</color>
     <color name="gris_challenge_values">#6d6d6d</color>
     <color name="gris_tab_text_notselected">#ABABAB</color>
-    <color name="azul">#3B5999</color>
+    <color name="azul">#3B5998</color>
 
     <!-- General Application Strings -->
 
@@ -87,6 +87,8 @@
     <string name="sms_success">Your sms has successfully sent!</string>
     <string name="fb_posts">Facebook Posts</string>
     <string name="sms_sent">SMS sent</string>
+    <string name="android_version">Android Version</string>
+    <string name="also_available">Also available for Windows Phone</string>
     
     <!-- Despertame A Tiempo Strings -->
 

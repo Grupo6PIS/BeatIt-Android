@@ -72,10 +72,6 @@ public class DataManager {
 	public void login(String fbId, String firstName, String lastName,
 			String country) {
 
-		// http://beatit-udelar.rhcloud.com/user/addOrUpdateUser/
-		// String url =
-		// "http://beatit-udelar.rhcloud.com/user/addOrUpdateUser/";
-
 		try {
 			LoginClass login = (LoginClass) new LoginClass().execute(fbId,
 					firstName, lastName);

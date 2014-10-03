@@ -116,7 +116,7 @@
         android:text="@string/can_you_play"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/azul"
-        android:textSize="34sp"
+        android:textSize="25sp"
         android:textStyle="bold" />
 
     <ImageView

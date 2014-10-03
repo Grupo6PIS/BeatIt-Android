@@ -88,6 +88,8 @@
     <string name="sms_success">Su mensaje se ha enviado con éxito!</string>
     <string name="fb_posts">Posts en Facebook</string>
     <string name="sms_sent">SMS enviados</string>
+        <string name="android_version">Versión para Android</string>
+    <string name="also_available">También disponible para Windows Phone</string>
     
     
     <!-- Despertame A Tiempo Strings -->

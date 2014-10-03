@@ -7,6 +7,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -37,15 +38,14 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 	private String phone;
 	private int count;
 	private List<String> phones;
-	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.can_you_play);
-		
+
 		this.editActionBar();
-		
+
 		uiHelper = new UiLifecycleHelper(this, null);
 		uiHelper.onCreate(savedInstanceState);
 
@@ -62,7 +62,6 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 		phones = new ArrayList<String>();
 
 	}
-	
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -127,7 +126,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 						public void onComplete(
 								FacebookDialog.PendingCall pendingCall,
 								Bundle data) {
-							
+
 							String completionGesture = FacebookDialog
 									.getNativeDialogCompletionGesture(data);
 							if (!completionGesture.equals("cancel")) {
@@ -180,7 +179,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 		}
 
 	}
-	
+
 	public void editActionBar() {
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -188,12 +187,20 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setTitle(this.getString(R.string.app_name));
+		actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.azul)));
+
 	}
-	
+
 	public void postOnFacebook() {
 		FacebookDialog shareDialog = new FacebookDialog.ShareDialogBuilder(this)
 				.setLink(
 						"https://play.google.com/store/apps/details?id=com.g6pis.beatit&ah=mcoN2TjRF_obuPnlAcKtanl9mFk")
+				.setName(getResources().getString(R.string.sms_text))
+				.setDescription(
+						getResources().getString(R.string.android_version))
+				.setCaption(
+						getResources().getString(R.string.also_available))
+				.setPicture("https://lh3.googleusercontent.com/Z0gp_Vw-g3ZI9ewq5MRHnNITqDpEDtWN6eh_j28UHiMkY_9b-4K5OFMVd6GWO40hdS-oVAI0Nw=w1893-h822")
 				.build();
 		uiHelper.trackPendingDialogCall(shareDialog.present());
 	}
@@ -218,7 +225,8 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 							phone,
 							null,
 							getResources().getString(R.string.sms_text)
-									+ "\n\nhttps://play.google.com/store/apps/details?id=com.g6pis.beatit&ah=mcoN2TjRF_obuPnlAcKtanl9mFk",
+									 + "\n\nAndroid:\nhttps://play.google.com/store/apps/details?id=com.g6pis.beatit&ah=mcoN2TjRF_obuPnlAcKtanl9mFk"
+									 + "\n\n"+getResources().getString(R.string.also_available) ,
 							null, null);
 
 			Toast.makeText(getApplicationContext(),
@@ -227,30 +235,31 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 
 		} catch (Exception ex) {
 
-			Toast.makeText(getApplicationContext(), getResources().getString(R.string.sms_failed),
-			Toast.LENGTH_LONG).show();
+			Toast.makeText(getApplicationContext(),
+					getResources().getString(R.string.sms_failed),
+					Toast.LENGTH_LONG).show();
 
 		}
 		count++;
 		phone = "";
 
 	}
-	
-	public void completeChallenge(){
+
+	public void completeChallenge() {
 		Intent finished = new Intent(this, CanYouPlayFinished.class);
-		//TODO calcular el puntaje mediante la lógica
+		// TODO calcular el puntaje mediante la lógica
 		startActivity(finished);
 		this.finish();
 	}
-	
+
 	@Override
-	public void onBackPressed(){
+	public void onBackPressed() {
 		Intent home = new Intent(this, Home.class);
 		startActivity(home);
 		this.finish();
 		super.onBackPressed();
 	}
-	
+
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.

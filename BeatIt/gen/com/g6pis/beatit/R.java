@@ -402,6 +402,8 @@ containing a value of this type.
     }
     public static final class string {
         public static final int action_settings=0x7f07001b;
+        public static final int also_available=0x7f070059;
+        public static final int android_version=0x7f070058;
         public static final int app_description=0x7f070043;
         public static final int app_name=0x7f07001c;
         public static final int avg_speed=0x7f070033;
@@ -413,7 +415,7 @@ containing a value of this type.
         public static final int cancel=0x7f070039;
         /**  Strings del desafío Usain Bolt 
          */
-        public static final int challenge=0x7f07005c;
+        public static final int challenge=0x7f07005e;
         public static final int challenges_tab=0x7f07003c;
         public static final int com_facebook_choose_friends=0x7f07000f;
         public static final int com_facebook_dialogloginactivity_ok_button=0x7f070000;
@@ -442,13 +444,13 @@ containing a value of this type.
         public static final int com_facebook_usersettingsfragment_logged_in=0x7f070009;
         public static final int com_facebook_usersettingsfragment_not_logged_in=0x7f07000a;
         public static final int description=0x7f07001d;
-        public static final int description_despertame_a_tiempo=0x7f070059;
+        public static final int description_despertame_a_tiempo=0x7f07005b;
         public static final int description_usain_bolt_1=0x7f07004b;
         public static final int description_usain_bolt_2=0x7f07004c;
         /**  Despertame A Tiempo Strings 
  Despertame A Tiempo Strings 
          */
-        public static final int despertame_a_tiempo=0x7f070058;
+        public static final int despertame_a_tiempo=0x7f07005a;
         public static final int done=0x7f070052;
         public static final int duration=0x7f07001e;
         public static final int duration_value=0x7f07001f;
@@ -457,7 +459,7 @@ containing a value of this type.
         /**  Facebook app ID 
  Facebook app ID 
          */
-        public static final int facebook_app_id=0x7f07005b;
+        public static final int facebook_app_id=0x7f07005d;
         public static final int facebook_post=0x7f070051;
         public static final int fb_posts=0x7f070056;
         public static final int gps_disabled=0x7f070038;
@@ -467,7 +469,7 @@ containing a value of this type.
         public static final int hello_world=0x7f07001a;
         public static final int iniciar_sesion=0x7f070044;
         public static final int logo_description=0x7f07004d;
-        public static final int logo_despertame_a_tiempo=0x7f07005a;
+        public static final int logo_despertame_a_tiempo=0x7f07005c;
         public static final int logout=0x7f07003f;
         public static final int max_speed=0x7f070032;
         public static final int max_speed_value=0x7f070034;
