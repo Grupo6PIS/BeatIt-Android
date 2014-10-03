@@ -33,7 +33,7 @@
     <color name="steel">#647687</color>
     <color name="callar_perro">#647687</color>
     <color name="fb_blue">#3B5998</color>
-    <color name="invita_amigos">#3B5998</color>
+    <color name="can_you_play">#3B5998</color>
     
     <!-- Strings generales de la aplicación -->
     
@@ -82,6 +82,8 @@
     <string name="iniciar_sesion">Iniciar Sesión</string>
     <string name="title_activity_home">Home</string>
     <string name="start_challenge_button">Comenzar Desafío</string>
+    	<string name="max_score">Puntaje Máximo</string>
+	<string name="last_score">Último Puntaje</string>
 
     
     <!-- Profile Strings -->

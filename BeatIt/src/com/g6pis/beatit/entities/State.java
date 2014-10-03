@@ -9,7 +9,8 @@ public class State {
 	private Challenge challenge;
 	private User user;
 	private boolean finished;
-	private double score;
+	private double maxScore;
+	private double lastScore;
 	private DTDateTime dateTimeStart;
 	private int currentAttempt;
 	
@@ -18,7 +19,8 @@ public class State {
 		this.challenge = challenge;
 		this.user = user;
 		this.finished = false;
-		this.score = 0;
+		this.maxScore = 0;
+		this.lastScore = 0;
 		this.currentAttempt = 0;
 		this.dateTimeStart = new DTDateTime();
 		
@@ -50,18 +52,6 @@ public class State {
 		this.user = user;
 	}
 
-	public void setScore(double score) {
-		this.score = score;
-	}
-	
-	public double getScore() {
-		if(!finished)
-			return 0;
-		
-		return score;
-		
-	}
-
 	public boolean isFinished() {
 		return finished;
 	}
@@ -84,7 +74,23 @@ public class State {
 		this.currentAttempt = currentAttempt;
 	}
 
+	public double getMaxScore() {
+		return maxScore;
+	}
 
+	public void setMaxScore(double maxScore) {
+		this.maxScore = maxScore;
+	}
+
+	public double getLastScore() {
+		return lastScore;
+	}
+
+	public void setLastScore(double lastScore) {
+		this.lastScore = lastScore;
+	}
+
+	
 	
 
 }

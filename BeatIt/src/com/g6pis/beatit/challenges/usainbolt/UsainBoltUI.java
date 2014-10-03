@@ -28,7 +28,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.g6pis.beatit.ChallengeFinished;
 import com.g6pis.beatit.Home;
 //import com.g6pis.beatit.persistence.UsainBoltDAO;
 import com.g6pis.beatit.R;
@@ -236,7 +235,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 		this.setScore((this.getMaxSpeed() + this.getAvgSpeed()) * 2);
 
 		// Activity Challenge Finished
-		Intent challengeFinished = new Intent(this, ChallengeFinished.class);
+		Intent challengeFinished = new Intent(this, UsainBoltFinished.class);
 		challengeFinished.putExtra("maxSpeed",
 				Double.toString(Math.round(this.getMaxSpeed())));
 		challengeFinished.putExtra("avgSpeed",

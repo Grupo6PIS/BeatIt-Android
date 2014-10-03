@@ -1,19 +1,23 @@
-package com.g6pis.beatit;
+package com.g6pis.beatit.challenges.usainbolt;
 
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ImageView;
+import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.g6pis.beatit.Home;
+import com.g6pis.beatit.R;
 import com.g6pis.beatit.datatypes.DTDateTime;
 
-public class ChallengeFinished extends Activity implements OnClickListener {
+public class UsainBoltFinished extends Activity implements OnClickListener {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,24 +28,13 @@ public class ChallengeFinished extends Activity implements OnClickListener {
 		// double avgSpeed = getIntent().getExtras().getString("avgSpeed");
 		// double score = getIntent().getExtras().getString("score");
 		
-		ActionBar actionBar = getActionBar();
-        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM); 
-        actionBar.setCustomView(R.layout.action_bar);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setTitle(this.getString(R.string.app_name));
+		this.editLayout();
        /* findViewById(R.id.homeButton).setOnClickListener(this);
         findViewById(R.id.homeButton).setVisibility(View.VISIBLE);*/
 		
+		((TextView)findViewById(R.id.textView_last_sscore_value)).setText(getIntent().getExtras().getString("score") + " " +getResources().getString(R.string.points));
+		//TODO max score, fecha, etc desde DataManager
 		
-		((TextView) findViewById(R.id.textView_max_speed_value))
-				.setText(getIntent().getExtras().getString("maxSpeed") + "km/h");
-
-		((TextView) findViewById(R.id.textView_avg_speed_value))
-				.setText(getIntent().getExtras().getString("avgSpeed") + "km/h");
-
-		((TextView) findViewById(R.id.textView_Score_Value))
-				.setText(getIntent().getExtras().getString("score") + getResources().getString(R.string.points));
 		
 		((TextView) findViewById(R.id.textView_Start_Time_Value))
 		.setText(getIntent().getExtras().getString("dateTimeStart"));
@@ -91,6 +84,22 @@ public class ChallengeFinished extends Activity implements OnClickListener {
 		startActivity(home);
 		this.finish();
 		super.onBackPressed();
+	}
+	
+	public void editLayout() {
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+		actionBar.setCustomView(R.layout.action_bar);
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setHomeButtonEnabled(true);
+		actionBar.setTitle(this.getString(R.string.app_name));
+		actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.usain_bolt)));
+		
+		((ImageView)findViewById(R.id.imageView_Logo)).setImageDrawable(getResources().getDrawable(R.drawable.ic_usain_bolt));
+		((TextView)findViewById(R.id.textView_Challenge_Name)).setText(getResources().getString(R.string.usain_bolt));
+		((TextView)findViewById(R.id.textView_Challenge_Name)).setTextColor(getResources().getColor(R.color.usain_bolt));
+		((TableRow)findViewById(R.id.text_row)).setBackgroundColor(getResources().getColor(R.color.usain_bolt));
+
 	}
 	
 }

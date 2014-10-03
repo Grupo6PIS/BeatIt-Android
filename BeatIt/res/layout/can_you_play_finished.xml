@@ -71,7 +71,7 @@
         <TableRow
             android:id="@+id/tableRow1"
             android:layout_width="wrap_content"
-            android:background="@color/invita_amigos"
+            android:background="@color/can_you_play"
             android:gravity="center"
             android:minHeight="30dp" >
 
@@ -121,7 +121,7 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:background="@color/invita_amigos"
+            android:background="@color/can_you_play"
             android:gravity="center"
             android:minHeight="50dp" >
 
@@ -191,7 +191,7 @@
         android:layout_toRightOf="@id/imageView_Logo"
         android:text="@string/can_you_play"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/invita_amigos"
+        android:textColor="@color/can_you_play"
         android:textSize="34sp"
         android:textStyle="bold" />
 

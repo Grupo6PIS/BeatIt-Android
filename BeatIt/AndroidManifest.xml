@@ -72,7 +72,7 @@
                 android:value="com.g6pis.beatit.ChallengesMenu" />
         </activity>
         <activity
-            android:name=".ChallengeFinished"
+            android:name="com.g6pis.beatit.challenges.usainbolt.UsainBoltFinished"
             android:label="@string/title_activity_challenge_finished"
             android:screenOrientation="portrait" >
             android:parentActivityName="com.g6pis.beatit.Home" >

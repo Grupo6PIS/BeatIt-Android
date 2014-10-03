@@ -5,10 +5,10 @@ import java.util.GregorianCalendar;
 import java.util.concurrent.TimeUnit;
 import java.lang.Math;
 
-import com.g6pis.beatit.ChallengeFinished;
 import com.g6pis.beatit.Home;
 import com.g6pis.beatit.R;
 import com.g6pis.beatit.challenges.invitefriends.CanYouPlayFinished;
+import com.g6pis.beatit.challenges.usainbolt.UsainBoltFinished;
 import com.g6pis.beatit.datatypes.DTDateTime;
 
 import android.app.ActionBar;

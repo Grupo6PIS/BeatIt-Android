@@ -34,7 +34,8 @@ public class StateTest {
 		assertEquals(user, state.getUser());
 		assertEquals(dateTime,state.getDateTimeStart());
 		assertEquals(0,state.getCurrentAttempt());
-		assertEquals(0,state.getScore(),0);
+		assertEquals(0,state.getMaxScore(),0);
+		assertEquals(0,state.getLastScore(),0);
 		assertFalse(state.isFinished());
 	}
 	
@@ -70,7 +71,8 @@ public class StateTest {
 		state.setFinished(true);
 		state.setDateTimeStart(dateTime);
 		state.setRound(round);
-		state.setScore(320);
+		state.setMaxScore(320);
+		state.setLastScore(120);
 		state.setUser(user);
 		
 		
@@ -81,7 +83,8 @@ public class StateTest {
 		assertEquals(user, state.getUser());
 		assertEquals(dateTime,state.getDateTimeStart());
 		assertEquals(3,state.getCurrentAttempt());
-		assertEquals(320,state.getScore(),0);
+		assertEquals(320,state.getMaxScore(),0);
+		assertEquals(120,state.getLastScore(),0);
 		assertTrue(state.isFinished());
 		
 		

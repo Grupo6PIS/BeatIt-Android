@@ -187,7 +187,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setTitle(this.getString(R.string.app_name));
-		actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.invita_amigos)));
+		actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.can_you_play)));
 
 	}
 

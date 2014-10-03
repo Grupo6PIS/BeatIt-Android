@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 public class CanYouPlayFinished extends Activity {
@@ -19,20 +21,16 @@ public class CanYouPlayFinished extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.can_you_play_finished);
+		setContentView(R.layout.challenge_finished);
 
 		
-		ActionBar actionBar = getActionBar();
-        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM); 
-        actionBar.setCustomView(R.layout.action_bar);
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeButtonEnabled(true);
-        actionBar.setTitle(this.getString(R.string.app_name));
-		actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.invita_amigos)));
        /* findViewById(R.id.homeButton).setOnClickListener(this);
         findViewById(R.id.homeButton).setVisibility(View.VISIBLE);*/
 		
 		//TODO pedirle el state correspondiente al DataManager
+		
+		
+		this.editLayout();
 		/*((TextView) findViewById(R.id.sms_sent_value))
 				.setText(getIntent().getExtras().getString("sms"));
 
@@ -83,5 +81,21 @@ public class CanYouPlayFinished extends Activity {
 		startActivity(home);
 		this.finish();
 		super.onBackPressed();
+	}
+	
+	public void editLayout() {
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+		actionBar.setCustomView(R.layout.action_bar);
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setHomeButtonEnabled(true);
+		actionBar.setTitle(this.getString(R.string.app_name));
+		actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.can_you_play)));
+		
+		((ImageView)findViewById(R.id.imageView_Logo)).setImageDrawable(getResources().getDrawable(R.drawable.ic_can_you_play));
+		((TextView)findViewById(R.id.textView_Challenge_Name)).setText(getResources().getString(R.string.can_you_play));
+		((TextView)findViewById(R.id.textView_Challenge_Name)).setTextColor(getResources().getColor(R.color.can_you_play));
+		((TableRow)findViewById(R.id.text_row)).setBackgroundColor(getResources().getColor(R.color.can_you_play));
+
 	}
 }

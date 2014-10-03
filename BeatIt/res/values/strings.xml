@@ -34,7 +34,7 @@
     <color name="steel">#647687</color>
     <color name="callar_perro">#647687</color>
     <color name="fb_blue">#3B5998</color>
-    <color name="invita_amigos">#3B5998</color>
+    <color name="can_you_play">#3B5998</color>
 
     <!-- General Application Strings -->
 
@@ -84,7 +84,8 @@
     <string name="title_activity_home">Home</string>
     <string name="start_challenge_button">Start Challenge</string>
     <string name="points"> points</string>
-
+	<string name="max_score">Max. Score</string>
+	<string name="last_score">Last Score</string>
     <!-- Profile Strings -->
 
     <string name="username">Juan Pérez</string>

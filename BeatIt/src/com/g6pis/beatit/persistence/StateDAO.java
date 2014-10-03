@@ -29,7 +29,7 @@ public class StateDAO extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		String CREATE_USAINBOLT_TABLE = "CREATE TABLE State ( "
 				+ "challengeId STRING, " + "roundId STRING, "
-				+ "score DOUBLE, " + "currentAttempt INTEGER, "
+				+ "maxScore DOUBLE, " + "lastScore DOUBLE, " + "currentAttempt INTEGER, "
 				+ "isFinished BOOLEAN "
 				+ "FOREIGN KEY(challengeId) REFERENCES Challenge(challengeId)"
 				+ ");";
@@ -59,7 +59,8 @@ public class StateDAO extends SQLiteOpenHelper {
 		ContentValues values = new ContentValues();
 		values.put("challengeId", state.getChallengeId());
 		values.put("roundId", state.getRoundId());
-		values.put("score", state.getScore());
+		values.put("maxScore", state.getMaxScore());
+		values.put("LastScore", state.getLastScore());
 		values.put("currentAttempt", state.getCurrentAttempt());
 		values.put("isFinished", state.isFinished());
 
@@ -97,9 +98,9 @@ public class StateDAO extends SQLiteOpenHelper {
 
 		// 4. build usianBolt object
 		DTState state = new DTState(cursor.getString(0), cursor.getString(1),
-				Double.parseDouble(cursor.getString(2)),
-				Integer.parseInt(cursor.getString(3)),
-				Boolean.getBoolean(cursor.getString(4)));
+				Double.parseDouble(cursor.getString(2)),Double.parseDouble(cursor.getString(3)),
+				Integer.parseInt(cursor.getString(4)),
+				Boolean.getBoolean(cursor.getString(5)));
 
 		return state;
 
@@ -122,9 +123,9 @@ public class StateDAO extends SQLiteOpenHelper {
 
 				// 4. build challenge object
 				DTState state = new DTState(cursor.getString(0), cursor.getString(1),
-						Double.parseDouble(cursor.getString(2)),
-						Integer.parseInt(cursor.getString(3)),
-						Boolean.getBoolean(cursor.getString(4)));
+						Double.parseDouble(cursor.getString(2)),Double.parseDouble(cursor.getString(3)),
+						Integer.parseInt(cursor.getString(4)),
+						Boolean.getBoolean(cursor.getString(5)));
 
 				states.add(state);
 
@@ -144,7 +145,8 @@ public class StateDAO extends SQLiteOpenHelper {
 		ContentValues values = new ContentValues();
 		values.put("challengeId", state.getChallengeId());
 		values.put("roundId", state.getRoundId());
-		values.put("score", state.getScore());
+		values.put("maxScore", state.getMaxScore());
+		values.put("lastScore", state.getLastScore());
 		values.put("currentAttempt", state.getCurrentAttempt());
 		values.put("isFinished", state.isFinished());
 
