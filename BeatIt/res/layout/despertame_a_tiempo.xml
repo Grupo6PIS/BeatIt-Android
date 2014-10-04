@@ -95,6 +95,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="16dp"
+        android:layout_marginRight="10dp"
         android:layout_marginTop="15dp"
         android:layout_toRightOf="@+id/imageView_Logo"
         android:text="@string/despertame_a_tiempo"
@@ -115,7 +116,7 @@
         android:src="@drawable/ic_despertame_a_tiempo" />
 
     <Button
-        android:id="@+id/start_button"
+        android:id="@+id/start_button_despertame"
         android:layout_width="250dp"
         android:layout_height="40dp"
         android:layout_below="@+id/textView_To_Beat_Value"
@@ -129,15 +130,16 @@
 	    android:id="@+id/attemps"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_alignRight="@+id/start_button"
+	    android:layout_alignRight="@+id/start_button_despertame"
 	    android:layout_below="@+id/textView_Start_Time_Value" />
 
 	<TextView
 	    android:id="@+id/textView_Time_Left_Value"
 	    android:layout_width="250dp"
 	    android:layout_height="40dp"
-	    android:layout_alignLeft="@+id/start_button"
-	    android:layout_alignTop="@+id/start_button"
+	    android:layout_alignLeft="@+id/textView_To_Beat_Value"
+	    android:layout_alignRight="@+id/textView_Description_Value_2"
+	    android:layout_alignTop="@+id/start_button_despertame"
 	    android:background="@color/despertame"
 	    android:gravity="center"
 	    android:textColor="#FFFFFF"
@@ -149,9 +151,10 @@
 	    android:id="@+id/textView_Result"
 	    android:layout_width="250dp"
 	    android:layout_height="40dp"
-	    android:layout_alignLeft="@+id/start_button"
-	    android:layout_alignTop="@+id/start_button"
-        android:layout_marginTop="60dp"
+	    android:layout_alignLeft="@+id/textView_Time_Left_Value"
+	    android:layout_alignRight="@+id/textView_Time_Left_Value"
+	    android:layout_alignTop="@+id/start_button_despertame"
+	    android:layout_marginTop="60dp"
 	    android:background="@color/rojo"
 	    android:gravity="center"
 	    android:textColor="#FFFFFF"
