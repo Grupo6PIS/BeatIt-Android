@@ -87,7 +87,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 					break;	
 			}
 			
-			startButton = (Button) findViewById(R.id.start_button);
+			startButton = (Button) findViewById(R.id.start_button_despertame);
 			startButton.setOnClickListener(this);
 			
 			this.setDateTimeStart(this.getDateExtras(getIntent().getExtras()));
@@ -166,7 +166,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	public void onClick(View v) {
 		if (!timerRunning) {
 			switch (v.getId()) {
-				case R.id.start_button: {
+				case R.id.start_button_despertame: {
 					startButton.setVisibility(View.INVISIBLE);
 					textViewTimeLeftValue.setVisibility(View.VISIBLE);
 					textViewResult.setVisibility(View.INVISIBLE);
@@ -179,7 +179,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	}
 	
 	public void viewAssignment() {
-		startButton = (TextView) findViewById(R.id.start_button);
+		startButton = (TextView) findViewById(R.id.start_button_despertame);
 		textViewTimeLeftValue = (TextView) findViewById(R.id.textView_Time_Left_Value);
 		textViewResult = (TextView) findViewById(R.id.textView_Result);
 	}

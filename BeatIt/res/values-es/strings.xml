@@ -43,6 +43,7 @@
     <string name="description">Descripción</string>
     <string name="duration">Duración:</string>
     <string name="duration_value">1 semana</string>
+    <string name="to_beat">A vencer:</string>
     <string name="points"> puntos</string>
     <string name="points_value">2000 puntos</string>
     <string name="speed">Velocidad:</string>
