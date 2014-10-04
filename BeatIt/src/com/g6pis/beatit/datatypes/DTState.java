@@ -19,9 +19,7 @@ public class DTState {
 		challengeId = state.getChallenge().getChallengeId();
 		roundId = state.getRound().getRoundId();
 		challengeName = state.getChallenge().getName();
-		challengeDescription = state.getChallenge().getDescription();
 		challengeLevel = state.getChallenge().getLevel();
-		challengeDuration = state.getChallenge().getDuration();
 		finished = state.isFinished();
 		maxScore = state.getMaxScore();
 		lastScore = state.getLastScore();

@@ -21,9 +21,8 @@ public class UsainBolt extends Challenge {
 	private Set<Double> speeds;
 	private double avgSpeed;
 
-	public UsainBolt(String challengeId, String name, String description,
-			Integer duration, Integer level, int maxAttempt) {
-		super(challengeId, name, description, duration, level, maxAttempt);
+	public UsainBolt(String challengeId, String name, Integer level, int maxAttempt) {
+		super(challengeId, name, level, maxAttempt);
 
 		this.maxSpeed = 0;
 		this.avgSpeed = 0;

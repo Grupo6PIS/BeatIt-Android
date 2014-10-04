@@ -4,7 +4,9 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.junit.Test;
@@ -17,10 +19,10 @@ public class StateTest {
 	public void ConstructorTest() {
 		DTDateTime dateTimeStart = new DTDateTime();
 		DTDateTime dateTimeFinish = new DTDateTime();
-		Map<String,Challenge> challenges = new HashMap<String,Challenge>();
+		List<Challenge> challenges = new ArrayList<Challenge>();
 		
-		Challenge challenge = new Challenge("1", "Challenge 1", "Challenge 1 description", 7, 2, 3);
-		challenges.put(challenge.getChallengeId(), challenge);
+		Challenge challenge = new Challenge("1", "Challenge 1", 2, 3);
+		challenges.add(challenge);
 		
 		Round round = new Round("Round 1", dateTimeStart, dateTimeFinish, challenges);
 		
@@ -43,10 +45,10 @@ public class StateTest {
 	public void settersTest(){
 		DTDateTime dateTimeStart = new DTDateTime();
 		DTDateTime dateTimeFinish = new DTDateTime();
-		Map<String,Challenge> challenges = new HashMap<String,Challenge>();
+		List<Challenge> challenges = new ArrayList<Challenge>();
 		
-		Challenge challenge = new Challenge("1", "Challenge 1", "Challenge 1 description", 7, 2, 3);
-		challenges.put(challenge.getChallengeId(), challenge);
+		Challenge challenge = new Challenge("1", "Challenge 1", 2, 3);
+		challenges.add(challenge);
 		
 		Round round = new Round("Round 1", dateTimeStart, dateTimeFinish, challenges);
 		
@@ -54,10 +56,10 @@ public class StateTest {
 		
 		State state = new State(round, challenge, user);
 		
-		challenges = new HashMap<String,Challenge>();
+		challenges = new ArrayList<Challenge>();
 		
-		challenge = new Challenge("2", "Challenge 2", "Challenge 2 description", 7, 2, 3);
-		challenges.put(challenge.getChallengeId(), challenge);
+		challenge = new Challenge("2", "Challenge 2", 2, 3);
+		challenges.add(challenge);
 		
 		round = new Round("Round 2", dateTimeStart, dateTimeFinish, challenges);
 		

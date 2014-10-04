@@ -88,9 +88,14 @@ public class State {
 
 	public void setLastScore(double lastScore) {
 		this.lastScore = lastScore;
+		
+		if(this.lastScore > this.maxScore)
+			this.maxScore = this.lastScore;
+		
+		this.currentAttempt++;
+		if(this.currentAttempt == this.challenge.getMaxAttempt()){
+			this.finished = true;
+		}
+		
 	}
-
-	
-	
-
 }

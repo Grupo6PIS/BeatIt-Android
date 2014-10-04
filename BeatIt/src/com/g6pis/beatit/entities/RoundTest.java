@@ -2,8 +2,9 @@ package com.g6pis.beatit.entities;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -13,11 +14,11 @@ public class RoundTest {
 
 	@Test
 	public void constructorTest() {
-		Map<String,Challenge> challenges = new HashMap<String, Challenge>();
+		List<Challenge> challenges = new ArrayList<Challenge>();
 		
 		for(int i=0; i<10; i++){
-			Challenge challenge = new Challenge(Integer.toString(i),"Challenge "+i,"Challenge "+i+" description", 7, 2, 3);
-			challenges.put(Integer.toString(i), challenge);
+			Challenge challenge = new Challenge(Integer.toString(i),"Challenge "+i, 2, 3);
+			challenges.add(challenge);
 		}
 		
 		DTDateTime dateTimeStart = new DTDateTime();
@@ -35,11 +36,11 @@ public class RoundTest {
 	
 	@Test
 	public void settersTest(){
-		Map<String,Challenge> challenges = new HashMap<String, Challenge>();
+		List<Challenge> challenges = new ArrayList<Challenge>();
 		
 		for(int i=0; i<10; i++){
-			Challenge challenge = new Challenge(Integer.toString(i),"Challenge "+i,"Challenge "+i+" description", 7, 2, 3);
-			challenges.put(Integer.toString(i), challenge);
+			Challenge challenge = new Challenge(Integer.toString(i),"Challenge "+i, 2, 3);
+			challenges.add(challenge);
 		}
 		
 		DTDateTime dateTimeStart = new DTDateTime();
@@ -60,11 +61,11 @@ public class RoundTest {
 		
 		Round round = new Round("Round 1",dateTimeStart, dateTimeFinish,challenges);
 		
-		challenges = new HashMap<String, Challenge>();
+		challenges = new ArrayList<Challenge>();
 		
 		for(int i=10; i<20; i++){
-			Challenge challenge = new Challenge(Integer.toString(i),"Challenge "+i,"Challenge "+i+" description", 7, 2, 3);
-			challenges.put(Integer.toString(i), challenge);
+			Challenge challenge = new Challenge(Integer.toString(i),"Challenge "+i, 2, 3);
+			challenges.add(challenge);
 		}
 		
 

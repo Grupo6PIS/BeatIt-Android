@@ -6,6 +6,7 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import com.g6pis.beatit.Home;
 import com.g6pis.beatit.R;
 import com.g6pis.beatit.datatypes.DTDateTime;
 
@@ -136,25 +137,6 @@ public class CallaAlPerroUI extends Activity implements SensorEventListener {
 	public void setScore(double score) {
 		this.score = score;
 	}
-
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.calla_al_perro, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle action bar item clicks here. The action bar will
-		// automatically handle clicks on the Home/Up button, so long
-		// as you specify a parent activity in AndroidManifest.xml.
-		int id = item.getItemId();
-		if (id == R.id.action_settings) {
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
 	
 	public void comenzar(View v){
 		// Genera un numero random
@@ -263,4 +245,33 @@ public class CallaAlPerroUI extends Activity implements SensorEventListener {
 		  //Esta lejos
 	  }
 	 }
+	 
+	 @Override
+		public void onBackPressed() {
+			Intent home = new Intent(this, Home.class);
+			startActivity(home);
+			this.finish();
+			super.onBackPressed();
+		}
+
+		@Override
+		public boolean onCreateOptionsMenu(Menu menu) {
+			// Inflate the menu; this adds items to the action bar if it is present.
+			// getMenuInflater().inflate(R.menu.challenge_finished, menu);
+			return true;
+		}
+
+		@Override
+		public boolean onOptionsItemSelected(MenuItem item) {
+			switch (item.getItemId()) {
+			// Respond to the action bar's Up/Home button
+			case android.R.id.home:
+				Intent home = new Intent(this, Home.class);
+				startActivity(home);
+				this.finish();
+				return true;
+			}
+			return super.onOptionsItemSelected(item);
+		}
+
 }

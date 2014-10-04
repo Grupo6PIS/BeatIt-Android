@@ -6,19 +6,14 @@ public  class Challenge{
 	
 	private String challengeId;
 	private String name;
-	private String description;
-	private int duration;
 	private int level;
 	private int maxAttempt;
 	
 	
 	
-	protected Challenge(String challengeId, String name, String description,
-			Integer duration, Integer level, int maxAttempt) {
+	protected Challenge(String challengeId, String name, Integer level, int maxAttempt) {
 		this.challengeId = challengeId;
 		this.name = name;
-		this.description = description;
-		this.duration = duration;
 		this.level = level;
 		this.maxAttempt = maxAttempt;
 	}
@@ -36,18 +31,7 @@ public  class Challenge{
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
-	}
-	public int getDuration() {
-		return duration;
-	}
-	public void setDuration(Integer duration) {
-		this.duration = duration;
-	}
+
 	public int getLevel() {
 		return level;
 	}
@@ -62,7 +46,6 @@ public  class Challenge{
 		this.maxAttempt = maxAttempt;
 	}
 	
-	//protected abstract double calculateScore();
 	
 
 }

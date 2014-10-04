@@ -1,4 +1,4 @@
-package com.g6pis.beatit.controllers;
+package com.g6pis.beatit.serverconnection;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,11 +11,11 @@ import org.json.JSONObject;
 
 import android.os.AsyncTask;
 
-public class RoundClass extends AsyncTask<Void, Void, String>{
-	private final String USER_AGENT = "Mozilla/5.0";
+public class RoundConnection extends AsyncTask<Void, Void, JSONObject>{
 	
 	@Override
-	protected String doInBackground(Void...params) {
+	protected JSONObject doInBackground(Void...params) {
+		JSONObject round = new JSONObject();
 		try {
 			URL obj = new URL("http://beatit-udelar.rhcloud.com/round/getRound/");
 			HttpURLConnection con;
@@ -30,16 +30,15 @@ public class RoundClass extends AsyncTask<Void, Void, String>{
 			StringBuffer response = new StringBuffer();
 
 			JSONObject json = new JSONObject(in.readLine());
-			boolean error = json.getBoolean("error");
 			if(!json.getBoolean("error")){
-				//TODO get weekNumber, start_date, end_date, ranking, challengeList
+				round = json.getJSONObject("round");
 			}
 			in.close();
 
 		} catch (IOException e) {
 		} catch (JSONException e) {
 		}
-		return " ";
+		return round;
 	}
 
 	

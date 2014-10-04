@@ -1,5 +1,6 @@
 package com.g6pis.beatit.entities;
 
+import java.util.List;
 import java.util.Map;
 
 import com.g6pis.beatit.datatypes.DTDateTime;
@@ -9,13 +10,13 @@ public class Round {
 	private String roundId;
 	private DTDateTime dateTimeStart;
 	private DTDateTime dateTimeFinish;
-	private Map<String,Challenge> challenges;
+	private List<Challenge> challenges;
 	
 	
 	
 	
 	public Round(String roundId, DTDateTime dateTimeStart,
-			DTDateTime dateTimeFinish, Map<String, Challenge> challenges) {
+			DTDateTime dateTimeFinish, List<Challenge> challenges) {
 		super();
 		this.roundId = roundId;
 		this.dateTimeStart = dateTimeStart;
@@ -42,12 +43,12 @@ public class Round {
 		this.dateTimeFinish = dateTimeFinish;
 	}
 	
-	public Map<String, Challenge> getChallenges() {
+	public List<Challenge> getChallenges() {
 		return challenges;
 	}
 
 
-	public void setChallenges(Map<String, Challenge> challenges) {
+	public void setChallenges(List<Challenge> challenges) {
 		this.challenges = challenges;
 	}
 

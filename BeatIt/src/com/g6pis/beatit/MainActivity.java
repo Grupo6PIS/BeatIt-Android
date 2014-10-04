@@ -69,7 +69,7 @@ public class MainActivity extends Activity {
         country = sharedPrefs.getString("country", "");
         userId = sharedPrefs.getString("userId", "");
         accessToken = sharedPrefs.getString("accessToken", "");
-		imageURL = "https://graph.facebook.com/"+fbId+"/picture?type=sqare&access_token="+accessToken;
+		imageURL = "https://graph.facebook.com/"+fbId+"/picture?type=square&access_token="+accessToken;
         
 		Session session = Session.getActiveSession();
 		boolean isClosed = session.getState().isClosed();

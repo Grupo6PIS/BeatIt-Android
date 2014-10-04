@@ -17,9 +17,8 @@ public class CanYouPlay extends Challenge {
 	private int smsSent;
 	private int fbPost;
 
-	public CanYouPlay(String challengeId, String name, String description,
-			Integer duration, Integer level, int maxAttempt) {
-		super(challengeId, name, description, duration, level, maxAttempt);
+	public CanYouPlay(String challengeId, String name, Integer level, int maxAttempt) {
+		super(challengeId, name, level, maxAttempt);
 
 		fbPost = 0;
 		smsSent = 0;

@@ -54,6 +54,14 @@ public class CallaAlPerroFinished extends Activity {
 	}
 
 	@Override
+	public void onBackPressed() {
+		Intent home = new Intent(this, Home.class);
+		startActivity(home);
+		this.finish();
+		super.onBackPressed();
+	}
+
+	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		// getMenuInflater().inflate(R.menu.challenge_finished, menu);
@@ -79,13 +87,6 @@ public class CallaAlPerroFinished extends Activity {
 			this.finish();
 	}
 	
-	@Override
-	public void onBackPressed(){
-		Intent home = new Intent(this, Home.class);
-		startActivity(home);
-		this.finish();
-		super.onBackPressed();
-	}
 	
 	public void editLayout() {
 		ActionBar actionBar = getActionBar();

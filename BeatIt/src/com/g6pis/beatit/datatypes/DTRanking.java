@@ -1,42 +1,34 @@
 package com.g6pis.beatit.datatypes;
 
 public class DTRanking {
-	private String nombreUsuario;
-	private Integer puntaje;
-	private Integer posicion;
-	private String imagen;
+	private String userName;
+	private Integer score;
+	private Integer position;
+	private String imageURL;
 	
-	public DTRanking(String nombreUsuario, Integer puntaje, Integer posicion,
+	public DTRanking(String userName, Integer puntaje, Integer position,
 			String imagen) {
 		super();
-		this.nombreUsuario = nombreUsuario;
-		this.puntaje = puntaje;
-		this.posicion = posicion;
-		this.imagen = imagen;
+		this.userName = userName;
+		this.score = puntaje;
+		this.position = position;
+		this.imageURL = imagen;
 	}
 	
-	public String getNombreUsuario() {
-		return nombreUsuario;
+	public String getUserName() {
+		return userName;
 	}
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
+
+	public Integer getScore() {
+		return score;
 	}
-	public Integer getPuntaje() {
-		return puntaje;
+
+	public String getImageURL() {
+		return imageURL;
 	}
-	public void setPuntaje(Integer puntaje) {
-		this.puntaje = puntaje;
+	
+	public Integer getPosition() {
+		return position;
 	}
-	public Integer getPosicion() {
-		return posicion;
-	}
-	public void setPosicion(Integer posicion) {
-		this.posicion = posicion;
-	}
-	public String getImagen() {
-		return imagen;
-	}
-	public void setImagen(String imagen) {
-		this.imagen = imagen;
-	}
+	
 }

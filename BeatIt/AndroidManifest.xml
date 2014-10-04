@@ -139,6 +139,14 @@
         </activity>
         
         <activity
+            android:name=".challenges.callaalperro.CallaAlPerroUI"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.g6pis.beatit.Home" />
+        </activity>
+        
+        <activity
             android:name=".challenges.despertameatiempo.DespertameATiempoFinished"
             android:label="@string/title_activity_challenge_finished"
             android:screenOrientation="portrait" >
@@ -147,13 +155,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.g6pis.beatit.Home" />
         </activity>
-        <activity
-            android:name=".challenges.callaalperro.CallaAlPerroUI"
-            android:screenOrientation="portrait" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.g6pis.beatit.Home" />
-        </activity>
+        
         <activity
             android:name="com.g6pis.beatit.challenges.callaalperro.CallaAlPerroFinished"
             android:screenOrientation="portrait" >

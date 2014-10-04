@@ -12,13 +12,11 @@ public class UsainBoltTest {
 
 	@Test
 	public void ConstructorTest() {
-		UsainBolt usain = new UsainBolt("1", "Usain Bolt", "Usain Bolt description", 7, 2, 3);
+		UsainBolt usain = new UsainBolt("1", "Usain Bolt", 2, 3);
 		Set<Double> speeds = new HashSet<Double>();
 		
 		assertEquals("1",usain.getChallengeId());
 		assertEquals("Usain Bolt",usain.getName());
-		assertEquals("Usain Bolt description", usain.getDescription());
-		assertEquals(7,usain.getDuration());
 		assertEquals(2,usain.getLevel());
 		assertEquals(3,usain.getMaxAttempt());
 		assertEquals(0,usain.getMaxSpeed(),0.0);
@@ -28,7 +26,7 @@ public class UsainBoltTest {
 	
 	@Test
 	public void SpeedsTest(){
-		UsainBolt usain = new UsainBolt("1", "Usain Bolt", "Usain Bolt description", 7, 2, 3);
+		UsainBolt usain = new UsainBolt("1", "Usain Bolt", 2, 3);
 		
 		Set<Double> speeds = new HashSet<Double>();
 		Double maxSpeed = 0d;
@@ -58,7 +56,7 @@ public class UsainBoltTest {
 	
 	@Test
 	public void settersTest(){
-		UsainBolt usain = new UsainBolt("1", "Usain Bolt", "Usain Bolt description", 7, 2, 3);
+		UsainBolt usain = new UsainBolt("1", "Usain Bolt", 2, 3);
 		
 		Set<Double> speeds = new HashSet<Double>();
 		Double maxSpeed = 0d;

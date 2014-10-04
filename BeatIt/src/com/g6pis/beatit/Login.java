@@ -56,9 +56,8 @@ public class Login extends Activity {
 
 		this.getActionBar().hide();
 
-//		permission.add("user_friends");
 		LoginButton loginButton = ((LoginButton) findViewById(R.id.login_button));
-		loginButton.setReadPermissions(Arrays.asList("email", "public_profile", "user_location", "user_hometown"));
+		loginButton.setReadPermissions(Arrays.asList("email", "user_location"));
 	
 		
 	}
