@@ -128,7 +128,7 @@ public class DataManager {
 					CanYouPlay canYouPlay = new CanYouPlay(challengeId, name,
 							level, 3);
 					challenges.add(canYouPlay);
-				}
+				}break;
 				case 4:{
 					ShutTheDog shutTheDog = new ShutTheDog(challengeId,name,level,3);
 					challenges.add(shutTheDog);
