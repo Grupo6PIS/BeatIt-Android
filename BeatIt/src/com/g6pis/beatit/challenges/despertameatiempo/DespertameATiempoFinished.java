@@ -7,6 +7,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.g6pis.beatit.Home;
@@ -18,9 +20,30 @@ public class DespertameATiempoFinished extends Activity  {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.despertame_a_tiempo_finished);
-
+		setContentView(R.layout.challenge_finished);
 		
+
+		this.editLayout();
+		
+		((TextView)findViewById(R.id.textView_last_sscore_value)).setText(getIntent().getExtras().getString("score") + " " +getResources().getString(R.string.points));
+		// TODO cuando esté la persistencia - Max. Score
+		((TextView)findViewById(R.id.textView_max_score_value)).setText(getIntent().getExtras().getString("score") + " " +getResources().getString(R.string.points));
+		
+		((TextView) findViewById(R.id.textView_Start_Time_Value))
+			.setText(getIntent().getExtras().getString("dateTimeStart"));
+		
+		DTDateTime finishDate = new DTDateTime();
+		finishDate.setDay(getIntent().getExtras().getInt("day"));
+		finishDate.setMonth(getIntent().getExtras().getInt("month"));
+		finishDate.setYear(getIntent().getExtras().getInt("year"));
+		finishDate.setHour(getIntent().getExtras().getInt("hours"));
+		finishDate.setMinute(getIntent().getExtras().getInt("minutes"));
+		finishDate.setSecond(getIntent().getExtras().getInt("seconds"));
+		
+		((TextView)findViewById(R.id.textView_Duration_Value)).setText(finishDate.toString());
+		
+
+/* ULTIMO *******************		
 		ActionBar actionBar = getActionBar();
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM); 
         actionBar.setCustomView(R.layout.action_bar);
@@ -28,6 +51,8 @@ public class DespertameATiempoFinished extends Activity  {
         actionBar.setHomeButtonEnabled(true);
         actionBar.setTitle(this.getString(R.string.app_name));
 		actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.despertame)));
+*/		
+		
        /* findViewById(R.id.homeButton).setOnClickListener(this);
         findViewById(R.id.homeButton).setVisibility(View.VISIBLE);*/
 		
@@ -55,6 +80,7 @@ public class DespertameATiempoFinished extends Activity  {
 		((TextView)findViewById(R.id.textView_Duration_Value)).setText(finishDate.toString());*/
 
 
+/* ULTIMO **********************
         if (getIntent().getExtras().getBoolean("resultado") == true) {
         	((TextView) findViewById(R.id.tiempo)).setText("Ganaste !");
         }
@@ -84,6 +110,8 @@ public class DespertameATiempoFinished extends Activity  {
 		finishDate.setSecond(getIntent().getExtras().getInt("seconds"));
 		
 		((TextView)findViewById(R.id.textView_Duration_Value)).setText(finishDate.toString());
+*/		
+		
 
 	}
 
@@ -113,6 +141,22 @@ public class DespertameATiempoFinished extends Activity  {
 		startActivity(home);
 		this.finish();
 		super.onBackPressed();
+	}
+	
+	public void editLayout() {
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+		actionBar.setCustomView(R.layout.action_bar);
+		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setHomeButtonEnabled(true);
+		actionBar.setTitle(this.getString(R.string.app_name));
+		actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.despertame)));
+		
+		((ImageView)findViewById(R.id.imageView_Logo)).setImageDrawable(getResources().getDrawable(R.drawable.ic_despertame_a_tiempo));
+		((TextView)findViewById(R.id.textView_Challenge_Name)).setText(getResources().getString(R.string.despertame_a_tiempo));
+		((TextView)findViewById(R.id.textView_Challenge_Name)).setTextColor(getResources().getColor(R.color.despertame));
+		((TableRow)findViewById(R.id.text_row)).setBackgroundColor(getResources().getColor(R.color.despertame));
+
 	}
 	
 }

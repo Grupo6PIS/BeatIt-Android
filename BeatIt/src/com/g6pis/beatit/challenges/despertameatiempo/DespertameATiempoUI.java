@@ -40,19 +40,19 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	private float last_x, last_y, last_z;
 	private static final int SHAKE_THRESHOLD = 300;
 	private String challengeId;
+	
 	private Integer level = 2;
 	private Integer cant_repeticiones = 4;
-	private static final long TIME_LEVEL1_1 = 3;
+	private static final long TIME_LEVEL1_1 = 5;
 	private static final long TIME_LEVEL1_2 = 4;
-	private static final long TIME_LEVEL1_3 = 5;
-	private static final long TIME_LEVEL2_1 = 3;
-	private static final long TIME_LEVEL2_2 = 5;
-	private static final long TIME_LEVEL2_3 = 7;
-	private static final long TIME_LEVEL2_4 = 9;
-	private long segs_ocultos = 0; // Este valor se puede modificar para cambiar la dificultad
+	private static final long TIME_LEVEL1_3 = 3;
+	private static final long TIME_LEVEL2_1 = 9;
+	private static final long TIME_LEVEL2_2 = 7;
+	private static final long TIME_LEVEL2_3 = 5;
+	private static final long TIME_LEVEL2_4 = 3;
+	private long segs_ocultos = 0; // Este valor se modifica para cambiar la dificultad
 	
 	private long tolerancia = 500; // En milisegundos
-	//private long segs_ocultos = 3; // Este valor se puede modificar para cambiar la dificultad
 	private long tope = 10000; // Es el límite para detener el contador automáticamente porque ya perdió por mucho	
 	private long time = 0; // Cuenta regresiva real
 	private long g_millis = 0; // Cuenta regresiva ficticia porque incluye el valor del tope
@@ -377,7 +377,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 		despertameATiempoFinished.putExtra("cantExitos",
 			Long.toString(this.getCantExitos()));
 		despertameATiempoFinished.putExtra("score",
-			Double.toString(Math.round(this.getScore())));
+			Integer.toString((int) this.getScore()));
 		despertameATiempoFinished.putExtra("dateTimeStart", getDateTimeStart().toString());
 		
 		despertameATiempoFinished.putExtra("attemps",
