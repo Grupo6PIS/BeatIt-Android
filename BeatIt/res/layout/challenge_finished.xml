@@ -4,7 +4,33 @@
     android:layout_height="match_parent"
     android:background="@color/gris"
     tools:context=".MainActivity" >
-
+    
+    <ImageView
+        android:id="@+id/imageView_Logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView_Challenge_Name"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="22dp"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/logo_description"
+        android:src="@drawable/ic_usain_bolt" />
+    
+    <TextView
+        android:id="@+id/textView_Challenge_Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp"
+        android:layout_toRightOf="@+id/imageView_Logo"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="12dp"
+        android:text="@string/can_you_play"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/usain_bolt"
+        android:textSize="34sp"
+        android:textStyle="bold" />
+    
     <TextView
         android:id="@+id/textView_Duration"
         android:layout_width="wrap_content"
@@ -46,16 +72,6 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/gris_challenge_values"
         android:textSize="14sp" />
-
-    <ImageView
-        android:id="@+id/imageView_Logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_Start_Time"
-        android:layout_alignTop="@+id/textView_Challenge_Name"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/logo_description"
-        android:src="@drawable/ic_usain_bolt" />
 
     <TableLayout
         android:id="@+id/table_speed"
@@ -122,18 +138,5 @@
                 android:textSize="22sp" />
         </TableRow>
     </TableLayout>
-
-    <TextView
-        android:id="@+id/textView_Challenge_Name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="30dp"
-        android:layout_toRightOf="@+id/imageView_Logo"
-        android:text="@string/can_you_play"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/usain_bolt"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-
+    
 </RelativeLayout>

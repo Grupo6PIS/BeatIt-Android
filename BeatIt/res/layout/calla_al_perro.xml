@@ -72,8 +72,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView_Description"
-        android:layout_alignRight="@+id/textView_Nombre_Desafio"
         android:layout_below="@+id/textView_Description"
+        android:layout_marginRight="22dp"
         android:text="@string/description_calla_al_perro"
         android:textColor="@color/gris_challenge_description"
         android:textSize="18sp" />
@@ -84,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/imageView_Logo"
         android:layout_below="@+id/imageView_Logo"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="30dp"
         android:text="@string/description"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="bold" />
@@ -94,9 +94,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="15dp"
         android:layout_toRightOf="@+id/imageView_Logo"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="22dp"
         android:text="@string/calla_al_perro"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/callaalperro"
@@ -107,9 +108,9 @@
         android:id="@+id/imageView_Logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView_Nombre_Desafio"
         android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/textView_Nombre_Desafio"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="22dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/logo_calla_al_perro"
         android:src="@drawable/ic_calla_al_perro" />
@@ -118,12 +119,13 @@
         android:id="@+id/start_button"
         android:layout_width="250dp"
         android:layout_height="40dp"
+        android:layout_alignLeft="@+id/textView_To_Beat_Value"
+        android:layout_alignRight="@+id/textView_Description_Value_2"
         android:layout_below="@+id/textView_To_Beat_Value"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
         android:background="@color/callaalperro"
+        android:onClick="comenzar"
         android:text="@string/start_challenge_button"
-        android:textColor="@color/blanco" 
-        android:onClick="comenzar" />
+        android:textColor="@color/blanco" />
     
 </RelativeLayout>

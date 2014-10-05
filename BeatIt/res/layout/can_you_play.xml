@@ -88,8 +88,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView_Description"
-        android:layout_alignRight="@+id/textView_Nombre_Desafio"
         android:layout_below="@+id/textView_Description"
+        android:layout_marginRight="22dp"
         android:text="@string/description_usain_bolt_2"
         android:textColor="@color/gris_challenge_description"
         android:textSize="18sp" />
@@ -100,7 +100,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/imageView_Logo"
         android:layout_below="@+id/imageView_Logo"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="30dp"
         android:text="@string/description"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="bold" />
@@ -110,31 +110,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginTop="15dp"
         android:layout_toRightOf="@+id/imageView_Logo"
+        android:layout_marginLeft="16dp"
         android:text="@string/can_you_play"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/can_you_play"
-        android:textSize="25sp"
+        android:textSize="34sp"
         android:textStyle="bold" />
 
     <ImageView
         android:id="@+id/imageView_Logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView_Nombre_Desafio"
         android:layout_alignParentLeft="true"
-        android:layout_alignTop="@+id/textView_Nombre_Desafio"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="22dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/logo_description"
         android:src="@drawable/ic_can_you_play" />
 
     <Button
         android:id="@+id/select_contact_button"
-        android:layout_width="115dp"
+        android:layout_width="130dp"
         android:layout_height="40dp"
-        android:layout_alignLeft="@+id/done_button"
+        android:layout_alignLeft="@+id/textView_To_Beat_Value"
         android:layout_below="@+id/textView_To_Beat_Value"
         android:layout_marginTop="18dp"
         android:background="@color/can_you_play"
@@ -147,20 +147,21 @@
         android:id="@+id/done_button"
         android:layout_width="250dp"
         android:layout_height="40dp"
+        android:layout_alignLeft="@+id/select_contact_button"
+        android:layout_alignRight="@+id/facebook_post_button"
         android:layout_below="@+id/send_SMS_button"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
         android:background="@color/can_you_play"
         android:text="@string/done"
-        android:textColor="@color/blanco"/>
+        android:textColor="@color/blanco" />
 
     <Button
         android:id="@+id/facebook_post_button"
-        android:layout_width="115dp"
+        android:layout_width="130dp"
         android:layout_height="40dp"
         android:layout_alignBaseline="@+id/send_SMS_button"
         android:layout_alignBottom="@+id/send_SMS_button"
-        android:layout_alignRight="@+id/done_button"
+        android:layout_alignRight="@+id/textView_Description_Value_2"
         android:background="@color/can_you_play"
         android:gravity="center"
         android:text="@string/facebook_post"
@@ -169,17 +170,17 @@
 
     <Button
         android:id="@+id/send_SMS_button"
-        android:layout_width="115dp"
+        android:layout_width="130dp"
         android:layout_height="40dp"
         android:layout_alignBottom="@+id/select_contact_button"
-        android:layout_alignLeft="@+id/select_contact_button"
+        android:layout_alignLeft="@+id/textView_To_Beat_Value"
         android:layout_alignRight="@+id/select_contact_button"
         android:layout_alignTop="@+id/select_contact_button"
-        android:text="@string/send_sms"
-        android:visibility="invisible"
-        android:textSize="12sp"
-        android:textColor="@color/blanco"
+        android:background="@color/can_you_play"
         android:gravity="center"
-        android:background="@color/can_you_play" />
+        android:text="@string/send_sms"
+        android:textColor="@color/blanco"
+        android:textSize="12sp"
+        android:visibility="invisible" />
 
 </RelativeLayout>
