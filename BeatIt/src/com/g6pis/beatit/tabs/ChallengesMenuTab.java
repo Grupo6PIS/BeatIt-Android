@@ -2,6 +2,7 @@ package com.g6pis.beatit.tabs;
 
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.Random;
 
 import android.app.Fragment;
@@ -22,30 +23,43 @@ import com.g6pis.beatit.challenges.callaalperro.CallaAlPerroUI;
 import com.g6pis.beatit.challenges.despertameatiempo.DespertameATiempoUI;
 import com.g6pis.beatit.challenges.invitefriends.CanYouPlayUI;
 import com.g6pis.beatit.challenges.usainbolt.UsainBoltUI;
+import com.g6pis.beatit.controllers.DataManager;
+import com.g6pis.beatit.datatypes.DTState;
  
 public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemClickListener {
 	private ListView challengeMenu;
     private MyAdapter adapter;
     Random rand = new Random();
 	private int level = rand.nextInt(2) + 1;;
+	
+	private static final String ID_Usain_Bolt 		= "1";
+	private static final String ID_Wake_Me_Up 		= "2";
+	private static final String ID_Can_You_Play 	= "3";
+	private static final String ID_Calla_Al_Perro 	= "4";
+//	private static final String ID_				 	= "5";
+//	private static final String ID_				 	= "6";
+//	private static final String ID_				 	= "7";
+//	private static final String ID_				 	= "8";
+//	private static final String ID_				 	= "9";
+//	private static final String ID_				 	= "10";
+	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.challenge_menu_tab, container, false);
         
-        
-        
         challengeMenu = (ListView) rootView.findViewById(R.id.challengesMenu_list);
 		challengeMenu.setOnItemClickListener(this);
+        
+        DataManager dm = (DataManager) DataManager.getInstance();
+        List <DTState> challenges = dm.getChallenges();
+        int total_challenges = challenges.size();
+		DTState[] items=new DTState[total_challenges];
 		
-		String[] items=new String[10];
-		items[0] = "Usain Bolt";
-		items[1] = "Can You Play?";
-		items[2] = "Despertame A Tiempo";
-		items[3] = "Calla Al Perro";
-        for(int index=4;index<=9;index++){
-            items[index] = "Challenge "+index;
+		for(int index=0;index<total_challenges;index++){
+            items[index] = challenges.get(index);
         }
+		
         adapter = new MyAdapter(getActivity().getApplicationContext(),items);
         challengeMenu.setAdapter(adapter);
         
@@ -57,82 +71,48 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
     @Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
-		if(adapter.getItem(position).equals("Usain Bolt")){
-			
-			Intent challenge = new Intent(getActivity().getApplicationContext(), UsainBoltUI.class);
-			
-        	Calendar calendar = new GregorianCalendar();
-
-        	challenge.putExtra("seconds",calendar.get(Calendar.SECOND));
-        	challenge.putExtra("minutes",calendar.get(Calendar.MINUTE));
-        	challenge.putExtra("hours",calendar.get(Calendar.HOUR_OF_DAY));
-        	challenge.putExtra("day",calendar.get(Calendar.DAY_OF_MONTH));
-        	challenge.putExtra("month",calendar.get(Calendar.MONTH));
-        	challenge.putExtra("year",calendar.get(Calendar.YEAR));
-        	challenge.putExtra("level", level);
-        	challenge.putExtra("challengeId", 0);
-        	
-        	startActivity(challenge);
-        	this.getActivity().finish();
+    	Intent challenge = null;
+		if(adapter.getItem(position).getChallengeId().equals(ID_Usain_Bolt)){
+			challenge = new Intent(getActivity().getApplicationContext(), UsainBoltUI.class);
+		} else if (adapter.getItem(position).getChallengeId().equals(ID_Wake_Me_Up)){
+			challenge = new Intent(getActivity().getApplicationContext(), DespertameATiempoUI.class);
+		} else if (adapter.getItem(position).getChallengeId().equals(ID_Can_You_Play)){
+			challenge = new Intent(getActivity().getApplicationContext(), CanYouPlayUI.class);
+		} else if (adapter.getItem(position).getChallengeId().equals(ID_Calla_Al_Perro)){
+			challenge = new Intent(getActivity().getApplicationContext(), CallaAlPerroUI.class);
+/*		} else if (adapter.getItem(position).getChallengeId().equals(ID_)){
+			challenge = new Intent(getActivity().getApplicationContext(), UI.class);
+/*		} else if (adapter.getItem(position).getChallengeId().equals(ID_)){
+			challenge = new Intent(getActivity().getApplicationContext(), UI.class);
+/*		} else if (adapter.getItem(position).getChallengeId().equals(ID_)){
+			challenge = new Intent(getActivity().getApplicationContext(), UI.class);
+/*		} else if (adapter.getItem(position).getChallengeId().equals(ID_)){
+			challenge = new Intent(getActivity().getApplicationContext(), UI.class);
+/*		} else if (adapter.getItem(position).getChallengeId().equals(ID_)){
+			challenge = new Intent(getActivity().getApplicationContext(), UI.class);
+/*		} else if (adapter.getItem(position).getChallengeId().equals(ID_)){
+			challenge = new Intent(getActivity().getApplicationContext(), UI.class);
+*/
 		}
-		if(adapter.getItem(position).equals("Can You Play?")){
-			Intent challenge = new Intent(getActivity().getApplicationContext(), CanYouPlayUI.class);
-			
-        	Calendar calendar = new GregorianCalendar();
-
-        	challenge.putExtra("seconds",calendar.get(Calendar.SECOND));
-        	challenge.putExtra("minutes",calendar.get(Calendar.MINUTE));
-        	challenge.putExtra("hours",calendar.get(Calendar.HOUR_OF_DAY));
-        	challenge.putExtra("day",calendar.get(Calendar.DAY_OF_MONTH));
-        	challenge.putExtra("month",calendar.get(Calendar.MONTH));
-        	challenge.putExtra("year",calendar.get(Calendar.YEAR));
-        	challenge.putExtra("level", level);
-        	challenge.putExtra("challengeId", 1);
-        	
-        	startActivity(challenge);
-        	this.getActivity().finish();
-        	
-		}
-		if(adapter.getItem(position).equals("Despertame A Tiempo")){
-			Intent challenge = new Intent(getActivity().getApplicationContext(), DespertameATiempoUI.class);
-        	Calendar calendar = new GregorianCalendar();
-
-        	challenge.putExtra("seconds",calendar.get(Calendar.SECOND));
-        	challenge.putExtra("minutes",calendar.get(Calendar.MINUTE));
-        	challenge.putExtra("hours",calendar.get(Calendar.HOUR_OF_DAY));
-        	challenge.putExtra("day",calendar.get(Calendar.DAY_OF_MONTH));
-        	challenge.putExtra("month",calendar.get(Calendar.MONTH));
-        	challenge.putExtra("year",calendar.get(Calendar.YEAR));
-        	challenge.putExtra("level", level);
-        	challenge.putExtra("challengeId", 2);
-        	startActivity(challenge);
-        	this.getActivity().finish();
-        	
-		}
-
-		if(adapter.getItem(position).equals("Calla Al Perro")){
-			Intent challenge = new Intent(getActivity().getApplicationContext(), CallaAlPerroUI.class);
-        	Calendar calendar = new GregorianCalendar();
-
-        	challenge.putExtra("seconds",calendar.get(Calendar.SECOND));
-        	challenge.putExtra("minutes",calendar.get(Calendar.MINUTE));
-        	challenge.putExtra("hours",calendar.get(Calendar.HOUR_OF_DAY));
-        	challenge.putExtra("day",calendar.get(Calendar.DAY_OF_MONTH));
-        	challenge.putExtra("month",calendar.get(Calendar.MONTH));
-        	challenge.putExtra("year",calendar.get(Calendar.YEAR));
-        	challenge.putExtra("level", level);
-        	challenge.putExtra("challengeId", 2);
-        	startActivity(challenge);
-        	
-		}
+		Calendar calendar = new GregorianCalendar();
+    	challenge.putExtra("seconds",calendar.get(Calendar.SECOND));
+    	challenge.putExtra("minutes",calendar.get(Calendar.MINUTE));
+    	challenge.putExtra("hours",calendar.get(Calendar.HOUR_OF_DAY));
+    	challenge.putExtra("day",calendar.get(Calendar.DAY_OF_MONTH));
+    	challenge.putExtra("month",calendar.get(Calendar.MONTH));
+    	challenge.putExtra("year",calendar.get(Calendar.YEAR));
+    	challenge.putExtra("level", level);
+    	challenge.putExtra("challengeId", Integer.parseInt(adapter.getItem(position).getChallengeId()));
+    	
+    	startActivity(challenge);
     	this.getActivity().finish();
 	}
     
-    private class MyAdapter extends ArrayAdapter<String>{
+    private class MyAdapter extends ArrayAdapter<DTState>{
 		private final Context context;
-		private final String[] objects;
+		private final DTState[] objects;
 
-        public MyAdapter(Context context, String[] objects) {
+        public MyAdapter(Context context, DTState[] objects) {
             super(context, R.layout.challenge_list_item, objects);
             this.context = context;
             this.objects = objects;   
@@ -148,32 +128,74 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
           ImageView challengeIcon = (ImageView) rowView.findViewById(R.id.challengeIcon);
           TextView challengeDescription = (TextView) rowView.findViewById(R.id.challengeDescription);
           
-          challengeName.setText(objects[position]);
-          // change the icon for Windows and iPhone
-          String s = objects[position];
-          if (s.equals("Usain Bolt")) {
-            challengeIcon.setImageResource(R.drawable.ic_usain_bolt);
+          DTState s = objects[position];
+          challengeName.setText(s.getChallengeName());
+          if (s.getChallengeId().equals(ID_Usain_Bolt)) {
+			challengeIcon.setImageResource(R.drawable.ic_usain_bolt);
             switch(level){
-            case 1: challengeDescription.setText(R.string.description_usain_bolt_1);break;
-            case 2: challengeDescription.setText(R.string.description_usain_bolt_2);break;
+	            case 1: challengeDescription.setText(R.string.description_usain_bolt_1);break;
+	            case 2: challengeDescription.setText(R.string.description_usain_bolt_2);break;
             }
-            rowView.setBackgroundColor(getResources().getColor(R.color.blanco));
-          } else if (s.equals("Can You Play?")){
-        	  challengeIcon.setImageResource(R.drawable.ic_can_you_play);
-        	  challengeDescription.setText(s + " description");
-        	  rowView.setBackgroundColor(getResources().getColor(R.color.blanco));
-          } else if (s.equals("Despertame A Tiempo")){
-        	  challengeIcon.setImageResource(R.drawable.ic_despertame_a_tiempo);
-        	  challengeDescription.setText(s + " description");
-        	  rowView.setBackgroundColor(getResources().getColor(R.color.blanco));
-          } else if (s.equals("Calla Al Perro")){
-        	  challengeIcon.setImageResource(R.drawable.ic_calla_al_perro);
-        	  challengeDescription.setText(s + " description");
-        	  rowView.setBackgroundColor(getResources().getColor(R.color.blanco));
-          } else {
-            challengeIcon.setImageResource(R.drawable.ic_launcher);
-            challengeDescription.setText(s + " description");
+          } else if (s.getChallengeId().equals(ID_Wake_Me_Up)){
+			challengeIcon.setImageResource(R.drawable.ic_despertame_a_tiempo);
+			switch(level){
+	            case 1: challengeDescription.setText(s.getChallengeName() + " description");break;
+	            case 2: challengeDescription.setText(s.getChallengeName() + " description");break;
+	        }
+          } else if (s.getChallengeId().equals(ID_Can_You_Play)){
+			challengeIcon.setImageResource(R.drawable.ic_can_you_play);
+			switch(level){
+	            case 1: challengeDescription.setText(s.getChallengeName() + " description");break;
+	            case 2: challengeDescription.setText(s.getChallengeName() + " description");break;
+	        }
+          } else if (s.getChallengeId().equals(ID_Calla_Al_Perro)){
+			challengeIcon.setImageResource(R.drawable.ic_calla_al_perro);
+			switch(level){
+	            case 1: challengeDescription.setText(s.getChallengeName() + " description");break;
+	            case 2: challengeDescription.setText(s.getChallengeName() + " description");break;
+	        }
+/*          } else if (s.getChallengeId().equals(ID_)){
+  			challengeIcon.setImageResource(R.drawable.ic_);
+  			switch(level){
+  	            case 1: challengeDescription.setText(R.string.description_);break;
+  	            case 2: challengeDescription.setText(R.string.description_);break;
+  	        }*/
+			/*          } else if (s.getChallengeId().equals(ID_)){
+  			challengeIcon.setImageResource(R.drawable.ic_);
+  			switch(level){
+  	            case 1: challengeDescription.setText(R.string.description_);break;
+  	            case 2: challengeDescription.setText(R.string.description_);break;
+  	        }*/
+			/*          } else if (s.getChallengeId().equals(ID_)){
+  			challengeIcon.setImageResource(R.drawable.ic_);
+  			switch(level){
+  	            case 1: challengeDescription.setText(R.string.description_);break;
+  	            case 2: challengeDescription.setText(R.string.description_);break;
+  	        }*/
+			/*          } else if (s.getChallengeId().equals(ID_)){
+  			challengeIcon.setImageResource(R.drawable.ic_);
+  			switch(level){
+  	            case 1: challengeDescription.setText(R.string.description_);break;
+  	            case 2: challengeDescription.setText(R.string.description_);break;
+  	        }*/
+			/*          } else if (s.getChallengeId().equals(ID_)){
+  			challengeIcon.setImageResource(R.drawable.ic_);
+  			switch(level){
+  	            case 1: challengeDescription.setText(R.string.description_);break;
+  	            case 2: challengeDescription.setText(R.string.description_);break;
+  	        }*/
+			/*          } else if (s.getChallengeId().equals(ID_)){
+  			challengeIcon.setImageResource(R.drawable.ic_);
+  			switch(level){
+  	            case 1: challengeDescription.setText(R.string.description_);break;
+  	            case 2: challengeDescription.setText(R.string.description_);break;
+  	        }*/
+          } 
+          else {
+			challengeIcon.setImageResource(R.drawable.ic_launcher);
+			challengeDescription.setText(s + " description");
           }
+          rowView.setBackgroundColor(getResources().getColor(R.color.blanco));
 
           return rowView;
         }
