@@ -39,10 +39,11 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	private long lastUpdate = 0;
 	private float last_x, last_y, last_z;
 	private static final int SHAKE_THRESHOLD = 300;
-	private String challengeId;
 	
-	private Integer level = 2;
-	private Integer cant_repeticiones = 4;
+	private Integer level;
+	private Integer cant_repeticiones;
+	private Integer cant_repeticiones_LEVEL1 = 3;
+	private Integer cant_repeticiones_LEVEL2 = 4;
 	private static final long TIME_LEVEL1_1 = 5;
 	private static final long TIME_LEVEL1_2 = 4;
 	private static final long TIME_LEVEL1_3 = 3;
@@ -65,8 +66,6 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	private CountDownTimer timer;
 	private double score = 0;
 	private long exitos = 0;
-	private double tiempo_acum = 0;
-	private boolean gano = false;
 	private long attemps = 0;
 	private long max_attemps = 3;
 	
@@ -76,13 +75,16 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 		setContentView(R.layout.despertame_a_tiempo);
 		
 		if (attemps < max_attemps) {
+			this.setLevel(getIntent().getExtras().getInt("level"));
 			switch (level) {
 				case 1: {
 					segs_ocultos = TIME_LEVEL1_3;
+					cant_repeticiones = cant_repeticiones_LEVEL1;
 				}
 					break;
 				case 2: {
 					segs_ocultos = TIME_LEVEL2_4;
+					cant_repeticiones = cant_repeticiones_LEVEL2;
 				}
 					break;	
 			}
@@ -112,7 +114,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 			timer = this.createTimer();
 		}
 		else {
-			// INCOMPLETO !!!!!!!!
+			// INCOMPLETO PORQUE FALTA LA PERSISTENCIA LOCAL PARA CONTAR ATTEMPS !!!!!!!!
 			completeChallenge();
 		}
 		
@@ -147,8 +149,6 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 				else {
 					hms = String.format("??");
 				}
-				
-				//System.out.println(hms);
 				textViewTimeLeftValue.setText(hms);
 			}
 
@@ -242,48 +242,13 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	
 	private void frenarTimer() {
 		timerRunning = false;
-		String texto;
 		time = g_millis - tope;
-		long result_segs;
-		long result_milis;
-		//System.out.println("--- Time: " + time);
-		result_segs = Math.abs(TimeUnit.MILLISECONDS.toSeconds(time));
-		result_milis = Math.abs(TimeUnit.MILLISECONDS.toMillis(time) - TimeUnit.MILLISECONDS.toSeconds(time) * 1000);
-		//setTiempo(result_segs, result_milis);
-		//System.out.println("--- Segs: " + result_segs);
-		//System.out.println("--- Milis: " + result_milis);
-		
-		/*
-		if (TimeUnit.MILLISECONDS.toMillis(time) >= 0) {
-			texto = String.format("+%d,%d", 
-					result_segs,
-					result_milis);
-		}
-		else {
-			texto = String.format("-%d,%d", 
-					result_segs,
-					result_milis);
-		}
-		textViewTimeLeftValue.setText(texto);
-		*/
-		
-		/*if (TimeUnit.MILLISECONDS.toMillis(g_millis - tope) < tolerancia && TimeUnit.MILLISECONDS.toMillis(g_millis - tope) > -tolerancia) {
-			this.setGano(true);
-		}
-		else {
-			this.setGano(false);
-		}
-		*/
-		System.out.println("----- Time:" + time);
-		System.out.println("----- Tolerancia:" + tolerancia);
 		if (Math.abs(time) < tolerancia) {
 			setCantExitos(getCantExitos() + 1);
 		}			
-		System.out.println("----- Exitos:" + getCantExitos());
 		
 		textViewResult.setVisibility(View.VISIBLE);
 		textViewResult.setText(Double.toString(time));
-		//setTiempo(result_segs, result_milis);
 		timer.cancel();
 		
 		cant_repeticiones--;
@@ -372,14 +337,11 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 
 		// Activity Challenge Finished
 		Intent despertameATiempoFinished = new Intent(this, DespertameATiempoFinished.class);
-		despertameATiempoFinished.putExtra("resultado",
-			this.getGano());
 		despertameATiempoFinished.putExtra("cantExitos",
 			Long.toString(this.getCantExitos()));
 		despertameATiempoFinished.putExtra("score",
 			Integer.toString((int) this.getScore()));
 		despertameATiempoFinished.putExtra("dateTimeStart", getDateTimeStart().toString());
-		
 		despertameATiempoFinished.putExtra("attemps",
 			Long.toString(Math.round(this.getAttemps())));
 		
@@ -422,12 +384,12 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 		this.attemps = attemps;
 	}
 	
-	public boolean getGano() {
-		return gano;
+	public Integer getLevel() {
+		return level;
 	}
 
-	public void setGano(boolean gano) {
-		this.gano = gano;
+	public void setLevel(int level) {
+		this.level = level;
 	}
 	
 	public DTDateTime getDateTimeStart() {

@@ -30,7 +30,7 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
 	private ListView challengeMenu;
     private MyAdapter adapter;
     Random rand = new Random();
-	private int level = rand.nextInt(2) + 1;;
+	private int level = 1;
 	
 	private static final String ID_Usain_Bolt 		= "1";
 	private static final String ID_Wake_Me_Up 		= "2";
@@ -67,7 +67,6 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
     }
     
     
-    
     @Override
 	public void onItemClick(AdapterView<?> parent, View view, int position,
 			long id) {
@@ -101,6 +100,7 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
     	challenge.putExtra("day",calendar.get(Calendar.DAY_OF_MONTH));
     	challenge.putExtra("month",calendar.get(Calendar.MONTH));
     	challenge.putExtra("year",calendar.get(Calendar.YEAR));
+    	level = ((DataManager) DataManager.getInstance()).getChallenges().get(position).getChallengeLevel();
     	challenge.putExtra("level", level);
     	challenge.putExtra("challengeId", Integer.parseInt(adapter.getItem(position).getChallengeId()));
     	
@@ -132,61 +132,61 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
           challengeName.setText(s.getChallengeName());
           if (s.getChallengeId().equals(ID_Usain_Bolt)) {
 			challengeIcon.setImageResource(R.drawable.ic_usain_bolt);
-            switch(level){
+            switch(s.getChallengeLevel()){
 	            case 1: challengeDescription.setText(R.string.description_usain_bolt_1);break;
 	            case 2: challengeDescription.setText(R.string.description_usain_bolt_2);break;
             }
           } else if (s.getChallengeId().equals(ID_Wake_Me_Up)){
 			challengeIcon.setImageResource(R.drawable.ic_despertame_a_tiempo);
-			switch(level){
+			switch(s.getChallengeLevel()){
 	            case 1: challengeDescription.setText(s.getChallengeName() + " description");break;
 	            case 2: challengeDescription.setText(s.getChallengeName() + " description");break;
 	        }
           } else if (s.getChallengeId().equals(ID_Can_You_Play)){
 			challengeIcon.setImageResource(R.drawable.ic_can_you_play);
-			switch(level){
+			switch(s.getChallengeLevel()){
 	            case 1: challengeDescription.setText(s.getChallengeName() + " description");break;
 	            case 2: challengeDescription.setText(s.getChallengeName() + " description");break;
 	        }
           } else if (s.getChallengeId().equals(ID_Calla_Al_Perro)){
 			challengeIcon.setImageResource(R.drawable.ic_calla_al_perro);
-			switch(level){
+			switch(s.getChallengeLevel()){
 	            case 1: challengeDescription.setText(s.getChallengeName() + " description");break;
 	            case 2: challengeDescription.setText(s.getChallengeName() + " description");break;
 	        }
 /*          } else if (s.getChallengeId().equals(ID_)){
   			challengeIcon.setImageResource(R.drawable.ic_);
-  			switch(level){
+  			switch(s.getChallengeLevel()){
   	            case 1: challengeDescription.setText(R.string.description_);break;
   	            case 2: challengeDescription.setText(R.string.description_);break;
   	        }*/
 			/*          } else if (s.getChallengeId().equals(ID_)){
   			challengeIcon.setImageResource(R.drawable.ic_);
-  			switch(level){
+  			switch(s.getChallengeLevel()){
   	            case 1: challengeDescription.setText(R.string.description_);break;
   	            case 2: challengeDescription.setText(R.string.description_);break;
   	        }*/
 			/*          } else if (s.getChallengeId().equals(ID_)){
   			challengeIcon.setImageResource(R.drawable.ic_);
-  			switch(level){
+  			switch(s.getChallengeLevel()){
   	            case 1: challengeDescription.setText(R.string.description_);break;
   	            case 2: challengeDescription.setText(R.string.description_);break;
   	        }*/
 			/*          } else if (s.getChallengeId().equals(ID_)){
   			challengeIcon.setImageResource(R.drawable.ic_);
-  			switch(level){
+  			switch(s.getChallengeLevel()){
   	            case 1: challengeDescription.setText(R.string.description_);break;
   	            case 2: challengeDescription.setText(R.string.description_);break;
   	        }*/
 			/*          } else if (s.getChallengeId().equals(ID_)){
   			challengeIcon.setImageResource(R.drawable.ic_);
-  			switch(level){
+  			switch(s.getChallengeLevel()){
   	            case 1: challengeDescription.setText(R.string.description_);break;
   	            case 2: challengeDescription.setText(R.string.description_);break;
   	        }*/
 			/*          } else if (s.getChallengeId().equals(ID_)){
   			challengeIcon.setImageResource(R.drawable.ic_);
-  			switch(level){
+  			switch(s.getChallengeLevel()){
   	            case 1: challengeDescription.setText(R.string.description_);break;
   	            case 2: challengeDescription.setText(R.string.description_);break;
   	        }*/
