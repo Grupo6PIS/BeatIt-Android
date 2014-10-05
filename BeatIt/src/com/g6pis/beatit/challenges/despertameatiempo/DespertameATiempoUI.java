@@ -7,8 +7,6 @@ import java.lang.Math;
 
 import com.g6pis.beatit.Home;
 import com.g6pis.beatit.R;
-import com.g6pis.beatit.challenges.invitefriends.CanYouPlayFinished;
-import com.g6pis.beatit.challenges.usainbolt.UsainBoltFinished;
 import com.g6pis.beatit.datatypes.DTDateTime;
 
 import android.app.ActionBar;
@@ -53,11 +51,11 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	private static final long TIME_LEVEL2_4 = 3;
 	private long segs_ocultos = 0; // Este valor se modifica para cambiar la dificultad
 	
-	private long tolerancia = 500; // En milisegundos
-	private long tope = 10000; // Es el límite para detener el contador automáticamente porque ya perdió por mucho	
+	private static final long TOLERANCIA = 500; // En milisegundos
+	private static final long TOPE = 10000; // Es el límite para detener el contador automáticamente porque ya perdió por mucho	
 	private long time = 0; // Cuenta regresiva real
 	private long g_millis = 0; // Cuenta regresiva ficticia porque incluye el valor del tope
-	private long valor_inicial_contador = 10000; // En milisegundos
+	private static final long VALOR_INICIAL_CONTADOR = 10000; // En milisegundos
 	
 	private TextView startButton;
 	private TextView textViewTimeLeftValue;
@@ -76,7 +74,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 		
 		if (attemps < max_attemps) {
 			this.setLevel(getIntent().getExtras().getInt("level"));
-			switch (level) {
+			switch (this.getLevel()) {
 				case 1: {
 					segs_ocultos = TIME_LEVEL1_3;
 					cant_repeticiones = cant_repeticiones_LEVEL1;
@@ -102,7 +100,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	        senSensorManager.registerListener(this, senAccelerometer , SensorManager.SENSOR_DELAY_NORMAL);
 	        /* FIN ACELEROMETRO */
 			
-			String t_valor_inicial_contador = String.format("%d", valor_inicial_contador/1000);
+			String t_valor_inicial_contador = String.format("%d", VALOR_INICIAL_CONTADOR/1000);
 			
 			textViewTimeLeftValue = (TextView) findViewById(R.id.textView_Time_Left_Value);
 			textViewTimeLeftValue.setText(t_valor_inicial_contador);
@@ -135,16 +133,16 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	}
 	
 	public CountDownTimer createTimer(){
-		CountDownTimer timer = new CountDownTimer(valor_inicial_contador+tope, 10) {
+		CountDownTimer timer = new CountDownTimer(VALOR_INICIAL_CONTADOR+TOPE, 10) {
 			
 			public void onTick(long millisUntilFinished) {
 				
 				long millis = millisUntilFinished;
 				g_millis = millis;
 				String hms;
-				if (millis > segs_ocultos * 1000 + tope) {
+				if (millis > segs_ocultos * 1000 + TOPE) {
 					hms = String.format("%d", 
-							TimeUnit.MILLISECONDS.toSeconds(millis-tope));
+							TimeUnit.MILLISECONDS.toSeconds(millis-TOPE));
 				}
 				else {
 					hms = String.format("??");
@@ -242,8 +240,8 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	
 	private void frenarTimer() {
 		timerRunning = false;
-		time = g_millis - tope;
-		if (Math.abs(time) < tolerancia) {
+		time = g_millis - TOPE;
+		if (Math.abs(time) < TOLERANCIA) {
 			setCantExitos(getCantExitos() + 1);
 		}			
 		
