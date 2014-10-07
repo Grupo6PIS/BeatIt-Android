@@ -3,13 +3,17 @@ package com.g6pis.beatit.challenges.invitefriends;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.g6pis.beatit.controllers.DataManager;
 import com.g6pis.beatit.entities.Challenge;
 
 public class CanYouPlay extends Challenge {
-	private static final int MIN_FB_POST_LEVEL1 = 3;
-	private static final int MIN_FB_POST_LEVEL2 = 5;
+	private static final String CHALLENGE_ID = "3";
+	
+	private static final int MIN_FB_POST_LEVEL1 = 1;
+	private static final int MIN_FB_POST_LEVEL2 = 1;
 	private static final int MIN_SMS_LEVEL1 = 2;
 	private static final int MIN_SMS_LEVEL2 = 4;
+	
 
 	private int minFBPost;
 	private int minSMS;
@@ -77,7 +81,19 @@ public class CanYouPlay extends Challenge {
 	}
 	
 	public double calculateScore() {
-		return (fbPost + (smsSent*3))*10;
+		if((fbPost >= minFBPost)&&(smsSent >= minSMS))
+			return (fbPost + (smsSent*3))*10;
+		
+		return 0;
 	}
-
+	
+	
+	public void finishChallenge(){
+		DataManager.getInstance().saveScore(CHALLENGE_ID, calculateScore());
+		
+		phones = new ArrayList<String>();
+		smsSent = 0;
+		fbPost = 0;
+	}
+	
 }

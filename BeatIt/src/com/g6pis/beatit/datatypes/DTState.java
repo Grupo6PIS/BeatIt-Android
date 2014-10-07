@@ -13,7 +13,9 @@ public class DTState {
 	private double maxScore;
 	private double lastScore;
 	private DTDateTime dateTimeStart;
+	private DTDateTime dateTimeFinish;
 	private int currentAttempt;
+	private DTDateTime lastFinishDateTime;
 
 	public DTState(State state) {
 		challengeId = state.getChallenge().getChallengeId();
@@ -23,8 +25,10 @@ public class DTState {
 		finished = state.isFinished();
 		maxScore = state.getMaxScore();
 		lastScore = state.getLastScore();
-		dateTimeStart = state.getDateTimeStart();
+		dateTimeStart = state.getRound().getDateTimeStart();
+		dateTimeFinish = state.getRound().getDateTimeFinish();
 		currentAttempt = state.getCurrentAttempt();
+		lastFinishDateTime = state.getLastFinishDateTime();
 	}
 
 	public DTState(String challengeId, String roundId, double maxScore, double lastScore,
@@ -98,8 +102,13 @@ public class DTState {
 		this.challengeDuration = challengeDuration;
 	}
 
-	public void setDateTimeStart(DTDateTime dateTimeStart) {
-		this.dateTimeStart = dateTimeStart;
+	public DTDateTime getDateTimeFinish() {
+		return dateTimeFinish;
 	}
 
+	public DTDateTime getLastFinishDateTime() {
+		return lastFinishDateTime;
+	}
+	
+	
 }

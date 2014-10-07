@@ -51,7 +51,20 @@ public class Round {
 	public void setChallenges(List<Challenge> challenges) {
 		this.challenges = challenges;
 	}
-
+	
+	public Challenge getChallenge(String challengeId){
+		Challenge challenge = null;
+		int index = 0;
+		
+		while((challenge == null) && index < challenges.size()){
+			if(challenges.get(index).getChallengeId().equals(challengeId))
+				challenge = challenges.get(index);
+			
+			index++;
+		}
+		
+		return challenge;
+	}
 
 	
 	

@@ -1,9 +1,5 @@
 package com.g6pis.beatit.challenges.invitefriends;
 
-import com.g6pis.beatit.Home;
-import com.g6pis.beatit.R;
-import com.g6pis.beatit.datatypes.DTDateTime;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -11,47 +7,33 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.g6pis.beatit.Home;
+import com.g6pis.beatit.R;
+import com.g6pis.beatit.controllers.DataManager;
+import com.g6pis.beatit.datatypes.DTState;
+
 public class CanYouPlayFinished extends Activity {
+	private static final String CHALLENGE_ID = "3";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.challenge_finished);
 
-		
-       /* findViewById(R.id.homeButton).setOnClickListener(this);
-        findViewById(R.id.homeButton).setVisibility(View.VISIBLE);*/
-		
-		//TODO pedirle el state correspondiente al DataManager
+		DTState state = DataManager.getInstance().getState(CHALLENGE_ID);
 		
 		
 		this.editLayout();
-		/*((TextView) findViewById(R.id.sms_sent_value))
-				.setText(getIntent().getExtras().getString("sms"));
-
-		((TextView) findViewById(R.id.fb_post_value))
-				.setText(getIntent().getExtras().getString("fb"));
-
-		((TextView) findViewById(R.id.textView_Score_Value))
-				.setText(getIntent().getExtras().getString("score") + getResources().getString(R.string.points));*/
 		
-		/*((TextView) findViewById(R.id.textView_Start_Time_Value))
-		.setText(getIntent().getExtras().getString("dateTimeStart"));
+		((TextView)findViewById(R.id.textView_last_sscore_value)).setText(Double.toString(state.getLastScore()));
+		((TextView)findViewById(R.id.textView_max_score_value)).setText(Double.toString(state.getMaxScore()));
+		((TextView)findViewById(R.id.textView_Start_Time_Value)).setText(state.getDateTimeStart().toString());
+		((TextView)findViewById(R.id.textView_Finish_Time_Value)).setText(state.getLastFinishDateTime().toString());
 		
-		DTDateTime finishDate = new DTDateTime();
-		finishDate.setDay(getIntent().getExtras().getInt("day"));
-		finishDate.setMonth(getIntent().getExtras().getInt("month"));
-		finishDate.setYear(getIntent().getExtras().getInt("year"));
-		finishDate.setHour(getIntent().getExtras().getInt("hours"));
-		finishDate.setMinute(getIntent().getExtras().getInt("minutes"));
-		finishDate.setSecond(getIntent().getExtras().getInt("seconds"));
-		
-		((TextView)findViewById(R.id.textView_Duration_Value)).setText(finishDate.toString());*/
 
 	}
 

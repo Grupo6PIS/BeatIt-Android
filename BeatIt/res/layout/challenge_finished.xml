@@ -32,7 +32,7 @@
         android:textStyle="bold" />
     
     <TextView
-        android:id="@+id/textView_Duration"
+        android:id="@+id/textView_Finish_Time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/table_speed"
@@ -45,18 +45,18 @@
         android:id="@+id/textView_Start_Time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_Duration"
+        android:layout_alignLeft="@+id/textView_Finish_Time"
         android:layout_below="@+id/imageView_Logo"
         android:layout_marginTop="32dp"
         android:text="@string/start_time"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/textView_Duration_Value"
+        android:id="@+id/textView_Finish_Time_Value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_Duration"
-        android:layout_below="@+id/textView_Duration"
+        android:layout_alignLeft="@+id/textView_Finish_Time"
+        android:layout_below="@+id/textView_Finish_Time"
         android:text="@string/duration_value"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/gris_challenge_values"
@@ -66,7 +66,7 @@
         android:id="@+id/textView_Start_Time_Value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_Duration"
+        android:layout_alignLeft="@+id/textView_Finish_Time"
         android:layout_below="@+id/textView_Start_Time"
         android:text="@string/start_time_value"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -77,7 +77,7 @@
         android:id="@+id/table_speed"
         android:layout_width="250dp"
         android:layout_height="100dp"
-        android:layout_below="@+id/textView_Duration_Value"
+        android:layout_below="@+id/textView_Finish_Time_Value"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="43dp"
         android:visibility="visible" >

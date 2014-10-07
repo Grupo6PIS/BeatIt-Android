@@ -133,7 +133,7 @@ public class DataManager {
 					ShutTheDog shutTheDog = new ShutTheDog(challengeId,name,level,3);
 					challenges.add(shutTheDog);
 
-				}
+				}break;
 				}
 			}
 			
@@ -151,6 +151,8 @@ public class DataManager {
 			
 			currentRound = new Round(roundId,dateTimeStart, dateTimeFinish, challenges);
 			
+			//TODO comparar la ronda de los states de la BD con la ronda actual,
+			//si es distinta, se cambian
 			states = new HashMap<String,State>();
 			for(Challenge challenge : currentRound.getChallenges()){
 				State state = new State(currentRound,challenge,user);
@@ -205,6 +207,16 @@ public class DataManager {
 		} catch (InterruptedException e) {
 		} catch (ExecutionException e) {
 		}
+	}
+	
+	public DTState getState(String challengeId){
+		DTState state = new DTState(states.get(challengeId));
+		
+		return state;
+	}
+	
+	public Challenge getChallenge(String challengeId){
+		return currentRound.getChallenge(challengeId);
 	}
 	
 
