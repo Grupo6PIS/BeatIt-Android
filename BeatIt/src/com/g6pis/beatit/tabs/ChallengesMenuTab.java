@@ -24,6 +24,7 @@ import com.g6pis.beatit.challenges.despertameatiempo.DespertameATiempoUI;
 import com.g6pis.beatit.challenges.invitefriends.CanYouPlayUI;
 import com.g6pis.beatit.challenges.usainbolt.UsainBoltUI;
 import com.g6pis.beatit.controllers.DataManager;
+import com.g6pis.beatit.datatypes.DTDateTime;
 import com.g6pis.beatit.datatypes.DTState;
  
 public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemClickListener {
@@ -93,13 +94,13 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
 			challenge = new Intent(getActivity().getApplicationContext(), UI.class);
 */
 		}
-		Calendar calendar = new GregorianCalendar();
-    	challenge.putExtra("seconds",calendar.get(Calendar.SECOND));
-    	challenge.putExtra("minutes",calendar.get(Calendar.MINUTE));
-    	challenge.putExtra("hours",calendar.get(Calendar.HOUR_OF_DAY));
-    	challenge.putExtra("day",calendar.get(Calendar.DAY_OF_MONTH));
-    	challenge.putExtra("month",calendar.get(Calendar.MONTH));
-    	challenge.putExtra("year",calendar.get(Calendar.YEAR));
+		DTDateTime date_start = ((DataManager) DataManager.getInstance()).getChallenges().get(position).getDateTimeStart();
+    	challenge.putExtra("seconds",date_start.getSecond());
+    	challenge.putExtra("minutes",date_start.getMinute());
+    	challenge.putExtra("hours",date_start.getHour());
+    	challenge.putExtra("day",date_start.getDay());
+    	challenge.putExtra("month",date_start.getMonth());
+    	challenge.putExtra("year",date_start.getYear());
     	level = ((DataManager) DataManager.getInstance()).getChallenges().get(position).getChallengeLevel();
     	challenge.putExtra("level", level);
     	challenge.putExtra("challengeId", Integer.parseInt(adapter.getItem(position).getChallengeId()));

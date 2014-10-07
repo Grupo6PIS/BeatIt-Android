@@ -18,12 +18,10 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.provider.Settings;
-import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,7 +30,6 @@ import com.g6pis.beatit.Home;
 //import com.g6pis.beatit.persistence.UsainBoltDAO;
 import com.g6pis.beatit.R;
 import com.g6pis.beatit.datatypes.DTDateTime;
-import com.g6pis.beatit.entities.Challenge;
 //import com.g6pis.beatit.persistence.UsainBoltDAO;
 
 public class UsainBoltUI extends Activity implements OnClickListener,
@@ -105,7 +102,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 			startChallengeButton.setClickable(false);
 		}
 
-		// TODO instanciar la clase UsainBolt a través del DataManager.
+		// TODO instanciar la clase UsainBolt a travï¿½s del DataManager.
 		
 		this.setLevel(getIntent().getExtras().getInt("level"));
 		//this.setChallengeId(getIntent().getExtras().getInt("challengeId"));
@@ -194,10 +191,15 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 	public CountDownTimer createTimer(){
 		CountDownTimer timer = new CountDownTimer(time, 1000l) {
 			public void onTick(long millisUntilFinished) {
-				textViewTimeLeftValue.setText(getResources().getString(
+				/*textViewTimeLeftValue.setText(getResources().getString(
 						R.string.time_left)
 						+ Double.toString(Math
 								.round(millisUntilFinished / 1000))
+						+ " " + R.string.seconds);
+				*/
+				textViewTimeLeftValue.setText(getResources().
+						getString(R.string.time_left) + " "
+						+ Double.toString(time/1000)
 						+ " " + R.string.seconds);
 			}
 
@@ -369,10 +371,10 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 				this.speeds = new HashSet<Double>();
 				this.challengeStarted = false;
 				attempts++;
-				textViewTimeLeftValue.setText(getResources().getString(
-						R.string.time_left)
+				textViewTimeLeftValue.setText(getResources().
+						getString(R.string.time_left) + " "
 						+ Double.toString(time/1000)
-						+ " seconds");
+						+ " " + R.string.seconds);
 				if (attempts == MAX_ATTEMPTS) {
 					completeChallenge();
 				}
@@ -446,7 +448,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 	}
 
 	public void setSpeed(double speed) {
-		this.speed = speed;
+		this.speed = speed + 20.0;
 	}
 
 	public double getScore() {
