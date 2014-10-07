@@ -13,6 +13,7 @@ public class DTState {
 	private double maxScore;
 	private double lastScore;
 	private DTDateTime dateTimeStart;
+	private DTDateTime dateTimeFinish;
 	private int currentAttempt;
 
 	public DTState(State state) {
@@ -24,6 +25,7 @@ public class DTState {
 		maxScore = state.getMaxScore();
 		lastScore = state.getLastScore();
 		dateTimeStart = state.getDateTimeStart();
+		dateTimeFinish = state.getRound().getDateTimeFinish();
 		currentAttempt = state.getCurrentAttempt();
 	}
 

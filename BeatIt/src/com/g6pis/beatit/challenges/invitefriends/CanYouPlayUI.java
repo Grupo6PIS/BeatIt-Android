@@ -25,8 +25,10 @@ import com.facebook.UiLifecycleHelper;
 import com.facebook.widget.FacebookDialog;
 import com.g6pis.beatit.Home;
 import com.g6pis.beatit.R;
+import com.g6pis.beatit.controllers.DataManager;
 
 public class CanYouPlayUI extends Activity implements OnClickListener {
+	private static final String CHALLENGE_ID = "3";
 	private static final int PICK_CONTACT = 10;
 
 	private UiLifecycleHelper uiHelper;
@@ -36,8 +38,8 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 	private Button doneButton;
 
 	private String phone;
-	private int count;
-	private List<String> phones;
+	
+	private CanYouPlay canYouPlay;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +59,9 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 		selectContactButton.setOnClickListener(this);
 		facebookButton.setOnClickListener(this);
 		smsButton.setOnClickListener(this);
-
-		count = 0;
-		phones = new ArrayList<String>();
-
+		
+		canYouPlay = (CanYouPlay) DataManager.getInstance().getChallenge(CHALLENGE_ID);
+		
 	}
 
 	@Override
@@ -96,7 +97,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 									.getString(phonesCursor
 											.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
-							if (phones.contains(phone)) {
+							if (!canYouPlay.addPhone(phone)) {
 								Toast.makeText(getApplicationContext(),
 										"Select a different contact",
 										Toast.LENGTH_LONG).show();
@@ -130,6 +131,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 							String completionGesture = FacebookDialog
 									.getNativeDialogCompletionGesture(data);
 							if (!completionGesture.equals("cancel")) {
+								canYouPlay.fbPost();
 								Log.i("Activity", "success");
 							}
 						}
@@ -232,6 +234,8 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 			Toast.makeText(getApplicationContext(),
 					getResources().getString(R.string.sms_success),
 					Toast.LENGTH_LONG).show();
+			
+			canYouPlay.smsSent();
 
 		} catch (Exception ex) {
 
@@ -240,12 +244,12 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 					Toast.LENGTH_LONG).show();
 
 		}
-		count++;
 		phone = "";
 
 	}
 
 	public void completeChallenge() {
+		canYouPlay.finishChallenge();
 		Intent finished = new Intent(this, CanYouPlayFinished.class);
 		// TODO calcular el puntaje mediante la l�gica
 		startActivity(finished);
