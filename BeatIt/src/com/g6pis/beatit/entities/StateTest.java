@@ -29,12 +29,10 @@ public class StateTest {
 		User user = new User("123", "456", "Johnnie", "Walker", "USA", "facebook.com");
 		
 		State state = new State(round, challenge, user);
-		DTDateTime dateTime = state.getDateTimeStart();
 		
 		assertEquals(round, state.getRound());
 		assertEquals(challenge, state.getChallenge());
 		assertEquals(user, state.getUser());
-		assertEquals(dateTime,state.getDateTimeStart());
 		assertEquals(0,state.getCurrentAttempt());
 		assertEquals(0,state.getMaxScore(),0);
 		assertEquals(0,state.getLastScore(),0);
@@ -66,12 +64,10 @@ public class StateTest {
 		user = new User("789", "987", "William", "Lawson", "England", "facebook.com");
 		
 		
-		DTDateTime dateTime = new DTDateTime(6, 3, 1992, 9, 30, 0);
 		
 		state.setChallenge(challenge);
 		state.setCurrentAttempt(3);
 		state.setFinished(true);
-		state.setDateTimeStart(dateTime);
 		state.setRound(round);
 		state.setMaxScore(320);
 		state.setLastScore(120);
@@ -83,7 +79,6 @@ public class StateTest {
 		assertEquals(round, state.getRound());
 		assertEquals(challenge, state.getChallenge());
 		assertEquals(user, state.getUser());
-		assertEquals(dateTime,state.getDateTimeStart());
 		assertEquals(3,state.getCurrentAttempt());
 		assertEquals(320,state.getMaxScore(),0);
 		assertEquals(120,state.getLastScore(),0);
