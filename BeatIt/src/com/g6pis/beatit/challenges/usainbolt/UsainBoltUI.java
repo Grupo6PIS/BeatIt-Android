@@ -442,7 +442,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 	}
 
 	public void setSpeed(double speed) {
-		this.speed = speed + 20.0;
+		this.speed = speed;
 	}
 
 	public double getScore() {
