@@ -105,7 +105,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 			startChallengeButton.setClickable(false);
 		}
 
-		// TODO instanciar la clase UsainBolt a través del DataManager.
+		// TODO instanciar la clase UsainBolt a travï¿½s del DataManager.
 		
 		this.setLevel(getIntent().getExtras().getInt("level"));
 		//this.setChallengeId(getIntent().getExtras().getInt("challengeId"));
@@ -118,7 +118,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 
 		case 1: {
 			minSpeed = MIN_SPEED_LEVEL1;
-			time = TIME_LEVEL1;
+			setTime(TIME_LEVEL1);
 			((TextView) findViewById(R.id.textView_Description_Value_2))
 					.setText(R.string.description_usain_bolt_1);
 			textViewTimeLeftValue.setText(R.string.time_left_value_1);
@@ -127,7 +127,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 			break;
 		case 2: {
 			minSpeed = MIN_SPEED_LEVEL2;
-			time = TIME_LEVEL2;
+			setTime(TIME_LEVEL2);
 			((TextView) findViewById(R.id.textView_Description_Value_2))
 					.setText(R.string.description_usain_bolt_2);
 			textViewTimeLeftValue.setText(R.string.time_left_value_2);
@@ -194,11 +194,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 	public CountDownTimer createTimer(){
 		CountDownTimer timer = new CountDownTimer(time, 1000l) {
 			public void onTick(long millisUntilFinished) {
-				textViewTimeLeftValue.setText(getResources().getString(
-						R.string.time_left)
-						+ Double.toString(Math
-								.round(millisUntilFinished / 1000))
-						+ " " + R.string.seconds);
+				textViewTimeLeftValue.setText(getResources().getString(R.string.time_left) + (millisUntilFinished / 1000) + " " + getResources().getString(R.string.seconds));
 			}
 
 			public void onFinish() {
@@ -369,10 +365,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 				this.speeds = new HashSet<Double>();
 				this.challengeStarted = false;
 				attempts++;
-				textViewTimeLeftValue.setText(getResources().getString(
-						R.string.time_left)
-						+ Double.toString(time/1000)
-						+ " seconds");
+				textViewTimeLeftValue.setText(getResources().getString(R.string.time_left) + getTime() + " " + getResources().getString(R.string.seconds));
 				if (attempts == MAX_ATTEMPTS) {
 					completeChallenge();
 				}
@@ -446,7 +439,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 	}
 
 	public void setSpeed(double speed) {
-		this.speed = speed;
+		this.speed = speed + 20.0;
 	}
 
 	public double getScore() {
