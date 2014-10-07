@@ -100,8 +100,9 @@ public class DTState {
 		this.challengeDuration = challengeDuration;
 	}
 
-	public void setDateTimeStart(DTDateTime dateTimeStart) {
-		this.dateTimeStart = dateTimeStart;
+	public DTDateTime getDateTimeFinish() {
+		return dateTimeFinish;
 	}
-
+	
+	
 }

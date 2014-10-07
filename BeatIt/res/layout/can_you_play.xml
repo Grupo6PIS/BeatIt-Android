@@ -6,21 +6,21 @@
     tools:context=".MainActivity" >
 
     <TextView
-        android:id="@+id/textView_Duration"
+        android:id="@+id/textView_Finish_Time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView_Start_Time"
         android:layout_below="@+id/textView_Start_Time"
         android:layout_marginTop="29dp"
-        android:text="@string/duration"
+        android:text="@string/finish_time"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/textView_To_Beat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_Duration"
-        android:layout_below="@+id/textView_Duration"
+        android:layout_alignLeft="@+id/textView_Finish_Time"
+        android:layout_below="@+id/textView_Finish_Time"
         android:layout_marginTop="28dp"
         android:text="@string/to_beat"
         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -37,11 +37,11 @@
         android:textSize="14sp" />
 
     <TextView
-        android:id="@+id/textView_Duration_Value"
+        android:id="@+id/textView_Finish_Time_Value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_Duration"
-        android:layout_below="@+id/textView_Duration"
+        android:layout_alignLeft="@+id/textView_Finish_Time"
+        android:layout_below="@+id/textView_Finish_Time"
         android:text="@string/duration_value"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/gris_challenge_values"

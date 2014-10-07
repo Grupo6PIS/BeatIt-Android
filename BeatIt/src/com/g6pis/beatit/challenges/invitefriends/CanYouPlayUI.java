@@ -1,8 +1,5 @@
 package com.g6pis.beatit.challenges.invitefriends;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -19,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.facebook.UiLifecycleHelper;
@@ -26,6 +24,7 @@ import com.facebook.widget.FacebookDialog;
 import com.g6pis.beatit.Home;
 import com.g6pis.beatit.R;
 import com.g6pis.beatit.controllers.DataManager;
+import com.g6pis.beatit.datatypes.DTState;
 
 public class CanYouPlayUI extends Activity implements OnClickListener {
 	private static final String CHALLENGE_ID = "3";
@@ -38,7 +37,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 	private Button doneButton;
 
 	private String phone;
-	
+
 	private CanYouPlay canYouPlay;
 
 	@Override
@@ -59,9 +58,36 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 		selectContactButton.setOnClickListener(this);
 		facebookButton.setOnClickListener(this);
 		smsButton.setOnClickListener(this);
+
+		canYouPlay = (CanYouPlay) DataManager.getInstance().getChallenge(
+				CHALLENGE_ID);
+		DTState state = DataManager.getInstance().getState(CHALLENGE_ID);
+		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(state
+				.getDateTimeStart().toString());
+		((TextView) findViewById(R.id.textView_Finish_Time_Value))
+				.setText(state.getDateTimeFinish().toString());
 		
-		canYouPlay = (CanYouPlay) DataManager.getInstance().getChallenge(CHALLENGE_ID);
-		
+		if(state.getMaxScore() > 0)
+			((TextView)findViewById(R.id.textView_To_Beat_Value)).setText(Double.toString(state.getMaxScore()));
+		else{
+			((TextView)findViewById(R.id.textView_To_Beat_Value)).setVisibility(View.INVISIBLE);
+			((TextView)findViewById(R.id.textView_To_Beat)).setVisibility(View.INVISIBLE);
+			
+		}
+			
+
+		switch (canYouPlay.getLevel()) {
+		case 1:
+			((TextView) findViewById(R.id.textView_Description_Value_2))
+					.setText(getResources().getString(
+							R.string.can_you_play_description_1));
+			break;
+		case 2:
+			((TextView) findViewById(R.id.textView_Description_Value_2))
+					.setText(getResources().getString(
+							R.string.can_you_play_description_2));
+			break;
+		}
 	}
 
 	@Override
@@ -189,7 +215,8 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setTitle(this.getString(R.string.app_name));
-		actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.can_you_play)));
+		actionBar.setBackgroundDrawable(new ColorDrawable(getResources()
+				.getColor(R.color.can_you_play)));
 
 	}
 
@@ -200,9 +227,9 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 				.setName(getResources().getString(R.string.sms_text))
 				.setDescription(
 						getResources().getString(R.string.android_version))
-				.setCaption(
-						getResources().getString(R.string.also_available))
-				.setPicture("https://lh3.googleusercontent.com/Z0gp_Vw-g3ZI9ewq5MRHnNITqDpEDtWN6eh_j28UHiMkY_9b-4K5OFMVd6GWO40hdS-oVAI0Nw=w1893-h822")
+				.setCaption(getResources().getString(R.string.also_available))
+				.setPicture(
+						"https://lh3.googleusercontent.com/Z0gp_Vw-g3ZI9ewq5MRHnNITqDpEDtWN6eh_j28UHiMkY_9b-4K5OFMVd6GWO40hdS-oVAI0Nw=w1893-h822")
 				.build();
 		uiHelper.trackPendingDialogCall(shareDialog.present());
 	}
@@ -227,14 +254,16 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 							phone,
 							null,
 							getResources().getString(R.string.sms_text)
-									 + "\n\nAndroid:\nhttps://play.google.com/store/apps/details?id=com.g6pis.beatit&ah=mcoN2TjRF_obuPnlAcKtanl9mFk"
-									 + "\n\n"+getResources().getString(R.string.also_available) ,
-							null, null);
+									+ "\n\nAndroid:\nhttps://play.google.com/store/apps/details?id=com.g6pis.beatit&ah=mcoN2TjRF_obuPnlAcKtanl9mFk"
+									+ "\n\n"
+									+ getResources().getString(
+											R.string.also_available), null,
+							null);
 
 			Toast.makeText(getApplicationContext(),
 					getResources().getString(R.string.sms_success),
 					Toast.LENGTH_LONG).show();
-			
+
 			canYouPlay.smsSent();
 
 		} catch (Exception ex) {

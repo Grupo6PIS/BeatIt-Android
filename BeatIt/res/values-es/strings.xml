@@ -49,6 +49,7 @@
     <string name="speed">Velocidad:</string>
     <string name="speed_value">Velocidad: 0.0 km/h</string>
     <string name="start_time">Hora de comienzo:</string>
+    <string name="finish_time">Hora de fin:</string>
     <string name="start_time_value">18/08/2014 13:30</string>
     <string name="time_left">Tiempo restante:</string>
     <string name="seconds">segundos</string>
@@ -111,8 +112,10 @@
     <string name="sms_success">Su mensaje se ha enviado con éxito!</string>
     <string name="fb_posts">Posts en Facebook</string>
     <string name="sms_sent">SMS enviados</string>
-        <string name="android_version">Versión para Android</string>
+    <string name="android_version">Versión para Android</string>
     <string name="also_available">También disponible para Windows Phone</string>
+    <string name="can_you_play_description_1">En este desafío deberás publicar un link en tu biografía de Facebook y deberás, también, enviar 2 mensajes de texto a 2 contactos diferentes con el link.</string>
+    <string name="can_you_play_description_2">En este desafío deberás publicar un link en tu biografía de Facebook y deberás, también, enviar 4 mensajes de texto a 4 contactos diferentes con el link.</string>
     
     
     <!-- Despertame A Tiempo Strings -->
