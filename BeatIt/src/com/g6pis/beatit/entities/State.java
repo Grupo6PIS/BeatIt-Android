@@ -11,7 +11,6 @@ public class State {
 	private boolean finished;
 	private double maxScore;
 	private double lastScore;
-	private DTDateTime dateTimeStart;
 	private int currentAttempt;
 	
 	public State(Round round, Challenge challenge, User user){
@@ -22,7 +21,6 @@ public class State {
 		this.maxScore = 0;
 		this.lastScore = 0;
 		this.currentAttempt = 0;
-		this.dateTimeStart = new DTDateTime();
 		
 	}
 	
@@ -57,13 +55,6 @@ public class State {
 	}
 	public void setFinished(boolean finished) {
 		this.finished = finished;
-	}
-
-	public DTDateTime getDateTimeStart() {
-		return dateTimeStart;
-	}
-	public void setDateTimeStart(DTDateTime dateTimeStart) {
-		this.dateTimeStart = dateTimeStart;
 	}
 
 	public int getCurrentAttempt() {

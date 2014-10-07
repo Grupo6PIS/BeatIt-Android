@@ -24,7 +24,7 @@ public class DTState {
 		finished = state.isFinished();
 		maxScore = state.getMaxScore();
 		lastScore = state.getLastScore();
-		dateTimeStart = state.getDateTimeStart();
+		dateTimeStart = state.getRound().getDateTimeStart();
 		dateTimeFinish = state.getRound().getDateTimeFinish();
 		currentAttempt = state.getCurrentAttempt();
 	}
