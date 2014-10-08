@@ -7,7 +7,9 @@ import java.lang.Math;
 
 import com.g6pis.beatit.Home;
 import com.g6pis.beatit.R;
+import com.g6pis.beatit.controllers.DataManager;
 import com.g6pis.beatit.datatypes.DTDateTime;
+import com.g6pis.beatit.datatypes.DTState;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -38,6 +40,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	private float last_x, last_y, last_z;
 	private static final int SHAKE_THRESHOLD = 300;
 	
+	private static String challengeId = "2";
 	private Integer level;
 	private Integer cant_repeticiones;
 	private Integer cant_repeticiones_LEVEL1 = 3;
@@ -72,8 +75,10 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.despertame_a_tiempo);
 		
+		DataManager dm = DataManager.getInstance();
+		
 		if (attemps < max_attemps) {
-			this.setLevel(getIntent().getExtras().getInt("level"));
+			this.setLevel(((DTState) dm.getState(challengeId)).getChallengeLevel());
 			switch (this.getLevel()) {
 				case 1: {
 					segs_ocultos = TIME_LEVEL1_3;
@@ -90,9 +95,8 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 			startButton = (Button) findViewById(R.id.start_button_despertame);
 			startButton.setOnClickListener(this);
 			
-			this.setDateTimeStart(this.getDateExtras(getIntent().getExtras()));
-			((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(this
-					.getDateTimeStart().toString());
+			this.setDateTimeStart(dm.getCurrentRound().getDateTimeStart());
+			((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(this.getDateTimeStart().toString());
 			
 			/* ACELEROMETRO */
 	        senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
@@ -119,6 +123,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	}
 	
 	/***Useful Functions***/
+	/*
 	public DTDateTime getDateExtras(Bundle extras) {
 		DTDateTime date = new DTDateTime();
 
@@ -131,6 +136,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 
 		return date;
 	}
+	*/
 	
 	public CountDownTimer createTimer(){
 		CountDownTimer timer = new CountDownTimer(VALOR_INICIAL_CONTADOR+TOPE, 10) {
@@ -251,7 +257,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 		
 		cant_repeticiones--;
 		if (cant_repeticiones > 0) {
-			switch (level) {
+			switch (getLevel()) {
 				case 1: {
 					switch (cant_repeticiones) {
 						case 1: {
