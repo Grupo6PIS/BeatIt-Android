@@ -1,13 +1,8 @@
 package com.g6pis.beatit;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import java.util.Arrays;
+
 
 import android.app.Activity;
 import android.content.Context;
@@ -30,8 +25,6 @@ public class Login extends Activity {
 	private static final String APP_SHARED_PREFS = "asdasd_preferences";
 	SharedPreferences sharedPrefs;
 	Editor editor;
-	private boolean isUserLoggedIn;
-	private boolean isResumed = false;
 	private UiLifecycleHelper uiHelper;
 	private Session.StatusCallback callback = new Session.StatusCallback() {
 		@Override
@@ -52,7 +45,6 @@ public class Login extends Activity {
 		  uiHelper = new UiLifecycleHelper(this, callback); 
 		  uiHelper.onCreate(savedInstanceState);
 		
-		Session session = Session.getActiveSession();
 
 		this.getActionBar().hide();
 
@@ -66,7 +58,6 @@ public class Login extends Activity {
 	public void onResume() {
 		super.onResume();
 		uiHelper.onResume();
-		isResumed = true;
 		if(Session.getActiveSession().getState().isOpened()){
 			((RelativeLayout) findViewById(R.id.login_relative_layout)).setVisibility(View.INVISIBLE);
 		}
@@ -76,7 +67,6 @@ public class Login extends Activity {
 	public void onPause() {
 		super.onPause();
 		uiHelper.onPause();
-		isResumed = false;
 	}
 
 	@Override
@@ -121,10 +111,8 @@ public class Login extends Activity {
 								editor.putString("firstName", user.getFirstName());
 								editor.putString("fbId", user.getId());
 								editor.putString("lastName", user.getLastName());
-								String country = "";//user.getLocation().getName();
-								editor.putString("country", country);
 								editor.putString("accessToken", session.getAccessToken());
-								editor.putString("country", ""/*user.getLocation().getName()*/);
+								editor.putString("country",user.getLocation().getName());
 								editor.commit();
 								Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class);
 								startActivity(mainActivity);

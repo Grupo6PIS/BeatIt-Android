@@ -1,4 +1,4 @@
-package com.g6pis.beatit.serverconnection;
+package com.g6pis.beatit.connection;
 
 import java.io.BufferedReader;
 import java.io.IOException;

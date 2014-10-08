@@ -1,14 +1,18 @@
 package com.g6pis.beatit.challenges.usainbolt;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 import android.widget.TextView;
 
 import com.g6pis.beatit.R;
+import com.g6pis.beatit.controllers.DataManager;
 import com.g6pis.beatit.entities.Challenge;
 
 public class UsainBolt extends Challenge {
+	private static final String CHALLENGE_ID 		= "1";
+	
 	private static final double MIN_SPEED_LEVEL1 = 10.0;
 	private static final double MIN_SPEED_LEVEL2 = 15.0;
 	private static final long TIME_LEVEL1 = 30000;
@@ -18,15 +22,13 @@ public class UsainBolt extends Challenge {
 	private long time;
 	
 	private double maxSpeed;
-	private Set<Double> speeds;
 	private double avgSpeed;
 
 	public UsainBolt(String challengeId, String name, Integer level, int maxAttempt) {
 		super(challengeId, name, level, maxAttempt);
 
-		this.maxSpeed = 0;
-		this.avgSpeed = 0;
-		this.speeds = new HashSet<Double>();
+		this.maxSpeed = 0.0;
+		this.avgSpeed = 0.0;
 		
 		switch (level) {
 
@@ -52,14 +54,6 @@ public class UsainBolt extends Challenge {
 		this.maxSpeed = maxSpeed;
 	}
 
-	public Set<Double> getSpeeds() {
-		return speeds;
-	}
-
-	public void setSpeeds(Set<Double> speeds) {
-		this.speeds = speeds;
-	}
-
 	public double getAvgSpeed() {
 		return avgSpeed;
 	}
@@ -68,25 +62,32 @@ public class UsainBolt extends Challenge {
 		this.avgSpeed = avgSpeed;
 	}
 	
-	
 	public void addSpeed(double speed){
-		speeds.add(speed);
+		avgSpeed = (avgSpeed+speed)/2;
 		
 		if(speed > maxSpeed){
 			maxSpeed = speed;
 		}
 	}
 	
-	//@Override
-	public double calculateScore(){
-		// Calculating the average speed
-		avgSpeed = 0.0;
-		for (Double speed : speeds) {
-			avgSpeed += speed;
-		}
-		avgSpeed /= this.speeds.size();
-		
+	public double calculateScore(){	
 		return (maxSpeed + avgSpeed)*2;
 	}
+	
+	public void finishChallenge(){
+		DataManager.getInstance().saveScore(CHALLENGE_ID, calculateScore());
+		
+		this.maxSpeed = 0.0;
+		this.avgSpeed = 0.0;
+	}
+
+	public double getMinSpeed() {
+		return minSpeed;
+	}
+
+	public long getTime() {
+		return time;
+	}
+	
 	
 }

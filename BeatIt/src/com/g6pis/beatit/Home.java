@@ -1,8 +1,6 @@
 package com.g6pis.beatit;
 
 
-import java.util.List;
-
 import android.app.ActionBar;
 import android.app.ActionBar.Tab;
 import android.app.Fragment;
@@ -12,9 +10,10 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.view.View;
+import android.widget.ImageButton;
 
 import com.g6pis.beatit.controllers.DataManager;
-import com.g6pis.beatit.datatypes.DTRanking;
 import com.g6pis.beatit.tabs.ChallengesMenuTab;
 import com.g6pis.beatit.tabs.ProfileTab;
 import com.g6pis.beatit.tabs.RankingTab;
@@ -31,6 +30,8 @@ public class Home extends FragmentActivity {
 	     Editor editor;
 	     private boolean isUserLoggedIn;
 	     public DataManager datamanager;
+	     public ImageButton refreshButton;
+	     public ImageButton retryButton;
 	   
 	 
 	    @Override
@@ -47,6 +48,9 @@ public class Home extends FragmentActivity {
 	        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 	        setTitle(R.string.app_name);
 	        actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
+	        refreshButton = (ImageButton)findViewById(R.id.refresh_button);
+	        retryButton = (ImageButton)findViewById(R.id.retry_button);
+	        retryButton.setVisibility(View.INVISIBLE);
 	        
 	        ActionBar.Tab tab1 = actionBar.newTab().setText(R.string.challenges_tab);
 	        ActionBar.Tab tab2 = actionBar.newTab().setText(R.string.ranking_tab);

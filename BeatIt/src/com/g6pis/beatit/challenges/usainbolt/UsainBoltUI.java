@@ -29,38 +29,25 @@ import android.widget.Toast;
 import com.g6pis.beatit.Home;
 //import com.g6pis.beatit.persistence.UsainBoltDAO;
 import com.g6pis.beatit.R;
+import com.g6pis.beatit.challenges.invitefriends.CanYouPlay;
+import com.g6pis.beatit.controllers.DataManager;
 import com.g6pis.beatit.datatypes.DTDateTime;
 //import com.g6pis.beatit.persistence.UsainBoltDAO;
+import com.g6pis.beatit.datatypes.DTState;
 
 public class UsainBoltUI extends Activity implements OnClickListener,
 		LocationListener {
-
+	
+	private static final String CHALLENGE_ID = "1";
+	
 	private static final long MIN_TIME = 0;
 	private static final float MIN_DISTANCE = 0;
-	private static final double MIN_SPEED_LEVEL1 = 10.0;
-	private static final double MIN_SPEED_LEVEL2 = 15.0;
-	private static final long TIME_LEVEL1 = 30000;
-	private static final long TIME_LEVEL2 = 45000;
 	private static final int SETTINGS_DIALOG = 10;
 	private static final int SPEED_DIALOG = 20;
 	private static final int MAX_ATTEMPTS = 3;
 
-	private String challengeId;
-	private Integer level;
-	private DTDateTime dateTimeStart;
-	private DTDateTime dateTimeFinish;
 
-	private double minSpeed;
-	private long time;
-	
-	private double speed;
-	private Set<Double> speeds = new HashSet<Double>();
 	private LocationManager locationManager;
-	
-	private double avgSpeed;
-	private double score = 0;
-	private double maxSpeed = 0;
-	private int attempts = 0;
 
 	private CountDownTimer timer;
 	private boolean timerRunning = false;
@@ -71,11 +58,12 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 
 	private TextView startChallengeButton;
 	//private ImageView homeButton;
-	private ImageView cancelButton;
+//	private ImageView cancelButton;
 	private TextView textViewSpeedValue;
 	private TextView textViewTimeLeftValue;
 	
-	
+	private UsainBolt usainBolt;
+	private DTState state;
 
 	/***Activity Functions***/
 	@Override
@@ -88,7 +76,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 
 		/*homeButton.setOnClickListener(this);
 		homeButton.setVisibility(View.VISIBLE);*/
-		cancelButton.setOnClickListener(this);
+//		cancelButton.setOnClickListener(this);
 		startChallengeButton.setOnClickListener(this);
 
 		this.settingsDialog = onCreateDialog(SETTINGS_DIALOG);
@@ -102,29 +90,32 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 			startChallengeButton.setClickable(false);
 		}
 
-		// TODO instanciar la clase UsainBolt a trav�s del DataManager.
+		usainBolt = (UsainBolt) DataManager.getInstance().getChallenge(
+				CHALLENGE_ID);
+		state = DataManager.getInstance().getState(CHALLENGE_ID);
 		
-		this.setLevel(getIntent().getExtras().getInt("level"));
-		//this.setChallengeId(getIntent().getExtras().getInt("challengeId"));
-		this.setDateTimeStart(this.getDateExtras(getIntent().getExtras()));
 
-		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(this
-				.getDateTimeStart().toString());
+		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(state.getDateTimeStart().toString());
+		((TextView) findViewById(R.id.textView_Time_Finish_Value)).setText(state.getDateTimeFinish().toString());
+		
+		if(state.getMaxScore() > 0)
+			((TextView)findViewById(R.id.textView_To_Beat_Value)).setText(Double.toString(state.getMaxScore()));
+		else{
+			((TextView)findViewById(R.id.textView_To_Beat_Value)).setVisibility(View.INVISIBLE);
+			((TextView)findViewById(R.id.textView_To_Beat)).setVisibility(View.INVISIBLE);
+			
+		}
+		
 
-		switch (this.getLevel()) {
+		switch (usainBolt.getLevel()) {
 
 		case 1: {
-			minSpeed = MIN_SPEED_LEVEL1;
-			time = TIME_LEVEL1;
 			((TextView) findViewById(R.id.textView_Description_Value_2))
 					.setText(R.string.description_usain_bolt_1);
 			textViewTimeLeftValue.setText(R.string.time_left_value_1);
-
 		}
 			break;
 		case 2: {
-			minSpeed = MIN_SPEED_LEVEL2;
-			time = TIME_LEVEL2;
 			((TextView) findViewById(R.id.textView_Description_Value_2))
 					.setText(R.string.description_usain_bolt_2);
 			textViewTimeLeftValue.setText(R.string.time_left_value_2);
@@ -189,18 +180,17 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 	}
 	
 	public CountDownTimer createTimer(){
-		CountDownTimer timer = new CountDownTimer(time, 1000l) {
+		CountDownTimer timer = new CountDownTimer(usainBolt.getTime(), 1000l) {
 			public void onTick(long millisUntilFinished) {
 				textViewTimeLeftValue.setText(
 						getResources().getString(R.string.time_left) + " "
-						+ Double.toString(time/1000)
+						+ Double.toString(usainBolt.getTime()/1000)
 						+ " " + getResources().getString(R.string.seconds));
 			}
 
 			public void onFinish() {
+				usainBolt.finishChallenge();
 				completeChallenge();
-				Toast.makeText(getApplicationContext(), "Challenge Completed!",
-						Toast.LENGTH_SHORT).show();
 			}
 		};
 		
@@ -210,7 +200,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 	public void viewAssignment() {
 		startChallengeButton = (TextView) findViewById(R.id.start_challenge_button);
 		//homeButton = (ImageView) findViewById(R.id.homeButton);
-		cancelButton = (ImageView) findViewById(R.id.cancelButton);
+//		cancelButton = (ImageView) findViewById(R.id.cancelButton);
 		textViewSpeedValue = (TextView) findViewById(R.id.textView_Friends_Value);
 		textViewTimeLeftValue = (TextView) findViewById(R.id.textView_Time_Left_Value);
 	}
@@ -218,43 +208,10 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 	public void completeChallenge() {
 		locationManager.removeUpdates(this);
 		timer = null;
-
-		// Calculating the average speed
-		Double averageSpeed = 0.0;
-		for (Double speed : this.getSpeeds()) {
-			averageSpeed += speed;
-		}
-		averageSpeed /= this.getSpeeds().size();
-		this.setAvgSpeed(averageSpeed);
-
-		// Calculating the score
-		this.setScore((this.getMaxSpeed() + this.getAvgSpeed()) * 2);
-
+		
 		// Activity Challenge Finished
 		Intent challengeFinished = new Intent(this, UsainBoltFinished.class);
-		challengeFinished.putExtra("maxSpeed",
-				Double.toString(Math.round(this.getMaxSpeed())));
-		challengeFinished.putExtra("avgSpeed",
-				Double.toString(Math.round(this.getAvgSpeed())));
-		challengeFinished.putExtra("score",
-				Double.toString(Math.round(this.getScore())));
-
-		Calendar calendar = new GregorianCalendar();
-
-		challengeFinished.putExtra("seconds", calendar.get(Calendar.SECOND));
-		challengeFinished.putExtra("minutes", calendar.get(Calendar.MINUTE));
-		challengeFinished.putExtra("hours", calendar.get(Calendar.HOUR_OF_DAY));
-		challengeFinished.putExtra("day", calendar.get(Calendar.DAY_OF_MONTH));
-		challengeFinished.putExtra("month", calendar.get(Calendar.MONTH));
-		challengeFinished.putExtra("year", calendar.get(Calendar.YEAR));
-		challengeFinished.putExtra("dateTimeStart", dateTimeStart.toString());
-
 		startActivity(challengeFinished);
-
-		// Store the finished challenge
-		// TODO verificar puntaje m�ximo
-		/*UsainBoltDAO db = new UsainBoltDAO(this);
-		db.addUsainBolt(this);*/
 
 		this.finish();
 
@@ -276,12 +233,12 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 	@Override
 	public void onClick(View v) {
 		switch (v.getId()) {
-		case R.id.cancelButton: {
+		/*case R.id.cancelButton: {
 			this.setMaxSpeed(0);
 			this.setAvgSpeed(0.0);
 			this.completeChallenge();
 		}
-			break;
+			break;*/
 		/*case R.id.homeButton: {
 			Intent home = new Intent(this, Home.class);
 			startActivity(home);
@@ -292,7 +249,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 			startChallengeButton.setVisibility(View.INVISIBLE);
 			textViewSpeedValue.setVisibility(View.VISIBLE);
 			textViewTimeLeftValue.setVisibility(View.VISIBLE);
-			cancelButton.setVisibility(View.VISIBLE);
+//			cancelButton.setVisibility(View.VISIBLE);
 			challengeStarted = true;
 			textViewSpeedValue.setText(getResources().getString(R.string.speed)
 					+ " 0.0 km/h");
@@ -325,33 +282,29 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 	/***GPS Functions***/
 	@Override
 	public void onLocationChanged(Location loc) {
-
-		this.setSpeed(loc.getSpeed() * 3.6);
-		this.getSpeeds().add(this.getSpeed());
-
-		if (this.getSpeed() > this.getMaxSpeed())
-			this.setMaxSpeed(this.getSpeed());
+		Double speed = loc.getSpeed() * 3.6;
+		usainBolt.addSpeed(speed);
 
 		String speedValue = getResources().getString(R.string.speed)
-				+ Double.toString(Math.round(this.getSpeed())) + " km/h";
+				+ Double.toString(Math.round(speed)) + " km/h";
 
 		textViewSpeedValue.setText(speedValue);
 
-		if ((this.getSpeed() > 0) && (!this.challengeStarted)) {
+		if ((speed > 0) && (!this.challengeStarted)) {
 			this.speedDialog.show();
 			startChallengeButton.setClickable(false);
 			startChallengeButton.setVisibility(View.VISIBLE);
 			textViewSpeedValue.setVisibility(View.INVISIBLE);
 			textViewTimeLeftValue.setVisibility(View.INVISIBLE);
-			cancelButton.setVisibility(View.INVISIBLE);
+//			cancelButton.setVisibility(View.INVISIBLE);
 		}
 		
-		if ((this.getSpeed() == 0) && (!this.challengeStarted)) {
+		if ((speed == 0) && (!this.challengeStarted)) {
 			this.speedDialog.hide();
 			startChallengeButton.setClickable(true);
 		}
 
-		if ((this.getSpeed() >= minSpeed) && (challengeStarted)) {
+		if ((speed >= usainBolt.getMinSpeed()) && (challengeStarted)) {
 			if (!timerRunning) {
 				this.timer.start();
 				this.timerRunning = true;
@@ -361,15 +314,15 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 			if (this.timerRunning) {
 				timer.cancel();
 				this.timerRunning = false;
-				this.setMaxSpeed(0);
-				this.speeds = new HashSet<Double>();
+				usainBolt.setMaxSpeed(0);
+				usainBolt.setAvgSpeed(0);
+				usainBolt.finishChallenge();
 				this.challengeStarted = false;
-				attempts++;
 				textViewTimeLeftValue.setText(
 						getResources().getString(R.string.time_left) + " "
-						+ Double.toString(time/1000)
+						+ Double.toString(usainBolt.getTime()/1000)
 						+ " " + getResources().getString(R.string.seconds));
-				if (attempts == MAX_ATTEMPTS) {
+				if (state.isFinished()) {
 					completeChallenge();
 				}
 			}
@@ -384,7 +337,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 		startChallengeButton.setVisibility(View.VISIBLE);
 		textViewSpeedValue.setVisibility(View.INVISIBLE);
 		textViewTimeLeftValue.setVisibility(View.INVISIBLE);
-		cancelButton.setVisibility(View.INVISIBLE);
+//		cancelButton.setVisibility(View.INVISIBLE);
 
 	}
 
@@ -435,96 +388,6 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 	}
 	/***Dialogs Functions***/
 	
-	
-	/***Getter & Setters***/
-	public double getSpeed() {
-		return speed;
-	}
-
-	public void setSpeed(double speed) {
-		this.speed = speed;
-	}
-
-	public double getScore() {
-		return score;
-	}
-
-	public void setScore(double score) {
-		this.score = score;
-	}
-
-	public String getChallengeId() {
-		return challengeId;
-	}
-
-	public void setChallengeId(String challengeId) {
-		this.challengeId = challengeId;
-	}
-
-	public double getMaxSpeed() {
-		return maxSpeed;
-	}
-
-	public void setMaxSpeed(double maxSpeed) {
-		this.maxSpeed = maxSpeed;
-	}
-
-	public Set<Double> getSpeeds() {
-		return speeds;
-	}
-
-	public Integer getLevel() {
-		return level;
-	}
-
-	public void setLevel(int level) {
-		this.level = level;
-	}
-
-	public double getAvgSpeed() {
-		return avgSpeed;
-	}
-
-	public void setAvgSpeed(Double avgSpeed) {
-		this.avgSpeed = avgSpeed;
-	}
-
-	public double getMinSpeed() {
-		return minSpeed;
-	}
-
-	public void setMinSpeed(double minSpeed) {
-		this.minSpeed = minSpeed;
-	}
-
-	public long getTime() {
-		return time;
-	}
-
-	public void setTime(long time) {
-		this.time = time;
-	}
-
-	public void setLevel(Integer level) {
-		this.level = level;
-	}
-
-	public DTDateTime getDateTimeStart() {
-		return dateTimeStart;
-	}
-
-	public void setDateTimeStart(DTDateTime dateTimeStart) {
-		this.dateTimeStart = dateTimeStart;
-	}
-
-	public DTDateTime getDateTimeFinish() {
-		return dateTimeFinish;
-	}
-
-	public void setDateTimeFinish(DTDateTime dateTimeFinish) {
-		this.dateTimeFinish = dateTimeFinish;
-	}
-	/***Getters & Setters***/
 	
 
 }

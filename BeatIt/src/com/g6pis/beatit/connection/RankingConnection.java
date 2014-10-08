@@ -1,4 +1,4 @@
-package com.g6pis.beatit.serverconnection;
+package com.g6pis.beatit.connection;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,13 +11,12 @@ import org.json.JSONObject;
 
 import android.os.AsyncTask;
 
-public class RoundConnection extends AsyncTask<Void, Void, JSONObject>{
-	
+public class RankingConnection extends AsyncTask<Void, Void, JSONObject> {
 	@Override
 	protected JSONObject doInBackground(Void...params) {
-		JSONObject round = new JSONObject();
+		JSONObject ranking = new JSONObject();
 		try {
-			URL obj = new URL("http://beatit-udelar.rhcloud.com/round/getRound/");
+			URL obj = new URL("http://beatit-udelar.rhcloud.com/round/getRanking/");
 			HttpURLConnection con;
 			con = (HttpURLConnection) obj.openConnection();
 			
@@ -31,16 +30,13 @@ public class RoundConnection extends AsyncTask<Void, Void, JSONObject>{
 
 			JSONObject json = new JSONObject(in.readLine());
 			if(!json.getBoolean("error")){
-				round = json.getJSONObject("round");
+				ranking = json.getJSONObject("data");
 			}
 			in.close();
 
 		} catch (IOException e) {
 		} catch (JSONException e) {
 		}
-		return round;
+		return ranking;
 	}
-
-	
-
 }

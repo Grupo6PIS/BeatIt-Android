@@ -24,12 +24,13 @@
         android:text="TextView"
         android:textColor="#000000" />
 
-    <com.facebook.widget.ProfilePictureView
+    <ImageView
         android:id="@+id/imageView_foto_ranking"
         android:layout_width="0dp"
         android:layout_height="35dp"
         android:layout_gravity="center"
-        android:layout_weight="8"/>
+        android:layout_weight="8"
+        android:src="@drawable/com_facebook_profile_default_icon"/>
 
     <TextView
         android:id="@+id/textView_nombre_usuario"
@@ -37,8 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_weight="30"
-        android:gravity="center|left"
-        android:paddingLeft="10dp"
+        android:gravity="center|start"
         android:text="TextView"
         android:textColor="#000000" />
 

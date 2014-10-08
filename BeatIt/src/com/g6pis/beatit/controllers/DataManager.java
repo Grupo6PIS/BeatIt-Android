@@ -14,6 +14,10 @@ import com.g6pis.beatit.challenges.callaalperro.ShutTheDog;
 import com.g6pis.beatit.challenges.despertameatiempo.WakeMeUp;
 import com.g6pis.beatit.challenges.invitefriends.CanYouPlay;
 import com.g6pis.beatit.challenges.usainbolt.UsainBolt;
+import com.g6pis.beatit.connection.LoginConnection;
+import com.g6pis.beatit.connection.RankingConnection;
+import com.g6pis.beatit.connection.RoundConnection;
+import com.g6pis.beatit.connection.ScoreConnection;
 import com.g6pis.beatit.datatypes.DTDateTime;
 import com.g6pis.beatit.datatypes.DTRanking;
 import com.g6pis.beatit.datatypes.DTState;
@@ -21,10 +25,6 @@ import com.g6pis.beatit.entities.Challenge;
 import com.g6pis.beatit.entities.Round;
 import com.g6pis.beatit.entities.State;
 import com.g6pis.beatit.entities.User;
-import com.g6pis.beatit.serverconnection.LoginConnection;
-import com.g6pis.beatit.serverconnection.RankingConnection;
-import com.g6pis.beatit.serverconnection.RoundConnection;
-import com.g6pis.beatit.serverconnection.ScoreConnection;
 
 public class DataManager {
 

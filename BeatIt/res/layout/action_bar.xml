@@ -35,28 +35,32 @@
         android:textColor="#ffffff"
         android:textSize="24sp" />
 
-  <!-- <ImageView
-        android:id="@+id/homeButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
-        android:clickable="true"
-        android:contentDescription="@string/app_name"
-        android:hapticFeedbackEnabled="true"
-        android:src="@drawable/white_arrow"
-        android:visibility="invisible" />-->
-
-    <ImageView
-        android:id="@+id/cancelButton"
+    <ImageButton
+        android:id="@+id/refresh_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
+        android:background="@android:color/transparent"
         android:clickable="true"
         android:contentDescription="@string/app_name"
+        android:focusableInTouchMode="true"
         android:hapticFeedbackEnabled="true"
-        android:src="@drawable/white_flag"
-        android:visibility="gone" />
+        android:src="@drawable/actionbar_refresh"
+        android:visibility="invisible" />
+
+    <ImageButton
+        android:id="@+id/retry_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:contentDescription="@string/app_name"
+        android:focusableInTouchMode="true"
+        android:hapticFeedbackEnabled="true"
+        android:src="@drawable/actionbar_retry"
+        android:visibility="invisible" />
 
 </RelativeLayout>

@@ -37,7 +37,6 @@
     
     <!-- Strings generales de la aplicación -->
     
-    <string name="hello_world">Hola Mundo!</string>
 	<string name="action_settings">Ajustes</string>
     <string name="app_name">BeatIt!</string>
     <string name="description">Descripción</string>
@@ -57,11 +56,9 @@
     <string name="time_left_value_2">Tiempo Restante: 90 segundos</string>
     <string name="title_activity_challenge_in_progress">ChallengeInProgress</string>
     <string name="title_activity_challenges_menu">ChallengesMenu</string>
-    <string name="title_activity_ranking">Ranking</string>
-    <string name="title_activity_profile">Profile</string>
     <string name="title_activity_challenge_finished">ChallengeFinished</string>
     <string name="title_activity_login">Login</string>
-    <string name="score">Score</string>
+    <string name="score">Puntos</string>
     <string name="score_value">1503 puntos</string>
     <string name="max_speed">Max Velocidad</string>
     <string name="avg_speed">Vel. Promedio</string>

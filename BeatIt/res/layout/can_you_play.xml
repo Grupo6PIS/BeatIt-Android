@@ -5,182 +5,224 @@
     android:background="@color/gris"
     tools:context=".MainActivity" >
 
-    <TextView
-        android:id="@+id/textView_Finish_Time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_Start_Time"
-        android:layout_below="@+id/textView_Start_Time"
-        android:layout_marginTop="29dp"
-        android:text="@string/duration"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+	<RelativeLayout
+	    android:id="@+id/title_layout"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignEnd="@+id/description_layout"
+	    android:layout_alignLeft="@+id/description_layout"
+	    android:layout_alignParentTop="true"
+	    android:layout_alignRight="@+id/description_layout"
+	    android:layout_alignStart="@+id/description_layout" >
 
-    <TextView
-        android:id="@+id/textView_To_Beat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_Finish_Time"
-        android:layout_below="@+id/textView_Finish_Time"
-        android:layout_marginTop="28dp"
-        android:text="@string/to_beat"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+	    <ImageView
+	        android:id="@+id/imageView_Logo"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentStart="true"
+	        android:layout_centerVertical="true"
+	        android:layout_marginLeft="24dp"
+	        android:layout_marginStart="22dp"
+	        android:adjustViewBounds="true"
+	        android:contentDescription="@string/logo_description"
+	        android:src="@drawable/ic_can_you_play" />
 
-    <TextView
-        android:id="@+id/textView_To_Beat_Value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_To_Beat"
-        android:layout_below="@+id/textView_To_Beat"
-        android:text="@string/points_value"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/gris_challenge_values"
-        android:textSize="14sp" />
+	    <TextView
+	        android:id="@+id/textView_Challenge_Name"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentRight="true"
+	        android:layout_centerVertical="true"
+	        android:layout_marginLeft="16dp"
+	        android:layout_marginStart="16dp"
+	        android:layout_toEndOf="@+id/imageView_Logo"
+	        android:layout_toRightOf="@+id/imageView_Logo"
+	        android:text="@string/can_you_play"
+	        android:textAppearance="?android:attr/textAppearanceLarge"
+	        android:textColor="@color/can_you_play"
+	        android:textSize="30sp"
+	        android:textStyle="bold" />
+	</RelativeLayout>
 
-    <TextView
-        android:id="@+id/textView_Finish_Time_Value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_Finish_Time"
-        android:layout_below="@+id/textView_Finish_Time"
-        android:text="@string/duration_value"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/gris_challenge_values"
-        android:textSize="14sp" />
+	<RelativeLayout
+	    android:id="@+id/description_layout"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignLeft="@+id/info_layout"
+	    android:layout_alignStart="@+id/info_layout"
+	    android:layout_below="@+id/title_layout"
+	    android:layout_marginTop="16dp"
+	    android:gravity="center" >
 
-    <TextView
-        android:id="@+id/textView_Start_Time_Value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_Start_Time"
-        android:layout_below="@+id/textView_Start_Time"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textColor="@color/gris_challenge_values"
-        android:textSize="14sp" />
-     
-<!--     <TextView -->
-<!--         android:id="@+id/textView_Friends_Value" -->
-<!--         android:layout_width="250dp" -->
-<!--         android:layout_height="40dp" -->
-<!--         android:layout_below="@+id/textView_To_Beat_Value" -->
-<!--         android:layout_centerHorizontal="true" -->
-<!--         android:layout_marginTop="18dp" -->
-<!--         android:background="@color/invita_amigos" -->
-<!--         android:gravity="center" -->
-<!--         android:text="@string/friends" -->
-<!--         android:textColor="@color/blanco" -->
-<!--         android:textSize="14sp" -->
-<!--         android:textStyle="bold" /> -->
+	    <TextView
+	        android:id="@+id/textView_Description"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentTop="true"
+	        android:text="@string/description"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textStyle="bold" />
 
+	    <TextView
+	        android:id="@+id/textView_Description_Value_2"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_below="@+id/textView_Description"
+	        android:layout_marginEnd="22dp"
+	        android:layout_marginRight="22dp"
+	        android:text="@string/can_you_play_description_2"
+	        android:textColor="@color/gris_challenge_description"
+	        android:textSize="15sp" />
+	</RelativeLayout>
 
+	<RelativeLayout
+	    android:id="@+id/info_layout"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignParentLeft="true"
+	    android:layout_alignParentStart="true"
+	    android:layout_below="@+id/description_layout"
+	    android:layout_marginLeft="16dp"
+	    android:layout_marginStart="17dp"
+	    android:layout_marginTop="15dp" >
 
-    <TextView
-        android:id="@+id/textView_Start_Time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_Description_Value_2"
-        android:layout_below="@+id/textView_Description_Value_2"
-        android:layout_marginTop="18dp"
-        android:text="@string/start_time"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+	    <TextView
+	        android:id="@+id/textView_To_Beat_Value"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/textView_To_Beat"
+	        android:layout_alignStart="@+id/textView_To_Beat"
+	        android:layout_below="@+id/textView_To_Beat"
+	        android:text="@string/points_value"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/gris_challenge_values"
+	        android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/textView_Description_Value_2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_Description"
-        android:layout_below="@+id/textView_Description"
-        android:layout_marginRight="22dp"
-        android:text="@string/description_usain_bolt_2"
-        android:textColor="@color/gris_challenge_description"
-        android:textSize="18sp" />
+	    <TextView
+	        android:id="@+id/textView_Finish_Time_Value"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/textView_Finish_Time"
+	        android:layout_alignStart="@+id/textView_Finish_Time"
+	        android:layout_below="@+id/textView_Finish_Time"
+	        android:text="@string/duration_value"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/gris_challenge_values"
+	        android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/textView_Description"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView_Logo"
-        android:layout_below="@+id/imageView_Logo"
-        android:layout_marginTop="30dp"
-        android:text="@string/description"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textStyle="bold" />
+	    <TextView
+	        android:id="@+id/textView_Start_Time_Value"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/textView_Start_Time"
+	        android:layout_alignStart="@+id/textView_Start_Time"
+	        android:layout_below="@+id/textView_Start_Time"
+	        android:text="@string/duration_value"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        android:textColor="@color/gris_challenge_values"
+	        android:textSize="14sp" />
 
-    <TextView
-        android:id="@+id/textView_Nombre_Desafio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="15dp"
-        android:layout_toRightOf="@+id/imageView_Logo"
-        android:layout_marginLeft="16dp"
-        android:text="@string/can_you_play"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/can_you_play"
-        android:textSize="34sp"
-        android:textStyle="bold" />
+	    <TextView
+	        android:id="@+id/textView_Start_Time"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentTop="true"
+	        android:text="@string/start_time"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <ImageView
-        android:id="@+id/imageView_Logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView_Nombre_Desafio"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="22dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/logo_description"
-        android:src="@drawable/ic_can_you_play" />
+	    <TextView
+	        android:id="@+id/textView_Finish_Time"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/textView_Left_Time"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignStart="@+id/textView_Start_Time"
+	        android:layout_below="@+id/textView_Start_Time_Value"
+	        android:text="@string/duration"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <Button
-        android:id="@+id/select_contact_button"
-        android:layout_width="130dp"
-        android:layout_height="40dp"
-        android:layout_alignLeft="@+id/textView_To_Beat_Value"
-        android:layout_below="@+id/textView_To_Beat_Value"
-        android:layout_marginTop="18dp"
-        android:background="@color/can_you_play"
-        android:gravity="center"
-        android:text="@string/select_contact"
-        android:textColor="@color/blanco"
-        android:textSize="12sp" />
+	    <TextView
+	        android:id="@+id/textView_To_Beat"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignLeft="@+id/textView_Finish_Time"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignStart="@+id/textView_Finish_Time"
+	        android:layout_below="@+id/textView_Finish_Time_Value"
+	        android:text="@string/to_beat"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+	</RelativeLayout>
 
-    <Button
-        android:id="@+id/done_button"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_alignLeft="@+id/select_contact_button"
-        android:layout_alignRight="@+id/facebook_post_button"
-        android:layout_below="@+id/send_SMS_button"
-        android:layout_marginTop="18dp"
-        android:background="@color/can_you_play"
-        android:text="@string/done"
-        android:textColor="@color/blanco" />
+	<RelativeLayout
+	    android:id="@+id/button_layout"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_alignEnd="@+id/title_layout"
+	    android:layout_alignRight="@+id/title_layout"
+	    android:layout_alignLeft="@+id/info_layout"
+	    android:layout_alignStart="@+id/info_layout"
+	    android:layout_below="@+id/info_layout" >
 
-    <Button
-        android:id="@+id/facebook_post_button"
-        android:layout_width="130dp"
-        android:layout_height="40dp"
-        android:layout_alignBaseline="@+id/send_SMS_button"
-        android:layout_alignBottom="@+id/send_SMS_button"
-        android:layout_alignRight="@+id/textView_Description_Value_2"
-        android:background="@color/can_you_play"
-        android:gravity="center"
-        android:text="@string/facebook_post"
-        android:textColor="@color/blanco"
-        android:textSize="12sp" />
+	    <Button
+	        android:id="@+id/done_button"
+	        android:layout_width="250dp"
+	        android:layout_height="40dp"
+	        android:layout_alignEnd="@+id/facebook_post_button"
+	        android:layout_alignLeft="@+id/select_contact_button"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignRight="@+id/facebook_post_button"
+	        android:layout_alignStart="@+id/select_contact_button"
+	        android:layout_below="@+id/send_SMS_button"
+	        android:layout_marginTop="17dp"
+	        android:background="@color/can_you_play"
+	        android:text="@string/done"
+	        android:textColor="@color/blanco" />
 
-    <Button
-        android:id="@+id/send_SMS_button"
-        android:layout_width="130dp"
-        android:layout_height="40dp"
-        android:layout_alignBottom="@+id/select_contact_button"
-        android:layout_alignLeft="@+id/textView_To_Beat_Value"
-        android:layout_alignRight="@+id/select_contact_button"
-        android:layout_alignTop="@+id/select_contact_button"
-        android:background="@color/can_you_play"
-        android:gravity="center"
-        android:text="@string/send_sms"
-        android:textColor="@color/blanco"
-        android:textSize="12sp"
-        android:visibility="invisible" />
+	    <Button
+	        android:id="@+id/select_contact_button"
+	        android:layout_width="120dp"
+	        android:layout_height="40dp"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignParentTop="true"
+	        android:layout_marginTop="16dp"
+	        android:background="@color/can_you_play"
+	        android:gravity="center"
+	        android:text="@string/select_contact"
+	        android:textColor="@color/blanco"
+	        android:textSize="12sp" />
+
+	    <Button
+	        android:id="@+id/send_SMS_button"
+	        android:layout_width="120dp"
+	        android:layout_height="40dp"
+	        android:layout_alignBaseline="@+id/select_contact_button"
+	        android:layout_alignBottom="@+id/select_contact_button"
+	        android:layout_alignEnd="@+id/select_contact_button"
+	        android:layout_alignRight="@+id/select_contact_button"
+	        android:background="@color/can_you_play"
+	        android:gravity="center"
+	        android:text="@string/send_sms"
+	        android:textColor="@color/blanco"
+	        android:textSize="12sp"
+	        android:visibility="invisible" />
+
+	    <Button
+	        android:id="@+id/facebook_post_button"
+	        android:layout_width="120dp"
+	        android:layout_height="40dp"
+	        android:layout_alignBaseline="@+id/select_contact_button"
+	        android:layout_alignBottom="@+id/select_contact_button"
+	        android:layout_alignParentRight="true"
+	        android:layout_marginRight="18dp"
+	        android:background="@color/can_you_play"
+	        android:gravity="center"
+	        android:text="@string/facebook_post"
+	        android:textColor="@color/blanco"
+	        android:textSize="12sp" />
+	</RelativeLayout>
 
 </RelativeLayout>

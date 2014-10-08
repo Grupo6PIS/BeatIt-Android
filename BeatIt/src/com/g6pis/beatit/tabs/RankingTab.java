@@ -1,6 +1,5 @@
 package com.g6pis.beatit.tabs;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Fragment;
@@ -8,24 +7,25 @@ import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.facebook.widget.ProfilePictureView;
 import com.g6pis.beatit.Home;
 //import com.g6pis.beatit.AdaptadorRanking;
 import com.g6pis.beatit.R;
+import com.g6pis.beatit.connection.ImageLoadTask;
 import com.g6pis.beatit.controllers.DataManager;
 import com.g6pis.beatit.datatypes.DTRanking;
-import com.g6pis.beatit.datatypes.DTState;
 
  
-public class RankingTab extends Fragment implements OnItemClickListener  {
+public class RankingTab extends Fragment implements OnItemClickListener, OnClickListener  {
 	
 	private ListView ranking;
     private MyAdapter adapter;
@@ -58,28 +58,9 @@ public class RankingTab extends Fragment implements OnItemClickListener  {
 		adapter = new MyAdapter(getActivity().getApplicationContext(),items);
         ranking.setAdapter(adapter);
 		
-		
-		/*
-        List<DTRanking> rankings = new ArrayList<DTRanking>();
+        activity.refreshButton.setVisibility(View.VISIBLE);
+        activity.refreshButton.setOnClickListener(this);
         
-        rankings.add(new DTRanking("Felipe Garc�a", 2000, 1, "imagen"));
-        rankings.add(new DTRanking("Juan P�rez", 1500, 2, "image"));
-        rankings.add(new DTRanking("Alejandro Brusco", 1000, 3, "imagen"));
-        rankings.add(new DTRanking("Luciana Mart�nez", 500, 4, "imagen"));
-        rankings.add(new DTRanking("Mart�n Steglich", 402, 5, "imagen"));
-        rankings.add(new DTRanking("Mart�n Berguer", 302, 6, "imagen"));
-        rankings.add(new DTRanking("Mart�n Alay�n", 122, 7, "imagen"));
-        rankings.add(new DTRanking("Gonzalo Javiel", 102, 8, "imagen"));
-        rankings.add(new DTRanking("Pablo Olivera", 92, 9, "imagen"));
-        rankings.add(new DTRanking("Cristian Bauza", 82, 10, "imagen"));
-        rankings.add(new DTRanking("Emiliano Vazquez", 80, 11, "imagen"));
-        rankings.add(new DTRanking("Raul Speroni", 60, 12, "imagen"));
-
-        //setListAdapter(new AdaptadorRanking(this, rankings));
-        
-        adapter = new MyAdapter(getActivity().getApplicationContext(),rankings);
-        ranking.setAdapter(adapter);
-        */
         
         return rootView;
     }
@@ -124,8 +105,7 @@ public class RankingTab extends Fragment implements OnItemClickListener  {
           TextView position = (TextView) rowView.findViewById(R.id.textView_posicion);
           TextView userName = (TextView) rowView.findViewById(R.id.textView_nombre_usuario);
           TextView score = (TextView) rowView.findViewById(R.id.textView_puntaje);
-          ProfilePictureView profilePictureView = (ProfilePictureView) rowView.findViewById(R.id.imageView_foto_ranking);
-          profilePictureView.setCropped(true);
+          ImageView profilePicture = (ImageView) rowView.findViewById(R.id.imageView_foto_ranking);
           
           DTRanking ranking = objects[location];
           
@@ -139,8 +119,8 @@ public class RankingTab extends Fragment implements OnItemClickListener  {
           if(ranking.getUserName().equals(username)){
         	  user.setVisibility(View.VISIBLE);
         	  rowView.setBackgroundColor(getResources().getColor(R.color.blanco));
-        	  profilePictureView.setProfileId(activity.datamanager.getInstance()
-      				.getUser().getFbId()); 
+        	  new ImageLoadTask(activity.datamanager.getInstance().getUser()
+      				.getImageURL(), profilePicture).execute(null, null);
         	  
           }else{
         	  user.setVisibility(View.INVISIBLE);
@@ -150,4 +130,23 @@ public class RankingTab extends Fragment implements OnItemClickListener  {
           return rowView;
         }
     }
+
+
+	@Override
+	public void onClick(View v) {
+		
+		DataManager dm = (DataManager) DataManager.getInstance();
+		List <DTRanking> rankings = dm.updateRanking();
+        int total_rankings = rankings.size();
+		DTRanking[] items=new DTRanking[total_rankings];
+		
+
+		for(int index=0;index<total_rankings;index++){
+            items[index] = rankings.get(index);
+        }
+		
+		adapter = new MyAdapter(getActivity().getApplicationContext(),items);
+        ranking.setAdapter(adapter);
+		
+	}
 }

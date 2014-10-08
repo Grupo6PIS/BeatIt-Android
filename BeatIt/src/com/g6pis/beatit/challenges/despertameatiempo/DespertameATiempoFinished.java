@@ -40,7 +40,7 @@ public class DespertameATiempoFinished extends Activity  {
 		finishDate.setMinute(getIntent().getExtras().getInt("minutes"));
 		finishDate.setSecond(getIntent().getExtras().getInt("seconds"));
 		
-		((TextView)findViewById(R.id.textView_Duration_Value)).setText(finishDate.toString());
+		((TextView)findViewById(R.id.textView_Time_Finish_Value)).setText(finishDate.toString());
 		
 
 /* ULTIMO *******************		

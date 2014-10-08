@@ -80,7 +80,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/textView_Duration"
+        android:id="@+id/textView_Time_Finish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView_Start_Time"
@@ -93,8 +93,8 @@
         android:id="@+id/textView_To_Beat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_Duration"
-        android:layout_below="@+id/textView_Duration"
+        android:layout_alignLeft="@+id/textView_Time_Finish"
+        android:layout_below="@+id/textView_Time_Finish"
         android:layout_marginTop="28dp"
         android:text="@string/to_beat"
         android:textAppearance="?android:attr/textAppearanceMedium" />
@@ -140,11 +140,11 @@
         android:textSize="14sp" />
 
     <TextView
-        android:id="@+id/textView_Duration_Value"
+        android:id="@+id/textView_Time_Finish_Value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_Duration"
-        android:layout_below="@+id/textView_Duration"
+        android:layout_alignLeft="@+id/textView_Time_Finish"
+        android:layout_below="@+id/textView_Time_Finish"
         android:text="@string/duration_value"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/gris_challenge_values"

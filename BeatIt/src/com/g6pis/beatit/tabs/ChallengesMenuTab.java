@@ -1,7 +1,5 @@
 package com.g6pis.beatit.tabs;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Random;
 
@@ -18,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.g6pis.beatit.Home;
 import com.g6pis.beatit.R;
 import com.g6pis.beatit.challenges.callaalperro.CallaAlPerroUI;
 import com.g6pis.beatit.challenges.despertameatiempo.DespertameATiempoUI;
@@ -48,6 +47,8 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.challenge_menu_tab, container, false);
+        
+        ((Home)getActivity()).refreshButton.setVisibility(View.INVISIBLE);
         
         challengeMenu = (ListView) rootView.findViewById(R.id.challengesMenu_list);
 		challengeMenu.setOnItemClickListener(this);

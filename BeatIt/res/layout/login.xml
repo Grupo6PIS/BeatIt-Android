@@ -3,30 +3,12 @@
     android:id="@+id/login_relative_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gris"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.g6pis.beatit.Login"
-    android:background="@color/gris" >
-
-    <ImageView
-        android:id="@+id/imageView_foto_ranking"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="30dp"
-        android:layout_toLeftOf="@+id/textView_posicion"
-        android:src="@drawable/app_logo" />
-
-    <TextView
-        android:id="@+id/textView_user_country"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/imageView_foto_ranking"
-        android:layout_marginTop="32dp"
-        android:text="@string/app_description"
-        android:textSize="19sp" />
+    tools:context="com.g6pis.beatit.Login" >
 
     <LinearLayout
         android:id="@+id/linear_facebook"
@@ -36,45 +18,79 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
-         >
+        android:orientation="horizontal" >
 
-<!--         <ImageView -->
-<!--             android:id="@+id/image_facebook" -->
-<!--             android:layout_width="0dp" -->
-<!--             android:layout_height="wrap_content" -->
-<!--             android:layout_marginLeft="5dp" -->
-<!--             android:layout_weight="1" -->
-<!--             android:src="@drawable/facebook_logo" /> -->
+        <!-- <ImageView -->
+        <!-- android:id="@+id/image_facebook" -->
+        <!-- android:layout_width="0dp" -->
+        <!-- android:layout_height="wrap_content" -->
+        <!-- android:layout_marginLeft="5dp" -->
+        <!-- android:layout_weight="1" -->
+        <!-- android:src="@drawable/facebook_logo" /> -->
 
-<!--         <TextView -->
-<!--             android:id="@+id/textView_iniciar_sesion" -->
-<!--             android:layout_width="0dp" -->
-<!--             android:layout_height="match_parent" -->
-<!--             android:layout_weight="3" -->
-<!--             android:gravity="center" -->
-<!--             android:text="@string/iniciar_sesion" -->
-<!--             android:textColor="#0033CC" -->
-<!--             android:textStyle="bold" /> -->
 
-			<com.facebook.widget.LoginButton
-            android:id="@+id/login_button"
-            android:layout_width="215dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center_horizontal" />
+        <!-- <TextView -->
+        <!-- android:id="@+id/textView_iniciar_sesion" -->
+        <!-- android:layout_width="0dp" -->
+        <!-- android:layout_height="match_parent" -->
+        <!-- android:layout_weight="3" -->
+        <!-- android:gravity="center" -->
+        <!-- android:text="@string/iniciar_sesion" -->
+        <!-- android:textColor="#0033CC" -->
+        <!-- android:textStyle="bold" /> -->
+
     </LinearLayout>
 
     <TextView
-        android:id="@+id/textView_posicion"
+        android:id="@+id/textView_user_country"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/imageView_foto_ranking"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="75dp"
-        android:text="@string/app_name"
-        android:textColor="@color/verde"
-        android:textSize="60sp"
-        android:textStyle="bold"
-        android:gravity="center" />
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/relativeLayout1"
+        android:layout_marginTop="32dp"
+        android:text="@string/app_description"
+        android:textSize="19sp" />
+
+    <com.facebook.widget.LoginButton
+        android:id="@+id/login_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/linear_facebook"
+        android:layout_centerHorizontal="true" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView_user_country"
+         android:layout_alignStart="@+id/textView_user_country"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/textView_user_country"
+        android:layout_alignEnd="@+id/textView_user_country"
+        android:layout_marginTop="17dp"
+        android:gravity="center_vertical" >
+
+        <ImageView
+            android:id="@+id/imageView_app_logo"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/app_logo"
+            android:description="@string/app_description" />
+
+        <TextView
+            android:id="@+id/textView_app_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/imageView_app_logo"
+            android:layout_toEndOf="@+id/imageView_app_logo"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/verde"
+            android:textSize="60sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
 
 </RelativeLayout>

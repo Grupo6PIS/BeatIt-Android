@@ -21,7 +21,6 @@ public class UsainBoltTest {
 		assertEquals(3,usain.getMaxAttempt());
 		assertEquals(0,usain.getMaxSpeed(),0.0);
 		assertEquals(0,usain.getAvgSpeed(),0.0);
-		assertEquals(speeds,usain.getSpeeds());
 	}
 	
 	@Test
@@ -78,10 +77,8 @@ public class UsainBoltTest {
 		
 		usain.setAvgSpeed(avgSpeed);
 		usain.setMaxSpeed(maxSpeed);
-		usain.setSpeeds(speeds);
 		
 		assertEquals(maxSpeed,usain.getMaxSpeed(), 0.0);
-		assertEquals(speeds,usain.getSpeeds());
 		assertEquals(avgSpeed,usain.getAvgSpeed(),0.0);
 		
 	}

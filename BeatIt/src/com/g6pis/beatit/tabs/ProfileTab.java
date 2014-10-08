@@ -1,6 +1,5 @@
 package com.g6pis.beatit.tabs;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -12,19 +11,16 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.facebook.Request;
-import com.facebook.Response;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
-import com.facebook.model.GraphUser;
-import com.facebook.widget.ProfilePictureView;
 import com.g6pis.beatit.Home;
-import com.g6pis.beatit.Login;
 import com.g6pis.beatit.MainActivity;
 import com.g6pis.beatit.R;
+import com.g6pis.beatit.connection.ImageLoadTask;
 
 public class ProfileTab extends Fragment implements OnClickListener {
 	private static final String APP_SHARED_PREFS = "asdasd_preferences";
@@ -38,7 +34,7 @@ public class ProfileTab extends Fragment implements OnClickListener {
 		}
 	};
 	private Home activity;
-	private ProfilePictureView profilePictureView;
+	private ImageView profilePicture;
 	private TextView username;
 	private TextView country;
 
@@ -62,9 +58,8 @@ public class ProfileTab extends Fragment implements OnClickListener {
 		((Button) rootView.findViewById(R.id.logout_button))
 				.setOnClickListener(this);
 
-		profilePictureView = (ProfilePictureView) rootView
+		profilePicture = (ImageView) rootView
 				.findViewById(R.id.imageView_profile);
-		profilePictureView.setCropped(true);
 		username = (TextView) rootView.findViewById(R.id.textView_username);
 		country = (TextView) rootView.findViewById(R.id.textView_user_country);
 
@@ -76,9 +71,12 @@ public class ProfileTab extends Fragment implements OnClickListener {
 		country.setText(activity.datamanager.getInstance().getUser()
 				.getCountry());
 
-		profilePictureView.setProfileId(activity.datamanager.getInstance()
-				.getUser().getFbId());
-
+		new ImageLoadTask(activity.datamanager.getInstance().getUser()
+				.getImageURL(), profilePicture).execute(null, null);
+		
+		
+		((Home)getActivity()).refreshButton.setVisibility(View.INVISIBLE);
+		
 		return rootView;
 	}
 
@@ -102,7 +100,7 @@ public class ProfileTab extends Fragment implements OnClickListener {
 		if (session != null && session.isOpened()) {
 			//makeMeRequest(session);
 		} else {
-			profilePictureView.setProfileId(null);
+
 		}
 	}
 
@@ -130,30 +128,7 @@ public class ProfileTab extends Fragment implements OnClickListener {
 		uiHelper.onDestroy();
 		activity = null;
 	}
+	
+	
 
-//	private void makeMeRequest(final Session session) {
-//		Request.newMeRequest(session, new Request.GraphUserCallback() {
-//			@Override
-//			public void onCompleted(GraphUser user, Response response) {
-//				if (session == Session.getActiveSession()) {
-//					if (user != null) {
-//						activity.datamanager.getInstance().login(user.getId(), user.getFirstName(), user.getLastName(), user.getLocation().getName());
-//						username.setText(activity.datamanager.getInstance().getUser()
-//								.getFirstName()
-//								+ " "
-//								+ activity.datamanager.getInstance().getUser().getLastName());
-//
-//						country.setText(activity.datamanager.getInstance().getUser()
-//								.getCountry());
-//
-//						profilePictureView.setProfileId(activity.datamanager.getInstance()
-//								.getUser().getFbId());
-//					}
-//				}
-//				if (response.getError() != null) {
-//				}
-//			}
-//		}).executeAsync();
-//
-//	}
 }
