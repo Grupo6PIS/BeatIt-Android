@@ -13,9 +13,14 @@ import android.widget.TextView;
 
 import com.g6pis.beatit.Home;
 import com.g6pis.beatit.R;
+import com.g6pis.beatit.controllers.DataManager;
 import com.g6pis.beatit.datatypes.DTDateTime;
+import com.g6pis.beatit.datatypes.DTState;
 
 public class DespertameATiempoFinished extends Activity  {
+	private static final String CHALLENGE_ID = "2";
+	
+	private DTState state;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +45,11 @@ public class DespertameATiempoFinished extends Activity  {
 		finishDate.setMinute(getIntent().getExtras().getInt("minutes"));
 		finishDate.setSecond(getIntent().getExtras().getInt("seconds"));
 		
-		((TextView)findViewById(R.id.textView_Time_Finish_Value)).setText(finishDate.toString());
+		//((TextView)findViewById(R.id.textView_Time_Finish_Value)).setText(finishDate.toString());
+		
+		
+		//state = DataManager.getInstance().getState(CHALLENGE_ID);
+		//((TextView) findViewById(R.id.textView_Finish_Time_Value)).setText(state.getLastFinishDateTime().toString());
 		
 
 /* ULTIMO *******************		
