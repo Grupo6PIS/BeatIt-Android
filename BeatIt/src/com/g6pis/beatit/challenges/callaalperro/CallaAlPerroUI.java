@@ -24,12 +24,16 @@ import android.os.CountDownTimer;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.TextView;
 
-public class CallaAlPerroUI extends Activity implements SensorEventListener {
+public class CallaAlPerroUI extends Activity implements SensorEventListener, OnClickListener {
 	private SensorManager mSensorManager;
 	private Sensor mSensor;
 	private MediaPlayer mp;
 	private Timer timerContador;
+	private TextView startButton;
 	
 	private DTDateTime dateTimeStart;
 	private DTDateTime dateTimeFinish;
@@ -41,11 +45,15 @@ public class CallaAlPerroUI extends Activity implements SensorEventListener {
 	
 	boolean gano = false;
 	double score = 0;
+	private boolean running = false;
 	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.calla_al_perro);
+		
+		startButton = (Button) findViewById(R.id.start_button);
+		startButton.setOnClickListener(this);
 		
 		this.setDateTimeStart(this.getDateExtras(getIntent().getExtras()));
 
@@ -157,6 +165,7 @@ public class CallaAlPerroUI extends Activity implements SensorEventListener {
 	   	     public void onFinish() {
 	   	    	 mSensorManager.registerListener(CallaAlPerroUI.this, mSensor,
 	   	    			 SensorManager.SENSOR_DELAY_NORMAL);
+	   	    	 running = false;
 	   	    	 if (mp != null){
 	   	    		mp.start();
 	   	    		
@@ -272,6 +281,19 @@ public class CallaAlPerroUI extends Activity implements SensorEventListener {
 				return true;
 			}
 			return super.onOptionsItemSelected(item);
+		}
+
+		@Override
+		public void onClick(View v) {
+			if (!running) {
+				switch (v.getId()) {
+					case R.id.start_button: {
+						startButton.setVisibility(View.INVISIBLE);
+						this.running  = true;
+					}
+					break;
+				}
+			}
 		}
 
 }
