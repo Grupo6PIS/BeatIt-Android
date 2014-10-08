@@ -208,7 +208,7 @@ public class DataManager {
 
 	public void saveScore(String challengeId, double score) {	
 		State state  = states.get(challengeId);
-		state.setLastScore(score);
+		state.setNewScore(score);
 		boolean haveToSendScore = true;
 		for (Map.Entry<String, State> entry : states.entrySet()) {
 			if(entry.getValue().getCurrentAttempt()<1)
@@ -217,7 +217,6 @@ public class DataManager {
 		if(haveToSendScore){
 			sendScore(score);
 		}
-		// TODO actualizar el state correspondiente de la base.
 	}
 	
 	public void sendScore(double score){

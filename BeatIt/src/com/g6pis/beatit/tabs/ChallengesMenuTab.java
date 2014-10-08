@@ -18,12 +18,15 @@ import android.widget.TextView;
 
 import com.g6pis.beatit.Home;
 import com.g6pis.beatit.R;
+import com.g6pis.beatit.challenges.callaalperro.CallaAlPerroFinished;
 import com.g6pis.beatit.challenges.callaalperro.CallaAlPerroUI;
+import com.g6pis.beatit.challenges.despertameatiempo.DespertameATiempoFinished;
 import com.g6pis.beatit.challenges.despertameatiempo.DespertameATiempoUI;
+import com.g6pis.beatit.challenges.invitefriends.CanYouPlayFinished;
 import com.g6pis.beatit.challenges.invitefriends.CanYouPlayUI;
+import com.g6pis.beatit.challenges.usainbolt.UsainBoltFinished;
 import com.g6pis.beatit.challenges.usainbolt.UsainBoltUI;
 import com.g6pis.beatit.controllers.DataManager;
-import com.g6pis.beatit.datatypes.DTDateTime;
 import com.g6pis.beatit.datatypes.DTState;
  
 public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemClickListener {
@@ -74,13 +77,25 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
 			long id) {
     	Intent challenge = null;
 		if(adapter.getItem(position).getChallengeId().equals(ID_Usain_Bolt)){
-			challenge = new Intent(getActivity().getApplicationContext(), UsainBoltUI.class);
+			if(adapter.getItem(position).getCurrentAttempt() == 0)
+				challenge = new Intent(getActivity().getApplicationContext(), UsainBoltUI.class);
+			else
+				challenge = new Intent(getActivity().getApplicationContext(), UsainBoltFinished.class);
 		} else if (adapter.getItem(position).getChallengeId().equals(ID_Wake_Me_Up)){
-			challenge = new Intent(getActivity().getApplicationContext(), DespertameATiempoUI.class);
+			if(adapter.getItem(position).getCurrentAttempt() == 0)
+				challenge = new Intent(getActivity().getApplicationContext(), DespertameATiempoUI.class);
+			else
+				challenge = new Intent(getActivity().getApplicationContext(), DespertameATiempoFinished.class);
 		} else if (adapter.getItem(position).getChallengeId().equals(ID_Can_You_Play)){
-			challenge = new Intent(getActivity().getApplicationContext(), CanYouPlayUI.class);
+			if(adapter.getItem(position).getCurrentAttempt() == 0)
+				challenge = new Intent(getActivity().getApplicationContext(), CanYouPlayUI.class);
+			else
+				challenge = new Intent(getActivity().getApplicationContext(), CanYouPlayFinished.class);
 		} else if (adapter.getItem(position).getChallengeId().equals(ID_Calla_Al_Perro)){
-			challenge = new Intent(getActivity().getApplicationContext(), CallaAlPerroUI.class);
+			if(adapter.getItem(position).getCurrentAttempt() == 0)
+				challenge = new Intent(getActivity().getApplicationContext(), CallaAlPerroUI.class);
+			else
+				challenge = new Intent(getActivity().getApplicationContext(), CallaAlPerroFinished.class);
 /*		} else if (adapter.getItem(position).getChallengeId().equals(ID_)){
 			challenge = new Intent(getActivity().getApplicationContext(), UI.class);
 /*		} else if (adapter.getItem(position).getChallengeId().equals(ID_)){
@@ -190,7 +205,13 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
 			challengeIcon.setImageResource(R.drawable.ic_launcher);
 			challengeDescription.setText("Challenge "+ position + " description");
           }
-          rowView.setBackgroundColor(getResources().getColor(R.color.blanco));
+          if(s.getCurrentAttempt() == 0)
+        	  rowView.setBackgroundColor(getResources().getColor(R.color.blanco));
+          else{
+        	  rowView.setBackgroundColor(getResources().getColor(R.color.gris));
+        	  ((ImageView)rowView.findViewById(R.id.tick)).setVisibility(View.VISIBLE);
+          }
+        	  
 
           return rowView;
         }

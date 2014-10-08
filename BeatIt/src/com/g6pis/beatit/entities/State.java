@@ -86,7 +86,7 @@ public class State {
 		this.lastFinishDateTime = lastFinishDateTime;
 	}
 
-	public void setLastScore(double lastScore) {
+	public void setNewScore(double lastScore) {
 		this.lastScore = lastScore;
 		
 		if(this.lastScore > this.maxScore)
@@ -100,4 +100,9 @@ public class State {
 		}
 		
 	}
+
+	public void setLastScore(double lastScore) {
+		this.lastScore = lastScore;
+	}
+	
 }

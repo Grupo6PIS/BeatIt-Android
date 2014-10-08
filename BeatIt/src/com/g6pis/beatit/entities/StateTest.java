@@ -71,7 +71,7 @@ public class StateTest {
 		state.setFinished(true);
 		state.setRound(round);
 		state.setMaxScore(320);
-		state.setLastScore(120);
+		state.setNewScore(120);
 		state.setUser(user);
 		
 		
