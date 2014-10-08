@@ -35,6 +35,7 @@ public class DataManager {
 	private User user;
 	private Round currentRound;
 	private Map<String, State> states;
+	private Map<String,DTState> persistedStates;
 	private boolean isLogged;
 	private List<DTRanking> ranking;
 
@@ -57,8 +58,8 @@ public class DataManager {
 		return states;
 	}
 
-	public void setStates(Map<String, State> states) {
-		this.states = states;
+	public void setStates(Map<String,DTState> states) {
+		this.persistedStates = states;
 	}
 
 	public User getUser() {
@@ -154,9 +155,29 @@ public class DataManager {
 			//TODO comparar la ronda de los states de la BD con la ronda actual,
 			//si es distinta, se cambian
 			states = new HashMap<String,State>();
-			for(Challenge challenge : currentRound.getChallenges()){
-				State state = new State(currentRound,challenge,user);
-				states.put(challenge.getChallengeId(), state);
+			String persistedRoundId = this.getPersistedRoundId();
+			if(!persistedRoundId.equals(currentRound.getRoundId())){
+				persistedStates = new HashMap<String,DTState>();
+				for(Challenge challenge : currentRound.getChallenges()){
+					State state = new State(currentRound,challenge,user);
+					states.put(challenge.getChallengeId(), state);
+					DTState dtState = new DTState(state);
+					persistedStates.put(challenge.getChallengeId(),dtState);
+				}
+			}else{
+				for(Challenge challenge : currentRound.getChallenges()){
+					State state = new State(currentRound,challenge,user);
+					
+					state.setCurrentAttempt(persistedStates.get(challenge.getChallengeId()).getCurrentAttempt());
+					state.setFinished(persistedStates.get(challenge.getChallengeId()).isFinished());
+					state.setLastScore(persistedStates.get(challenge.getChallengeId()).getLastScore());
+					state.setMaxScore(persistedStates.get(challenge.getChallengeId()).getMaxScore());
+					state.setLastFinishDateTime(persistedStates.get(challenge.getChallengeId()).getLastFinishDateTime());
+					states.put(challenge.getChallengeId(), state); 
+					DTState dtState = new DTState(state);
+					persistedStates.put(challenge.getChallengeId(),dtState);
+				}
+				
 			}
 			
 
@@ -170,6 +191,7 @@ public class DataManager {
 
 	public void logout() {
 		user = null;
+		persistedStates = new HashMap<String,DTState>();
 	}
 
 	public List<DTRanking> updateRanking() {
@@ -218,6 +240,20 @@ public class DataManager {
 	public Challenge getChallenge(String challengeId){
 		return currentRound.getChallenge(challengeId);
 	}
-	
 
+	public Map<String,DTState> getPersistedStates() {
+		return persistedStates;
+	}
+	
+	public String getPersistedRoundId(){
+		if(!persistedStates.isEmpty()){
+			Map.Entry<String, DTState> entry = persistedStates.entrySet().iterator().next();
+		
+			String roundId = entry.getValue().getRoundId();
+
+			return roundId;
+		}
+		return "";
+	}
+	
 }

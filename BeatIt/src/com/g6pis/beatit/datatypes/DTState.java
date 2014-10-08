@@ -32,7 +32,7 @@ public class DTState {
 	}
 
 	public DTState(String challengeId, String roundId, double maxScore, double lastScore,
-			int currentAttempt, boolean finished) {
+			int currentAttempt, boolean finished, DTDateTime lastFinishDateTime) {
 		super();
 		this.challengeId = challengeId;
 		this.roundId = roundId;
@@ -40,6 +40,7 @@ public class DTState {
 		this.maxScore = maxScore;
 		this.lastScore = lastScore;
 		this.currentAttempt = currentAttempt;
+		this.lastFinishDateTime = lastFinishDateTime;
 	}
 
 	public String getChallengeId() {

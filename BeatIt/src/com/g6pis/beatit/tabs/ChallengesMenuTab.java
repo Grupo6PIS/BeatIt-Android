@@ -95,17 +95,6 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
 			challenge = new Intent(getActivity().getApplicationContext(), UI.class);
 */
 		}
-		DTDateTime date_start = ((DataManager) DataManager.getInstance()).getChallenges().get(position).getDateTimeStart();
-    	challenge.putExtra("seconds",date_start.getSecond());
-    	challenge.putExtra("minutes",date_start.getMinute());
-    	challenge.putExtra("hours",date_start.getHour());
-    	challenge.putExtra("day",date_start.getDay());
-    	challenge.putExtra("month",date_start.getMonth());
-    	challenge.putExtra("year",date_start.getYear());
-    	level = ((DataManager) DataManager.getInstance()).getChallenges().get(position).getChallengeLevel();
-    	challenge.putExtra("level", level);
-    	challenge.putExtra("challengeId", Integer.parseInt(adapter.getItem(position).getChallengeId()));
-    	
     	startActivity(challenge);
     	this.getActivity().finish();
 	}
@@ -131,26 +120,29 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
           TextView challengeDescription = (TextView) rowView.findViewById(R.id.challengeDescription);
           
           DTState s = objects[position];
-          challengeName.setText(s.getChallengeName());
           if (s.getChallengeId().equals(ID_Usain_Bolt)) {
+        	challengeName.setText(getResources().getString(R.string.usain_bolt));
 			challengeIcon.setImageResource(R.drawable.ic_usain_bolt);
             switch(s.getChallengeLevel()){
 	            case 1: challengeDescription.setText(R.string.description_usain_bolt_1);break;
 	            case 2: challengeDescription.setText(R.string.description_usain_bolt_2);break;
             }
           } else if (s.getChallengeId().equals(ID_Wake_Me_Up)){
+        	  challengeName.setText(getResources().getString(R.string.despertame_a_tiempo));
 			challengeIcon.setImageResource(R.drawable.ic_despertame_a_tiempo);
 			switch(s.getChallengeLevel()){
 	            case 1: challengeDescription.setText(s.getChallengeName() + " description");break;
 	            case 2: challengeDescription.setText(s.getChallengeName() + " description");break;
 	        }
           } else if (s.getChallengeId().equals(ID_Can_You_Play)){
+        	  challengeName.setText(getResources().getString(R.string.can_you_play));
 			challengeIcon.setImageResource(R.drawable.ic_can_you_play);
 			switch(s.getChallengeLevel()){
 	            case 1: challengeDescription.setText(s.getChallengeName() + " description");break;
 	            case 2: challengeDescription.setText(s.getChallengeName() + " description");break;
 	        }
           } else if (s.getChallengeId().equals(ID_Calla_Al_Perro)){
+        	  challengeName.setText(getResources().getString(R.string.calla_al_perro));
 			challengeIcon.setImageResource(R.drawable.ic_calla_al_perro);
 			switch(s.getChallengeLevel()){
 	            case 1: challengeDescription.setText(s.getChallengeName() + " description");break;
@@ -194,8 +186,9 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
   	        }*/
           } 
           else {
+        	challengeName.setText("Challenge "+ position);
 			challengeIcon.setImageResource(R.drawable.ic_launcher);
-			challengeDescription.setText(s + " description");
+			challengeDescription.setText("Challenge "+ position + " description");
           }
           rowView.setBackgroundColor(getResources().getColor(R.color.blanco));
 

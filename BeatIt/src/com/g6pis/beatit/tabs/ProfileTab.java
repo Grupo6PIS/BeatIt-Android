@@ -1,11 +1,15 @@
 package com.g6pis.beatit.tabs;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,8 +25,10 @@ import com.g6pis.beatit.Home;
 import com.g6pis.beatit.MainActivity;
 import com.g6pis.beatit.R;
 import com.g6pis.beatit.connection.ImageLoadTask;
+import com.g6pis.beatit.persistence.StateDAO;
 
 public class ProfileTab extends Fragment implements OnClickListener {
+	private static final int CONFIRMATION_DIALOG = 60;
 	private static final String APP_SHARED_PREFS = "asdasd_preferences";
 
 	private UiLifecycleHelper uiHelper;
@@ -40,7 +46,8 @@ public class ProfileTab extends Fragment implements OnClickListener {
 
 	SharedPreferences sharedPrefs;
 	Editor editor;
-
+	
+	
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -73,32 +80,22 @@ public class ProfileTab extends Fragment implements OnClickListener {
 
 		new ImageLoadTask(activity.datamanager.getInstance().getUser()
 				.getImageURL(), profilePicture).execute(null, null);
+
+		((Home) getActivity()).refreshButton.setVisibility(View.INVISIBLE);
 		
-		
-		((Home)getActivity()).refreshButton.setVisibility(View.INVISIBLE);
 		
 		return rootView;
 	}
 
 	public void onClick(View v) {
-		Session.getActiveSession().closeAndClearTokenInformation();
-		activity.datamanager.getInstance().logout();
-		sharedPrefs = activity.getApplicationContext().getSharedPreferences(
-				APP_SHARED_PREFS, Context.MODE_PRIVATE);
-		editor = sharedPrefs.edit();
-		editor.clear();
-		editor.commit();
-		Intent mainActivity = new Intent(activity.getApplicationContext(),
-				MainActivity.class);
-		startActivity(mainActivity);
-		activity.finish();
-
+		
+		activity.confirmationDialog.show();
 	}
 
 	private void onSessionStateChange(final Session session,
 			SessionState state, Exception exception) {
 		if (session != null && session.isOpened()) {
-			//makeMeRequest(session);
+			// makeMeRequest(session);
 		} else {
 
 		}
@@ -128,7 +125,6 @@ public class ProfileTab extends Fragment implements OnClickListener {
 		uiHelper.onDestroy();
 		activity = null;
 	}
-	
-	
+
 
 }

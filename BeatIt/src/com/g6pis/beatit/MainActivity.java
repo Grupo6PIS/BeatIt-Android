@@ -1,16 +1,13 @@
 package com.g6pis.beatit;
 
+import java.util.Map;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.support.v4.app.FragmentManager;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 import com.facebook.Request;
 import com.facebook.Response;
@@ -18,8 +15,9 @@ import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.model.GraphUser;
-import com.g6pis.beatit.challenges.usainbolt.UsainBoltUI;
 import com.g6pis.beatit.controllers.DataManager;
+import com.g6pis.beatit.datatypes.DTState;
+import com.g6pis.beatit.persistence.StateDAO;
 
 public class MainActivity extends Activity {
 	private static final String APP_SHARED_PREFS = "asdasd_preferences";
@@ -67,7 +65,7 @@ public class MainActivity extends Activity {
         fbId = sharedPrefs.getString("fbId", "");
         lastName = sharedPrefs.getString("lastName", "");
         country = sharedPrefs.getString("country", "");
-        userId = sharedPrefs.getString("userId", "");
+        userId = sharedPrefs.getString("userId", ""); 
         accessToken = sharedPrefs.getString("accessToken", "");
 		imageURL = "https://graph.facebook.com/"+fbId+"/picture?type=square&width=960&height=960&access_token="+accessToken;
         
@@ -77,7 +75,12 @@ public class MainActivity extends Activity {
 			startActivity(login);
 			finish();
 		} else {
+			StateDAO db = new StateDAO(this);
+			Map<String,DTState> persistedStates = db.getAllStates();
+			DataManager.getInstance().setStates(persistedStates);
 			userId = DataManager.getInstance().login(userId,fbId, firstName, lastName, country, imageURL);
+			persistedStates = DataManager.getInstance().getPersistedStates();
+			db.addStates(persistedStates);			
 			Editor editor = sharedPrefs.edit();
 			editor.putString("userId", userId);
 			editor.commit();

@@ -34,11 +34,14 @@ import com.g6pis.beatit.controllers.DataManager;
 import com.g6pis.beatit.datatypes.DTDateTime;
 //import com.g6pis.beatit.persistence.UsainBoltDAO;
 import com.g6pis.beatit.datatypes.DTState;
+import com.g6pis.beatit.persistence.StateDAO;
 
 public class UsainBoltUI extends Activity implements OnClickListener,
 		LocationListener {
 	
 	private static final String CHALLENGE_ID = "1";
+	
+	private static final int CONFIRMATION_DIALOG = 60;
 	
 	private static final long MIN_TIME = 0;
 	private static final float MIN_DISTANCE = 0;
@@ -76,7 +79,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 
 		/*homeButton.setOnClickListener(this);
 		homeButton.setVisibility(View.VISIBLE);*/
-//		cancelButton.setOnClickListener(this);
+//		cancelButton.setOnClickListener(this); 
 		startChallengeButton.setOnClickListener(this);
 
 		this.settingsDialog = onCreateDialog(SETTINGS_DIALOG);
@@ -93,7 +96,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 		usainBolt = (UsainBolt) DataManager.getInstance().getChallenge(
 				CHALLENGE_ID);
 		state = DataManager.getInstance().getState(CHALLENGE_ID);
-		
+		 
 
 		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(state.getDateTimeStart().toString());
 		((TextView) findViewById(R.id.textView_Time_Finish_Value)).setText(state.getDateTimeFinish().toString());
@@ -190,6 +193,8 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 
 			public void onFinish() {
 				usainBolt.finishChallenge();
+				StateDAO db = new StateDAO(getApplicationContext());
+				db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
 				completeChallenge();
 			}
 		};
@@ -317,6 +322,8 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 				usainBolt.setMaxSpeed(0);
 				usainBolt.setAvgSpeed(0);
 				usainBolt.finishChallenge();
+				StateDAO db = new StateDAO(this);
+				db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
 				this.challengeStarted = false;
 				textViewTimeLeftValue.setText(
 						getResources().getString(R.string.time_left) + " "
@@ -357,6 +364,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 		switch (id) {
 		case SETTINGS_DIALOG: {
 			builder.setMessage(R.string.gps_disabled);
+			builder.setTitle(getResources().getString(R.string.app_name));
 			builder.setCancelable(true);
 			builder.setPositiveButton(R.string.ok, new OkOnClickListener());
 			builder.setNegativeButton(R.string.cancel,
@@ -366,6 +374,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 
 		case SPEED_DIALOG: {
 			builder.setMessage(R.string.speed_greater_than_zero);
+			builder.setTitle(getResources().getString(R.string.app_name));
 			return builder.create();
 		}
 

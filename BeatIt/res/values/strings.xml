@@ -88,6 +88,9 @@
     <string name="points"> points</string>
 	<string name="max_score">Max. Score</string>
 	<string name="last_score">Last Score</string>
+	<string name="logout_confirmation_title">Are you sure you want to log out?</string>
+	<string name="logout_confirmation">All data will be lost</string>
+	
     <!-- Profile Strings -->
 
     <string name="username">Juan Pérez</string>

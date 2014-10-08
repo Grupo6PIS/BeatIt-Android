@@ -1,5 +1,7 @@
 package com.g6pis.beatit.challenges.invitefriends;
 
+import java.util.Map;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -25,6 +27,7 @@ import com.g6pis.beatit.Home;
 import com.g6pis.beatit.R;
 import com.g6pis.beatit.controllers.DataManager;
 import com.g6pis.beatit.datatypes.DTState;
+import com.g6pis.beatit.persistence.StateDAO;
 
 public class CanYouPlayUI extends Activity implements OnClickListener {
 	private static final String CHALLENGE_ID = "3";
@@ -75,7 +78,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 			
 		}
 			
-
+ 
 		switch (canYouPlay.getLevel()) {
 		case 1:
 			((TextView) findViewById(R.id.textView_Description_Value_2))
@@ -279,8 +282,9 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 
 	public void completeChallenge() {
 		canYouPlay.finishChallenge();
+		StateDAO db = new StateDAO(this);
+		db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
 		Intent finished = new Intent(this, CanYouPlayFinished.class);
-		// TODO calcular el puntaje mediante la l�gica
 		startActivity(finished);
 		this.finish();
 	}

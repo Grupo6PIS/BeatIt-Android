@@ -1,18 +1,17 @@
 package com.g6pis.beatit.persistence;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
-import com.g6pis.beatit.challenges.usainbolt.UsainBolt;
+import com.g6pis.beatit.datatypes.DTDateTime;
 import com.g6pis.beatit.datatypes.DTState;
-import com.g6pis.beatit.entities.Challenge;
+import com.g6pis.beatit.entities.State;
 
 public class StateDAO extends SQLiteOpenHelper {
 
@@ -30,7 +29,7 @@ public class StateDAO extends SQLiteOpenHelper {
 		String CREATE_USAINBOLT_TABLE = "CREATE TABLE State ( "
 				+ "challengeId STRING, " + "roundId STRING, "
 				+ "maxScore DOUBLE, " + "lastScore DOUBLE, " + "currentAttempt INTEGER, "
-				+ "isFinished BOOLEAN "
+				+ "isFinished BOOLEAN, " + "lastFinishDateTime STRING, "
 				+ "FOREIGN KEY(challengeId) REFERENCES Challenge(challengeId)"
 				+ ");";
 
@@ -51,7 +50,7 @@ public class StateDAO extends SQLiteOpenHelper {
 	}
 
 	public void addState(DTState state) {
-
+ 
 		// Get Reference to writable DB
 		SQLiteDatabase db = this.getWritableDatabase();
 
@@ -63,7 +62,11 @@ public class StateDAO extends SQLiteOpenHelper {
 		values.put("LastScore", state.getLastScore());
 		values.put("currentAttempt", state.getCurrentAttempt());
 		values.put("isFinished", state.isFinished());
-
+		if(state.getLastFinishDateTime() != null)
+			values.put("lastFinishDateTime", state.getLastFinishDateTime().toString());
+		else
+			values.put("lastFinishDateTime", "");
+			
 		// Insert
 		db.insert("State", null, values);
 
@@ -96,19 +99,20 @@ public class StateDAO extends SQLiteOpenHelper {
 		if (cursor != null)
 			cursor.moveToFirst();
 
-		// 4. build usianBolt object
+		// 4. build state object
+		DTDateTime lastFinishDateTime = new DTDateTime(cursor.getString(6));
 		DTState state = new DTState(cursor.getString(0), cursor.getString(1),
 				Double.parseDouble(cursor.getString(2)),Double.parseDouble(cursor.getString(3)),
 				Integer.parseInt(cursor.getString(4)),
-				Boolean.getBoolean(cursor.getString(5)));
+				Boolean.getBoolean(cursor.getString(5)),lastFinishDateTime);
 
 		return state;
 
 	}
 
-	public List<DTState> getAllStates() {
+	public Map<String,DTState> getAllStates() {
 
-		List<DTState> states = new LinkedList<DTState>();
+		Map<String,DTState> states = new HashMap<String,DTState>();
 
 		// 1. build the query
 		String query = "SELECT  * FROM " + "State";
@@ -121,13 +125,16 @@ public class StateDAO extends SQLiteOpenHelper {
 		if (cursor.moveToFirst()) {
 			do {
 
-				// 4. build challenge object
+				// 4. build state object
+				DTDateTime lastFinishDateTime = null;
+				if(!cursor.getString(6).isEmpty())
+					lastFinishDateTime = new DTDateTime(cursor.getString(6));
 				DTState state = new DTState(cursor.getString(0), cursor.getString(1),
 						Double.parseDouble(cursor.getString(2)),Double.parseDouble(cursor.getString(3)),
 						Integer.parseInt(cursor.getString(4)),
-						Boolean.getBoolean(cursor.getString(5)));
+						Boolean.getBoolean(cursor.getString(5)), lastFinishDateTime);
 
-				states.add(state);
+				states.put(state.getChallengeId(),state);
 
 			} while (cursor.moveToNext());
 		}
@@ -149,6 +156,7 @@ public class StateDAO extends SQLiteOpenHelper {
 		values.put("lastScore", state.getLastScore());
 		values.put("currentAttempt", state.getCurrentAttempt());
 		values.put("isFinished", state.isFinished());
+		values.put("lastFinishDateTime", state.getLastFinishDateTime().toString());
 
 		// 3. updating row
 		int i = db.update("State", // table
@@ -176,5 +184,18 @@ public class StateDAO extends SQLiteOpenHelper {
 		// 3. close
 		db.close();
 
+	}
+	
+	public void addStates(Map<String,DTState> states){
+		for (Map.Entry<String, DTState> entry : states.entrySet()) {
+			this.addState(entry.getValue());
+		}
+	}
+	
+	public void drop(){
+		Map<String, DTState> states = this.getAllStates();
+		for (Map.Entry<String, DTState> entry : states.entrySet()) {
+			this.deleteState(entry.getValue());
+		}
 	}
 }
