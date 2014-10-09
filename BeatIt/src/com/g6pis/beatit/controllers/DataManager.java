@@ -11,9 +11,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.g6pis.beatit.challenges.callaalperro.ShutTheDog;
+import com.g6pis.beatit.challenges.despertameatiempo.WakeMeUp;
 import com.g6pis.beatit.challenges.invitefriends.CanYouPlay;
 import com.g6pis.beatit.challenges.usainbolt.UsainBolt;
-import com.g6pis.beatit.challenges.wakemeup.WakeMeUp;
 import com.g6pis.beatit.connection.LoginConnection;
 import com.g6pis.beatit.connection.RankingConnection;
 import com.g6pis.beatit.connection.RoundConnection;

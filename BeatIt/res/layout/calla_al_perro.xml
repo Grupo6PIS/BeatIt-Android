@@ -90,7 +90,7 @@
         android:textStyle="bold" />
     
     <TextView
-        android:id="@+id/textView_Challenge"
+        android:id="@+id/textView_Nombre_Desafio"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -108,7 +108,7 @@
         android:id="@+id/imageView_Logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView_Challenge"
+        android:layout_alignBottom="@+id/textView_Nombre_Desafio"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="22dp"
         android:adjustViewBounds="true"

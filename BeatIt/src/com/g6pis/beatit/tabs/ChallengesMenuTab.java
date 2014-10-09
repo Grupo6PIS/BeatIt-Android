@@ -20,12 +20,12 @@ import com.g6pis.beatit.Home;
 import com.g6pis.beatit.R;
 import com.g6pis.beatit.challenges.callaalperro.CallaAlPerroFinished;
 import com.g6pis.beatit.challenges.callaalperro.CallaAlPerroUI;
+import com.g6pis.beatit.challenges.despertameatiempo.DespertameATiempoFinished;
+import com.g6pis.beatit.challenges.despertameatiempo.DespertameATiempoUI;
 import com.g6pis.beatit.challenges.invitefriends.CanYouPlayFinished;
 import com.g6pis.beatit.challenges.invitefriends.CanYouPlayUI;
 import com.g6pis.beatit.challenges.usainbolt.UsainBoltFinished;
 import com.g6pis.beatit.challenges.usainbolt.UsainBoltUI;
-import com.g6pis.beatit.challenges.wakemeup.WakeMeUpFinished;
-import com.g6pis.beatit.challenges.wakemeup.WakeMeUpUI;
 import com.g6pis.beatit.controllers.DataManager;
 import com.g6pis.beatit.datatypes.DTState;
  
@@ -83,9 +83,9 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
 				challenge = new Intent(getActivity().getApplicationContext(), UsainBoltFinished.class);
 		} else if (adapter.getItem(position).getChallengeId().equals(ID_Wake_Me_Up)){
 			if(adapter.getItem(position).getCurrentAttempt() == 0)
-				challenge = new Intent(getActivity().getApplicationContext(), WakeMeUpUI.class);
+				challenge = new Intent(getActivity().getApplicationContext(), DespertameATiempoUI.class);
 			else
-				challenge = new Intent(getActivity().getApplicationContext(), WakeMeUpFinished.class);
+				challenge = new Intent(getActivity().getApplicationContext(), DespertameATiempoFinished.class);
 		} else if (adapter.getItem(position).getChallengeId().equals(ID_Can_You_Play)){
 			if(adapter.getItem(position).getCurrentAttempt() == 0)
 				challenge = new Intent(getActivity().getApplicationContext(), CanYouPlayUI.class);
@@ -143,7 +143,7 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
 	            case 2: challengeDescription.setText(R.string.description_usain_bolt_2);break;
             }
           } else if (s.getChallengeId().equals(ID_Wake_Me_Up)){
-        	  challengeName.setText(getResources().getString(R.string.wake_me_up));
+        	  challengeName.setText(getResources().getString(R.string.despertame_a_tiempo));
 			challengeIcon.setImageResource(R.drawable.ic_despertame_a_tiempo);
 			switch(s.getChallengeLevel()){
 	            case 1: challengeDescription.setText(s.getChallengeName() + " description");break;
