@@ -24,8 +24,8 @@ import com.g6pis.beatit.challenges.invitefriends.CanYouPlayFinished;
 import com.g6pis.beatit.challenges.invitefriends.CanYouPlayUI;
 import com.g6pis.beatit.challenges.usainbolt.UsainBoltFinished;
 import com.g6pis.beatit.challenges.usainbolt.UsainBoltUI;
-import com.g6pis.beatit.challenges.wakemeup.DespertameATiempoFinished;
-import com.g6pis.beatit.challenges.wakemeup.DespertameATiempoUI;
+import com.g6pis.beatit.challenges.wakemeup.WakeMeUpFinished;
+import com.g6pis.beatit.challenges.wakemeup.WakeMeUpUI;
 import com.g6pis.beatit.controllers.DataManager;
 import com.g6pis.beatit.datatypes.DTState;
  
@@ -82,9 +82,9 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
 				challenge = new Intent(getActivity().getApplicationContext(), UsainBoltFinished.class);
 		} else if (adapter.getItem(position).getChallengeId().equals(ID_Wake_Me_Up)){
 			if(adapter.getItem(position).getCurrentAttempt() == 0)
-				challenge = new Intent(getActivity().getApplicationContext(), DespertameATiempoUI.class);
+				challenge = new Intent(getActivity().getApplicationContext(), WakeMeUpUI.class);
 			else
-				challenge = new Intent(getActivity().getApplicationContext(), DespertameATiempoFinished.class);
+				challenge = new Intent(getActivity().getApplicationContext(), WakeMeUpFinished.class);
 		} else if (adapter.getItem(position).getChallengeId().equals(ID_Can_You_Play)){
 			if(adapter.getItem(position).getCurrentAttempt() == 0)
 				challenge = new Intent(getActivity().getApplicationContext(), CanYouPlayUI.class);
