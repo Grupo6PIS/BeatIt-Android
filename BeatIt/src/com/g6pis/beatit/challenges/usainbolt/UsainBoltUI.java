@@ -1,10 +1,5 @@
 package com.g6pis.beatit.challenges.usainbolt;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.HashSet;
-import java.util.Set;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -22,19 +17,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.g6pis.beatit.Home;
-//import com.g6pis.beatit.persistence.UsainBoltDAO;
 import com.g6pis.beatit.R;
-import com.g6pis.beatit.challenges.invitefriends.CanYouPlay;
 import com.g6pis.beatit.controllers.DataManager;
 import com.g6pis.beatit.datatypes.DTDateTime;
-//import com.g6pis.beatit.persistence.UsainBoltDAO;
 import com.g6pis.beatit.datatypes.DTState;
-import com.g6pis.beatit.persistence.StateDAO;
+import com.g6pis.beatit.persistence.StateDataSource;
 
 public class UsainBoltUI extends Activity implements OnClickListener,
 		LocationListener {
@@ -193,8 +183,13 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 
 			public void onFinish() {
 				usainBolt.finishChallenge();
-				StateDAO db = new StateDAO(getApplicationContext());
+				
+				//Get local data base
+				StateDataSource db = DataManager.getInstance().open(getApplicationContext());
+				
 				db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
+				
+				
 				completeChallenge();
 			}
 		};
@@ -322,8 +317,11 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 				usainBolt.setMaxSpeed(0);
 				usainBolt.setAvgSpeed(0);
 				usainBolt.finishChallenge();
-				StateDAO db = new StateDAO(this);
+				
+				//Get local data base
+				StateDataSource db = DataManager.getInstance().open(getApplicationContext());
 				db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
+				
 				this.challengeStarted = false;
 				textViewTimeLeftValue.setText(
 						getResources().getString(R.string.time_left) + " "

@@ -1,15 +1,10 @@
 package com.g6pis.beatit.tabs;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.Fragment;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -22,10 +17,8 @@ import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
 import com.g6pis.beatit.Home;
-import com.g6pis.beatit.MainActivity;
 import com.g6pis.beatit.R;
 import com.g6pis.beatit.connection.ImageLoadTask;
-import com.g6pis.beatit.persistence.StateDAO;
 
 public class ProfileTab extends Fragment implements OnClickListener {
 	private static final int CONFIRMATION_DIALOG = 60;

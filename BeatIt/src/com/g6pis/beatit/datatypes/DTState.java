@@ -3,6 +3,7 @@ package com.g6pis.beatit.datatypes;
 import com.g6pis.beatit.entities.State;
 
 public class DTState {
+	
 	private String challengeId;
 	private String roundId;
 	private String challengeName;
@@ -17,6 +18,13 @@ public class DTState {
 	private int currentAttempt;
 	private DTDateTime lastFinishDateTime;
 
+	
+	
+	public DTState(){
+		
+	}
+	
+	
 	public DTState(State state) {
 		challengeId = state.getChallenge().getChallengeId();
 		roundId = state.getRound().getRoundId();
@@ -110,6 +118,52 @@ public class DTState {
 	public DTDateTime getLastFinishDateTime() {
 		return lastFinishDateTime;
 	}
+
+
+	public void setChallengeId(String challengeId) {
+		this.challengeId = challengeId;
+	}
+
+
+	public void setRoundId(String roundId) {
+		this.roundId = roundId;
+	}
+
+
+	public void setFinished(boolean finished) {
+		this.finished = finished;
+	}
+
+
+	public void setMaxScore(double maxScore) {
+		this.maxScore = maxScore;
+	}
+
+
+	public void setLastScore(double lastScore) {
+		this.lastScore = lastScore;
+	}
+
+
+	public void setDateTimeStart(DTDateTime dateTimeStart) {
+		this.dateTimeStart = dateTimeStart;
+	}
+
+
+	public void setDateTimeFinish(DTDateTime dateTimeFinish) {
+		this.dateTimeFinish = dateTimeFinish;
+	}
+
+
+	public void setCurrentAttempt(int currentAttempt) {
+		this.currentAttempt = currentAttempt;
+	}
+
+
+	public void setLastFinishDateTime(DTDateTime lastFinishDateTime) {
+		this.lastFinishDateTime = lastFinishDateTime;
+	}
+	
 	
 	
 }

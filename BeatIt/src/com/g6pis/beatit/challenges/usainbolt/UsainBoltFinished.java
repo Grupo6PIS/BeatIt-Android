@@ -17,7 +17,6 @@ import android.widget.TextView;
 import com.g6pis.beatit.Home;
 import com.g6pis.beatit.R;
 import com.g6pis.beatit.controllers.DataManager;
-import com.g6pis.beatit.datatypes.DTDateTime;
 import com.g6pis.beatit.datatypes.DTState;
 
 public class UsainBoltFinished extends Activity implements OnClickListener {

@@ -1,7 +1,5 @@
 package com.g6pis.beatit.entities;
 
-import android.app.Activity;
-
 public  class Challenge{
 	
 	private String challengeId;

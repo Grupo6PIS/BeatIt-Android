@@ -1,12 +1,5 @@
 package com.g6pis.beatit.challenges.usainbolt;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-
-import android.widget.TextView;
-
-import com.g6pis.beatit.R;
 import com.g6pis.beatit.controllers.DataManager;
 import com.g6pis.beatit.entities.Challenge;
 

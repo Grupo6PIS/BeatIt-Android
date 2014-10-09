@@ -10,6 +10,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
+
 import com.g6pis.beatit.challenges.callaalperro.ShutTheDog;
 import com.g6pis.beatit.challenges.despertameatiempo.WakeMeUp;
 import com.g6pis.beatit.challenges.invitefriends.CanYouPlay;
@@ -25,6 +28,7 @@ import com.g6pis.beatit.entities.Challenge;
 import com.g6pis.beatit.entities.Round;
 import com.g6pis.beatit.entities.State;
 import com.g6pis.beatit.entities.User;
+import com.g6pis.beatit.persistence.StateDataSource;
 
 public class DataManager {
 
@@ -38,6 +42,12 @@ public class DataManager {
 	private Map<String,DTState> persistedStates;
 	private boolean isLogged;
 	private List<DTRanking> ranking;
+	
+	
+	public static StateDataSource stateDao = null;
+	public static SQLiteDatabase localDB = null;
+
+	private static int mReferenceCount = 0;
 
 	private DataManager() {
 	}
@@ -254,5 +264,27 @@ public class DataManager {
 		}
 		return "";
 	}
+	
+	
+	  /**
+     * 
+     * 
+     * @return this
+     * @throws SQLException
+     * if the database could be neither opened or created
+     */
+    public StateDataSource open(Context context){
+        if( mReferenceCount == 0 ) {
+
+            if( stateDao == null )
+            	stateDao = new StateDataSource(context);
+          
+            if( localDB == null || localDB.isOpen() == false )
+            	localDB = stateDao.open();
+        }
+        mReferenceCount++;
+
+        return stateDao;
+    }
 	
 }

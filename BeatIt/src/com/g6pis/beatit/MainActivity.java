@@ -17,7 +17,8 @@ import com.facebook.UiLifecycleHelper;
 import com.facebook.model.GraphUser;
 import com.g6pis.beatit.controllers.DataManager;
 import com.g6pis.beatit.datatypes.DTState;
-import com.g6pis.beatit.persistence.StateDAO;
+
+import com.g6pis.beatit.persistence.StateDataSource;
 
 public class MainActivity extends Activity {
 	private static final String APP_SHARED_PREFS = "asdasd_preferences";
@@ -43,9 +44,7 @@ public class MainActivity extends Activity {
 	private String imageURL;
 	
 	private SharedPreferences sharedPrefs;
-	private Editor editor;
 	
-	private DataManager datamanager;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -69,16 +68,19 @@ public class MainActivity extends Activity {
         accessToken = sharedPrefs.getString("accessToken", "");
 		imageURL = "https://graph.facebook.com/"+fbId+"/picture?type=square&width=960&height=960&access_token="+accessToken;
         
-		Session session = Session.getActiveSession();
-		boolean isClosed = session.getState().isClosed();
 		if (fbId.isEmpty()) {
 			startActivity(login);
 			finish();
 		} else {
-			StateDAO db = new StateDAO(this);
+			
+			//Get local data base
+			StateDataSource db = DataManager.getInstance().open(this);
+			
+			//StateDAO db = new StateDAO(this);
 			Map<String,DTState> persistedStates = db.getAllStates();
 			DataManager.getInstance().setStates(persistedStates);
 			userId = DataManager.getInstance().login(userId,fbId, firstName, lastName, country, imageURL);
+		
 			persistedStates = DataManager.getInstance().getPersistedStates();
 			db.addStates(persistedStates);			
 			Editor editor = sharedPrefs.edit();

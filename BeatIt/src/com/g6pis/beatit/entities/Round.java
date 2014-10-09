@@ -1,7 +1,6 @@
 package com.g6pis.beatit.entities;
 
 import java.util.List;
-import java.util.Map;
 
 import com.g6pis.beatit.datatypes.DTDateTime;
 

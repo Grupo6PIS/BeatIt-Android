@@ -247,7 +247,14 @@ public class CallaAlPerroUI extends Activity implements SensorEventListener, OnC
 			callaAlPerroFinished.putExtra("month", calendar.get(Calendar.MONTH));
 			callaAlPerroFinished.putExtra("year", calendar.get(Calendar.YEAR));
 			callaAlPerroFinished.putExtra("dateTimeStart", dateTimeStart.toString());
+			
+			
+			
 			startActivity(callaAlPerroFinished);
+			
+			
+			
+			
 			this.finish();
 		  }
 	  } else {

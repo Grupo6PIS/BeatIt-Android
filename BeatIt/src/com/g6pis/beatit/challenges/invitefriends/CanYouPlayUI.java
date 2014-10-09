@@ -1,7 +1,5 @@
 package com.g6pis.beatit.challenges.invitefriends;
 
-import java.util.Map;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -27,7 +25,8 @@ import com.g6pis.beatit.Home;
 import com.g6pis.beatit.R;
 import com.g6pis.beatit.controllers.DataManager;
 import com.g6pis.beatit.datatypes.DTState;
-import com.g6pis.beatit.persistence.StateDAO;
+
+import com.g6pis.beatit.persistence.StateDataSource;
 
 public class CanYouPlayUI extends Activity implements OnClickListener {
 	private static final String CHALLENGE_ID = "3";
@@ -282,7 +281,11 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 
 	public void completeChallenge() {
 		canYouPlay.finishChallenge();
-		StateDAO db = new StateDAO(this);
+		
+		
+		//Get local data base
+		StateDataSource db = DataManager.getInstance().open(this);
+		
 		db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
 		Intent finished = new Intent(this, CanYouPlayFinished.class);
 		startActivity(finished);
