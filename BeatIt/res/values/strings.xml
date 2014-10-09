@@ -23,7 +23,7 @@
     <color name="emerald">#008A00</color>
     <color name="usain_bolt">#008A00</color>
     <color name="teal">#00ABA9</color>
-    <color name="despertame">#00ABA9</color>
+    <color name="wake_me_up">#00ABA9</color>
     <color name="orange">#FA6800</color>
     <color name="flappy">#FA6800</color>
     <color name="magenta">#D80073</color>
@@ -119,11 +119,12 @@
     <string name="can_you_play_description_1">In this challenge you have to post a link on your Facebook and, also, send 2 SMS with the link to 2 different contacts</string>
     <string name="can_you_play_description_2">In this challenge you have to post a link on your Facebook and, also, send 4 SMS with the link to 4 different contacts</string>
     
-    <!-- Despertame A Tiempo Strings -->
+    <!-- Wake Me Up Strings -->
 
-    <string name="despertame_a_tiempo">Despertame A Tiempo</string>
-    <string name="description_despertame_a_tiempo">In this challenge you have to shake your phone when the countdown reaches 0 seconds.</string>
-    <string name="logo_despertame_a_tiempo">Logo Despertame A Tiempo</string>
+    <string name="wake_me_up">Wake Me Up</string>
+    <string name="description_wake_me_up">In this challenge you have to shake your phone when the countdown reaches 0 seconds.</string>
+    <string name="logo_wake_me_up">Wake Me Up Logo</string>
+    <string name="timeout_wake_me_up">Timeout !</string>
     
     <!-- Calla Al Perro Strings -->
     <string name="calla_al_perro">Calla Al Perro</string>

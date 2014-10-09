@@ -9,7 +9,7 @@
         android:id="@+id/imageView_Logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView_Nombre_Desafio"
+        android:layout_alignBottom="@+id/textView_Challenge"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="22dp"
         android:adjustViewBounds="true"
@@ -71,7 +71,7 @@
         <TableRow
             android:id="@+id/tableRow1"
             android:layout_width="wrap_content"
-            android:background="@color/despertame"
+            android:background="@color/wake_me_up"
             android:gravity="center"
             android:minHeight="30dp" >
 
@@ -121,7 +121,7 @@
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_gravity="center_horizontal"
-            android:background="@color/despertame"
+            android:background="@color/wake_me_up"
             android:gravity="center"
             android:minHeight="50dp" >
 
@@ -181,7 +181,7 @@
     </TableLayout>
 
     <TextView
-        android:id="@+id/textView_Nombre_Desafio"
+        android:id="@+id/textView_Challenge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -189,9 +189,9 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="22dp"
         android:layout_toRightOf="@id/imageView_Logo"
-        android:text="@string/despertame_a_tiempo"
+        android:text="@string/wake_me_up"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/despertame"
+        android:textColor="@color/wake_me_up"
         android:textSize="34sp"
         android:textStyle="bold" />
 

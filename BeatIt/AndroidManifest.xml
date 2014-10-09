@@ -128,7 +128,7 @@
                 android:value="com.g6pis.beatit.Home" />
         </activity>
 
-        <activity android:name="com.g6pis.beatit.challenges.despertameatiempo.DespertameATiempoUI" android:screenOrientation="portrait">
+        <activity android:name="com.g6pis.beatit.challenges.wakemeup.WakeMeUpUI" android:screenOrientation="portrait">
              android:parentActivityName="com.g6pis.beatit.MainActivity" >
 
 
@@ -147,7 +147,7 @@
         </activity>
         
         <activity
-            android:name=".challenges.despertameatiempo.DespertameATiempoFinished"
+            android:name="com.g6pis.beatit.challenges.wakemeup.WakeMeUpFinished"
             android:label="@string/title_activity_challenge_finished"
             android:screenOrientation="portrait" >
             android:parentActivityName="com.g6pis.beatit.MainActivity" 
