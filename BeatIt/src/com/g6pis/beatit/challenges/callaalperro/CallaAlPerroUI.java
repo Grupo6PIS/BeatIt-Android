@@ -8,7 +8,9 @@ import java.util.TimerTask;
 
 import com.g6pis.beatit.Home;
 import com.g6pis.beatit.R;
+import com.g6pis.beatit.controllers.DataManager;
 import com.g6pis.beatit.datatypes.DTDateTime;
+import com.g6pis.beatit.datatypes.DTState;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -46,6 +48,10 @@ public class CallaAlPerroUI extends Activity implements SensorEventListener, OnC
 	boolean gano = false;
 	double score = 0;
 	private boolean running = false;
+	
+	private static final String CHALLENGE_ID = "1";
+
+	private DTState state;
 	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +61,10 @@ public class CallaAlPerroUI extends Activity implements SensorEventListener, OnC
 		startButton = (Button) findViewById(R.id.start_button);
 		startButton.setOnClickListener(this);
 		
-		this.setDateTimeStart(this.getDateExtras(getIntent().getExtras()));
+		
+		state = DataManager.getInstance().getState(CHALLENGE_ID);
+		//this.setDateTimeStart(this.getDateExtras(getIntent().getExtras()));
+		this.setDateTimeStart(state.getDateTimeStart());
 
 		this.editActionBar();
 	}
