@@ -74,7 +74,7 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.despertame_a_tiempo);
+		setContentView(R.layout.wake_me_up);
 		
 		this.editActionBar();
 		this.viewAssignment();

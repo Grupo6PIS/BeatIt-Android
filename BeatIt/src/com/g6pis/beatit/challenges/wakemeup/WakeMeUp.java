@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 public class WakeMeUp extends Challenge {
 	private static final String CHALLENGE_ID = "2";
-	
+/*	
 	private static final int SHAKE_THRESHOLD = 300;
 	
 	private Integer cant_repeticiones;
@@ -28,7 +28,7 @@ public class WakeMeUp extends Challenge {
 	private static final long TIME_LEVEL2_3 = 5;
 	private static final long TIME_LEVEL2_4 = 3;
 
-/*
+
 	private static final long TOLERANCIA = 500; // En milisegundos
 	private static final long TOPE = 10000; // Es el límite para detener el contador automáticamente porque ya perdió por mucho
 	private float last_x, last_y, last_z; // Almacena la posición en los ejes X, Y, Z
@@ -38,9 +38,10 @@ public class WakeMeUp extends Challenge {
 	private long valor_inicial_contador; // En milisegundos
 */
 	
-	private long tolerancia; // En milisegundos
+/*	private long tolerancia; // En milisegundos
 	private long tope; // Es el límite para detener el contador automáticamente porque ya perdió por mucho
 	private long segs_ocultos; // Este valor se puede modificar para cambiar la dificultad
+*/
 	private long veces_exito;
 	
 /*
@@ -53,10 +54,10 @@ public class WakeMeUp extends Challenge {
 	public WakeMeUp(String challengeId, String name, Integer level, int maxAttempt) {
 		super(challengeId, name,level, maxAttempt);
 
-		this.segs_ocultos = 0;
+//		this.segs_ocultos = 0;
 		this.veces_exito = 0;
-		
-/*		switch (level) {
+/*		
+		switch (level) {
 			case 1: {
 				segs_ocultos = TIME_LEVEL1_3;
 				cant_repeticiones = CANT_REPETICIONES_LEVEL1;
@@ -71,7 +72,7 @@ public class WakeMeUp extends Challenge {
 */
 			
 	}
-	
+/*	
 	public long getSegs_ocultos() {
 		return segs_ocultos;
 	}
@@ -81,7 +82,7 @@ public class WakeMeUp extends Challenge {
 		this.segs_ocultos = segs_ocultos;
 	}
 
-
+*/
 	public long getVeces_exito() {
 		return veces_exito;
 	}
