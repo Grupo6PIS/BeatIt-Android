@@ -20,12 +20,12 @@ import com.g6pis.beatit.Home;
 import com.g6pis.beatit.R;
 import com.g6pis.beatit.challenges.callaalperro.CallaAlPerroFinished;
 import com.g6pis.beatit.challenges.callaalperro.CallaAlPerroUI;
-import com.g6pis.beatit.challenges.despertameatiempo.DespertameATiempoFinished;
-import com.g6pis.beatit.challenges.despertameatiempo.DespertameATiempoUI;
 import com.g6pis.beatit.challenges.invitefriends.CanYouPlayFinished;
 import com.g6pis.beatit.challenges.invitefriends.CanYouPlayUI;
 import com.g6pis.beatit.challenges.usainbolt.UsainBoltFinished;
 import com.g6pis.beatit.challenges.usainbolt.UsainBoltUI;
+import com.g6pis.beatit.challenges.wakemeup.DespertameATiempoFinished;
+import com.g6pis.beatit.challenges.wakemeup.DespertameATiempoUI;
 import com.g6pis.beatit.controllers.DataManager;
 import com.g6pis.beatit.datatypes.DTState;
  
