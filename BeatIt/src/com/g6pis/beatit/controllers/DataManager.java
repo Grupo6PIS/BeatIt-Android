@@ -41,7 +41,7 @@ public class DataManager {
 
 	private DataManager() {
 	}
-
+ 
 	public static DataManager getInstance() {
 		return instance;
 	}
@@ -194,16 +194,30 @@ public class DataManager {
 		persistedStates = new HashMap<String,DTState>();
 	}
 
-	public List<DTRanking> updateRanking() {
+	public void updateRanking() {
 		try {
 			RankingConnection rankingConnection = (RankingConnection) new RankingConnection()
 			.execute();
-			JSONObject jsonRanking = rankingConnection.get();
+			JSONArray jsonConnection = rankingConnection.get();
+			JSONObject json = jsonConnection.getJSONObject(0);
+			JSONArray jsonRanking = json.getJSONArray("ranking");
+			ranking = new ArrayList<DTRanking>();
+			for (int i = 0; i < jsonRanking.length(); i++) {
+				JSONObject jsonRankingItem = jsonRanking.getJSONObject(i);
+				String userName = jsonRankingItem.getString("userName");
+				int score = jsonRankingItem.getInt("score");
+				String rankingImageURL = jsonRankingItem.getString("imageURL");
+				DTRanking rankingItem = new DTRanking(userName, score,i+1, rankingImageURL);
+				ranking.add(rankingItem);
+			}
+			
 		} catch (InterruptedException e) {
 		} catch (ExecutionException e) {
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
-		return ranking;
 	}
 
 	public void saveScore(String challengeId, double score) {	
@@ -215,7 +229,13 @@ public class DataManager {
 				haveToSendScore = false;
 		}
 		if(haveToSendScore){
-			sendScore(score);
+			int scoreToSend = 0;
+			
+			for (Map.Entry<String, State> entry : states.entrySet()) {
+				scoreToSend += entry.getValue().getMaxScore();
+			}
+			sendScore(scoreToSend);
+			updateRanking();
 		}
 	}
 	

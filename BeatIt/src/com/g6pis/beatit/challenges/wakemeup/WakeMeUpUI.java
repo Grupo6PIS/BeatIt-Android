@@ -76,7 +76,7 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.wake_me_up);
 		
-		this.editActionBar();
+		this.editActionBar(); 
 		this.viewAssignment();
 		
 		wakeMeUp = (WakeMeUp) DataManager.getInstance().getChallenge(CHALLENGE_ID);

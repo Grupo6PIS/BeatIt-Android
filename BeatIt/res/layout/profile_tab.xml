@@ -34,7 +34,7 @@
         <!--  android:layout_toRightOf="@+id/textView_user_country"-->
 
     <LinearLayout
-        android:id="@+id/linea"
+        android:id="@+id/line"
         android:layout_width="300dp"
         android:layout_height="3dp"
         android:layout_below="@+id/imageView_profile"
@@ -85,8 +85,8 @@
         android:id="@+id/logout_button"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_alignRight="@+id/linea"
-        android:layout_below="@+id/linea"
+        android:layout_alignRight="@+id/line"
+        android:layout_below="@+id/line"
         android:layout_marginTop="19dp"
         android:text="@string/logout"
         android:textSize="14sp" />

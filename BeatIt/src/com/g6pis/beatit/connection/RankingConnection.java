@@ -6,15 +6,16 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.os.AsyncTask;
 
-public class RankingConnection extends AsyncTask<Void, Void, JSONObject> {
+public class RankingConnection extends AsyncTask<Void, Void, JSONArray> {
 	@Override
-	protected JSONObject doInBackground(Void...params) {
-		JSONObject ranking = new JSONObject();
+	protected JSONArray doInBackground(Void...params) {
+		JSONArray ranking = new JSONArray();
 		try {
 			URL obj = new URL("http://beatit-udelar.rhcloud.com/round/getRanking/");
 			HttpURLConnection con;
@@ -26,16 +27,17 @@ public class RankingConnection extends AsyncTask<Void, Void, JSONObject> {
 			BufferedReader in = new BufferedReader(new InputStreamReader(
 					con.getInputStream()));
 			String inputLine;
-			StringBuffer response = new StringBuffer();
+			StringBuffer response = new StringBuffer(); 
 
 			JSONObject json = new JSONObject(in.readLine());
 			if(!json.getBoolean("error")){
-				ranking = json.getJSONObject("data");
+				ranking = json.getJSONArray("data");
 			}
 			in.close();
 
 		} catch (IOException e) {
 		} catch (JSONException e) {
+			e.printStackTrace();
 		}
 		return ranking;
 	}

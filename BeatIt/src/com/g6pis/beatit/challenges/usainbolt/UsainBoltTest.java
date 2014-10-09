@@ -27,22 +27,20 @@ public class UsainBoltTest {
 	public void SpeedsTest(){
 		UsainBolt usain = new UsainBolt("1", "Usain Bolt", 2, 3);
 		
-		Set<Double> speeds = new HashSet<Double>();
+		Double speeds = 0d;
 		Double maxSpeed = 0d;
+		int speedCount = 0;
 		
 		for(int i = 20; i < 35; i++){
 			usain.addSpeed((double)i);
-			speeds.add((double) i);
+			speeds += i;
+			speedCount++;
 			if(i > maxSpeed){
 				maxSpeed = (double) i;
 			}
 		}
 		
-		Double avgSpeed = 0d;
-		for (Double speed : speeds) {
-			avgSpeed += speed;
-		}
-		avgSpeed /= speeds.size();
+		Double avgSpeed = speeds/speedCount;
 		
 		double score = (maxSpeed + avgSpeed)*2;
 		
@@ -57,21 +55,18 @@ public class UsainBoltTest {
 	public void settersTest(){
 		UsainBolt usain = new UsainBolt("1", "Usain Bolt", 2, 3);
 		
-		Set<Double> speeds = new HashSet<Double>();
+		Double speeds = 0d;
 		Double maxSpeed = 0d;
-		
+		int speedCount = 0;
 		for(int i = 20; i < 35; i++){
-			speeds.add((double) i);
+			speeds += i;
+			speedCount++;
 			if(i > maxSpeed){
 				maxSpeed = (double) i;
 			}
 		}
 		
-		Double avgSpeed = 0d;
-		for (Double speed : speeds) {
-			avgSpeed += speed;
-		}
-		avgSpeed /= speeds.size();
+		Double avgSpeed = speeds/speedCount;
 		
 		double score = (maxSpeed + avgSpeed)*2;
 		
@@ -84,3 +79,4 @@ public class UsainBoltTest {
 	}
 
 }
+

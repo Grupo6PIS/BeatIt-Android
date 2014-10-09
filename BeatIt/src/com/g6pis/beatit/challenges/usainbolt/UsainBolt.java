@@ -23,12 +23,16 @@ public class UsainBolt extends Challenge {
 	
 	private double maxSpeed;
 	private double avgSpeed;
+	private double speeds;
+	private int speedCount;
 
 	public UsainBolt(String challengeId, String name, Integer level, int maxAttempt) {
 		super(challengeId, name, level, maxAttempt);
 
 		this.maxSpeed = 0.0;
 		this.avgSpeed = 0.0;
+		this.speeds = 0.0;
+		this.speedCount = 0;
 		
 		switch (level) {
 
@@ -63,14 +67,16 @@ public class UsainBolt extends Challenge {
 	}
 	
 	public void addSpeed(double speed){
-		avgSpeed = (avgSpeed+speed)/2;
+		speeds += speed;
+		speedCount++;
 		
 		if(speed > maxSpeed){
 			maxSpeed = speed;
 		}
 	}
 	
-	public double calculateScore(){	
+	public double calculateScore(){
+		avgSpeed = speeds/speedCount;
 		return (maxSpeed + avgSpeed)*2;
 	}
 	

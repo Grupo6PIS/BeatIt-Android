@@ -331,7 +331,7 @@ containing a value of this type.
         public static final int imageView_ranking_photo=0x7f05005d;
         public static final int info_layout=0x7f050015;
         public static final int large=0x7f050002;
-        public static final int linea=0x7f050059;
+        public static final int line=0x7f050059;
         public static final int linear_facebook=0x7f050051;
         public static final int linear_indicador_soyyo=0x7f05005b;
         public static final int login_button=0x7f050054;

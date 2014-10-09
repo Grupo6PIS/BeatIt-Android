@@ -77,7 +77,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 			((TextView)findViewById(R.id.textView_To_Beat)).setVisibility(View.INVISIBLE);
 			
 		}
-			
+			 
  
 		switch (canYouPlay.getLevel()) {
 		case 1:
@@ -281,12 +281,12 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 	}
 
 	public void completeChallenge() {
-		canYouPlay.finishChallenge();
-		StateDAO db = new StateDAO(this);
-		db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
 		Intent finished = new Intent(this, CanYouPlayFinished.class);
 		startActivity(finished);
 		this.finish();
+		canYouPlay.finishChallenge();
+		StateDAO db = new StateDAO(this);
+		db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
 	}
 
 	@Override

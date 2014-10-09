@@ -24,7 +24,7 @@ public class ScoreConnection extends AsyncTask<String, Void, JSONObject>{
 		URL url;
 		JSONObject json = new JSONObject();
 		try {
-				url = new URL("http://beatit-udelar.rhcloud.com/round/sendScore/");
+				url = new URL("http://beatit-udelar.rhcloud.com/round/sendScore/"); 
 				URLConnection conn = url.openConnection();
 				conn.setDoOutput(true);
 				OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());

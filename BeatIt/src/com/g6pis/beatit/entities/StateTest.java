@@ -67,12 +67,12 @@ public class StateTest {
 		DTDateTime dateTime = new DTDateTime(6, 3, 1992, 9, 30, 0);
 		
 		state.setChallenge(challenge);
-		state.setCurrentAttempt(3);
-		state.setFinished(true);
+		state.setCurrentAttempt(2);
 		state.setRound(round);
 		state.setMaxScore(320);
-		state.setNewScore(120);
+		state.setNewScore(420);
 		state.setUser(user);
+		
 		
 		
 		
@@ -81,9 +81,16 @@ public class StateTest {
 		assertEquals(challenge, state.getChallenge());
 		assertEquals(user, state.getUser());
 		assertEquals(3,state.getCurrentAttempt());
-		assertEquals(320,state.getMaxScore(),0);
-		assertEquals(120,state.getLastScore(),0);
+		assertEquals(420,state.getMaxScore(),0);
+		assertEquals(420,state.getLastScore(),0);
 		assertTrue(state.isFinished());
+		
+		state.setFinished(false);
+		state.setLastScore(125);
+		state.setLastFinishDateTime(dateTime);
+		assertFalse(state.isFinished());
+		assertEquals(125,state.getLastScore(),0);
+		assertEquals(dateTime,state.getLastFinishDateTime());
 		
 		
 	}

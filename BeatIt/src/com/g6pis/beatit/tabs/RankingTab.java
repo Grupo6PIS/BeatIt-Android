@@ -136,9 +136,10 @@ public class RankingTab extends Fragment implements OnItemClickListener, OnClick
 	public void onClick(View v) {
 		
 		DataManager dm = (DataManager) DataManager.getInstance();
-		List <DTRanking> rankings = dm.updateRanking();
+		dm.updateRanking();
+		List <DTRanking> rankings = dm.getRanking();
         int total_rankings = rankings.size();
-		DTRanking[] items=new DTRanking[total_rankings];
+		DTRanking[] items=new DTRanking[total_rankings]; 
 		
 
 		for(int index=0;index<total_rankings;index++){

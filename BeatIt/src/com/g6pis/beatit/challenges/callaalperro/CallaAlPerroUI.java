@@ -6,10 +6,6 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.g6pis.beatit.Home;
-import com.g6pis.beatit.R;
-import com.g6pis.beatit.datatypes.DTDateTime;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -28,7 +24,14 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.g6pis.beatit.Home;
+import com.g6pis.beatit.R;
+import com.g6pis.beatit.controllers.DataManager;
+import com.g6pis.beatit.datatypes.DTDateTime;
+import com.g6pis.beatit.datatypes.DTState;
+
 public class CallaAlPerroUI extends Activity implements SensorEventListener, OnClickListener {
+	private static final String CHALLENGE_ID = "4";
 	private SensorManager mSensorManager;
 	private Sensor mSensor;
 	private MediaPlayer mp;
@@ -46,6 +49,9 @@ public class CallaAlPerroUI extends Activity implements SensorEventListener, OnC
 	boolean gano = false;
 	double score = 0;
 	private boolean running = false;
+	
+	private DTState state;
+	private ShutTheDog shutTheDog;
 	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,8 +61,11 @@ public class CallaAlPerroUI extends Activity implements SensorEventListener, OnC
 		startButton = (Button) findViewById(R.id.start_button);
 		startButton.setOnClickListener(this);
 		
-		this.setDateTimeStart(this.getDateExtras(getIntent().getExtras()));
-
+		shutTheDog = (ShutTheDog) DataManager.getInstance().getChallenge(CHALLENGE_ID);
+		state = DataManager.getInstance().getState(CHALLENGE_ID);
+		
+		this.setDateTimeStart(state.getDateTimeStart());
+ 
 		this.editActionBar();
 	}
 	
@@ -257,9 +266,12 @@ public class CallaAlPerroUI extends Activity implements SensorEventListener, OnC
 	 
 	 @Override
 		public void onBackPressed() {
+		 	
 			Intent home = new Intent(this, Home.class);
 			startActivity(home);
 			this.finish();
+			//TODO borrar esto
+			DataManager.getInstance().saveScore(CHALLENGE_ID, 920);
 			super.onBackPressed();
 		}
 

@@ -25,7 +25,7 @@ public class LoginConnection extends AsyncTask<String, Void, JSONObject>{
 		
 		URL url;
 		JSONObject user = new JSONObject();
-		try {
+		try { 
 				url = new URL("http://beatit-udelar.rhcloud.com/user/login/");
 				URLConnection conn = url.openConnection();
 				conn.setDoOutput(true);
@@ -38,7 +38,7 @@ public class LoginConnection extends AsyncTask<String, Void, JSONObject>{
 				JSONObject json = new JSONObject(response);
 				boolean error = json.getBoolean("error");
 				writer.close();
-				if(error){
+				if(error){ 
 					url = new URL("http://beatit-udelar.rhcloud.com/user/updateUser/");
 					URLConnection connection = url.openConnection();
 					connection.setDoOutput(true);

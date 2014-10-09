@@ -258,6 +258,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 			challengeStarted = true;
 			textViewSpeedValue.setText(getResources().getString(R.string.speed)
 					+ " 0.0 km/h");
+
 		}
 			break;
 		}
@@ -266,9 +267,12 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 	
 	@Override
 	public void onBackPressed(){
+		
 		Intent home = new Intent(this, Home.class);
 		startActivity(home);
 		this.finish();
+		//TODO borrar
+		DataManager.getInstance().saveScore(CHALLENGE_ID, 280);
 		super.onBackPressed();
 	}
 	@Override
