@@ -1,15 +1,6 @@
 package com.g6pis.beatit.challenges.despertameatiempo;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.concurrent.TimeUnit;
-import java.lang.Math;
-
-import com.g6pis.beatit.Home;
-import com.g6pis.beatit.R;
-import com.g6pis.beatit.controllers.DataManager;
-import com.g6pis.beatit.datatypes.DTDateTime;
-import com.g6pis.beatit.datatypes.DTState;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -29,7 +20,15 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.g6pis.beatit.Home;
+import com.g6pis.beatit.R;
+import com.g6pis.beatit.controllers.DataManager;
+import com.g6pis.beatit.datatypes.DTDateTime;
+import com.g6pis.beatit.datatypes.DTState;
+import com.g6pis.beatit.persistence.StateDAO;
+
 public class DespertameATiempoUI extends Activity implements SensorEventListener, OnClickListener {
+	private static final String CHALLENGE_ID = "2";
 	private SensorManager senSensorManager;
 	private Sensor senAccelerometer;
 	
@@ -40,7 +39,6 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	private float last_x, last_y, last_z;
 	private static final int SHAKE_THRESHOLD = 300;
 	
-	private static String challengeId = "2";
 	private Integer level;
 	private Integer cant_repeticiones;
 	private Integer cant_repeticiones_LEVEL1 = 3;
@@ -68,17 +66,26 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	private double score = 0;
 	private long exitos = 0;
 	private long attemps = 0;
-	private long max_attemps = 3;
+	private long MAX_ATTEMPS = 3;
+	
+	private WakeMeUp wakeMeUp;
+	private DTState state;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.despertame_a_tiempo);
 		
+		this.editActionBar();
+		this.viewAssignment();
+		
+		wakeMeUp = (WakeMeUp) DataManager.getInstance().getChallenge(CHALLENGE_ID);
+		state = DataManager.getInstance().getState(CHALLENGE_ID);
+		
 		DataManager dm = DataManager.getInstance();
 		
-		if (attemps < max_attemps) {
-			this.setLevel(((DTState) dm.getState(challengeId)).getChallengeLevel());
+		if (attemps < MAX_ATTEMPS) {
+			this.setLevel(((DTState) dm.getState(CHALLENGE_ID)).getChallengeLevel());
 			switch (this.getLevel()) {
 				case 1: {
 					segs_ocultos = TIME_LEVEL1_3;
@@ -110,33 +117,15 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 			textViewTimeLeftValue.setText(t_valor_inicial_contador);
 			
 			textViewResult = (TextView) findViewById(R.id.textView_Result);
-			
-			editActionBar();
-			
+									
 			timer = this.createTimer();
 		}
 		else {
-			// INCOMPLETO PORQUE FALTA LA PERSISTENCIA LOCAL PARA CONTAR ATTEMPS !!!!!!!!
 			completeChallenge();
 		}
 		
 	}
 	
-	/***Useful Functions***/
-	/*
-	public DTDateTime getDateExtras(Bundle extras) {
-		DTDateTime date = new DTDateTime();
-
-		date.setDay(extras.getInt("day"));
-		date.setMonth(extras.getInt("month"));
-		date.setYear(extras.getInt("year"));
-		date.setHour(extras.getInt("hours"));
-		date.setMinute(extras.getInt("minutes"));
-		date.setSecond(extras.getInt("seconds"));
-
-		return date;
-	}
-	*/
 	
 	public CountDownTimer createTimer(){
 		CountDownTimer timer = new CountDownTimer(VALOR_INICIAL_CONTADOR+TOPE, 10) {
@@ -157,6 +146,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 			}
 
 			public void onFinish() {
+				wakeMeUp.finishChallenge();
 				frenarTimer();
 				textViewTimeLeftValue.setText("Demoraste mucho !");
 				textViewResult.setText("Demoraste mucho !");
@@ -254,7 +244,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 		textViewResult.setVisibility(View.VISIBLE);
 		textViewResult.setText(Double.toString(time));
 		timer.cancel();
-		
+
 		cant_repeticiones--;
 		if (cant_repeticiones > 0) {
 			switch (getLevel()) {
@@ -334,33 +324,19 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 		senSensorManager.unregisterListener(this);
 		timer = null;
 		
+		wakeMeUp.finishChallenge();
+		StateDAO db = new StateDAO(this);
+		db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
+		
 		setAttemps(getAttemps()+1);
 		
 		// Calculating the score
 		this.setScore(getCantExitos()*20);
 
 		// Activity Challenge Finished
-		Intent despertameATiempoFinished = new Intent(this, DespertameATiempoFinished.class);
-		despertameATiempoFinished.putExtra("cantExitos",
-			Long.toString(this.getCantExitos()));
-		despertameATiempoFinished.putExtra("score",
-			Integer.toString((int) this.getScore()));
-		despertameATiempoFinished.putExtra("dateTimeStart", getDateTimeStart().toString());
-		despertameATiempoFinished.putExtra("attemps",
-			Long.toString(Math.round(this.getAttemps())));
-		
-		Calendar calendar = new GregorianCalendar();
+		Intent finished = new Intent(this, DespertameATiempoFinished.class);
 
-		despertameATiempoFinished.putExtra("seconds", calendar.get(Calendar.SECOND));
-		despertameATiempoFinished.putExtra("minutes", calendar.get(Calendar.MINUTE));
-		despertameATiempoFinished.putExtra("hours", calendar.get(Calendar.HOUR_OF_DAY));
-		despertameATiempoFinished.putExtra("day", calendar.get(Calendar.DAY_OF_MONTH));
-		despertameATiempoFinished.putExtra("month", calendar.get(Calendar.MONTH));
-		despertameATiempoFinished.putExtra("year", calendar.get(Calendar.YEAR));
-		despertameATiempoFinished.putExtra("dateTimeStart", dateTimeStart.toString());
-
-		startActivity(despertameATiempoFinished);
-
+		startActivity(finished);
 		this.finish();
 	}
 	
