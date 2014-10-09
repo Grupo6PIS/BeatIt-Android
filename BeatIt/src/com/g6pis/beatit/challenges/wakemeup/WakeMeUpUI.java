@@ -40,9 +40,9 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 	private static final int SHAKE_THRESHOLD = 300;
 	
 	private Integer level;
-	private Integer cant_repeticiones;
-	private Integer cant_repeticiones_LEVEL1 = 3;
-	private Integer cant_repeticiones_LEVEL2 = 4;
+	private Integer number_of_repetitions;
+	private Integer number_of_repetitions_LEVEL1 = 3;
+	private Integer number_of_repetitions_LEVEL2 = 4;
 	private static final long TIME_LEVEL1_1 = 5;
 	private static final long TIME_LEVEL1_2 = 4;
 	private static final long TIME_LEVEL1_3 = 3;
@@ -50,13 +50,13 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 	private static final long TIME_LEVEL2_2 = 7;
 	private static final long TIME_LEVEL2_3 = 5;
 	private static final long TIME_LEVEL2_4 = 3;
-	private long segs_ocultos = 0; // Este valor se modifica para cambiar la dificultad
+	private long hidden_secs = 0; // Este valor se modifica para cambiar la dificultad
 	
-	private static final long TOLERANCIA = 500; // En milisegundos
-	private static final long TOPE = 10000; // Es el límite para detener el contador automáticamente porque ya perdió por mucho	
+	private static final long TOLERANCE = 500; // En milisegundos
+	private static final long MAX = 10000; // Es el límite para detener el contador automáticamente porque ya perdió por mucho	
 	private long time = 0; // Cuenta regresiva real
 	private long g_millis = 0; // Cuenta regresiva ficticia porque incluye el valor del tope
-	private static final long VALOR_INICIAL_CONTADOR = 10000; // En milisegundos
+	private static final long INITIAL_COUNTER_VALUE = 10000; // En milisegundos
 	
 	private TextView startButton;
 	private TextView textViewTimeLeftValue;
@@ -64,7 +64,7 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 	
 	private CountDownTimer timer;
 	private double score = 0;
-	private long exitos = 0;
+	private long succeed_times = 0;
 	private long attemps = 0;
 	private long MAX_ATTEMPS = 3;
 	
@@ -88,13 +88,13 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 			this.setLevel(((DTState) dm.getState(CHALLENGE_ID)).getChallengeLevel());
 			switch (this.getLevel()) {
 				case 1: {
-					segs_ocultos = TIME_LEVEL1_3;
-					cant_repeticiones = cant_repeticiones_LEVEL1;
+					hidden_secs = TIME_LEVEL1_3;
+					number_of_repetitions = number_of_repetitions_LEVEL1;
 				}
 					break;
 				case 2: {
-					segs_ocultos = TIME_LEVEL2_4;
-					cant_repeticiones = cant_repeticiones_LEVEL2;
+					hidden_secs = TIME_LEVEL2_4;
+					number_of_repetitions = number_of_repetitions_LEVEL2;
 				}
 					break;	
 			}
@@ -105,16 +105,14 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 			this.setDateTimeStart(dm.getCurrentRound().getDateTimeStart());
 			((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(this.getDateTimeStart().toString());
 			
-			/* ACELEROMETRO */
 	        senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 	        senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 	        senSensorManager.registerListener(this, senAccelerometer , SensorManager.SENSOR_DELAY_NORMAL);
-	        /* FIN ACELEROMETRO */
 			
-			String t_valor_inicial_contador = String.format("%d", VALOR_INICIAL_CONTADOR/1000);
+			String t_initial_counter_value = String.format("%d", INITIAL_COUNTER_VALUE/1000);
 			
 			textViewTimeLeftValue = (TextView) findViewById(R.id.textView_Time_Left_Value);
-			textViewTimeLeftValue.setText(t_valor_inicial_contador);
+			textViewTimeLeftValue.setText(t_initial_counter_value);
 			
 			textViewResult = (TextView) findViewById(R.id.textView_Result);
 									
@@ -128,16 +126,16 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 	
 	
 	public CountDownTimer createTimer(){
-		CountDownTimer timer = new CountDownTimer(VALOR_INICIAL_CONTADOR+TOPE, 10) {
+		CountDownTimer timer = new CountDownTimer(INITIAL_COUNTER_VALUE+MAX, 10) {
 			
 			public void onTick(long millisUntilFinished) {
 				
 				long millis = millisUntilFinished;
 				g_millis = millis;
 				String hms;
-				if (millis > segs_ocultos * 1000 + TOPE) {
+				if (millis > hidden_secs * 1000 + MAX) {
 					hms = String.format("%d", 
-							TimeUnit.MILLISECONDS.toSeconds(millis-TOPE));
+							TimeUnit.MILLISECONDS.toSeconds(millis-MAX));
 				}
 				else {
 					hms = String.format("??");
@@ -147,7 +145,7 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 
 			public void onFinish() {
 				wakeMeUp.finishChallenge();
-				frenarTimer();
+				stopTimer();
 				textViewTimeLeftValue.setText("Demoraste mucho !");
 				textViewResult.setText("Demoraste mucho !");
 			}
@@ -234,45 +232,45 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 		// TODO Auto-generated method stub
 	}
 	
-	private void frenarTimer() {
+	private void stopTimer() {
 		timerRunning = false;
-		time = g_millis - TOPE;
-		if (Math.abs(time) < TOLERANCIA) {
-			setCantExitos(getCantExitos() + 1);
+		time = g_millis - MAX;
+		if (Math.abs(time) < TOLERANCE) {
+			setSucceed_times(getSucceed_times() + 1);
 		}			
 		
 		textViewResult.setVisibility(View.VISIBLE);
 		textViewResult.setText(Double.toString(time));
 		timer.cancel();
 
-		cant_repeticiones--;
-		if (cant_repeticiones > 0) {
+		number_of_repetitions--;
+		if (number_of_repetitions > 0) {
 			switch (getLevel()) {
 				case 1: {
-					switch (cant_repeticiones) {
+					switch (number_of_repetitions) {
 						case 1: {
-							segs_ocultos = TIME_LEVEL1_1;
+							hidden_secs = TIME_LEVEL1_1;
 						}
 							break;
 						case 2: {
-							segs_ocultos = TIME_LEVEL1_2;
+							hidden_secs = TIME_LEVEL1_2;
 						}
 							break;
 					}
 				}
 					break;
 				case 2: {
-					switch (cant_repeticiones) {
+					switch (number_of_repetitions) {
 						case 1: {
-							segs_ocultos = TIME_LEVEL2_1;
+							hidden_secs = TIME_LEVEL2_1;
 						}
 							break;
 						case 2: {
-							segs_ocultos = TIME_LEVEL2_2;
+							hidden_secs = TIME_LEVEL2_2;
 						}
 							break;
 						case 3: {
-							segs_ocultos = TIME_LEVEL2_3;
+							hidden_secs = TIME_LEVEL2_3;
 						}
 							break;
 					}
@@ -309,7 +307,7 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 		 
 		            float speed = Math.abs(x + y + z - last_x - last_y - last_z)/ diffTime * 10000;
 		            if (speed > SHAKE_THRESHOLD) {
-		            	frenarTimer();
+		            	stopTimer();
 		            }
 		 
 		            last_x = x;
@@ -331,7 +329,7 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 		setAttemps(getAttemps()+1);
 		
 		// Calculating the score
-		this.setScore(getCantExitos()*20);
+		this.setScore(getSucceed_times()*20);
 
 		// Activity Challenge Finished
 		Intent finished = new Intent(this, WakeMeUpFinished.class);
@@ -340,12 +338,12 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 		this.finish();
 	}
 	
-	public long getCantExitos() {
-		return exitos;
+	public long getSucceed_times() {
+		return succeed_times;
 	}
 
-	public void setCantExitos(long exitos) {
-		this.exitos = exitos;
+	public void setSucceed_times(long succeed_times) {
+		this.succeed_times = succeed_times;
 	}
 	
 	public double getScore() {
