@@ -33,7 +33,6 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
 	private ListView challengeMenu;
     private MyAdapter adapter;
     Random rand = new Random();
-	private int level = 1;
 	
 	private static final String ID_Usain_Bolt 		= "1";
 	private static final String ID_Wake_Me_Up 		= "2";
@@ -143,7 +142,7 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
 	            case 2: challengeDescription.setText(R.string.description_usain_bolt_2);break;
             }
           } else if (s.getChallengeId().equals(ID_Wake_Me_Up)){
-        	  challengeName.setText(getResources().getString(R.string.despertame_a_tiempo));
+        	  challengeName.setText(getResources().getString(R.string.wake_me_up));
 			challengeIcon.setImageResource(R.drawable.ic_despertame_a_tiempo);
 			switch(s.getChallengeLevel()){
 	            case 1: challengeDescription.setText(s.getChallengeName() + " description");break;

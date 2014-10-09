@@ -81,18 +81,18 @@ public class DespertameATiempoFinished extends Activity implements OnClickListen
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setTitle(this.getString(R.string.app_name));
 		actionBar.setBackgroundDrawable(new ColorDrawable(getResources()
-				.getColor(R.color.despertame)));
+				.getColor(R.color.wake_me_up)));
 
 		((ImageView) findViewById(R.id.imageView_Logo))
 				.setImageDrawable(getResources().getDrawable(
 						R.drawable.ic_despertame_a_tiempo));
 		((TextView) findViewById(R.id.textView_Challenge_Name))
-				.setText(getResources().getString(R.string.despertame_a_tiempo));
+				.setText(getResources().getString(R.string.wake_me_up));
 		((TextView) findViewById(R.id.textView_Challenge_Name))
-				.setTextColor(getResources().getColor(R.color.despertame));
+				.setTextColor(getResources().getColor(R.color.wake_me_up));
 		((TableRow) findViewById(R.id.text_row))
 				.setBackgroundColor(getResources().getColor(
-						R.color.despertame));
+						R.color.wake_me_up));
 
 		((ImageButton) findViewById(R.id.refresh_button))
 				.setVisibility(View.INVISIBLE);

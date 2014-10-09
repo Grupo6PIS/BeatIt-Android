@@ -72,9 +72,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView_Description"
-        android:layout_alignRight="@+id/textView_Nombre_Desafio"
+        android:layout_alignRight="@+id/textView_Challenge"
         android:layout_below="@+id/textView_Description"
-        android:text="@string/description_despertame_a_tiempo"
+        android:text="@string/description_wake_me_up"
         android:textColor="@color/gris_challenge_description"
         android:textSize="18sp" />
 
@@ -90,7 +90,7 @@
         android:textStyle="bold" />
     
     <TextView
-        android:id="@+id/textView_Nombre_Desafio"
+        android:id="@+id/textView_Challenge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
@@ -98,9 +98,9 @@
         android:layout_toRightOf="@+id/imageView_Logo"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:text="@string/despertame_a_tiempo"
+        android:text="@string/wake_me_up"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/despertame"
+        android:textColor="@color/wake_me_up"
         android:textSize="34sp"
         android:textStyle="bold" />
     
@@ -108,22 +108,22 @@
         android:id="@+id/imageView_Logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView_Nombre_Desafio"
+        android:layout_alignTop="@+id/textView_Challenge"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="22dp"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/logo_despertame_a_tiempo"
+        android:contentDescription="@string/logo_wake_me_up"
         android:src="@drawable/ic_despertame_a_tiempo" />
 
     <Button
-        android:id="@+id/start_button_despertame"
+        android:id="@+id/start_button_wake_me_up"
         android:layout_width="250dp"
         android:layout_height="40dp"
+        android:layout_alignLeft="@+id/textView_To_Beat_Value"
+        android:layout_alignRight="@+id/textView_Description_Value"
         android:layout_below="@+id/textView_To_Beat_Value"
-	    android:layout_alignLeft="@+id/textView_To_Beat_Value"
-	    android:layout_alignRight="@+id/textView_Description_Value"
         android:layout_marginTop="16dp"
-        android:background="@color/despertame"
+        android:background="@color/wake_me_up"
         android:text="@string/start_challenge_button"
         android:textColor="@color/blanco" />
     
@@ -131,7 +131,7 @@
 	    android:id="@+id/attemps"
 	    android:layout_width="wrap_content"
 	    android:layout_height="wrap_content"
-	    android:layout_alignRight="@+id/start_button_despertame"
+	    android:layout_alignRight="@+id/start_button_wake_me_up"
 	    android:layout_below="@+id/textView_Start_Time_Value" />
 
 	<TextView
@@ -140,8 +140,8 @@
 	    android:layout_height="40dp"
 	    android:layout_alignLeft="@+id/textView_To_Beat_Value"
 	    android:layout_alignRight="@+id/textView_Description_Value"
-	    android:layout_alignTop="@+id/start_button_despertame"
-	    android:background="@color/despertame"
+	    android:layout_alignTop="@+id/start_button_wake_me_up"
+	    android:background="@color/wake_me_up"
 	    android:gravity="center"
 	    android:textColor="#FFFFFF"
 	    android:textSize="14sp"
@@ -154,7 +154,7 @@
 	    android:layout_height="40dp"
 	    android:layout_alignLeft="@+id/textView_Time_Left_Value"
 	    android:layout_alignRight="@+id/textView_Time_Left_Value"
-	    android:layout_alignTop="@+id/start_button_despertame"
+	    android:layout_alignTop="@+id/start_button_wake_me_up"
 	    android:layout_marginTop="60dp"
 	    android:background="@color/rojo"
 	    android:gravity="center"

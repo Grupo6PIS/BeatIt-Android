@@ -69,7 +69,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	private long MAX_ATTEMPS = 3;
 	
 	private WakeMeUp wakeMeUp;
-	private DTState state;
+	//private DTState state;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -80,7 +80,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 		this.viewAssignment();
 		
 		wakeMeUp = (WakeMeUp) DataManager.getInstance().getChallenge(CHALLENGE_ID);
-		state = DataManager.getInstance().getState(CHALLENGE_ID);
+		//state = DataManager.getInstance().getState(CHALLENGE_ID);
 		
 		DataManager dm = DataManager.getInstance();
 		
@@ -99,7 +99,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 					break;	
 			}
 			
-			startButton = (Button) findViewById(R.id.start_button_despertame);
+			startButton = (Button) findViewById(R.id.start_button_wake_me_up);
 			startButton.setOnClickListener(this);
 			
 			this.setDateTimeStart(dm.getCurrentRound().getDateTimeStart());
@@ -160,7 +160,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	public void onClick(View v) {
 		if (!timerRunning) {
 			switch (v.getId()) {
-				case R.id.start_button_despertame: {
+				case R.id.start_button_wake_me_up: {
 					startButton.setVisibility(View.INVISIBLE);
 					textViewTimeLeftValue.setVisibility(View.VISIBLE);
 					textViewResult.setVisibility(View.INVISIBLE);
@@ -173,7 +173,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 	}
 	
 	public void viewAssignment() {
-		startButton = (TextView) findViewById(R.id.start_button_despertame);
+		startButton = (TextView) findViewById(R.id.start_button_wake_me_up);
 		textViewTimeLeftValue = (TextView) findViewById(R.id.textView_Time_Left_Value);
 		textViewResult = (TextView) findViewById(R.id.textView_Result);
 	}
@@ -225,7 +225,7 @@ public class DespertameATiempoUI extends Activity implements SensorEventListener
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setTitle(this.getString(R.string.app_name));
-		actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.despertame)));
+		actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.wake_me_up)));
 	}
 	
 
