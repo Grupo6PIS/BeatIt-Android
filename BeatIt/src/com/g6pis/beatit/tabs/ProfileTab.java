@@ -67,7 +67,7 @@ public class ProfileTab extends Fragment implements OnClickListener {
 
 		profilePicture = (ImageView) rootView
 				.findViewById(R.id.imageView_profile);
-		username = (TextView) rootView.findViewById(R.id.textView_username);
+		username = (TextView) rootView.findViewById(R.id.textView_username_ranking);
 		country = (TextView) rootView.findViewById(R.id.textView_user_country);
 
 		username.setText(activity.datamanager.getInstance().getUser()

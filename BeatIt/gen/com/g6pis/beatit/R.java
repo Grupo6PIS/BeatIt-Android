@@ -284,10 +284,10 @@ containing a value of this type.
         public static final int white_flag=0x7f02003e;
     }
     public static final class id {
-        public static final int Ranking_list=0x7f050068;
+        public static final int Ranking_list=0x7f050067;
         public static final int TableRow01=0x7f050027;
         public static final int TableRow02=0x7f050024;
-        public static final int action_settings=0x7f05006c;
+        public static final int action_settings=0x7f05006b;
         public static final int attemps=0x7f050052;
         public static final int button_layout=0x7f050019;
         public static final int challengeDescription=0x7f050033;
@@ -324,11 +324,11 @@ containing a value of this type.
         public static final int facebook_post_button=0x7f05001b;
         public static final int fb_post_value=0x7f050029;
         public static final int fb_posts=0x7f050026;
-        public static final int fragment_placeholder=0x7f050069;
+        public static final int fragment_placeholder=0x7f050068;
         public static final int imageView_Logo=0x7f05000f;
         public static final int imageView_app_logo=0x7f05005d;
-        public static final int imageView_foto_ranking=0x7f050065;
         public static final int imageView_profile=0x7f05005f;
+        public static final int imageView_ranking_photo=0x7f050065;
         public static final int info_layout=0x7f050015;
         public static final int large=0x7f050002;
         public static final int linea=0x7f050061;
@@ -350,7 +350,7 @@ containing a value of this type.
         public static final int sms_sent_value=0x7f050028;
         public static final int start_button=0x7f050011;
         public static final int start_button_despertame=0x7f050051;
-        public static final int start_challenge_button=0x7f05006b;
+        public static final int start_challenge_button=0x7f05006a;
         public static final int tableRow1=0x7f05001f;
         public static final int tableRow2=0x7f050021;
         public static final int table_performance=0x7f050023;
@@ -362,7 +362,7 @@ containing a value of this type.
         public static final int textView_Description_Value_2=0x7f05000d;
         public static final int textView_Finish_Time=0x7f050017;
         public static final int textView_Finish_Time_Value=0x7f050016;
-        public static final int textView_Friends_Value=0x7f05006a;
+        public static final int textView_Friends_Value=0x7f050069;
         public static final int textView_Left_Time=0x7f050018;
         public static final int textView_Nombre_Desafio=0x7f050010;
         public static final int textView_Result=0x7f050054;
@@ -381,11 +381,10 @@ containing a value of this type.
         public static final int textView_last_sscore_value=0x7f05002f;
         public static final int textView_max_score=0x7f05002d;
         public static final int textView_max_score_value=0x7f050030;
-        public static final int textView_nombre_usuario=0x7f050066;
-        public static final int textView_posicion=0x7f050064;
-        public static final int textView_puntaje=0x7f050067;
+        public static final int textView_position_ranking=0x7f050064;
+        public static final int textView_score_ranking=0x7f050066;
         public static final int textView_user_country=0x7f05005a;
-        public static final int textView_username=0x7f050060;
+        public static final int textView_username_ranking=0x7f050060;
         public static final int text_row=0x7f05002b;
         public static final int tick=0x7f050034;
         public static final int tiempo=0x7f050055;

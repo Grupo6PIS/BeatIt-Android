@@ -15,7 +15,7 @@
         android:src="@drawable/com_facebook_profile_default_icon" />
 
     <TextView
-        android:id="@+id/textView_username"
+        android:id="@+id/textView_username_ranking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/imageView_profile"
@@ -28,7 +28,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/imageView_profile"
-        android:layout_alignLeft="@+id/textView_username"
+        android:layout_alignLeft="@+id/textView_username_ranking"
         android:layout_marginBottom="10dp"
         android:textSize="14sp" />
         <!--  android:layout_toRightOf="@+id/textView_user_country"-->

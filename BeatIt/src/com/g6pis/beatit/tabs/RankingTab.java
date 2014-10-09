@@ -102,10 +102,10 @@ public class RankingTab extends Fragment implements OnItemClickListener, OnClick
           View rowView = inflater.inflate(R.layout.ranking_row,parent,false);
 
           LinearLayout user = (LinearLayout)rowView.findViewById(R.id.linear_indicador_soyyo);
-          TextView position = (TextView) rowView.findViewById(R.id.textView_posicion);
-          TextView userName = (TextView) rowView.findViewById(R.id.textView_nombre_usuario);
-          TextView score = (TextView) rowView.findViewById(R.id.textView_puntaje);
-          ImageView profilePicture = (ImageView) rowView.findViewById(R.id.imageView_foto_ranking);
+          TextView position = (TextView) rowView.findViewById(R.id.textView_position_ranking);
+          TextView userName = (TextView) rowView.findViewById(R.id.textView_username_ranking);
+          TextView score = (TextView) rowView.findViewById(R.id.textView_score_ranking);
+          ImageView profilePicture = (ImageView) rowView.findViewById(R.id.imageView_ranking_photo);
           
           DTRanking ranking = objects[location];
           
