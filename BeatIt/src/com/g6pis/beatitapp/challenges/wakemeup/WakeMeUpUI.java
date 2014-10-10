@@ -50,13 +50,13 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 	private static final long TIME_LEVEL2_2 = 7;
 	private static final long TIME_LEVEL2_3 = 5;
 	private static final long TIME_LEVEL2_4 = 3;
-	private long hidden_secs = 0; // Este valor se modifica para cambiar la dificultad
+	private long hidden_secs = 0; // This value can be modified in order to change the challenge difficulty
 	
-	private static final long TOLERANCE = 500; // En milisegundos
-	private static final long MAX = 10000; // Es el límite para detener el contador automáticamente porque ya perdió por mucho	
-	private long time = 0; // Cuenta regresiva real
-	private long g_millis = 0; // Cuenta regresiva ficticia porque incluye el valor del tope
-	private static final long INITIAL_COUNTER_VALUE = 10000; // En milisegundos
+	private static final long TOLERANCE = 500; // In milliseconds
+	private static final long MAX = 10000; // This is the limit to stop the counter automatically because the player has already lost	
+	private long time = 0; // Real countdown
+	private long g_millis = 0; // Fictitious countdown because it includes the MAX value
+	private static final long INITIAL_COUNTER_VALUE = 10000; // In milliseconds
 	
 	private TextView startButton;
 	private TextView textViewTimeLeftValue;
