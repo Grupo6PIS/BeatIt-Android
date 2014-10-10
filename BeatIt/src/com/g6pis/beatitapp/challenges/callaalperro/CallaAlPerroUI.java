@@ -239,6 +239,7 @@ public class CallaAlPerroUI extends Activity implements SensorEventListener, OnC
 			  gano = true;
 			  
 			  //TERMINA EL DESAFIO
+			  //TODO hacerlo desde la clase ShutTheDog
 			  //Calculo el puntaje
 			  score = segundosTranscurridos;
 			  

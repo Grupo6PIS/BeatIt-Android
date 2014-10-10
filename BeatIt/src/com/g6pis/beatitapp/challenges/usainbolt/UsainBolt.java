@@ -99,5 +99,14 @@ public class UsainBolt extends Challenge {
 		this.maxSpeed = 0.0;
 		this.avgSpeed = 0.0;
 	}
+
+	public void setSpeeds(double speeds) {
+		this.speeds = speeds;
+	}
+
+	public void setSpeedCount(int speedCount) {
+		this.speedCount = speedCount;
+	}
+	
 	
 }

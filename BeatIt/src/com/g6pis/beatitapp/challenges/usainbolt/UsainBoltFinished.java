@@ -32,11 +32,12 @@ public class UsainBoltFinished extends Activity implements OnClickListener {
 		state = DataManager.getInstance().getState(CHALLENGE_ID);
 
 		this.editLayout();
-
+		
+		String lastScore = Integer.toString(((Long)Math.round(state.getLastScore())).intValue());
+		String maxScore = Integer.toString(((Long)Math.round(state.getMaxScore())).intValue());
 		((TextView) findViewById(R.id.textView_last_sscore_value))
-				.setText(Double.toString(state.getLastScore()));
-		((TextView) findViewById(R.id.textView_max_score_value)).setText(Double
-				.toString(state.getMaxScore()));
+				.setText(lastScore);
+		((TextView) findViewById(R.id.textView_max_score_value)).setText(maxScore);
 		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(state
 				.getDateTimeStart().toString());
 		((TextView) findViewById(R.id.textView_Finish_Time_Value))
