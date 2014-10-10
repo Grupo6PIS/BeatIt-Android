@@ -112,6 +112,7 @@ public class RankingTab extends Fragment implements OnItemClickListener, OnClick
           position.setText(Integer.toString(ranking.getPosition()));
           userName.setText(ranking.getUserName());
           score.setText(Integer.toString(ranking.getScore()));
+          new ImageLoadTask(ranking.getImageURL(), profilePicture).execute(null, null);
           String username = activity.datamanager.getInstance().getUser()
   				.getFirstName()
   				+ " "
@@ -119,8 +120,6 @@ public class RankingTab extends Fragment implements OnItemClickListener, OnClick
           if(ranking.getUserName().equals(username)){
         	  user.setVisibility(View.VISIBLE);
         	  rowView.setBackgroundColor(getResources().getColor(R.color.blanco));
-        	  new ImageLoadTask(activity.datamanager.getInstance().getUser()
-      				.getImageURL(), profilePicture).execute(null, null);
         	  
           }else{
         	  user.setVisibility(View.INVISIBLE);

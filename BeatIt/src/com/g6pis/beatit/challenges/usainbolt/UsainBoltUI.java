@@ -187,7 +187,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 			public void onTick(long millisUntilFinished) {
 				textViewTimeLeftValue.setText(
 						getResources().getString(R.string.time_left) + " "
-						+ Double.toString(usainBolt.getTime()/1000)
+						+ Double.toString(millisUntilFinished/1000)
 						+ " " + getResources().getString(R.string.seconds));
 			}
 
@@ -268,11 +268,15 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 	@Override
 	public void onBackPressed(){
 		
+		/*usainBolt.reset();
 		Intent home = new Intent(this, Home.class);
 		startActivity(home);
-		this.finish();
+		this.finish();*/
 		//TODO borrar
-		DataManager.getInstance().saveScore(CHALLENGE_ID, 280);
+		usainBolt.finishChallenge();
+		StateDAO db = new StateDAO(getApplicationContext());
+		db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
+		completeChallenge();
 		super.onBackPressed();
 	}
 	@Override
@@ -280,6 +284,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 	    switch (item.getItemId()) {
 	    // Respond to the action bar's Up/Home button
 	    case android.R.id.home:
+	    	usainBolt.reset();
 	    	Intent home = new Intent(this, Home.class);
 			startActivity(home);
 			this.finish();

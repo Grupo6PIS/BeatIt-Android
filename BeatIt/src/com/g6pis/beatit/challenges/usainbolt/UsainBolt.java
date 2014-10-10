@@ -95,5 +95,9 @@ public class UsainBolt extends Challenge {
 		return time;
 	}
 	
+	public void reset(){
+		this.maxSpeed = 0.0;
+		this.avgSpeed = 0.0;
+	}
 	
 }

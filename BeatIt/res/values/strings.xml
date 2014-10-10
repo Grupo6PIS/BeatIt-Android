@@ -90,6 +90,10 @@
 	<string name="last_score">Last Score</string>
 	<string name="logout_confirmation_title">Are you sure you want to log out?</string>
 	<string name="logout_confirmation">All data will be lost</string>
+	<string name="challenge_completed">Challenge Completed!</string>
+	<string name="want_to_continue">Do you want to continue?</string>
+	<string name="continue_button">Continue</string>
+	<string name="view_finished">Finish</string>
 	
     <!-- Profile Strings -->
 

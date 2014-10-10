@@ -67,8 +67,8 @@ public class UsainBoltFinished extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		Intent home = new Intent(this, Home.class);
-		startActivity(home);
+		Intent usainBolt = new Intent(this, UsainBoltUI.class);
+		startActivity(usainBolt);
 		this.finish();
 	}
 

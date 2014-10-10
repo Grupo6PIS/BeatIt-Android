@@ -327,7 +327,7 @@ containing a value of this type.
         public static final int fragment_placeholder=0x7f050060;
         public static final int imageView_Logo=0x7f05000f;
         public static final int imageView_app_logo=0x7f050055;
-        public static final int imageView_profile=0x7f050057;
+        public static final int imageView_profile=0x7f050058;
         public static final int imageView_ranking_photo=0x7f05005d;
         public static final int info_layout=0x7f050015;
         public static final int large=0x7f050002;
@@ -383,7 +383,7 @@ containing a value of this type.
         public static final int textView_position_ranking=0x7f05005c;
         public static final int textView_score_ranking=0x7f05005e;
         public static final int textView_user_country=0x7f050052;
-        public static final int textView_username_ranking=0x7f050058;
+        public static final int textView_username_ranking=0x7f050057;
         public static final int text_row=0x7f05002b;
         public static final int tick=0x7f050034;
         public static final int title=0x7f050003;
@@ -446,8 +446,8 @@ containing a value of this type.
         /**  Strings generales de la aplicación 
          */
         public static final int action_settings=0x7f08001b;
-        public static final int also_available=0x7f08005e;
-        public static final int android_version=0x7f08005d;
+        public static final int also_available=0x7f080062;
+        public static final int android_version=0x7f080061;
         public static final int app_description=0x7f080044;
         public static final int app_name=0x7f08001c;
         public static final int avg_speed=0x7f080034;
@@ -455,17 +455,18 @@ containing a value of this type.
         /**  Calla Al Perro Strings 
  Calla Al Perro Strings 
          */
-        public static final int calla_al_perro=0x7f080064;
+        public static final int calla_al_perro=0x7f080068;
         /**  Can You Play's Strings  
  Can You Play's Strings  
          */
-        public static final int can_you_play=0x7f080053;
-        public static final int can_you_play_description_1=0x7f08005f;
-        public static final int can_you_play_description_2=0x7f080060;
+        public static final int can_you_play=0x7f080057;
+        public static final int can_you_play_description_1=0x7f080063;
+        public static final int can_you_play_description_2=0x7f080064;
         public static final int cancel=0x7f08003a;
         /**  Strings del desafío Usain Bolt 
          */
-        public static final int challenge=0x7f080068;
+        public static final int challenge=0x7f08006c;
+        public static final int challenge_completed=0x7f08004d;
         public static final int challenges_tab=0x7f08003d;
         public static final int com_facebook_choose_friends=0x7f08000f;
         public static final int com_facebook_dialogloginactivity_ok_button=0x7f080000;
@@ -493,14 +494,15 @@ containing a value of this type.
         public static final int com_facebook_usersettingsfragment_log_in_button=0x7f080008;
         public static final int com_facebook_usersettingsfragment_logged_in=0x7f080009;
         public static final int com_facebook_usersettingsfragment_not_logged_in=0x7f08000a;
+        public static final int continue_button=0x7f08004f;
         public static final int description=0x7f08001d;
-        public static final int description_calla_al_perro=0x7f080065;
-        public static final int description_usain_bolt_1=0x7f080050;
-        public static final int description_usain_bolt_2=0x7f080051;
-        public static final int description_wake_me_up=0x7f080062;
-        public static final int description_wake_me_up_1=0x7f080069;
-        public static final int description_wake_me_up_2=0x7f08006a;
-        public static final int done=0x7f080057;
+        public static final int description_calla_al_perro=0x7f080069;
+        public static final int description_usain_bolt_1=0x7f080054;
+        public static final int description_usain_bolt_2=0x7f080055;
+        public static final int description_wake_me_up=0x7f080066;
+        public static final int description_wake_me_up_1=0x7f08006d;
+        public static final int description_wake_me_up_2=0x7f08006e;
+        public static final int done=0x7f08005b;
         public static final int duration=0x7f08001e;
         public static final int duration_value=0x7f08001f;
         public static final int end_time=0x7f080037;
@@ -508,9 +510,9 @@ containing a value of this type.
         /**  Facebook app ID 
  Facebook app ID 
          */
-        public static final int facebook_app_id=0x7f080067;
-        public static final int facebook_post=0x7f080056;
-        public static final int fb_posts=0x7f08005b;
+        public static final int facebook_app_id=0x7f08006b;
+        public static final int facebook_post=0x7f08005a;
+        public static final int fb_posts=0x7f08005f;
         public static final int finish_time=0x7f080025;
         public static final int gps_disabled=0x7f080039;
         /**  General Application Strings 
@@ -518,9 +520,9 @@ containing a value of this type.
         public static final int hello_world=0x7f08001a;
         public static final int iniciar_sesion=0x7f080045;
         public static final int last_score=0x7f08004a;
-        public static final int logo_calla_al_perro=0x7f080066;
-        public static final int logo_description=0x7f080052;
-        public static final int logo_wake_me_up=0x7f080063;
+        public static final int logo_calla_al_perro=0x7f08006a;
+        public static final int logo_description=0x7f080056;
+        public static final int logo_wake_me_up=0x7f080067;
         public static final int logout=0x7f080040;
         public static final int logout_confirmation=0x7f08004c;
         public static final int logout_confirmation_title=0x7f08004b;
@@ -537,13 +539,13 @@ containing a value of this type.
         public static final int score=0x7f080031;
         public static final int score_value=0x7f080032;
         public static final int seconds=0x7f080028;
-        public static final int select_contact=0x7f080054;
-        public static final int send_sms=0x7f080055;
+        public static final int select_contact=0x7f080058;
+        public static final int send_sms=0x7f080059;
         public static final int settings=0x7f080041;
-        public static final int sms_failed=0x7f080059;
-        public static final int sms_sent=0x7f08005c;
-        public static final int sms_success=0x7f08005a;
-        public static final int sms_text=0x7f080058;
+        public static final int sms_failed=0x7f08005d;
+        public static final int sms_sent=0x7f080060;
+        public static final int sms_success=0x7f08005e;
+        public static final int sms_text=0x7f08005c;
         public static final int speed=0x7f080022;
         public static final int speed_greater_than_zero=0x7f08003c;
         public static final int speed_value=0x7f080023;
@@ -563,16 +565,18 @@ containing a value of this type.
         public static final int to_beat=0x7f080020;
         /**  Usain Bolt's Strings 
          */
-        public static final int usain_bolt=0x7f08004f;
-        public static final int user_country=0x7f08004e;
+        public static final int usain_bolt=0x7f080053;
+        public static final int user_country=0x7f080052;
         /**  Profile Strings 
  Profile Strings 
          */
-        public static final int username=0x7f08004d;
+        public static final int username=0x7f080051;
+        public static final int view_finished=0x7f080050;
         /**  Despertame A Tiempo Strings 
  Wake Me Up Strings 
          */
-        public static final int wake_me_up=0x7f080061;
+        public static final int wake_me_up=0x7f080065;
+        public static final int want_to_continue=0x7f08004e;
     }
     public static final class style {
         public static final int ActionBarTabStyle=0x7f090008;

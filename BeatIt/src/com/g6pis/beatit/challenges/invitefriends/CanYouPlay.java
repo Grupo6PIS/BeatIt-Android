@@ -96,4 +96,13 @@ public class CanYouPlay extends Challenge {
 		fbPost = 0;
 	}
 	
+	public boolean isCompleted(){
+		return ((fbPost == minFBPost)&&(smsSent == 1));
+	}
+	
+	public void reset(){
+		phones = new ArrayList<String>();
+		smsSent = 0;
+		fbPost = 0;
+	}
 }

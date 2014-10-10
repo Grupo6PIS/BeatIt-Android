@@ -87,11 +87,9 @@ public class State {
 		this.lastFinishDateTime = lastFinishDateTime;
 	}
 
-	public void setNewScore(double lastScore) {
+	public boolean setNewScore(double lastScore) {
 		this.lastScore = lastScore;
 		
-		if(this.lastScore > this.maxScore)
-			this.maxScore = this.lastScore;
 		
 		lastFinishDateTime = new DTDateTime();
 		
@@ -99,6 +97,11 @@ public class State {
 		if(this.currentAttempt == this.challenge.getMaxAttempt()){
 			this.finished = true;
 		}
+		if(this.lastScore > this.maxScore){
+			this.maxScore = this.lastScore;
+			return true;
+		}
+		return false;
 		
 	}
 

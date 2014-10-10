@@ -4,12 +4,16 @@ import java.util.Map;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.provider.Settings;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.SmsManager;
 import android.util.Log;
@@ -32,6 +36,7 @@ import com.g6pis.beatit.persistence.StateDAO;
 public class CanYouPlayUI extends Activity implements OnClickListener {
 	private static final String CHALLENGE_ID = "3";
 	private static final int PICK_CONTACT = 10;
+	private static final int CHALLENGE_COMPLETED_DIALOG = 70;
 
 	private UiLifecycleHelper uiHelper;
 	private Button facebookButton;
@@ -42,6 +47,8 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 	private String phone;
 
 	private CanYouPlay canYouPlay;
+	
+	private Dialog challengeCompletedDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +59,10 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 
 		uiHelper = new UiLifecycleHelper(this, null);
 		uiHelper.onCreate(savedInstanceState);
-
+		
+		challengeCompletedDialog = onCreateDialog(CHALLENGE_COMPLETED_DIALOG);
+		challengeCompletedDialog.hide();
+		
 		facebookButton = (Button) findViewById(R.id.facebook_post_button);
 		smsButton = (Button) findViewById(R.id.send_SMS_button);
 		selectContactButton = (Button) findViewById(R.id.select_contact_button);
@@ -161,7 +171,9 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 									.getNativeDialogCompletionGesture(data);
 							if (!completionGesture.equals("cancel")) {
 								canYouPlay.fbPost();
-								Log.i("Activity", "success");
+								if(canYouPlay.isCompleted()){
+									challengeCompletedDialog.show();
+								}
 							}
 						}
 					});
@@ -268,6 +280,9 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 					Toast.LENGTH_LONG).show();
 
 			canYouPlay.smsSent();
+			if(canYouPlay.isCompleted()){
+				challengeCompletedDialog.show();
+			}
 
 		} catch (Exception ex) {
 
@@ -291,6 +306,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 
 	@Override
 	public void onBackPressed() {
+		canYouPlay.reset();
 		Intent home = new Intent(this, Home.class);
 		startActivity(home);
 		this.finish();
@@ -309,12 +325,43 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 		switch (item.getItemId()) {
 		// Respond to the action bar's Up/Home button
 		case android.R.id.home:
+			canYouPlay.reset();
 			Intent home = new Intent(this, Home.class);
 			startActivity(home);
 			this.finish();
 			return true;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		switch (id) {
+		case CHALLENGE_COMPLETED_DIALOG: {
+			builder.setMessage(R.string.want_to_continue);
+			builder.setTitle(getResources().getString(R.string.challenge_completed));
+			builder.setCancelable(true);
+			builder.setPositiveButton(R.string.continue_button, new OkOnClickListener());
+			builder.setNegativeButton(R.string.view_finished,
+					new CancelOnClickListener());
+			return builder.create();
+		}
+		}
+		return super.onCreateDialog(id);
+	}
+
+	private final class CancelOnClickListener implements
+			DialogInterface.OnClickListener {
+		public void onClick(DialogInterface dialog, int which) {
+			completeChallenge();
+		}
+	}
+
+	private final class OkOnClickListener implements
+			DialogInterface.OnClickListener {
+		public void onClick(DialogInterface dialog, int which) {
+		}
 	}
 
 }
