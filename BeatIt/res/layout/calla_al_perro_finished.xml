@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.g6pis.beatit.challenges.callaalperro.CallaAlPerroFinished" >
+    tools:context="com.g6pis.beatitapp.challenges.callaalperro.CallaAlPerroFinished" >
 
     <TextView
         android:layout_width="wrap_content"

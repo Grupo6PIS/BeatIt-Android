@@ -3,5 +3,5 @@
     android:id="@+id/pager"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.g6pis.beatit.challenges.invitefriends.CanYouPlayUI" />
+    tools:context="com.g6pis.beatitapp.challenges.invitefriends.CanYouPlayUI" />
 

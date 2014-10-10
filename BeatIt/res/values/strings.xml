@@ -3,9 +3,8 @@
 <!-- In this file you will find all the Strings used in the English version of the application -->
 
 <resources>
-
+    
     <!-- Colours definitions -->
-
     <color name="gris">#f5f5f5</color>
     <color name="rojo">#d40c34</color>
     <color name="verde">#008a00</color>
@@ -15,7 +14,6 @@
     <color name="gris_tab_text_notselected">#ABABAB</color>
     <color name="azul">#3B5998</color>
      <color name="callaalperro">#6A659C</color>
-    
     <color name="cobalt">#0050EF</color>
     <color name="color_texto">#0050EF</color>
     <color name="red">#E51400</color>
@@ -36,16 +34,18 @@
     <color name="callar_perro">#647687</color>
     <color name="fb_blue">#3B5998</color>
     <color name="can_you_play">#3B5998</color>
-
+    
+    
     <!-- General Application Strings -->
-
     <string name="hello_world">Hello World!</string>
     <string name="action_settings">Settings</string>
     <string name="app_name">BeatIt!</string>
+    <string name="MainActivity">Main Activity</string>
     <string name="description">Description</string>
     <string name="duration">Duration:</string>
     <string name="duration_value">1 week</string>
     <string name="to_beat">To beat:</string>
+    <string name="points"> points</string>
     <string name="points_value">2000 points</string>
     <string name="speed">Speed:</string>
     <string name="speed_value">Speed: 0.0 km/h</string>
@@ -85,7 +85,6 @@
     <string name="iniciar_sesion">Log In</string>
     <string name="title_activity_home">Home</string>
     <string name="start_challenge_button">Start Challenge</string>
-    <string name="points"> points</string>
 	<string name="max_score">Max. Score</string>
 	<string name="last_score">Last Score</string>
 	<string name="logout_confirmation_title">Are you sure you want to log out?</string>
@@ -96,16 +95,14 @@
 	<string name="view_finished">Finish</string>
 	
     <!-- Profile Strings -->
-
     <string name="username">Juan Pérez</string>
     <string name="user_country">Uruguay</string>
-
+    
     <!-- Usain Bolt's Strings -->
-
     <string name="usain_bolt">Usain Bolt</string>
     <string name="description_usain_bolt_1">In this challenge you have to run faster than 10 km/h for 30 seconds</string>
     <string name="description_usain_bolt_2">In this challenge you have to run faster than 15 km/h for 45 seconds</string>
-    <string name="logo_description">Logo Usain Bolt</string>
+    <string name="logo_description">Logo Usain Bolt</string>   
     
     <!-- Can You Play's Strings  -->
 	<string name="can_you_play">Can You Play?</string>
@@ -122,9 +119,8 @@
     <string name="also_available">Also available for Windows Phone</string>
     <string name="can_you_play_description_1">In this challenge you have to post a link on your Facebook and, also, send 2 SMS with the link to 2 different contacts</string>
     <string name="can_you_play_description_2">In this challenge you have to post a link on your Facebook and, also, send 4 SMS with the link to 4 different contacts</string>
-    
+   
     <!-- Despertame A Tiempo Strings -->
-
     <string name="wake_me_up">Wake Me Up</string>
     <string name="description_wake_me_up">In this challenge you have to shake your phone when the countdown reaches 0 seconds.</string>
     <string name="logo_wake_me_up">Wake Me Up Logo</string>
@@ -133,8 +129,7 @@
     <string name="calla_al_perro">Calla Al Perro</string>
     <string name="description_calla_al_perro">In this challenge you have to shut the barking dog up by putting your hand close to the phone as soon as possible!</string>
     <string name="logo_calla_al_perro">Logo Calla al Perro</string>
-	
-	
+    
     <!-- Facebook app ID -->
     <string name="facebook_app_id">829846350380023</string>
 </resources>

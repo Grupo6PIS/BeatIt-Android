@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.g6pis.beatit"
-    android:versionCode="1"
-    android:versionName="1.0" >
+    package="com.g6pis.beatitapp"
+    android:versionCode="2"
+    android:versionName="2.0" >
 
     <uses-sdk
         android:minSdkVersion="14"
@@ -19,8 +19,7 @@
         android:label="@string/app_name"
         android:theme="@style/BeatItActionBarTheme" >
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
+            android:name="com.g6pis.beatitapp.MainActivity"
             android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,137 +28,142 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ChallengeInProgress"
-            android:label="@string/title_activity_challenge_in_progress"
+            android:name="com.g6pis.beatitapp.ChallengeInProgress"
             android:screenOrientation="portrait" >
-            android:parentActivityName="com.g6pis.beatit.Home" >
+            android:parentActivityName="com.g6pis.beatit.Home" >
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.g6pis.beatit.Home" />
         </activity>
+        
         <activity
-            android:name=".ChallengesMenu"
-            android:label="@string/title_activity_challenges_menu"
+            android:name="com.g6pis.beatitapp.ChallengesMenu"
             android:screenOrientation="portrait" >
         </activity>
+        
         <activity
-            android:name=".challenges.usainbolt.UsainBoltUI"
-            android:label="@string/challenge"
+            android:name="com.g6pis.beatitapp.challenges.usainbolt.UsainBoltUI"
             android:screenOrientation="portrait" >
-	        android:parentActivityName="com.g6pis.beatit.MainActivity" >
+	        android:parentActivityName="com.g6pis.beatit.MainActivity" >
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.g6pis.beatit.Home" />
         </activity>
+        
         <activity
-            android:name=".Ranking"
-            android:label="@string/title_activity_ranking"
+            android:name="com.g6pis.beatitapp.Ranking"
             android:screenOrientation="portrait" >
-	        android:parentActivityName="com.g6pis.beatit.ChallengesMenu" >
+	        android:parentActivityName="com.g6pis.beatit.ChallengesMenu" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.g6pis.beatit.ChallengesMenu" />
         </activity>
+        
         <activity
-            android:name=".Profile"
-            android:label="@string/title_activity_profile"
+            android:name="com.g6pis.beatitapp.Profile"
             android:screenOrientation="portrait" >
-            android:parentActivityName="com.g6pis.beatit.ChallengesMenu" >
+            android:parentActivityName="com.g6pis.beatit.ChallengesMenu" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.g6pis.beatit.ChallengesMenu" />
         </activity>
+        
         <activity
-            android:name="com.g6pis.beatit.challenges.usainbolt.UsainBoltFinished"
-            android:label="@string/title_activity_challenge_finished"
+            android:name="com.g6pis.beatitapp.challenges.usainbolt.UsainBoltFinished"
             android:screenOrientation="portrait" >
-            android:parentActivityName="com.g6pis.beatit.Home" >
+            android:parentActivityName="com.g6pis.beatit.Home" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.g6pis.beatit.Home" />
         </activity>
+        
         <activity
-            android:name=".Login"
-            android:label="@string/title_activity_login"
+            android:name="com.g6pis.beatitapp.Login"
             android:screenOrientation="portrait" >
-            android:parentActivityName="com.g6pis.beatit.MainActivity" >
+            android:parentActivityName="com.g6pis.beatit.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.g6pis.beatit.MainActivity" />
         </activity>
+        
         <activity
-            android:name=".Home"
-            android:label="@string/title_activity_home"
+            android:name="com.g6pis.beatitapp.Home"
             android:screenOrientation="portrait" >
-            android:parentActivityName="com.g6pis.beatit.MainActivity" >
+            android:parentActivityName="com.g6pis.beatit.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.g6pis.beatit.MainActivity" />
- >
         </activity>
+        
         <activity
-            android:name=".challenges.invitefriends.CanYouPlayFinished"
-            android:label="@string/title_activity_challenge_finished"
+            android:name="com.g6pis.beatitapp.challenges.invitefriends.CanYouPlayFinished"
             android:screenOrientation="portrait" >
-            android:parentActivityName="com.g6pis.beatit.Home" >
+            android:parentActivityName="com.g6pis.beatit.Home" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.g6pis.beatit.Home" />
         </activity>
+        
         <activity
             android:name="com.facebook.LoginActivity"
             android:screenOrientation="portrait" >
         </activity>
 
+        
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
+        
         <activity
-            android:name=".challenges.invitefriends.CanYouPlayUI"
+            android:name="com.g6pis.beatitapp.challenges.invitefriends.CanYouPlayUI"
             android:screenOrientation="portrait" >
-             android:parentActivityName="com.g6pis.beatit.MainActivity" >
-
+             android:parentActivityName="com.g6pis.beatit.MainActivity" >
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.g6pis.beatit.Home" />
         </activity>
+        
         <activity
-            android:name="com.g6pis.beatit.challenges.wakemeup.WakeMeUpUI"
+            android:name="com.g6pis.beatitapp.challenges.wakemeup.WakeMeUpUI"
             android:screenOrientation="portrait" >
-             android:parentActivityName="com.g6pis.beatit.MainActivity" >
-
+             android:parentActivityName="com.g6pis.beatit.MainActivity" >
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.g6pis.beatit.Home" />
         </activity>
+        
         <activity
-            android:name=".challenges.callaalperro.CallaAlPerroUI"
+            android:name="com.g6pis.beatitapp.challenges.callaalperro.CallaAlPerroUI"
             android:screenOrientation="portrait" >
+            android:parentActivityName="com.g6pis.beatit.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.g6pis.beatit.Home" />
         </activity>
+        
         <activity
-            android:name="com.g6pis.beatit.challenges.callaalperro.CallaAlPerroFinished"
+            android:name="com.g6pis.beatitapp.challenges.callaalperro.CallaAlPerroFinished"
             android:screenOrientation="portrait" >
+                         android:parentActivityName="com.g6pis.beatit.MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.g6pis.beatit.Home" />
         </activity>
+        
         <activity
-            android:name="com.g6pis.beatit.challenges.wakemeup.WakeMeUpFinished"
-            android:label="@string/title_activity_challenge_finished"
+            android:name="com.g6pis.beatitapp.challenges.wakemeup.WakeMeUpFinished"
             android:screenOrientation="portrait" >
             android:parentActivityName="com.g6pis.beatit.MainActivity" 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.g6pis.beatit.Home" />
         </activity>
+        
     </application>
 
 </manifest>
