@@ -13,7 +13,7 @@
     <color name="gris_challenge_values">#6d6d6d</color>
     <color name="gris_tab_text_notselected">#ABABAB</color>
     <color name="azul">#3B5998</color>
-     <color name="callaalperro">#6A659C</color>
+     <color name="shutthedog">#6A659C</color>
     <color name="cobalt">#0050EF</color>
     <color name="color_texto">#0050EF</color>
     <color name="red">#E51400</color>
@@ -31,7 +31,6 @@
     <color name="violet">#AA00FF</color>
     <color name="volador">#AA00FF</color>
     <color name="steel">#647687</color>
-    <color name="callar_perro">#647687</color>
     <color name="fb_blue">#3B5998</color>
     <color name="can_you_play">#3B5998</color>
     

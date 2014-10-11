@@ -1,12 +1,8 @@
-package com.g6pis.beatitapp.challenges.callaalperro;
-
-import java.util.Timer;
+package com.g6pis.beatitapp.challenges.shutthedog;
 
 import com.g6pis.beatitapp.entities.Challenge;
 
 public class ShutTheDog extends Challenge{
-	 
-	private int segundosTranscurridos;
 	
 	public ShutTheDog(String challengeId, String name, Integer level, int maxAttempt) {
 		super(challengeId, name, level, maxAttempt);

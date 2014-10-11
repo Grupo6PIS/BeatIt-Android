@@ -18,8 +18,8 @@ import android.widget.TextView;
 
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
-import com.g6pis.beatitapp.challenges.callaalperro.CallaAlPerroFinished;
-import com.g6pis.beatitapp.challenges.callaalperro.CallaAlPerroUI;
+import com.g6pis.beatitapp.challenges.shutthedog.ShutTheDogFinished;
+import com.g6pis.beatitapp.challenges.shutthedog.ShutTheDogUI;
 import com.g6pis.beatitapp.challenges.invitefriends.CanYouPlayFinished;
 import com.g6pis.beatitapp.challenges.invitefriends.CanYouPlayUI;
 import com.g6pis.beatitapp.challenges.usainbolt.UsainBoltFinished;
@@ -92,9 +92,9 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
 				challenge = new Intent(getActivity().getApplicationContext(), CanYouPlayFinished.class);
 		} else if (adapter.getItem(position).getChallengeId().equals(ID_Calla_Al_Perro)){
 			if(adapter.getItem(position).getCurrentAttempt() == 0)
-				challenge = new Intent(getActivity().getApplicationContext(), CallaAlPerroUI.class);
+				challenge = new Intent(getActivity().getApplicationContext(), ShutTheDogUI.class);
 			else
-				challenge = new Intent(getActivity().getApplicationContext(), CallaAlPerroFinished.class);
+				challenge = new Intent(getActivity().getApplicationContext(), ShutTheDogFinished.class);
 /*		} else if (adapter.getItem(position).getChallengeId().equals(ID_)){
 			challenge = new Intent(getActivity().getApplicationContext(), UI.class);
 /*		} else if (adapter.getItem(position).getChallengeId().equals(ID_)){

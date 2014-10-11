@@ -10,7 +10,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.g6pis.beatitapp.challenges.callaalperro.ShutTheDog;
+import com.g6pis.beatitapp.challenges.shutthedog.ShutTheDog;
 import com.g6pis.beatitapp.challenges.invitefriends.CanYouPlay;
 import com.g6pis.beatitapp.challenges.usainbolt.UsainBolt;
 import com.g6pis.beatitapp.challenges.wakemeup.WakeMeUp;
