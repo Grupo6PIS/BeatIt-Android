@@ -60,7 +60,7 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 	
 	private TextView startButton;
 	private TextView textViewTimeLeftValue;
-	private TextView textViewResult;
+	//private TextView textViewResult;
 	
 	private CountDownTimer timer;
 	private double score = 0;
@@ -114,7 +114,7 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 			textViewTimeLeftValue = (TextView) findViewById(R.id.textView_Time_Left_Value);
 			textViewTimeLeftValue.setText(t_initial_counter_value);
 			
-			textViewResult = (TextView) findViewById(R.id.textView_Result);
+			//textViewResult = (TextView) findViewById(R.id.textView_Result);
 									
 			timer = this.createTimer();
 		}
@@ -147,7 +147,7 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 				wakeMeUp.finishChallenge();
 				stopTimer();
 				textViewTimeLeftValue.setText("Demoraste mucho !");
-				textViewResult.setText("Demoraste mucho !");
+				//textViewResult.setText("Demoraste mucho !");
 			}
 		};
 		
@@ -161,7 +161,7 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 				case R.id.start_button_wake_me_up: {
 					startButton.setVisibility(View.INVISIBLE);
 					textViewTimeLeftValue.setVisibility(View.VISIBLE);
-					textViewResult.setVisibility(View.INVISIBLE);
+					//textViewResult.setVisibility(View.INVISIBLE);
 					this.timer.start();
 					this.timerRunning = true;
 				}
@@ -173,7 +173,7 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 	public void viewAssignment() {
 		startButton = (TextView) findViewById(R.id.start_button_wake_me_up);
 		textViewTimeLeftValue = (TextView) findViewById(R.id.textView_Time_Left_Value);
-		textViewResult = (TextView) findViewById(R.id.textView_Result);
+		//textViewResult = (TextView) findViewById(R.id.textView_Result);
 	}
 	
 	protected void onPause() {
@@ -239,8 +239,8 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 			setSucceed_times(getSucceed_times() + 1);
 		}			
 		
-		textViewResult.setVisibility(View.VISIBLE);
-		textViewResult.setText(Double.toString(time));
+		//textViewResult.setVisibility(View.VISIBLE);
+		//textViewResult.setText(Double.toString(time));
 		timer.cancel();
 
 		number_of_repetitions--;
