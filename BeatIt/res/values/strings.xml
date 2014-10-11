@@ -124,10 +124,12 @@
     <string name="description_wake_me_up">In this challenge you have to shake your phone when the countdown reaches 0 seconds.</string>
     <string name="logo_wake_me_up">Wake Me Up Logo</string>
     
-    <!-- Calla Al Perro Strings -->
-    <string name="calla_al_perro">Calla Al Perro</string>
-    <string name="description_calla_al_perro">In this challenge you have to shut the barking dog up by putting your hand close to the phone as soon as possible!</string>
-    <string name="logo_calla_al_perro">Logo Calla al Perro</string>
+    <!-- Shut The Dog Strings -->
+    <string name="shut_the_dog">Shut The Dog</string>
+    <string name="description_shut_the_dog">In this challenge you have to shut the barking dog up by putting your hand close to the phone as soon as possible!</string>
+    <string name="logo_shut_the_dog">Logo Shut The Dog</string>
+    <string name="shut_the_dog_started">Game Started! Pay Attention to the sound!</string>
+    <string name="shut_the_dog_lost">You lost! :( Try again!</string>
     
     <!-- Facebook app ID -->
     <string name="facebook_app_id">829846350380023</string>

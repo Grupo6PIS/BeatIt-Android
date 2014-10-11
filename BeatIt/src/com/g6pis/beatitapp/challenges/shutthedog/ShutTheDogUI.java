@@ -4,9 +4,13 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Random;
+
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
+import com.g6pis.beatitapp.challenges.invitefriends.CanYouPlay;
+import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.datatypes.DTDateTime;
+import com.g6pis.beatitapp.datatypes.DTState;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -24,8 +28,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class ShutTheDogUI extends Activity implements SensorEventListener {
+	private static final String CHALLENGE_ID = "4";
+	private ShutTheDog shutthedog;
+	
 	private SensorManager mSensorManager;
 	private Sensor mSensor;
 	private MediaPlayer mp;
@@ -59,7 +67,14 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.shut_the_dog);
 		
-		this.setDateTimeStart(this.getDateExtras(getIntent().getExtras()));
+		shutthedog = (ShutTheDog) DataManager.getInstance().getChallenge(
+				CHALLENGE_ID);
+		DTState state = DataManager.getInstance().getState(CHALLENGE_ID);
+		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(state
+				.getDateTimeStart().toString());
+		((TextView) findViewById(R.id.textView_Finish_Time_Value))
+				.setText(state.getDateTimeFinish().toString());
+		
 
 		this.editActionBar();
 		
@@ -267,9 +282,9 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 				  shutTheDogFinished.putExtra("day", calendar.get(Calendar.DAY_OF_MONTH));
 				  shutTheDogFinished.putExtra("month", calendar.get(Calendar.MONTH));
 				  shutTheDogFinished.putExtra("year", calendar.get(Calendar.YEAR));
-				  shutTheDogFinished.putExtra("dateTimeStart", dateTimeStart.toString());
+				  //shutTheDogFinished.putExtra("dateTimeStart", dateTimeStart.toString());
 				  startActivity(shutTheDogFinished);
-				  this.finish();				  
+				  this.finish();
 			  }
 		  }
 	  } else {

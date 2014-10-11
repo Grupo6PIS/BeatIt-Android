@@ -138,7 +138,7 @@
         </activity>
         
         <activity
-            android:name="com.g6pis.beatitapp.challenges.callaalperro.CallaAlPerroUI"
+            android:name="com.g6pis.beatitapp.challenges.shutthedog.ShutTheDogUI"
             android:screenOrientation="portrait" >
             android:parentActivityName="com.g6pis.beatit.MainActivity" >
             <meta-data
@@ -147,7 +147,7 @@
         </activity>
         
         <activity
-            android:name="com.g6pis.beatitapp.challenges.callaalperro.CallaAlPerroFinished"
+            android:name="com.g6pis.beatitapp.challenges.shutthedog.ShutTheDogFinished"
             android:screenOrientation="portrait" >
                          android:parentActivityName="com.g6pis.beatit.MainActivity" >
             <meta-data

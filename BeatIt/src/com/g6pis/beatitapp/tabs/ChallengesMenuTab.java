@@ -156,7 +156,7 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
 	            case 2: challengeDescription.setText(s.getChallengeName() + " description");break;
 	        }
           } else if (s.getChallengeId().equals(ID_Calla_Al_Perro)){
-        	  challengeName.setText(getResources().getString(R.string.calla_al_perro));
+        	  challengeName.setText(getResources().getString(R.string.shut_the_dog));
 			challengeIcon.setImageResource(R.drawable.ic_calla_al_perro);
 			switch(s.getChallengeLevel()){
 	            case 1: challengeDescription.setText(s.getChallengeName() + " description");break;
