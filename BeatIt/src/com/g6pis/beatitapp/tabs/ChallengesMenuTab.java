@@ -145,22 +145,22 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
         	  challengeName.setText(getResources().getString(R.string.wake_me_up));
 			challengeIcon.setImageResource(R.drawable.ic_despertame_a_tiempo);
 			switch(s.getChallengeLevel()){
-	            case 1: challengeDescription.setText(s.getChallengeName() + " description");break;
-	            case 2: challengeDescription.setText(s.getChallengeName() + " description");break;
+	            case 1: challengeDescription.setText(R.string.description_wake_me_up_1);break;
+	            case 2: challengeDescription.setText(R.string.description_wake_me_up_2);break;
 	        }
           } else if (s.getChallengeId().equals(ID_Can_You_Play)){
         	  challengeName.setText(getResources().getString(R.string.can_you_play));
 			challengeIcon.setImageResource(R.drawable.ic_can_you_play);
 			switch(s.getChallengeLevel()){
-	            case 1: challengeDescription.setText(s.getChallengeName() + " description");break;
-	            case 2: challengeDescription.setText(s.getChallengeName() + " description");break;
+	            case 1: challengeDescription.setText(R.string.can_you_play_description_1);break;
+	            case 2: challengeDescription.setText(R.string.can_you_play_description_2);break;
 	        }
           } else if (s.getChallengeId().equals(ID_Calla_Al_Perro)){
         	  challengeName.setText(getResources().getString(R.string.shut_the_dog));
 			challengeIcon.setImageResource(R.drawable.ic_calla_al_perro);
 			switch(s.getChallengeLevel()){
-	            case 1: challengeDescription.setText(s.getChallengeName() + " description");break;
-	            case 2: challengeDescription.setText(s.getChallengeName() + " description");break;
+	            case 1: challengeDescription.setText(R.string.description_shut_the_dog);break;
+	            case 2: challengeDescription.setText(R.string.description_shut_the_dog);break;
 	        }
 /*          } else if (s.getChallengeId().equals(ID_)){
   			challengeIcon.setImageResource(R.drawable.ic_);

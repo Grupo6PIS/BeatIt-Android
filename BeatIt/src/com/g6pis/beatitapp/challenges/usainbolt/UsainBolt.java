@@ -77,7 +77,7 @@ public class UsainBolt extends Challenge {
 	
 	public double calculateScore(){
 		avgSpeed = speeds/speedCount;
-		return (maxSpeed + avgSpeed)*2;
+		return (maxSpeed + avgSpeed)*4;
 	}
 	
 	public void finishChallenge(){

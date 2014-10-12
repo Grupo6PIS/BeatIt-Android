@@ -25,6 +25,17 @@ public class State {
 		
 	}
 	
+	public State(Round round, Challenge challenge, User user, boolean finished, double maxScore, double lastScore, int currentAttempt, DTDateTime lastFInishDateTime){
+		this.round = round;
+		this.challenge = challenge;
+		this.user = user;
+		this.finished = finished;
+		this.maxScore = maxScore;
+		this.lastScore = lastScore;
+		this.currentAttempt = currentAttempt;
+		this.lastFinishDateTime = lastFInishDateTime;
+	}
+	
 	
 
 	public Round getRound() {
