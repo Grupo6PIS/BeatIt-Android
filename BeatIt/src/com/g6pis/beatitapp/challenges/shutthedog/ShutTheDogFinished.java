@@ -2,10 +2,8 @@ package com.g6pis.beatitapp.challenges.shutthedog;
 
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
-import com.g6pis.beatitapp.R.id;
-import com.g6pis.beatitapp.R.layout;
-import com.g6pis.beatitapp.R.menu;
-import com.g6pis.beatitapp.datatypes.DTDateTime;
+import com.g6pis.beatitapp.controllers.DataManager;
+import com.g6pis.beatitapp.datatypes.DTState;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -15,22 +13,39 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class ShutTheDogFinished extends Activity {
+public class ShutTheDogFinished extends Activity implements OnClickListener {
+	private static final String CHALLENGE_ID = "4";
+
+	private DTState state;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.challenge_finished);
 		
+		state = DataManager.getInstance().getState(CHALLENGE_ID);
+		
 		this.editLayout();
-       /* findViewById(R.id.homeButton).setOnClickListener(this);
+		
+		((TextView) findViewById(R.id.textView_last_sscore_value))
+		.setText(Double.toString(state.getLastScore()));
+		((TextView) findViewById(R.id.textView_max_score_value)).setText(Double
+				.toString(state.getMaxScore()));
+		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(state
+				.getDateTimeStart().toString());
+		/*((TextView) findViewById(R.id.textView_Duration_Value))
+				.setText(state.getLastFinishDateTime().toString());*/
+      
+		/* findViewById(R.id.homeButton).setOnClickListener(this);
         findViewById(R.id.homeButton).setVisibility(View.VISIBLE);*/
 		
-		((TextView)findViewById(R.id.textView_last_sscore_value)).setText(getIntent().getExtras().getString("score") + " " +getResources().getString(R.string.points));
+		/*((TextView)findViewById(R.id.textView_last_sscore_value)).setText(getIntent().getExtras().getString("score") + " " +getResources().getString(R.string.points));
 		//TODO max score, fecha, etc desde DataManager
 		
 		
@@ -45,7 +60,7 @@ public class ShutTheDogFinished extends Activity {
 		finishDate.setMinute(getIntent().getExtras().getInt("minutes"));
 		finishDate.setSecond(getIntent().getExtras().getInt("seconds"));
 		
-		((TextView)findViewById(R.id.textView_Duration_Value)).setText(finishDate.toString());
+		((TextView)findViewById(R.id.textView_Duration_Value)).setText(finishDate.toString());*/
 
 	}
 
@@ -78,9 +93,9 @@ public class ShutTheDogFinished extends Activity {
 	}
 	
 	public void onClick(View v) {
-			Intent home = new Intent(this, Home.class);
-			startActivity(home);
-			this.finish();
+		Intent intent = new Intent(this, ShutTheDogUI.class);
+		startActivity(intent);
+		finish();
 	}
 	
 	
@@ -94,9 +109,18 @@ public class ShutTheDogFinished extends Activity {
 		actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.shutthedog)));
 		
 		((ImageView)findViewById(R.id.imageView_Logo)).setImageDrawable(getResources().getDrawable(R.drawable.ic_calla_al_perro));
-		((TextView)findViewById(R.id.textView_Challenge_Name)).setText(getResources().getString(R.string.calla_al_perro));
+		((TextView)findViewById(R.id.textView_Challenge_Name)).setText(getResources().getString(R.string.shut_the_dog));
 		((TextView)findViewById(R.id.textView_Challenge_Name)).setTextColor(getResources().getColor(R.color.shutthedog));
 		((TableRow)findViewById(R.id.text_row)).setBackgroundColor(getResources().getColor(R.color.shutthedog));
 
+		((ImageButton) findViewById(R.id.refresh_button))
+		.setVisibility(View.INVISIBLE);
+
+	if (!state.isFinished()) {
+		((ImageButton) findViewById(R.id.retry_button))
+				.setOnClickListener(this);
+		((ImageButton) findViewById(R.id.retry_button))
+				.setVisibility(View.VISIBLE);
+	}
 	}
 }

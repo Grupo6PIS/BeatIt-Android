@@ -1,16 +1,14 @@
 package com.g6pis.beatitapp.challenges.shutthedog;
 
 import java.io.IOException;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.Random;
 
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
-import com.g6pis.beatitapp.challenges.invitefriends.CanYouPlay;
 import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.datatypes.DTDateTime;
 import com.g6pis.beatitapp.datatypes.DTState;
+import com.g6pis.beatitapp.persistence.StateDAO;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -45,12 +43,15 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 	CountDownTimer c;
 	
 	int level = 0;
+	
 	//Rangos nivel 1
 	int minRange1[] = {5,3,2};
 	int maxRange1[] = {9,7,5};
+	
 	//Rangos nivel 2
 	int minRange2[] = {2,3,4};
 	int maxRange2[] = {5,6,7};
+	
 	//Array de resultados
 	int results[] = new int[3];
 	int it = 0;
@@ -72,7 +73,7 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 		DTState state = DataManager.getInstance().getState(CHALLENGE_ID);
 		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(state
 				.getDateTimeStart().toString());
-		((TextView) findViewById(R.id.textView_Finish_Time_Value))
+		((TextView) findViewById(R.id.textView_Duration_Value))
 				.setText(state.getDateTimeFinish().toString());
 		
 
@@ -267,30 +268,24 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 			  if(it == 3){
 				  //GANO EL DESAFIO
 				  //Calculo el puntaje
-				  score = results[0] + results[1] + results[2];
-
-				  //Abro el desafio finalizado
-				  Intent shutTheDogFinished = new Intent(this, ShutTheDogFinished.class);
-				  shutTheDogFinished.putExtra("resultado", this.hasWon);
-				  shutTheDogFinished.putExtra("score", Double.toString(this.score));			  
-				  
-				  Calendar calendar = new GregorianCalendar();
-				  
-				  shutTheDogFinished.putExtra("seconds", calendar.get(Calendar.SECOND));
-				  shutTheDogFinished.putExtra("minutes", calendar.get(Calendar.MINUTE));
-				  shutTheDogFinished.putExtra("hours", calendar.get(Calendar.HOUR_OF_DAY));
-				  shutTheDogFinished.putExtra("day", calendar.get(Calendar.DAY_OF_MONTH));
-				  shutTheDogFinished.putExtra("month", calendar.get(Calendar.MONTH));
-				  shutTheDogFinished.putExtra("year", calendar.get(Calendar.YEAR));
-				  //shutTheDogFinished.putExtra("dateTimeStart", dateTimeStart.toString());
-				  startActivity(shutTheDogFinished);
-				  this.finish();
+				  shutthedog.setHasWon(true);
+				  shutthedog.setResults(results);
+				  this.completeChallenge();
 			  }
 		  }
 	  } else {
 		  //Esta lejos
 	  }
 	 }
+	 
+	 public void completeChallenge() {
+			Intent finished = new Intent(this, ShutTheDogFinished.class);
+			startActivity(finished);
+			this.finish();
+			shutthedog.finishChallenge();
+			StateDAO db = new StateDAO(this);
+			db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
+		}
 	 
 	 @Override
 		public void onBackPressed() {
