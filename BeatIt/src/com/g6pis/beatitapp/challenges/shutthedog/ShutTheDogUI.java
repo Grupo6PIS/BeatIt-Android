@@ -42,18 +42,19 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 	
 	CountDownTimer c;
 	
-	int level = 0;
+	int number_of_barks = 0;
+	int range[];
 	
 	//Rangos nivel 1
 	int minRange1[] = {5,3,2};
 	int maxRange1[] = {9,7,5};
 	
 	//Rangos nivel 2
-	int minRange2[] = {2,3,4};
-	int maxRange2[] = {5,6,7};
+	int minRange2[] = {2,3,4,5,6};
+	int maxRange2[] = {5,6,7,8,9};
 	
 	//Array de resultados
-	int results[] = new int[3];
+	int results[] = new int[5];
 	int it = 0;
 	boolean firstTime = true;
 	
@@ -79,6 +80,13 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 
 		this.editActionBar();
 		
+		if (shutthedog.getLevel() == 1){
+			number_of_barks = 3;
+			range = maxRange1;
+		} else {
+			number_of_barks = 5;
+			range = maxRange2;
+		}
 		mp = MediaPlayer.create(this, R.raw.bark);
 		mp.setLooping(true);
 		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -213,7 +221,6 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 
 	 protected void onResume() {
 	  super.onResume();
-	  
 	 }
 	 
 	// Customize ActionBar
@@ -255,9 +262,9 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 			  results[it] = secondCount;
 			  secondCount = 0;
 			  
-			  if (it <= 2){
+			  if (it <= (number_of_barks-1)){
 				it++;
-				if (it !=3){
+				if (it !=number_of_barks){
 					Random r = new Random();
 					int segundosComienzo = r.nextInt(maxRange1[it] - minRange1[it] + 1) + minRange1[it];
 					int tiempo = segundosComienzo * 1000;

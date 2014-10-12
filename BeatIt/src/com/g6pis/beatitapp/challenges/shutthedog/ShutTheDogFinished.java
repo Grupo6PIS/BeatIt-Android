@@ -39,28 +39,8 @@ public class ShutTheDogFinished extends Activity implements OnClickListener {
 				.toString(state.getMaxScore()));
 		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(state
 				.getDateTimeStart().toString());
-		/*((TextView) findViewById(R.id.textView_Duration_Value))
-				.setText(state.getLastFinishDateTime().toString());*/
-      
-		/* findViewById(R.id.homeButton).setOnClickListener(this);
-        findViewById(R.id.homeButton).setVisibility(View.VISIBLE);*/
-		
-		/*((TextView)findViewById(R.id.textView_last_sscore_value)).setText(getIntent().getExtras().getString("score") + " " +getResources().getString(R.string.points));
-		//TODO max score, fecha, etc desde DataManager
-		
-		
-		((TextView) findViewById(R.id.textView_Start_Time_Value))
-		.setText(getIntent().getExtras().getString("dateTimeStart"));
-		
-		DTDateTime finishDate = new DTDateTime();
-		finishDate.setDay(getIntent().getExtras().getInt("day"));
-		finishDate.setMonth(getIntent().getExtras().getInt("month"));
-		finishDate.setYear(getIntent().getExtras().getInt("year"));
-		finishDate.setHour(getIntent().getExtras().getInt("hours"));
-		finishDate.setMinute(getIntent().getExtras().getInt("minutes"));
-		finishDate.setSecond(getIntent().getExtras().getInt("seconds"));
-		
-		((TextView)findViewById(R.id.textView_Duration_Value)).setText(finishDate.toString());*/
+		((TextView) findViewById(R.id.textView_Duration_Value))
+				.setText(state.getLastFinishDateTime().toString());
 
 	}
 
@@ -116,11 +96,12 @@ public class ShutTheDogFinished extends Activity implements OnClickListener {
 		((ImageButton) findViewById(R.id.refresh_button))
 		.setVisibility(View.INVISIBLE);
 
-	if (!state.isFinished()) {
-		((ImageButton) findViewById(R.id.retry_button))
-				.setOnClickListener(this);
-		((ImageButton) findViewById(R.id.retry_button))
-				.setVisibility(View.VISIBLE);
-	}
+		if (!state.isFinished()) {
+			((ImageButton) findViewById(R.id.retry_button))
+					.setOnClickListener(this);
+			((ImageButton) findViewById(R.id.retry_button))
+					.setVisibility(View.VISIBLE);
+		}
+	
 	}
 }

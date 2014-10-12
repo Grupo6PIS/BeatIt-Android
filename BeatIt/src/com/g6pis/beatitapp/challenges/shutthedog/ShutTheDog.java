@@ -6,16 +6,32 @@ import com.g6pis.beatitapp.entities.Challenge;
 public class ShutTheDog extends Challenge{
 	private static final String CHALLENGE_ID = "4";
 	
+	private static final int ARRAY_LENGTH_LEVEL1 = 1;
+	private static final int ARRAY_LENGTH_LEVEL2 = 1;
+	
 	private int lives;
 	private boolean hasWon;
 	private int results[] = new int[3];
 	private int score = 0;
+	int arrayLength = 3;
 	
 	public ShutTheDog(String challengeId, String name, Integer level, int maxAttempt) {
 		super(challengeId, name, level, maxAttempt);
 		// TODO Auto-generated constructor stub
 		lives = 3;
 		hasWon = false;
+		
+		switch (level) {
+
+		case 1: {
+			arrayLength = ARRAY_LENGTH_LEVEL1;
+		}
+			break;
+		case 2: {
+			arrayLength = ARRAY_LENGTH_LEVEL2;
+		}
+			break;
+		}
 	}
 	
 	public int getLives() {
@@ -42,9 +58,16 @@ public class ShutTheDog extends Challenge{
 		this.results = results;
 	}
 
-	public double calculateScore() {
-		score = results[0] + results[1] + results[2];
-		return score;
+	public double calculateScore() {		
+	    
+		
+		score = 0;
+        for (int i = 0; i < arrayLength; i++) 
+        {
+            if (results[i] > 0)
+                score = score + 100/results[i];
+        }
+        return score * 10;
 	}
 	
 	
