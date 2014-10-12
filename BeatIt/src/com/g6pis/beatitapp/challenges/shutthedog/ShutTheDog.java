@@ -1,18 +1,20 @@
 package com.g6pis.beatitapp.challenges.shutthedog;
 
+import android.util.Log;
+
 import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.entities.Challenge;
 
 public class ShutTheDog extends Challenge{
 	private static final String CHALLENGE_ID = "4";
 	
-	private static final int ARRAY_LENGTH_LEVEL1 = 1;
-	private static final int ARRAY_LENGTH_LEVEL2 = 1;
+	private static final int ARRAY_LENGTH_LEVEL1 = 3;
+	private static final int ARRAY_LENGTH_LEVEL2 = 5;
 	
 	private int lives;
 	private boolean hasWon;
 	private int results[] = new int[3];
-	private int score = 0;
+	private double score;
 	int arrayLength = 3;
 	
 	public ShutTheDog(String challengeId, String name, Integer level, int maxAttempt) {
@@ -58,16 +60,16 @@ public class ShutTheDog extends Challenge{
 		this.results = results;
 	}
 
-	public double calculateScore() {		
-	    
-		
+	public double calculateScore() {			
 		score = 0;
         for (int i = 0; i < arrayLength; i++) 
         {
-            if (results[i] > 0)
-                score = score + 100/results[i];
+            if (results[i] > 0){
+            	double agregado = (double) 100/ (double) results[i];
+                score = score + agregado;
+            }
         }
-        return score * 10;
+        return Math.floor(score * 10 * 100) / 10;
 	}
 	
 	

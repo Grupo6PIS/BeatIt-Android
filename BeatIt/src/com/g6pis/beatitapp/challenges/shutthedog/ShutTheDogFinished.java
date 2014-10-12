@@ -39,8 +39,8 @@ public class ShutTheDogFinished extends Activity implements OnClickListener {
 				.toString(state.getMaxScore()));
 		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(state
 				.getDateTimeStart().toString());
-		((TextView) findViewById(R.id.textView_Duration_Value))
-				.setText(state.getLastFinishDateTime().toString());
+		/*((TextView) findViewById(R.id.textView_Duration_Value))
+				.setText(state.getLastFinishDateTime().toString());*/
 
 	}
 

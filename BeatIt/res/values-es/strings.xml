@@ -128,6 +128,7 @@
     <!-- Calla Al Perro Strings -->
     <string name="calla_al_perro">Calla Al Perro</string>
     <string name="description_calla_al_perro">En este desafío deberás callar al perro cuando ladre, colocando la mano sobre el celular lo más rápido posible !</string>
+    <string name="description_shut_the_dog">En este desafío deberás callar al perro cuando ladre, colocando la mano sobre el celular lo más rápido posible !</string>
     <string name="logo_calla_al_perro">Logo Calla al Perro</string>
     
     <!-- Facebook app ID -->

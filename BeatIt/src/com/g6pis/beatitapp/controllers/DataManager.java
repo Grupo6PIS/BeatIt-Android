@@ -39,7 +39,7 @@ public class DataManager {
 	private boolean isLogged;
 	private List<DTRanking> ranking;
 	private double scoreToSend;
-	
+
 	private DataManager() {
 	}
 
@@ -66,7 +66,7 @@ public class DataManager {
 	public User getUser() {
 		return user;
 	}
-	
+
 	public double getScoreToSend() {
 		return scoreToSend;
 	}
@@ -145,7 +145,6 @@ public class DataManager {
 				}
 			}
 
-
 			JSONArray jsonRanking = round.getJSONArray("ranking");
 			ranking = new ArrayList<DTRanking>();
 			for (int i = 0; i < jsonRanking.length(); i++) {
@@ -161,7 +160,6 @@ public class DataManager {
 			currentRound = new Round(roundId, dateTimeStart, dateTimeFinish,
 					challenges);
 
-
 			states = new HashMap<String, State>();
 			String persistedRoundId = this.getPersistedRoundId();
 			if (!persistedRoundId.equals(currentRound.getRoundId())) {
@@ -174,18 +172,17 @@ public class DataManager {
 				}
 			} else {
 				for (Challenge challenge : currentRound.getChallenges()) {
-					State state = new State(currentRound, challenge, user);
+					State state = new State(currentRound, challenge, user,
+							persistedStates.get(challenge.getChallengeId())
+									.isFinished(), persistedStates.get(
+									challenge.getChallengeId()).getMaxScore(),
+							persistedStates.get(challenge.getChallengeId())
+									.getLastScore(), persistedStates.get(
+									challenge.getChallengeId())
+									.getCurrentAttempt(), persistedStates.get(
+									challenge.getChallengeId())
+									.getLastFinishDateTime());
 
-					state.setCurrentAttempt(persistedStates.get(
-							challenge.getChallengeId()).getCurrentAttempt());
-					state.setFinished(persistedStates.get(
-							challenge.getChallengeId()).isFinished());
-					state.setLastScore(persistedStates.get(
-							challenge.getChallengeId()).getLastScore());
-					state.setMaxScore(persistedStates.get(
-							challenge.getChallengeId()).getMaxScore());
-					state.setLastFinishDateTime(persistedStates.get(
-							challenge.getChallengeId()).getLastFinishDateTime());
 					states.put(challenge.getChallengeId(), state);
 					DTState dtState = new DTState(state);
 					persistedStates.put(challenge.getChallengeId(), dtState);
@@ -233,7 +230,7 @@ public class DataManager {
 
 	public void saveScore(String challengeId, double score) {
 		State state = states.get(challengeId);
-		if (state.setNewScore(score)){
+		if (state.setNewScore(score)) {
 
 			boolean haveToSendScore = true;
 			for (Map.Entry<String, State> entry : states.entrySet()) {

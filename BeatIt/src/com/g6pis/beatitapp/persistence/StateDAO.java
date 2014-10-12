@@ -100,11 +100,16 @@ public class StateDAO extends SQLiteOpenHelper {
 			cursor.moveToFirst();
 
 		// 4. build state object
-		DTDateTime lastFinishDateTime = new DTDateTime(cursor.getString(6));
+		DTDateTime lastFinishDateTime = null;
+		int currentAttempt = Integer.parseInt(cursor.getString(4));
+		String isFinished = cursor.getString(5);
+		boolean finished = "1".equals(isFinished);
+		if(!cursor.getString(6).isEmpty())
+			lastFinishDateTime = new DTDateTime(cursor.getString(6));
 		DTState state = new DTState(cursor.getString(0), cursor.getString(1),
 				Double.parseDouble(cursor.getString(2)),Double.parseDouble(cursor.getString(3)),
-				Integer.parseInt(cursor.getString(4)),
-				Boolean.getBoolean(cursor.getString(5)),lastFinishDateTime);
+				currentAttempt,
+				finished, lastFinishDateTime);
 
 		return state;
 
@@ -127,12 +132,15 @@ public class StateDAO extends SQLiteOpenHelper {
 
 				// 4. build state object
 				DTDateTime lastFinishDateTime = null;
+				int currentAttempt = Integer.parseInt(cursor.getString(4));
+				String isFinished = cursor.getString(5);
+				boolean finished = "1".equals(isFinished);
 				if(!cursor.getString(6).isEmpty())
 					lastFinishDateTime = new DTDateTime(cursor.getString(6));
 				DTState state = new DTState(cursor.getString(0), cursor.getString(1),
 						Double.parseDouble(cursor.getString(2)),Double.parseDouble(cursor.getString(3)),
-						Integer.parseInt(cursor.getString(4)),
-						Boolean.getBoolean(cursor.getString(5)), lastFinishDateTime);
+						currentAttempt,
+						finished, lastFinishDateTime);
 
 				states.put(state.getChallengeId(),state);
 

@@ -260,18 +260,10 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 	@Override
 	public void onBackPressed(){
 		
-		/*usainBolt.reset();
+		usainBolt.reset();
 		Intent home = new Intent(this, Home.class);
 		startActivity(home);
-		this.finish();*/
-		//TODO borrar
-		usainBolt.setSpeeds(25.3);
-		usainBolt.setSpeedCount(1);
-		usainBolt.setMaxSpeed(29.4);
-		usainBolt.finishChallenge();
-		StateDAO db = new StateDAO(getApplicationContext());
-		db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
-		completeChallenge();
+		this.finish();
 		super.onBackPressed();
 	}
 	@Override

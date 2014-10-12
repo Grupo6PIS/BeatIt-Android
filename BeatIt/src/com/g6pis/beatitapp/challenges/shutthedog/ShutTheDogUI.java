@@ -22,6 +22,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -43,15 +44,16 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 	CountDownTimer c;
 	
 	int number_of_barks = 0;
-	int range[];
+	int rangeMin[];
+	int rangeMax[];
 	
 	//Rangos nivel 1
-	int minRange1[] = {5,3,2};
-	int maxRange1[] = {9,7,5};
+	int minRange1[] = {2,2,2};
+	int maxRange1[] = {4,4,4};
 	
 	//Rangos nivel 2
-	int minRange2[] = {2,3,4,5,6};
-	int maxRange2[] = {5,6,7,8,9};
+	int minRange2[] = {2,2,2,2,2};
+	int maxRange2[] = {3,3,3,3,3};
 	
 	//Array de resultados
 	int results[] = new int[5];
@@ -82,10 +84,12 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 		
 		if (shutthedog.getLevel() == 1){
 			number_of_barks = 3;
-			range = maxRange1;
+			rangeMin = minRange1;
+			rangeMax = maxRange1;
 		} else {
 			number_of_barks = 5;
-			range = maxRange2;
+			rangeMin = minRange2;
+			rangeMax = maxRange2;
 		}
 		mp = MediaPlayer.create(this, R.raw.bark);
 		mp.setLooping(true);
@@ -162,7 +166,7 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 		b.setEnabled(false);
 		
 		Random r = new Random();
-		int segundosComienzo = r.nextInt(maxRange1[it] - minRange1[it] + 1) + minRange1[it];
+		int segundosComienzo = r.nextInt(rangeMax[it] - rangeMin[it] + 1) + rangeMin[it];
 		int tiempo = segundosComienzo * 1000;
 		
 		handler.postDelayed(rutine, tiempo);
@@ -266,13 +270,13 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 				it++;
 				if (it !=number_of_barks){
 					Random r = new Random();
-					int segundosComienzo = r.nextInt(maxRange1[it] - minRange1[it] + 1) + minRange1[it];
+					int segundosComienzo = r.nextInt(rangeMax[it] - rangeMin[it] + 1) + rangeMin[it];
 					int tiempo = segundosComienzo * 1000;
 					handler.postDelayed(rutine, tiempo);					
 				}
 			  }
 			  
-			  if(it == 3){
+			  if(it == number_of_barks){
 				  //GANO EL DESAFIO
 				  //Calculo el puntaje
 				  shutthedog.setHasWon(true);
