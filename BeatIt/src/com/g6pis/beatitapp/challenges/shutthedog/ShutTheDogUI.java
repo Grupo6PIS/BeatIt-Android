@@ -254,7 +254,7 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 
 
 	 public void onSensorChanged(SensorEvent event) {
-	  if (event.values[0] == 0) {
+	  if (event.values[0] <= 3) {
 		  if (mp != null){
 			  mSensorManager.unregisterListener(ShutTheDogUI.this, mSensor);
 			  mp.stop();
