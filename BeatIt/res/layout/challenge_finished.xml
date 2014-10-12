@@ -35,9 +35,9 @@
         android:id="@+id/textView_Finish_Time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/table_speed"
+        android:layout_alignLeft="@id/imageView_Logo"
         android:layout_below="@+id/textView_Start_Time"
-        android:layout_marginTop="23dp"
+        android:layout_marginTop="30dp"
         android:text="@string/end_time"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -75,7 +75,7 @@
 
     <TableLayout
         android:id="@+id/table_speed"
-        android:layout_width="250dp"
+        android:layout_width="275dp"
         android:layout_height="100dp"
         android:layout_below="@+id/textView_Finish_Time_Value"
         android:layout_centerHorizontal="true"
@@ -127,6 +127,7 @@
             <TextView
                 android:id="@+id/textView_last_sscore_value"
                 android:layout_gravity="center"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/max_speed_value"
                 android:textSize="22sp" />
@@ -134,8 +135,11 @@
             <TextView
                 android:id="@+id/textView_max_score_value"
                 android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
                 android:text="@string/avg_speed_value"
                 android:textSize="22sp" />
+
         </TableRow>
     </TableLayout>
     
