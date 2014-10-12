@@ -75,11 +75,12 @@
 
     <TableLayout
         android:id="@+id/table_speed"
-        android:layout_width="275dp"
+        android:layout_width="fill_parent"
         android:layout_height="100dp"
         android:layout_below="@+id/textView_Finish_Time_Value"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="43dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="40dp"
         android:visibility="visible" >
 
         <TableRow
@@ -126,6 +127,8 @@
 
             <TextView
                 android:id="@+id/textView_last_sscore_value"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
@@ -134,6 +137,8 @@
 
             <TextView
                 android:id="@+id/textView_max_score_value"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
                 android:layout_gravity="center"
                 android:layout_weight="1"
                 android:gravity="center"
