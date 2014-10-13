@@ -28,19 +28,19 @@ public class ShutTheDogFinished extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.challenge_finished);
-		
+
 		state = DataManager.getInstance().getState(CHALLENGE_ID);
-		
+
 		this.editLayout();
-		
+
 		((TextView) findViewById(R.id.textView_last_sscore_value))
-		.setText(Double.toString(state.getLastScore()));
+				.setText(Double.toString(state.getLastScore()));
 		((TextView) findViewById(R.id.textView_max_score_value)).setText(Double
 				.toString(state.getMaxScore()));
 		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(state
 				.getDateTimeStart().toString());
-		/*((TextView) findViewById(R.id.textView_Duration_Value))
-				.setText(state.getLastFinishDateTime().toString());*/
+		((TextView) findViewById(R.id.textView_Finish_Time_Value))
+				.setText(state.getLastFinishDateTime().toString());
 
 	}
 
@@ -71,14 +71,13 @@ public class ShutTheDogFinished extends Activity implements OnClickListener {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	public void onClick(View v) {
 		Intent intent = new Intent(this, ShutTheDogUI.class);
 		startActivity(intent);
 		finish();
 	}
-	
-	
+
 	public void editLayout() {
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
@@ -86,15 +85,21 @@ public class ShutTheDogFinished extends Activity implements OnClickListener {
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setTitle(this.getString(R.string.app_name));
-		actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.shutthedog)));
-		
-		((ImageView)findViewById(R.id.imageView_Logo)).setImageDrawable(getResources().getDrawable(R.drawable.ic_calla_al_perro));
-		((TextView)findViewById(R.id.textView_Challenge_Name)).setText(getResources().getString(R.string.shut_the_dog));
-		((TextView)findViewById(R.id.textView_Challenge_Name)).setTextColor(getResources().getColor(R.color.shutthedog));
-		((TableRow)findViewById(R.id.text_row)).setBackgroundColor(getResources().getColor(R.color.shutthedog));
+		actionBar.setBackgroundDrawable(new ColorDrawable(getResources()
+				.getColor(R.color.shutthedog)));
+
+		((ImageView) findViewById(R.id.imageView_Logo))
+				.setImageDrawable(getResources().getDrawable(
+						R.drawable.ic_calla_al_perro));
+		((TextView) findViewById(R.id.textView_Challenge_Name))
+				.setText(getResources().getString(R.string.shut_the_dog));
+		((TextView) findViewById(R.id.textView_Challenge_Name))
+				.setTextColor(getResources().getColor(R.color.shutthedog));
+		((TableRow) findViewById(R.id.text_row))
+				.setBackgroundColor(getResources().getColor(R.color.shutthedog));
 
 		((ImageButton) findViewById(R.id.refresh_button))
-		.setVisibility(View.INVISIBLE);
+				.setVisibility(View.INVISIBLE);
 
 		if (!state.isFinished()) {
 			((ImageButton) findViewById(R.id.retry_button))
@@ -102,6 +107,6 @@ public class ShutTheDogFinished extends Activity implements OnClickListener {
 			((ImageButton) findViewById(R.id.retry_button))
 					.setVisibility(View.VISIBLE);
 		}
-	
+
 	}
 }

@@ -79,6 +79,13 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 		((TextView) findViewById(R.id.textView_Duration_Value))
 				.setText(state.getDateTimeFinish().toString());
 		
+		if(state.getMaxScore() > 0)
+			((TextView)findViewById(R.id.textView_To_Beat_Value)).setText(Double.toString(state.getMaxScore()));
+		else{
+			((TextView)findViewById(R.id.textView_To_Beat_Value)).setVisibility(View.INVISIBLE);
+			((TextView)findViewById(R.id.textView_To_Beat)).setVisibility(View.INVISIBLE);
+		}
+		
 
 		this.editActionBar();
 		

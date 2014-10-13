@@ -12,7 +12,7 @@
         android:layout_alignLeft="@+id/textView_Start_Time"
         android:layout_below="@+id/textView_Start_Time"
         android:layout_marginTop="29dp"
-        android:text="@string/duration"
+        android:text="@string/finish_time"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
