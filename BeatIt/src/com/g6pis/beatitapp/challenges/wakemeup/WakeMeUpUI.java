@@ -41,15 +41,15 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 	
 	private Integer level;
 	private Integer number_of_repetitions;
-	private Integer number_of_repetitions_LEVEL1 = 3;
-	private Integer number_of_repetitions_LEVEL2 = 4;
+	//private Integer number_of_repetitions_LEVEL1 = 3;
+	//private Integer number_of_repetitions_LEVEL2 = 4;
 	private static final long TIME_LEVEL1_1 = 5;
 	private static final long TIME_LEVEL1_2 = 4;
-	private static final long TIME_LEVEL1_3 = 3;
+	//private static final long TIME_LEVEL1_3 = 3;
 	private static final long TIME_LEVEL2_1 = 9;
 	private static final long TIME_LEVEL2_2 = 7;
 	private static final long TIME_LEVEL2_3 = 5;
-	private static final long TIME_LEVEL2_4 = 3;
+	//private static final long TIME_LEVEL2_4 = 3;
 	private long hidden_secs = 0; // This value can be modified in order to change the challenge difficulty
 	
 	private static final long TOLERANCE = 500; // In milliseconds
@@ -69,7 +69,7 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 	private long MAX_ATTEMPS = 3;
 	
 	private WakeMeUp wakeMeUp;
-	//private DTState state;
+	private DTState state;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -80,24 +80,35 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 		this.viewAssignment();
 		
 		wakeMeUp = (WakeMeUp) DataManager.getInstance().getChallenge(CHALLENGE_ID);
-		//state = DataManager.getInstance().getState(CHALLENGE_ID);
+		state = DataManager.getInstance().getState(CHALLENGE_ID);
 		
 		DataManager dm = DataManager.getInstance();
 		
+		switch (wakeMeUp.getLevel()) {
+
+			case 1: {
+				((TextView) findViewById(R.id.textView_Description_Value))
+						.setText(R.string.description_wake_me_up_1);
+			}
+			break;
+			case 2: {
+				((TextView) findViewById(R.id.textView_Description_Value))
+						.setText(R.string.description_wake_me_up_2);
+			}
+			break;
+		}
+		
+		if(state.getMaxScore() > 0)
+			((TextView)findViewById(R.id.textView_To_Beat_Value)).setText(Double.toString(state.getMaxScore()));
+		else{
+			((TextView)findViewById(R.id.textView_To_Beat_Value)).setVisibility(View.INVISIBLE);
+			((TextView)findViewById(R.id.textView_To_Beat)).setVisibility(View.INVISIBLE);
+		}
+		
 		if (attemps < MAX_ATTEMPS) {
 			this.setLevel(((DTState) dm.getState(CHALLENGE_ID)).getChallengeLevel());
-			switch (this.getLevel()) {
-				case 1: {
-					hidden_secs = TIME_LEVEL1_3;
-					number_of_repetitions = number_of_repetitions_LEVEL1;
-				}
-					break;
-				case 2: {
-					hidden_secs = TIME_LEVEL2_4;
-					number_of_repetitions = number_of_repetitions_LEVEL2;
-				}
-					break;	
-			}
+			number_of_repetitions = wakeMeUp.getNumber_of_repetitions();
+			hidden_secs = wakeMeUp.getHidden_secs();
 			
 			startButton = (Button) findViewById(R.id.start_button_wake_me_up);
 			startButton.setOnClickListener(this);
@@ -235,9 +246,12 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 	private void stopTimer() {
 		timerRunning = false;
 		time = g_millis - MAX;
+		System.out.println("----- Time:" + time);
+		System.out.println("----- Exitos viejo:" + getSucceed_times());
 		if (Math.abs(time) < TOLERANCE) {
 			setSucceed_times(getSucceed_times() + 1);
-		}			
+		}
+		System.out.println("----- Exitos nuevo:" + getSucceed_times());
 		
 		//textViewResult.setVisibility(View.VISIBLE);
 		//textViewResult.setText(Double.toString(time));

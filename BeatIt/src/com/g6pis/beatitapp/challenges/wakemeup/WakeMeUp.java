@@ -6,41 +6,75 @@ import com.g6pis.beatitapp.entities.Challenge;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.os.Build;
-import android.widget.Button;
-import android.widget.TextView;
 
 @TargetApi(Build.VERSION_CODES.GINGERBREAD)
 @SuppressLint("NewApi")
 
 public class WakeMeUp extends Challenge {
 	private static final String CHALLENGE_ID = "2";
+	
+	private static final Integer NUMBER_OF_REPETITIONS_LEVEL1 = 3;
+	private static final Integer NUMBER_OF_REPETITIONS_LEVEL2 = 4;
+	private static final long TIME_LEVEL1_3 = 3;
+	private static final long TIME_LEVEL2_4 = 3;
 
-	private long veces_exito;
+	private long succeed_times;
+	private Integer number_of_repetitions;
+	private long hidden_secs = 0; // This value can be modified in order to change the challenge difficulty
+	
 		
 	public WakeMeUp(String challengeId, String name, Integer level, int maxAttempt) {
 		super(challengeId, name,level, maxAttempt);
 
-		this.veces_exito = 0;
+		this.succeed_times = 0;
+		
+		switch (level) {
+			case 1: {
+				this.number_of_repetitions = NUMBER_OF_REPETITIONS_LEVEL1;
+				this.hidden_secs = TIME_LEVEL1_3;
+			}
+			break;
+			case 2: {
+				this.number_of_repetitions = NUMBER_OF_REPETITIONS_LEVEL2;
+				this.hidden_secs = TIME_LEVEL2_4;
+			}
+			break;
+		}
 			
 	}
 
-	public long getVeces_exito() {
-		return veces_exito;
+	public long getSucceed_times() {
+		return succeed_times;
 	}
 
 
-	public void setVeces_exito(long veces_exito) {
-		this.veces_exito = veces_exito;
+	public void setSucceed_times(long succeed_times) {
+		this.succeed_times = succeed_times;
+	}
+
+	public Integer getNumber_of_repetitions() {
+		return number_of_repetitions;
+	}
+
+	public void setNumber_of_repetitions(Integer number_of_repetitions) {
+		this.number_of_repetitions = number_of_repetitions;
+	}
+
+	public long getHidden_secs() {
+		return hidden_secs;
+	}
+
+	public void setHidden_secs(long hidden_secs) {
+		this.hidden_secs = hidden_secs;
 	}
 
 	public void finishChallenge(){
 		DataManager.getInstance().saveScore(CHALLENGE_ID, calculateScore());
-		
 	}
 
 	//@Override
 	public double calculateScore(){
-		return (veces_exito)*20;
+		return (succeed_times)*20;
 	}
 		
 }
