@@ -26,19 +26,7 @@
         android:gravity="center_vertical"
         android:text="Example application"
         android:textColor="#000000"
-        android:textSize="16sp" />
-
-    <TextView
-        android:id="@+id/challengeDescription"
-        android:layout_width="fill_parent"
-        android:layout_height="20dip"
-        android:layout_alignBottom="@+id/challengeIcon"
-        android:layout_toRightOf="@+id/challengeIcon"
-        android:ellipsize="marquee"
-        android:singleLine="true"
-        android:text="Description"
-        android:textColor="#000000"
-        android:textSize="12sp" />
+        android:textSize="20sp" />
 
     <ImageView
         android:id="@+id/tick"

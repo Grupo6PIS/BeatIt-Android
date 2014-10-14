@@ -91,6 +91,7 @@
 	<string name="want_to_continue">¿Quieres continuar?</string>
 	<string name="continue_button">Continuar</string>
 	<string name="view_finished">Finalizar</string>
+	<string name="version">Versión: </string>
 	
     <!-- Profile Strings -->
     <string name="username">Juan Pérez</string>

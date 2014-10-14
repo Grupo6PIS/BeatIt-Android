@@ -90,4 +90,12 @@
         android:layout_marginTop="26dp"
         android:src="@drawable/com_facebook_profile_default_icon" />
 
+    <TextView
+        android:id="@+id/version_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/line"
+        android:layout_alignParentBottom="true"
+        android:text="@string/version" />
+
 </RelativeLayout>

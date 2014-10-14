@@ -105,7 +105,7 @@ public class State {
 		lastFinishDateTime = new DTDateTime();
 		
 		this.currentAttempt++;
-		if(this.currentAttempt == this.challenge.getMaxAttempt()){
+		if(this.currentAttempt >= this.challenge.getMaxAttempt()){
 			this.finished = true;
 		}
 		if(this.lastScore > this.maxScore){

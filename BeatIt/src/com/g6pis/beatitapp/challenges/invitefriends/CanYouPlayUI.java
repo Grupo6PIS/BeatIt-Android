@@ -235,7 +235,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 	public void postOnFacebook() {
 		FacebookDialog shareDialog = new FacebookDialog.ShareDialogBuilder(this)
 				.setLink(
-						"https://play.google.com/store/apps/details?id=com.g6pis.beatit&ah=mcoN2TjRF_obuPnlAcKtanl9mFk")
+						"https://play.google.com/store/apps/details?id=com.g6pis.beatitapp")
 				.setName(getResources().getString(R.string.sms_text))
 				.setDescription(
 						getResources().getString(R.string.android_version))
@@ -266,7 +266,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 							phone,
 							null,
 							getResources().getString(R.string.sms_text)
-									+ "\n\nAndroid:\nhttps://play.google.com/store/apps/details?id=com.g6pis.beatit&ah=mcoN2TjRF_obuPnlAcKtanl9mFk"
+									+ "\n\nAndroid:\nhttps://play.google.com/store/apps/details?id=com.g6pis.beatitapp0"
 									+ "\n\n"
 									+ getResources().getString(
 											R.string.also_available), null,

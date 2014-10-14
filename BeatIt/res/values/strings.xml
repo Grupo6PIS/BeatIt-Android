@@ -92,6 +92,7 @@
 	<string name="want_to_continue">Do you want to continue?</string>
 	<string name="continue_button">Continue</string>
 	<string name="view_finished">Finish</string>
+	<string name="version">Version: </string>
 	
     <!-- Profile Strings -->
     <string name="username">Juan Pérez</string>

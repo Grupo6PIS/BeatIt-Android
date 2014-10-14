@@ -88,12 +88,12 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 
 			case 1: {
 				((TextView) findViewById(R.id.textView_Description_Value))
-						.setText(R.string.description_wake_me_up_1);
+						.setText(getResources().getString(R.string.description_wake_me_up_1));
 			}
 			break;
 			case 2: {
 				((TextView) findViewById(R.id.textView_Description_Value))
-						.setText(R.string.description_wake_me_up_2);
+						.setText(getResources().getString(R.string.description_wake_me_up_2));
 			}
 			break;
 		}

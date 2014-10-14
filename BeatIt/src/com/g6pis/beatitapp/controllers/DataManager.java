@@ -28,7 +28,6 @@ import com.g6pis.beatitapp.entities.User;
 
 public class DataManager {
 
-	// TODO cada vez que se actualizan los states, se persisten
 
 	private static DataManager instance = new DataManager();
 
@@ -254,7 +253,6 @@ public class DataManager {
 			ScoreConnection scoreConnection = (ScoreConnection) new ScoreConnection()
 					.execute(user.getUserId(), Double.toString(score));
 			JSONObject response = scoreConnection.get();
-			// TODO manejar si tiene error.
 		} catch (InterruptedException e) {
 		} catch (ExecutionException e) {
 		}

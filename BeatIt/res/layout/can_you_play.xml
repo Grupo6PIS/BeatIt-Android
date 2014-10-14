@@ -142,7 +142,7 @@
 	        android:layout_alignParentLeft="true"
 	        android:layout_alignStart="@+id/textView_Start_Time"
 	        android:layout_below="@+id/textView_Start_Time_Value"
-	        android:text="@string/duration"
+	        android:text="@string/end_time"
 	        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 	    <TextView

@@ -4,6 +4,9 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -75,6 +78,16 @@ public class ProfileTab extends Fragment implements OnClickListener {
 				.getImageURL(), profilePicture).execute(null, null);
 
 		((Home) getActivity()).refreshButton.setVisibility(View.INVISIBLE);
+		
+		PackageManager manager = activity.getPackageManager();
+		PackageInfo info;
+		try {
+			info = manager.getPackageInfo(
+			activity.getPackageName(), 0);
+			String version = getResources().getString(R.string.version)+ " " + info.versionName;
+			((TextView)rootView.findViewById(R.id.version_textView)).setText(version);
+		} catch (NameNotFoundException e) {
+		}
 		
 		
 		return rootView;

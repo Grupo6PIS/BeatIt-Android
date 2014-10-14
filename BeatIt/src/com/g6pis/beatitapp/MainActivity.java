@@ -80,8 +80,10 @@ public class MainActivity extends Activity {
 			Map<String,DTState> persistedStates = db.getAllStates();
 			DataManager.getInstance().setStates(persistedStates);
 			userId = DataManager.getInstance().login(userId,fbId, firstName, lastName, country, imageURL);
-			persistedStates = DataManager.getInstance().getPersistedStates();
-			db.addStates(persistedStates);			
+			if(persistedStates.isEmpty()){
+				persistedStates = DataManager.getInstance().getPersistedStates();
+				db.addStates(persistedStates);
+			}
 			Editor editor = sharedPrefs.edit();
 			editor.putString("userId", userId);
 			editor.commit();
