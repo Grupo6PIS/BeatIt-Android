@@ -3,13 +3,6 @@ package com.g6pis.beatitapp.challenges.wakemeup;
 import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.entities.Challenge;
 
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
-import android.os.Build;
-
-@TargetApi(Build.VERSION_CODES.GINGERBREAD)
-@SuppressLint("NewApi")
-
 public class WakeMeUp extends Challenge {
 	private static final String CHALLENGE_ID = "2";
 	
@@ -66,6 +59,11 @@ public class WakeMeUp extends Challenge {
 
 	public void setHidden_secs(long hidden_secs) {
 		this.hidden_secs = hidden_secs;
+	}
+	
+
+	public void reset(){
+		this.succeed_times = 0;
 	}
 
 	public void finishChallenge(){

@@ -63,8 +63,8 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 	//private TextView textViewResult;
 	
 	private CountDownTimer timer;
-	private double score = 0;
-	private long succeed_times = 0;
+	//private double score = 0;
+	//private long succeed_times = 0;
 	private long attemps = 0;
 	private long MAX_ATTEMPS = 3;
 	
@@ -199,6 +199,8 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 	
 	@Override
 	public void onBackPressed(){
+		
+		wakeMeUp.reset();
 		Intent home = new Intent(this, Home.class);
 		startActivity(home);
 		this.finish();
@@ -218,6 +220,7 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 		switch (item.getItemId()) {
 		// Respond to the action bar's Up/Home button
 		case android.R.id.home:
+			wakeMeUp.reset();
 			Intent home = new Intent(this, Home.class);
 			startActivity(home);
 			this.finish();
@@ -246,12 +249,9 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 	private void stopTimer() {
 		timerRunning = false;
 		time = g_millis - MAX;
-		System.out.println("----- Time:" + time);
-		System.out.println("----- Exitos viejo:" + getSucceed_times());
 		if (Math.abs(time) < TOLERANCE) {
-			setSucceed_times(getSucceed_times() + 1);
+			wakeMeUp.setSucceed_times(wakeMeUp.getSucceed_times() + 1);
 		}
-		System.out.println("----- Exitos nuevo:" + getSucceed_times());
 		
 		//textViewResult.setVisibility(View.VISIBLE);
 		//textViewResult.setText(Double.toString(time));
@@ -336,22 +336,23 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 		senSensorManager.unregisterListener(this);
 		timer = null;
 		
+		//wakeMeUp.setSucceed_times(getSucceed_times());
 		wakeMeUp.finishChallenge();
-		StateDAO db = new StateDAO(this);
-		db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
 		
 		setAttemps(getAttemps()+1);
 		
-		// Calculating the score
-		this.setScore(getSucceed_times()*20);
 
+		StateDAO db = new StateDAO(getApplicationContext());
+		db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
+		wakeMeUp.reset();
+		
 		// Activity Challenge Finished
 		Intent finished = new Intent(this, WakeMeUpFinished.class);
 
 		startActivity(finished);
 		this.finish();
 	}
-	
+/*	
 	public long getSucceed_times() {
 		return succeed_times;
 	}
@@ -359,15 +360,7 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 	public void setSucceed_times(long succeed_times) {
 		this.succeed_times = succeed_times;
 	}
-	
-	public double getScore() {
-		return score;
-	}
-
-	public void setScore(double score) {
-		this.score = score;
-	}
-	
+*/	
 	public long getAttemps() {
 		return attemps;
 	}
