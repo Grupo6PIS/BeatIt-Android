@@ -22,11 +22,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.FacebookException;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.widget.FacebookDialog;
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
 import com.g6pis.beatitapp.controllers.DataManager;
+import com.g6pis.beatitapp.datatypes.DTDateTime;
 import com.g6pis.beatitapp.datatypes.DTState;
 import com.g6pis.beatitapp.persistence.StateDAO;
 
@@ -34,6 +36,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 	private static final String CHALLENGE_ID = "3";
 	private static final int PICK_CONTACT = 10;
 	private static final int CHALLENGE_COMPLETED_DIALOG = 70;
+	private static final int FACEBOOK_DIALOG = 60;
 
 	private UiLifecycleHelper uiHelper;
 	private Button facebookButton;
@@ -44,8 +47,10 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 	private String phone;
 
 	private CanYouPlay canYouPlay;
-	
+	private DTState state;
+
 	private Dialog challengeCompletedDialog;
+	private Dialog facebookDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +61,12 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 
 		uiHelper = new UiLifecycleHelper(this, null);
 		uiHelper.onCreate(savedInstanceState);
-		
+
 		challengeCompletedDialog = onCreateDialog(CHALLENGE_COMPLETED_DIALOG);
 		challengeCompletedDialog.hide();
-		
+		facebookDialog = onCreateDialog(FACEBOOK_DIALOG);
+		facebookDialog.hide();
+
 		facebookButton = (Button) findViewById(R.id.facebook_post_button);
 		smsButton = (Button) findViewById(R.id.send_SMS_button);
 		selectContactButton = (Button) findViewById(R.id.select_contact_button);
@@ -71,21 +78,23 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 
 		canYouPlay = (CanYouPlay) DataManager.getInstance().getChallenge(
 				CHALLENGE_ID);
-		DTState state = DataManager.getInstance().getState(CHALLENGE_ID);
+		state = DataManager.getInstance().getState(CHALLENGE_ID);
 		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(state
 				.getDateTimeStart().toString());
-		((TextView) findViewById(R.id.textView_Finish_Time_Value))
-				.setText(state.getDateTimeFinish().toString());
-		
-		if(state.getMaxScore() > 0)
-			((TextView)findViewById(R.id.textView_To_Beat_Value)).setText(Double.toString(state.getMaxScore()));
-		else{
-			((TextView)findViewById(R.id.textView_To_Beat_Value)).setVisibility(View.INVISIBLE);
-			((TextView)findViewById(R.id.textView_To_Beat)).setVisibility(View.INVISIBLE);
-			
+		((TextView) findViewById(R.id.textView_Duration_Value))
+				.setText(this.getDurationString());
+
+		if (state.getMaxScore() > 0)
+			((TextView) findViewById(R.id.textView_To_Beat_Value))
+					.setText(Double.toString(state.getMaxScore()));
+		else {
+			((TextView) findViewById(R.id.textView_To_Beat_Value))
+					.setVisibility(View.INVISIBLE);
+			((TextView) findViewById(R.id.textView_To_Beat))
+					.setVisibility(View.INVISIBLE);
+
 		}
-			 
- 
+
 		switch (canYouPlay.getLevel()) {
 		case 1:
 			((TextView) findViewById(R.id.textView_Description_Value_2))
@@ -134,8 +143,11 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 											.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
 
 							if (!canYouPlay.addPhone(phone)) {
-								Toast.makeText(getApplicationContext(),
-										"Select a different contact",
+								Toast.makeText(
+										getApplicationContext(),
+										getResources()
+												.getString(
+														R.string.select_diferent_contact),
 										Toast.LENGTH_LONG).show();
 							} else {
 								selectContactButton
@@ -144,6 +156,12 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 							}
 
 						}
+					} else {
+						Toast.makeText(
+								getApplicationContext(),
+								getResources().getString(
+										R.string.select_another_contact),
+								Toast.LENGTH_LONG).show();
 					}
 				}
 
@@ -168,7 +186,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 									.getNativeDialogCompletionGesture(data);
 							if (!completionGesture.equals("cancel")) {
 								canYouPlay.fbPost();
-								if(canYouPlay.isCompleted()){
+								if (canYouPlay.isCompleted()) {
 									challengeCompletedDialog.show();
 								}
 							}
@@ -233,17 +251,30 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 	}
 
 	public void postOnFacebook() {
-		FacebookDialog shareDialog = new FacebookDialog.ShareDialogBuilder(this)
-				.setLink(
-						"https://play.google.com/store/apps/details?id=com.g6pis.beatitapp")
-				.setName(getResources().getString(R.string.sms_text))
-				.setDescription(
-						getResources().getString(R.string.android_version))
-				.setCaption(getResources().getString(R.string.also_available))
-				.setPicture(
-						"https://lh3.googleusercontent.com/Z0gp_Vw-g3ZI9ewq5MRHnNITqDpEDtWN6eh_j28UHiMkY_9b-4K5OFMVd6GWO40hdS-oVAI0Nw=w1893-h822")
-				.build();
-		uiHelper.trackPendingDialogCall(shareDialog.present());
+		try {
+			FacebookDialog shareDialog = new FacebookDialog.ShareDialogBuilder(
+					this)
+					.setLink(
+							"https://play.google.com/store/apps/details?id=com.g6pis.beatitapp")
+					.setName(getResources().getString(R.string.sms_text))
+					.setDescription(
+							getResources().getString(R.string.android_version))
+					.setCaption(
+							getResources().getString(R.string.also_available))
+					.setPicture(
+							"https://lh3.googleusercontent.com/Z0gp_Vw-g3ZI9ewq5MRHnNITqDpEDtWN6eh_j28UHiMkY_9b-4K5OFMVd6GWO40hdS-oVAI0Nw=w1893-h822")
+					.build();
+			uiHelper.trackPendingDialogCall(shareDialog.present());
+		} catch (FacebookException ex) {
+			facebookDialog.show();
+			((Button) findViewById(R.id.facebook_post_button))
+					.setClickable(false);
+			canYouPlay.fbPost();
+			if (canYouPlay.isCompleted()) {
+				challengeCompletedDialog.show();
+			}
+
+		}
 	}
 
 	public void selectContact() {
@@ -277,7 +308,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 					Toast.LENGTH_LONG).show();
 
 			canYouPlay.smsSent();
-			if(canYouPlay.isCompleted()){
+			if (canYouPlay.isCompleted()) {
 				challengeCompletedDialog.show();
 			}
 
@@ -330,20 +361,30 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 		}
 		return super.onOptionsItemSelected(item);
 	}
-	
+
 	@Override
 	protected Dialog onCreateDialog(int id) {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		switch (id) {
 		case CHALLENGE_COMPLETED_DIALOG: {
 			builder.setMessage(R.string.want_to_continue);
-			builder.setTitle(getResources().getString(R.string.challenge_completed));
+			builder.setTitle(getResources().getString(
+					R.string.challenge_completed));
 			builder.setCancelable(true);
-			builder.setPositiveButton(R.string.continue_button, new OkOnClickListener());
+			builder.setPositiveButton(R.string.continue_button,
+					new OkOnClickListener());
 			builder.setNegativeButton(R.string.view_finished,
 					new CancelOnClickListener());
 			return builder.create();
 		}
+		case FACEBOOK_DIALOG:
+			builder.setMessage(R.string.facebook_app_not_installed);
+			builder.setTitle(getResources().getString(
+					R.string.facebook_post));
+			builder.setCancelable(true);
+			builder.setPositiveButton(R.string.continue_button,
+					new OkOnClickListener());
+			return builder.create();
 		}
 		return super.onCreateDialog(id);
 	}
@@ -360,5 +401,63 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 		public void onClick(DialogInterface dialog, int which) {
 		}
 	}
+	
+	public String getDurationString(){
+		String result = "";
+		DTDateTime now = new DTDateTime();
+		
+		String difference = state.getDateTimeFinish().diff(now);
+		Integer diff = state.getDateTimeFinish().diff(now, difference);
+		
+		if(difference.equals("year"))
+			if(diff > 1)
+				result = diff + " " + getResources().getString(R.string.years);
+			else
+				result = diff + " " + getResources().getString(R.string.year);
+		
+		if(difference.equals("month"))
+			if(diff > 1)
+				result = diff + " " + getResources().getString(R.string.months);
+			else
+				result = diff + " " + getResources().getString(R.string.month);
+
+		if(difference.equals("day"))
+			if(diff > 1){
+				if(diff > 6){
+					if(diff > 13){
+						diff = (int) Math.ceil(diff/7);
+						result = diff + " " + getResources().getString(R.string.weeks);
+					}else{
+						diff = (int) Math.ceil(diff/7);
+						result = diff + " " + getResources().getString(R.string.week);
+					}
+						
+				}else
+					result = diff + " " + getResources().getString(R.string.days);
+			}else
+				result = diff + " " + getResources().getString(R.string.day);
+
+		if(difference.equals("hour"))
+			if(diff > 1)
+				result = diff + " " + getResources().getString(R.string.hours);
+			else
+				result = diff + " " + getResources().getString(R.string.hour);
+		
+		if(difference.equals("minute"))
+			if(diff > 1)
+				result = diff + " " + getResources().getString(R.string.minutes);
+			else
+				result = diff + " " + getResources().getString(R.string.minute);
+		
+		if(difference.equals("second"))
+			if(diff > 1)
+				result = diff + " " + getResources().getString(R.string.seconds);
+			else
+				result = diff + " " + getResources().getString(R.string.second);
+		
+		return result;
+        
+    }
+	
 
 }

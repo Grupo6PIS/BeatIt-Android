@@ -115,7 +115,8 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 			
 			this.setDateTimeStart(dm.getCurrentRound().getDateTimeStart());
 			((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(this.getDateTimeStart().toString());
-			
+			((TextView) findViewById(R.id.textView_Duration_Value))
+			.setText(this.getDurationString());
 	        senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 	        senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 	        senSensorManager.registerListener(this, senAccelerometer , SensorManager.SENSOR_DELAY_NORMAL);
@@ -384,5 +385,62 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 	public void setDateTimeStart(DTDateTime dateTimeStart) {
 		this.dateTimeStart = dateTimeStart;
 	}
+	
+	public String getDurationString(){
+		String result = "";
+		DTDateTime now = new DTDateTime();
+		
+		String difference = state.getDateTimeFinish().diff(now);
+		Integer diff = state.getDateTimeFinish().diff(now, difference);
+		
+		if(difference.equals("year"))
+			if(diff > 1)
+				result = diff + " " + getResources().getString(R.string.years);
+			else
+				result = diff + " " + getResources().getString(R.string.year);
+		
+		if(difference.equals("month"))
+			if(diff > 1)
+				result = diff + " " + getResources().getString(R.string.months);
+			else
+				result = diff + " " + getResources().getString(R.string.month);
+
+		if(difference.equals("day"))
+			if(diff > 1){
+				if(diff > 6){
+					if(diff > 13){
+						diff = (int) Math.ceil(diff/7);
+						result = diff + " " + getResources().getString(R.string.weeks);
+					}else{
+						diff = (int) Math.ceil(diff/7);
+						result = diff + " " + getResources().getString(R.string.week);
+					}
+						
+				}else
+					result = diff + " " + getResources().getString(R.string.days);
+			}else
+				result = diff + " " + getResources().getString(R.string.day);
+
+		if(difference.equals("hour"))
+			if(diff > 1)
+				result = diff + " " + getResources().getString(R.string.hours);
+			else
+				result = diff + " " + getResources().getString(R.string.hour);
+		
+		if(difference.equals("minute"))
+			if(diff > 1)
+				result = diff + " " + getResources().getString(R.string.minutes);
+			else
+				result = diff + " " + getResources().getString(R.string.minute);
+		
+		if(difference.equals("second"))
+			if(diff > 1)
+				result = diff + " " + getResources().getString(R.string.seconds);
+			else
+				result = diff + " " + getResources().getString(R.string.second);
+		
+		return result;
+        
+    }
 	
 }

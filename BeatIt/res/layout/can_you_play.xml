@@ -102,12 +102,12 @@
 	        android:textSize="14sp" />
 
 	    <TextView
-	        android:id="@+id/textView_Finish_Time_Value"
+	        android:id="@+id/textView_Duration_Value"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:layout_alignLeft="@+id/textView_Finish_Time"
-	        android:layout_alignStart="@+id/textView_Finish_Time"
-	        android:layout_below="@+id/textView_Finish_Time"
+	        android:layout_alignLeft="@+id/textView_Duration"
+	        android:layout_alignStart="@+id/textView_Duration"
+	        android:layout_below="@+id/textView_Duration"
 	        android:text="@string/duration_value"
 	        android:textAppearance="?android:attr/textAppearanceMedium"
 	        android:textColor="@color/gris_challenge_values"
@@ -135,24 +135,24 @@
 	        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 	    <TextView
-	        android:id="@+id/textView_Finish_Time"
+	        android:id="@+id/textView_Duration"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_alignLeft="@+id/textView_Left_Time"
 	        android:layout_alignParentLeft="true"
 	        android:layout_alignStart="@+id/textView_Start_Time"
 	        android:layout_below="@+id/textView_Start_Time_Value"
-	        android:text="@string/end_time"
+	        android:text="@string/duration"
 	        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 	    <TextView
 	        android:id="@+id/textView_To_Beat"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:layout_alignLeft="@+id/textView_Finish_Time"
+	        android:layout_alignLeft="@+id/textView_Duration"
 	        android:layout_alignParentLeft="true"
-	        android:layout_alignStart="@+id/textView_Finish_Time"
-	        android:layout_below="@+id/textView_Finish_Time_Value"
+	        android:layout_alignStart="@+id/textView_Duration"
+	        android:layout_below="@+id/textView_Duration_Value"
 	        android:text="@string/to_beat"
 	        android:textAppearance="?android:attr/textAppearanceMedium" />
 	</RelativeLayout>

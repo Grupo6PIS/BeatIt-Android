@@ -32,31 +32,31 @@
         android:textStyle="bold" />
     
     <TextView
-        android:id="@+id/textView_Finish_Time"
+        android:id="@+id/textView_Attempts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@id/imageView_Logo"
         android:layout_below="@+id/textView_Start_Time"
         android:layout_marginTop="30dp"
-        android:text="@string/end_time"
+        android:text="@string/attempts"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/textView_Start_Time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_Finish_Time"
+        android:layout_alignLeft="@+id/textView_Attempts"
         android:layout_below="@+id/imageView_Logo"
         android:layout_marginTop="32dp"
         android:text="@string/start_time"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
-        android:id="@+id/textView_Finish_Time_Value"
+        android:id="@+id/textView_Attempts_Value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_Finish_Time"
-        android:layout_below="@+id/textView_Finish_Time"
+        android:layout_alignLeft="@+id/textView_Attempts"
+        android:layout_below="@+id/textView_Attempts"
         android:text="@string/duration_value"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@color/gris_challenge_values"
@@ -66,7 +66,7 @@
         android:id="@+id/textView_Start_Time_Value"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView_Finish_Time"
+        android:layout_alignLeft="@+id/textView_Attempts"
         android:layout_below="@+id/textView_Start_Time"
         android:text="@string/start_time_value"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -77,7 +77,7 @@
         android:id="@+id/table_speed"
         android:layout_width="fill_parent"
         android:layout_height="100dp"
-        android:layout_below="@+id/textView_Finish_Time_Value"
+        android:layout_below="@+id/textView_Attempts_Value"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="44dp"
         android:layout_marginTop="40dp"

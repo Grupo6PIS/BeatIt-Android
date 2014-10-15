@@ -52,7 +52,6 @@
     <string name="finish_time">Finish time:</string>
     <string name="start_time_value">18/08/2014 13:30</string>
     <string name="time_left">Time left:</string>
-    <string name="seconds">seconds</string>
     <string name="time_left_value_1">Time Left: 30 seconds</string>
     <string name="time_left_value_2">Time Left: 90 seconds</string>
     <string name="title_activity_challenge_in_progress">ChallengeInProgress</string>
@@ -93,6 +92,21 @@
 	<string name="continue_button">Continue</string>
 	<string name="view_finished">Finish</string>
 	<string name="version">Version: </string>
+	<string name="attempts">Attempts: </string>
+	<string name="years">years</string>
+	<string name="months">months</string>
+	<string name="days">days</string>
+	<string name="hours">hours</string>
+	<string name="minutes">minutes</string>
+	<string name="seconds">seconds</string>
+	<string name="year">year</string>
+	<string name="month">month</string>
+	<string name="day">day</string>
+	<string name="hour">hour</string>
+	<string name="minute">minute</string>
+	<string name="second">second</string>
+	<string name="week">week</string>
+	<string name="weeks">weeks</string>
 	
     <!-- Profile Strings -->
     <string name="username">Juan Pérez</string>
@@ -119,7 +133,10 @@
     <string name="also_available">Also available for Windows Phone</string>
     <string name="can_you_play_description_1">In this challenge you have to post a link on your Facebook and, also, send 2 SMS with the link to 2 different contacts</string>
     <string name="can_you_play_description_2">In this challenge you have to post a link on your Facebook and, also, send 4 SMS with the link to 4 different contacts</string>
-   
+   	<string name="select_diferent_contact">Select a different contact</string>
+   	<string name="select_another_contact">Select another contact</string>
+   	<string name="facebook_app_not_installed">The Facebook App is not installed, but you can continue</string>
+    
     <!-- Despertame A Tiempo Strings -->
     <string name="wake_me_up">Wake Me Up</string>
     <string name="description_wake_me_up_1">In this challenge you have to shake your phone when the countdown reaches 0 seconds. You will have 3 attempts.</string>

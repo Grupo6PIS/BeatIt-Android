@@ -15,7 +15,6 @@ import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.UiLifecycleHelper;
 import com.facebook.model.GraphUser;
-
 import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.datatypes.DTState;
 import com.g6pis.beatitapp.persistence.StateDAO;
@@ -50,7 +49,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		setContentView(R.layout.activity_main);
 		this.getActionBar().hide();
 		
 		uiHelper = new UiLifecycleHelper(this, callback);
@@ -59,7 +58,6 @@ public class MainActivity extends Activity {
 		home = new Intent(this, Home.class);
 		login = new Intent(this, Login.class);
 
-		setContentView(R.layout.activity_main);
 		
 		sharedPrefs = getApplicationContext().getSharedPreferences(APP_SHARED_PREFS, Context.MODE_PRIVATE);
         firstName = sharedPrefs.getString("firstName", "");

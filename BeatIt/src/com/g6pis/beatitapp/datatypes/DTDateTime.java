@@ -144,5 +144,62 @@ public class DTDateTime {
 
 		return date;
 	}
+	
+	public String diff(DTDateTime dateTime){
+		String diff;
+		
+		if(this.year - dateTime.getYear() == 0){
+			if(this.month - dateTime.getMonth() == 0){
+				if(this.day - dateTime.getDay() == 0){
+					if(this.hour - dateTime.getHour() == 0){
+						if(this.minute - dateTime.getMinute() == 0){
+							if(this.second - dateTime.getSecond() == 0){
+								diff = "equals";
+							}else{
+								diff = "second";
+							}
+						}else{
+							diff = "minute";
+						}
+					}else{
+						diff = "hour";
+					}
+				}else{
+					diff = "day";
+				}
+			}else{
+				diff = "month";
+			}
+		}else{
+			diff = "year";
+		}
+		
+		return diff;
+	}
+	
+	public Integer diff(DTDateTime dateTime, String difference){
+		if(difference.equals("year"))
+			return Math.abs(this.year - dateTime.getYear());
+		
+		if(difference.equals("month"))
+			return Math.abs(this.month - dateTime.getMonth());
+
+		if(difference.equals("day"))
+			return Math.abs(this.day - dateTime.getDay());
+
+		if(difference.equals("hour"))
+			return Math.abs(this.hour - dateTime.getHour());
+		
+		if(difference.equals("minute"))
+			return Math.abs(this.minute - dateTime.getMinute());
+		
+		if(difference.equals("second"))
+			return Math.abs(this.second - dateTime.getSecond());
+		
+		
+		return 0;
+		
+		
+	}
 
 }

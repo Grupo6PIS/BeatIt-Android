@@ -18,6 +18,7 @@ import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
 import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.datatypes.DTState;
+import com.g6pis.beatitapp.entities.Challenge;
 
 public class WakeMeUpFinished extends Activity implements OnClickListener {
 	private static final String CHALLENGE_ID = "2";
@@ -40,8 +41,10 @@ public class WakeMeUpFinished extends Activity implements OnClickListener {
 		((TextView) findViewById(R.id.textView_max_score_value)).setText(maxScore);
 		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(state
 				.getDateTimeStart().toString());
-		((TextView) findViewById(R.id.textView_Finish_Time_Value))
-				.setText(state.getLastFinishDateTime().toString());
+		
+		Challenge challenge = DataManager.getInstance().getChallenge(CHALLENGE_ID);
+		((TextView) findViewById(R.id.textView_Attempts_Value))
+		.setText(state.getCurrentAttempt() + "/" + challenge.getMaxAttempt());
 
 	}
 

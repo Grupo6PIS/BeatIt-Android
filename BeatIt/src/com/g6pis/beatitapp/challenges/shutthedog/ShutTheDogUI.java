@@ -32,6 +32,7 @@ import android.widget.TextView;
 public class ShutTheDogUI extends Activity implements SensorEventListener {
 	private static final String CHALLENGE_ID = "4";
 	private ShutTheDog shutthedog;
+	private DTState state;
 	
 	private SensorManager mSensorManager;
 	private Sensor mSensor;
@@ -73,11 +74,11 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 		
 		shutthedog = (ShutTheDog) DataManager.getInstance().getChallenge(
 				CHALLENGE_ID);
-		DTState state = DataManager.getInstance().getState(CHALLENGE_ID);
+		state = DataManager.getInstance().getState(CHALLENGE_ID);
 		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(state
 				.getDateTimeStart().toString());
 		((TextView) findViewById(R.id.textView_Duration_Value))
-				.setText(state.getDateTimeFinish().toString());
+		.setText(this.getDurationString());
 		
 		if(state.getMaxScore() > 0)
 			((TextView)findViewById(R.id.textView_To_Beat_Value)).setText(Double.toString(state.getMaxScore()));
@@ -328,5 +329,62 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 			}
 			return super.onOptionsItemSelected(item);
 		}
+		
+		
+		public String getDurationString(){
+			String result = "";
+			DTDateTime now = new DTDateTime();
+			
+			String difference = state.getDateTimeFinish().diff(now);
+			Integer diff = state.getDateTimeFinish().diff(now, difference);
+			
+			if(difference.equals("year"))
+				if(diff > 1)
+					result = diff + " " + getResources().getString(R.string.years);
+				else
+					result = diff + " " + getResources().getString(R.string.year);
+			
+			if(difference.equals("month"))
+				if(diff > 1)
+					result = diff + " " + getResources().getString(R.string.months);
+				else
+					result = diff + " " + getResources().getString(R.string.month);
 
+			if(difference.equals("day"))
+				if(diff > 1){
+					if(diff > 6){
+						if(diff > 13){
+							diff = (int) Math.ceil(diff/7);
+							result = diff + " " + getResources().getString(R.string.weeks);
+						}else{
+							diff = (int) Math.ceil(diff/7);
+							result = diff + " " + getResources().getString(R.string.week);
+						}
+							
+					}else
+						result = diff + " " + getResources().getString(R.string.days);
+				}else
+					result = diff + " " + getResources().getString(R.string.day);
+
+			if(difference.equals("hour"))
+				if(diff > 1)
+					result = diff + " " + getResources().getString(R.string.hours);
+				else
+					result = diff + " " + getResources().getString(R.string.hour);
+			
+			if(difference.equals("minute"))
+				if(diff > 1)
+					result = diff + " " + getResources().getString(R.string.minutes);
+				else
+					result = diff + " " + getResources().getString(R.string.minute);
+			
+			if(difference.equals("second"))
+				if(diff > 1)
+					result = diff + " " + getResources().getString(R.string.seconds);
+				else
+					result = diff + " " + getResources().getString(R.string.second);
+			
+			return result;
+	        
+	    }
 }
