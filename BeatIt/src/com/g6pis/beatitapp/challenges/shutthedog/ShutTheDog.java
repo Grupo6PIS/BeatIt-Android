@@ -64,7 +64,7 @@ public class ShutTheDog extends Challenge{
 		score = 0;
         for (int i = 0; i < arrayLength; i++) 
         {
-            if (results[i] > 0){
+            if (results[i] > 100){
             	double agregado = (double) 100/ (double) results[i];
                 score = score + agregado;
             }
