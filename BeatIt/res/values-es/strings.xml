@@ -145,7 +145,8 @@
 
     <!-- Shut The Dog Strings -->
     <string name="shut_the_dog">Calla Al Perro</string>
-    <string name="description_shut_the_dog">En este desafío deberás callar al perro cuando ladre, colocando la mano sobre el celular lo más rápido posible !</string>
+    <string name="description_shut_the_dog_1">En este desafío deberás callar al perro cuando ladre, colocando la mano sobre el celular lo más rápido posible. El perro ladrará 3 veces</string>
+    <string name="description_shut_the_dog_2">En este desafío deberás callar al perro cuando ladre, colocando la mano sobre el celular lo más rápido posible. El perro ladrará 5 veces</string>
     <string name="logo_shut_the_dog">Logo Calla al Perro</string>
     <string name="shut_the_dog_started">¡Comenzó! ¡Presta atención!</string>
     <string name="shut_the_dog_lost">¡Perdiste! :( ¡Intenta de nuevo!</string>

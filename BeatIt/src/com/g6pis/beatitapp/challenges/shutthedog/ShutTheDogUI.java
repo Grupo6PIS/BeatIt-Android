@@ -64,7 +64,7 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 	private int secondCount;
 	int maxDelay = 5; //en segundos
 	
-	boolean hasWon = true;play
+	boolean hasWon = true;
 	double score = 0;
 	 
 	@Override
@@ -85,6 +85,11 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 		else{
 			((TextView)findViewById(R.id.textView_To_Beat_Value)).setVisibility(View.INVISIBLE);
 			((TextView)findViewById(R.id.textView_To_Beat)).setVisibility(View.INVISIBLE);
+		}
+		
+		switch(shutthedog.getLevel()){
+		case 1: ((TextView)findViewById(R.id.textView_Description_Value_2)).setText(getResources().getString(R.string.description_shut_the_dog_1));
+		case 2: ((TextView)findViewById(R.id.textView_Description_Value_2)).setText(getResources().getString(R.string.description_shut_the_dog_2));
 		}
 		
 

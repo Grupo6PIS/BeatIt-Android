@@ -145,7 +145,8 @@
     
     <!-- Shut The Dog Strings -->
     <string name="shut_the_dog">Shut The Dog</string>
-    <string name="description_shut_the_dog">In this challenge you have to shut the barking dog up by putting your hand close to the phone as soon as possible!</string>
+    <string name="description_shut_the_dog_1">In this challenge you have to shut the barking dog up by putting your hand close to the phone as soon as possible. The dog will bark three times</string>
+    <string name="description_shut_the_dog_2">In this challenge you have to shut the barking dog up by putting your hand close to the phone as soon as possible. The dog will bark five times</string>
     <string name="logo_shut_the_dog">Logo Shut The Dog</string>
     <string name="shut_the_dog_started">Game Started! Pay Attention to the sound!</string>
     <string name="shut_the_dog_lost">You lost! :( Try again!</string>

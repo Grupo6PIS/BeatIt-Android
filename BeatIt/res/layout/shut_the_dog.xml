@@ -74,7 +74,7 @@
         android:layout_alignLeft="@+id/textView_Description"
         android:layout_below="@+id/textView_Description"
         android:layout_marginRight="22dp"
-        android:text="@string/description_shut_the_dog"
+        android:text="@string/description_shut_the_dog_1"
         android:textColor="@color/gris_challenge_description"
         android:textSize="18sp" />
 
