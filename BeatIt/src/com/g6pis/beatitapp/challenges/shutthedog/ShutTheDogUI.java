@@ -64,7 +64,7 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 	private int secondCount;
 	int maxDelay = 5; //en segundos
 	
-	boolean hasWon = true;
+	boolean hasWon = true;play
 	double score = 0;
 	 
 	@Override
@@ -181,51 +181,51 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 	}
 	
 	private Runnable rutine = new Runnable() {
-		   @Override
-		   public void run() {
-			   mSensorManager.registerListener(ShutTheDogUI.this, mSensor,
-						SensorManager.SENSOR_DELAY_NORMAL);
-				if (mp != null){
-					mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-					    @Override
-					    public void onPrepared(MediaPlayer mp) {
-					    	mp.start();
-					    }});
-					if (firstTime){
-						mp.start();
-						firstTime = false;						
-					} else {
-						try {
-							mp.prepare();
-						} catch (IllegalStateException e) {
-						} catch (IOException e) {
-						}
+		@Override
+		public void run() {
+			if (mp != null){
+				mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
+				    @Override
+				    public void onPrepared(MediaPlayer mp) {
+				    	mp.start();
+				    }});
+				if (firstTime){
+					mp.start();
+					firstTime = false;						
+				} else {
+					try {
+						mp.prepare();
+					} catch (IllegalStateException e) {
+					} catch (IOException e) {
 					}
 				}
+			}
+			
+			mSensorManager.registerListener(ShutTheDogUI.this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);	
+			
+			c = new CountDownTimer(maxDelay*1000, 1) {
 				
-				c = new CountDownTimer(maxDelay*1000, 1) {
+				public void onTick(long millisUntilFinished) {
+					secondCount++;
+				}
+				
+				public void onFinish() {
+					//PERDIO
+					mSensorManager.unregisterListener(ShutTheDogUI.this, mSensor);
 					
-					public void onTick(long millisUntilFinished) {
-						secondCount++;
-					}
+					mp.stop();
+					it = 0;
+					secondCount=0;
 					
-					public void onFinish() {
-						//PERDIO
-						mSensorManager.unregisterListener(ShutTheDogUI.this, mSensor);
-						
-						mp.stop();
-						it = 0;
-						secondCount=0;
-						
-						Button b = (Button)findViewById(R.id.start_button);
-						b.setText(R.string.shut_the_dog_lost);
-						b.setBackgroundColor(getResources().getColor(R.color.red));
-						b.setEnabled(true);
-					}
-					
-				}.start();
-		   }
-		};
+					Button b = (Button)findViewById(R.id.start_button);
+					b.setText(R.string.shut_the_dog_lost);
+					b.setBackgroundColor(getResources().getColor(R.color.red));
+					b.setEnabled(true);
+				}
+				
+			}.start();
+		}
+	};
 
 	 protected void onResume() {
 	  super.onResume();
