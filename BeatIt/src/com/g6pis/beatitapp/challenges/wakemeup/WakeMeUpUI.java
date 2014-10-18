@@ -11,8 +11,11 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
+import android.support.annotation.ColorRes;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -60,7 +63,10 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 	
 	private TextView startButton;
 	private TextView textViewTimeLeftValue;
-	//private TextView textViewResult;
+	private TextView textViewResult;
+
+	private MediaPlayer mp_success;
+	private MediaPlayer mp_fail;
 	
 	private CountDownTimer timer;
 	//private double score = 0;
@@ -81,6 +87,11 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 		
 		wakeMeUp = (WakeMeUp) DataManager.getInstance().getChallenge(CHALLENGE_ID);
 		state = DataManager.getInstance().getState(CHALLENGE_ID);
+		
+		mp_success = MediaPlayer.create(this, R.raw.success);
+		//mp_success.setLooping(true);
+		mp_fail = MediaPlayer.create(this, R.raw.fail);
+		//mp_fail.setLooping(true);
 		
 		DataManager dm = DataManager.getInstance();
 		
@@ -126,7 +137,7 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 			textViewTimeLeftValue = (TextView) findViewById(R.id.textView_Time_Left_Value);
 			textViewTimeLeftValue.setText(t_initial_counter_value);
 			
-			//textViewResult = (TextView) findViewById(R.id.textView_Result);
+			textViewResult = (TextView) findViewById(R.id.textView_Result);
 									
 			timer = this.createTimer();
 		}
@@ -156,10 +167,12 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 			}
 
 			public void onFinish() {
-				wakeMeUp.finishChallenge();
-				stopTimer();
-				textViewTimeLeftValue.setText("Demoraste mucho !");
-				//textViewResult.setText("Demoraste mucho !");
+				if (timerRunning) {
+					wakeMeUp.finishChallenge();
+					stopTimer();
+					textViewTimeLeftValue.setText("Demoraste mucho !");
+					//textViewResult.setText("Demoraste mucho !");
+				}
 			}
 		};
 		
@@ -173,6 +186,13 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 				case R.id.start_button_wake_me_up: {
 					startButton.setVisibility(View.INVISIBLE);
 					textViewTimeLeftValue.setVisibility(View.VISIBLE);
+					
+					Handler handler = new Handler(); 
+				    handler.postDelayed(new Runnable() { 
+				         public void run() { 
+				        	 textViewResult.setVisibility(View.INVISIBLE); 
+				         } 
+				    }, 1000); 
 					//textViewResult.setVisibility(View.INVISIBLE);
 					this.timer.start();
 					this.timerRunning = true;
@@ -185,7 +205,7 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 	public void viewAssignment() {
 		startButton = (TextView) findViewById(R.id.start_button_wake_me_up);
 		textViewTimeLeftValue = (TextView) findViewById(R.id.textView_Time_Left_Value);
-		//textViewResult = (TextView) findViewById(R.id.textView_Result);
+		textViewResult = (TextView) findViewById(R.id.textView_Result);
 	}
 	
 	protected void onPause() {
@@ -200,7 +220,7 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 	
 	@Override
 	public void onBackPressed(){
-		
+		timerRunning = false;
 		wakeMeUp.reset();
 		Intent home = new Intent(this, Home.class);
 		startActivity(home);
@@ -250,9 +270,21 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 	private void stopTimer() {
 		timerRunning = false;
 		time = g_millis - MAX;
+		textViewResult.setVisibility(View.VISIBLE);
 		if (Math.abs(time) < TOLERANCE) {
 			wakeMeUp.setSucceed_times(wakeMeUp.getSucceed_times() + 1);
+			// Show performance
+			textViewResult.setText(getResources().getString(R.string.success));
+			textViewResult.setBackgroundColor(getResources().getColor(R.color.verde));
+			mp_success.start();
 		}
+		else {
+			// Show performance
+			textViewResult.setText(getResources().getString(R.string.fail));
+			textViewResult.setBackgroundColor(getResources().getColor(R.color.red));
+			mp_fail.start();
+		}
+		
 		
 		//textViewResult.setVisibility(View.VISIBLE);
 		//textViewResult.setText(Double.toString(time));
@@ -296,6 +328,7 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 			
 			startButton.setVisibility(View.VISIBLE);
 			textViewTimeLeftValue.setVisibility(View.INVISIBLE);
+			startButton.setText(getResources().getString(R.string.restart));
 			
 		}
 		else {
@@ -321,13 +354,13 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 		            lastUpdate = curTime;
 		 
 		            float speed = Math.abs(x + y + z - last_x - last_y - last_z)/ diffTime * 10000;
+		            last_x = x;
+		            last_y = y;
+		            last_z = z;
 		            if (speed > SHAKE_THRESHOLD) {
 		            	stopTimer();
 		            }
 		 
-		            last_x = x;
-		            last_y = y;
-		            last_z = z;
 		        }
 		    }
 	    }
@@ -353,15 +386,7 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 		startActivity(finished);
 		this.finish();
 	}
-/*	
-	public long getSucceed_times() {
-		return succeed_times;
-	}
 
-	public void setSucceed_times(long succeed_times) {
-		this.succeed_times = succeed_times;
-	}
-*/	
 	public long getAttemps() {
 		return attemps;
 	}

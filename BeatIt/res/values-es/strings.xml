@@ -142,6 +142,9 @@
     <string name="description_wake_me_up_1">En este desafío deberás agitar el celular cuando la cuenta regresiva llegue a 0 segundos. Deberás realizar 3 intentos.</string>
     <string name="description_wake_me_up_2">En este desafío deberás agitar el celular cuando la cuenta regresiva llegue a 0 segundos. Deberás realizar 4 intentos.</string>
     <string name="logo_wake_me_up">Logo Despertame A Tiempo</string>
+    <string name="restart">Reintentar</string>
+    <string name="success">Ganaste !</string>
+    <string name="fail">Perdiste</string>
 
     <!-- Shut The Dog Strings -->
     <string name="shut_the_dog">Calla Al Perro</string>

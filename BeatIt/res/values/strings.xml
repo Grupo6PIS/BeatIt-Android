@@ -142,6 +142,9 @@
     <string name="description_wake_me_up_1">In this challenge you have to shake your phone when the countdown reaches 0 seconds. You will have 3 attempts.</string>
     <string name="description_wake_me_up_2">In this challenge you have to shake your phone when the countdown reaches 0 seconds. You will have 4 attempts.</string>
     <string name="logo_wake_me_up">Wake Me Up Logo</string>
+    <string name="restart">Restart</string>
+    <string name="success">Success !</string>
+    <string name="fail">Fail</string>
     
     <!-- Shut The Dog Strings -->
     <string name="shut_the_dog">Shut The Dog</string>
