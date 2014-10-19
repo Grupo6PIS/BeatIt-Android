@@ -116,6 +116,24 @@
             android:name="com.facebook.sdk.ApplicationId"
             android:value="@string/facebook_app_id" />
 
+        <activity
+            android:name="com.g6pis.beatitapp.challenges.bouncinggame.BouncingGameUI"
+            android:screenOrientation="portrait" >
+	        android:parentActivityName="com.g6pis.beatit.MainActivity" >
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.g6pis.beatit.Home" />
+        </activity>
+        
+        <activity
+            android:name="com.g6pis.beatitapp.challenges.bouncinggame.BouncingGameFinished"
+            android:screenOrientation="portrait" >
+            android:parentActivityName="com.g6pis.beatit.Home" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.g6pis.beatit.Home" />
+        </activity>
         
         <activity
             android:name="com.g6pis.beatitapp.challenges.invitefriends.CanYouPlayUI"

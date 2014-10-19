@@ -20,6 +20,8 @@ import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
 import com.g6pis.beatitapp.challenges.shutthedog.ShutTheDogFinished;
 import com.g6pis.beatitapp.challenges.shutthedog.ShutTheDogUI;
+import com.g6pis.beatitapp.challenges.bouncinggame.BouncingGameFinished;
+import com.g6pis.beatitapp.challenges.bouncinggame.BouncingGameUI;
 import com.g6pis.beatitapp.challenges.invitefriends.CanYouPlayFinished;
 import com.g6pis.beatitapp.challenges.invitefriends.CanYouPlayUI;
 import com.g6pis.beatitapp.challenges.usainbolt.UsainBoltFinished;
@@ -38,7 +40,7 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
 	private static final String ID_Wake_Me_Up 		= "2";
 	private static final String ID_Can_You_Play 	= "3";
 	private static final String ID_Calla_Al_Perro 	= "4";
-//	private static final String ID_				 	= "5";
+	private static final String ID_Bouncing_Game	= "5";
 //	private static final String ID_				 	= "6";
 //	private static final String ID_				 	= "7";
 //	private static final String ID_				 	= "8";
@@ -95,18 +97,31 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
 				challenge = new Intent(getActivity().getApplicationContext(), ShutTheDogUI.class);
 			else
 				challenge = new Intent(getActivity().getApplicationContext(), ShutTheDogFinished.class);
+		} else if (adapter.getItem(position).getChallengeId().equals(ID_Bouncing_Game)){
+			if(adapter.getItem(position).getCurrentAttempt() == 0)
+				challenge = new Intent(getActivity().getApplicationContext(), BouncingGameUI.class);
+			else
+				challenge = new Intent(getActivity().getApplicationContext(), BouncingGameFinished.class);
 /*		} else if (adapter.getItem(position).getChallengeId().equals(ID_)){
-			challenge = new Intent(getActivity().getApplicationContext(), UI.class);
+			if(adapter.getItem(position).getCurrentAttempt() == 0)
+				challenge = new Intent(getActivity().getApplicationContext(), UI.class);
+			else
+				challenge = new Intent(getActivity().getApplicationContext(), Finished.class);
 /*		} else if (adapter.getItem(position).getChallengeId().equals(ID_)){
-			challenge = new Intent(getActivity().getApplicationContext(), UI.class);
+			if(adapter.getItem(position).getCurrentAttempt() == 0)
+				challenge = new Intent(getActivity().getApplicationContext(), UI.class);
+			else
+				challenge = new Intent(getActivity().getApplicationContext(), Finished.class);
 /*		} else if (adapter.getItem(position).getChallengeId().equals(ID_)){
-			challenge = new Intent(getActivity().getApplicationContext(), UI.class);
+			if(adapter.getItem(position).getCurrentAttempt() == 0)
+				challenge = new Intent(getActivity().getApplicationContext(), UI.class);
+			else
+				challenge = new Intent(getActivity().getApplicationContext(), Finished.class);
 /*		} else if (adapter.getItem(position).getChallengeId().equals(ID_)){
-			challenge = new Intent(getActivity().getApplicationContext(), UI.class);
-/*		} else if (adapter.getItem(position).getChallengeId().equals(ID_)){
-			challenge = new Intent(getActivity().getApplicationContext(), UI.class);
-/*		} else if (adapter.getItem(position).getChallengeId().equals(ID_)){
-			challenge = new Intent(getActivity().getApplicationContext(), UI.class);
+			if(adapter.getItem(position).getCurrentAttempt() == 0)
+				challenge = new Intent(getActivity().getApplicationContext(), UI.class);
+			else
+				challenge = new Intent(getActivity().getApplicationContext(), Finished.class);
 */
 		}
     	startActivity(challenge);
@@ -134,52 +149,35 @@ public class ChallengesMenuTab extends Fragment implements AdapterView.OnItemCli
           
           DTState s = objects[position];
           if (s.getChallengeId().equals(ID_Usain_Bolt)) {
-        	challengeName.setText(getResources().getString(R.string.usain_bolt));
-			challengeIcon.setImageResource(R.drawable.ic_usain_bolt);
+        	  challengeName.setText(getResources().getString(R.string.usain_bolt));
+        	  challengeIcon.setImageResource(R.drawable.ic_usain_bolt);
           } else if (s.getChallengeId().equals(ID_Wake_Me_Up)){
         	  challengeName.setText(getResources().getString(R.string.wake_me_up));
-			challengeIcon.setImageResource(R.drawable.ic_despertame_a_tiempo);
+        	  challengeIcon.setImageResource(R.drawable.ic_despertame_a_tiempo);
           } else if (s.getChallengeId().equals(ID_Can_You_Play)){
         	  challengeName.setText(getResources().getString(R.string.can_you_play));
-			challengeIcon.setImageResource(R.drawable.ic_can_you_play);
+        	  challengeIcon.setImageResource(R.drawable.ic_can_you_play);
           } else if (s.getChallengeId().equals(ID_Calla_Al_Perro)){
         	  challengeName.setText(getResources().getString(R.string.shut_the_dog));
-			challengeIcon.setImageResource(R.drawable.ic_calla_al_perro);
-/*          } else if (s.getChallengeId().equals(ID_)){
-  			challengeIcon.setImageResource(R.drawable.ic_);
-  			switch(s.getChallengeLevel()){
-  	            case 1: challengeDescription.setText(R.string.description_);break;
-  	            case 2: challengeDescription.setText(R.string.description_);break;
+        	  challengeIcon.setImageResource(R.drawable.ic_calla_al_perro);
+          } else if (s.getChallengeId().equals(ID_Bouncing_Game)){
+        	  challengeName.setText(getResources().getString(R.string.bouncing_game));
+        	  challengeIcon.setImageResource(R.drawable.ic_bouncing_game);
+        	  /*           } else if (s.getChallengeId().equals(ID_)){
+        	  challengeName.setText(getResources().getString(R.string.));
+        	  challengeIcon.setImageResource(R.drawable.ic_);
   	        }*/
-			/*          } else if (s.getChallengeId().equals(ID_)){
-  			challengeIcon.setImageResource(R.drawable.ic_);
-  			switch(s.getChallengeLevel()){
-  	            case 1: challengeDescription.setText(R.string.description_);break;
-  	            case 2: challengeDescription.setText(R.string.description_);break;
+        	  /*           } else if (s.getChallengeId().equals(ID_)){
+        	  challengeName.setText(getResources().getString(R.string.));
+        	  challengeIcon.setImageResource(R.drawable.ic_);
   	        }*/
-			/*          } else if (s.getChallengeId().equals(ID_)){
-  			challengeIcon.setImageResource(R.drawable.ic_);
-  			switch(s.getChallengeLevel()){
-  	            case 1: challengeDescription.setText(R.string.description_);break;
-  	            case 2: challengeDescription.setText(R.string.description_);break;
+        	  /*           } else if (s.getChallengeId().equals(ID_)){
+        	  challengeName.setText(getResources().getString(R.string.));
+        	  challengeIcon.setImageResource(R.drawable.ic_);
   	        }*/
-			/*          } else if (s.getChallengeId().equals(ID_)){
-  			challengeIcon.setImageResource(R.drawable.ic_);
-  			switch(s.getChallengeLevel()){
-  	            case 1: challengeDescription.setText(R.string.description_);break;
-  	            case 2: challengeDescription.setText(R.string.description_);break;
-  	        }*/
-			/*          } else if (s.getChallengeId().equals(ID_)){
-  			challengeIcon.setImageResource(R.drawable.ic_);
-  			switch(s.getChallengeLevel()){
-  	            case 1: challengeDescription.setText(R.string.description_);break;
-  	            case 2: challengeDescription.setText(R.string.description_);break;
-  	        }*/
-			/*          } else if (s.getChallengeId().equals(ID_)){
-  			challengeIcon.setImageResource(R.drawable.ic_);
-  			switch(s.getChallengeLevel()){
-  	            case 1: challengeDescription.setText(R.string.description_);break;
-  	            case 2: challengeDescription.setText(R.string.description_);break;
+        	  /*           } else if (s.getChallengeId().equals(ID_)){
+        	  challengeName.setText(getResources().getString(R.string.));
+        	  challengeIcon.setImageResource(R.drawable.ic_);
   	        }*/
           } 
           else {

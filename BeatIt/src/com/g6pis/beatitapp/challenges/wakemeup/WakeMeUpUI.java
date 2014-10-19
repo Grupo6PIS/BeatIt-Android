@@ -89,9 +89,7 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 		state = DataManager.getInstance().getState(CHALLENGE_ID);
 		
 		mp_success = MediaPlayer.create(this, R.raw.success);
-		//mp_success.setLooping(true);
 		mp_fail = MediaPlayer.create(this, R.raw.fail);
-		//mp_fail.setLooping(true);
 		
 		DataManager dm = DataManager.getInstance();
 		

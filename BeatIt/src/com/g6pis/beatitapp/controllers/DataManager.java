@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.g6pis.beatitapp.challenges.shutthedog.ShutTheDog;
+import com.g6pis.beatitapp.challenges.bouncinggame.BouncingGame;
 import com.g6pis.beatitapp.challenges.invitefriends.CanYouPlay;
 import com.g6pis.beatitapp.challenges.usainbolt.UsainBolt;
 import com.g6pis.beatitapp.challenges.wakemeup.WakeMeUp;
@@ -138,6 +139,13 @@ public class DataManager {
 					ShutTheDog shutTheDog = new ShutTheDog(challengeId, name,
 							level, 3);
 					challenges.add(shutTheDog);
+
+				}
+					break;
+				case 5: {
+					BouncingGame bouncingGame = new BouncingGame(challengeId, name,
+							level, 3);
+					challenges.add(bouncingGame);
 
 				}
 					break;

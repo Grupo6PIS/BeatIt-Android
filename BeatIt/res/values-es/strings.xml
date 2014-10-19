@@ -154,6 +154,13 @@
     <string name="shut_the_dog_started">¡Comenzó! ¡Presta atención!</string>
     <string name="shut_the_dog_lost">¡Perdiste! :( ¡Intenta de nuevo!</string>
     
+    
+	<!-- Bouncing Game Strings -->
+    <string name="bouncing_game">Bouncing Game</string>
+    <string name="description_bouncing_game_1">En este desafío deberás colisionar la bola roja con la gris la mayor cantidad de veces posible.</string>
+    <string name="description_bouncing_game_2">En este desafío deberás colisionar la bola roja con la gris la mayor cantidad de veces posible.</string>
+    <string name="logo_bouncing_game">Bouncing Game Logo</string>
+    
     <!-- Facebook app ID -->
     <string name="facebook_app_id">829846350380023</string>
 </resources>
