@@ -160,6 +160,15 @@
     <string name="description_bouncing_game_2">In this challenge you have to hit the red ball with the grey one several times.</string>
     <string name="logo_bouncing_game">Bouncing Game Logo</string>
     
+    <!-- Song Complete Strings -->
+    <string name="song_complete">Song Complete</string>
+    <string name="description_song_complete_1">In this challenge you have to guess the artist\'s name of the midi song sounding for 10 seconds, 5 times!</string>
+    <string name="description_song_complete_2">In this challenge you have to guess the exact name of the midi song sounding for 10 seconds, 5 times!</string>
+    <string name="logo_song_complete">Logo Song Complete</string>
+    <string name="song_complete_started">Game Started! Pay Attention to the sound!</string>
+    <string name="song_complete_lost">You lost! :( Try again!</string>
+    
     <!-- Facebook app ID -->
     <string name="facebook_app_id">829846350380023</string>
+    <color name="song_complete">#85c4ff</color>
 </resources>

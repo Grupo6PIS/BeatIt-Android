@@ -36,6 +36,22 @@ public class ShutTheDog extends Challenge{
 		}
 	}
 	
+	public double getScore() {
+		return score;
+	}
+
+	public void setScore(double score) {
+		this.score = score;
+	}
+
+	public int getArrayLength() {
+		return arrayLength;
+	}
+
+	public void setArrayLength(int arrayLength) {
+		this.arrayLength = arrayLength;
+	}
+
 	public int getLives() {
 		return lives;
 	}
