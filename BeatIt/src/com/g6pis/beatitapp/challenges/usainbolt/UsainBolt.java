@@ -7,6 +7,7 @@ import java.util.Set;
 import android.widget.TextView;
 
 
+
 import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.entities.Challenge;
 
@@ -26,8 +27,8 @@ public class UsainBolt extends Challenge {
 	private double speeds;
 	private int speedCount;
 
-	public UsainBolt(String challengeId, String name, Integer level, int maxAttempt) {
-		super(challengeId, name, level, maxAttempt);
+	public UsainBolt(String challengeId, String name, Integer level, int maxAttempt, String color) {
+		super(challengeId, name, level, maxAttempt, color);
 
 		this.maxSpeed = 0.0;
 		this.avgSpeed = 0.0;

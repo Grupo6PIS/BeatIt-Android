@@ -17,8 +17,8 @@ public class ShutTheDog extends Challenge{
 	private double score;
 	int arrayLength = 3;
 	
-	public ShutTheDog(String challengeId, String name, Integer level, int maxAttempt) {
-		super(challengeId, name, level, maxAttempt);
+	public ShutTheDog(String challengeId, String name, Integer level, int maxAttempt, String color) {
+		super(challengeId, name, level, maxAttempt, color);
 		// TODO Auto-generated constructor stub
 		lives = 3;
 		hasWon = false;

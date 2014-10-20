@@ -16,8 +16,8 @@ public class WakeMeUp extends Challenge {
 	private long hidden_secs = 0; // This value can be modified in order to change the challenge difficulty
 	
 		
-	public WakeMeUp(String challengeId, String name, Integer level, int maxAttempt) {
-		super(challengeId, name,level, maxAttempt);
+	public WakeMeUp(String challengeId, String name, Integer level, int maxAttempt, String color) {
+		super(challengeId, name,level, maxAttempt, color);
 
 		this.succeed_times = 0;
 		

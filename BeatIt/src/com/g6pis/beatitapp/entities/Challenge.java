@@ -8,14 +8,16 @@ public  class Challenge{
 	private String name;
 	private int level;
 	private int maxAttempt;
+	private String color;
 	
 	
 	
-	protected Challenge(String challengeId, String name, Integer level, int maxAttempt) {
+	protected Challenge(String challengeId, String name, Integer level, int maxAttempt, String color) {
 		this.challengeId = challengeId;
 		this.name = name;
 		this.level = level;
 		this.maxAttempt = maxAttempt;
+		this.color = color;
 	}
 	
 	

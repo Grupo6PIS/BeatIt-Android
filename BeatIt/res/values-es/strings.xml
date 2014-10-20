@@ -161,6 +161,15 @@
     <string name="description_bouncing_game_2">En este desafío deberás colisionar la bola roja con la gris la mayor cantidad de veces posible.</string>
     <string name="logo_bouncing_game">Bouncing Game Logo</string>
     
+        <!-- Text And Color String -->
+    <string name="text_and_color">Color Y Texto</string>
+    
+    <!-- Catch Me String -->
+    <string name="catch_me">Atrápame Si Puedes</string>
+    
+    <!-- Throw The Phone String -->
+    <string name="throw_the_phone">Celular Volador</string>
+    
     <!-- Facebook app ID -->
     <string name="facebook_app_id">829846350380023</string>
 </resources>

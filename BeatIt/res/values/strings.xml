@@ -168,6 +168,15 @@
     <string name="song_complete_started">Game Started! Pay Attention to the sound!</string>
     <string name="song_complete_lost">You lost! :( Try again!</string>
     
+    <!-- Text And Color String -->
+    <string name="text_and_color">Text &amp; Color</string>
+    
+    <!-- Catch Me String -->
+    <string name="catch_me">Catch Me</string>
+    
+    <!-- Throw The Phone String -->
+    <string name="throw_the_phone">Throw The Phone</string>
+    
     <!-- Facebook app ID -->
     <string name="facebook_app_id">829846350380023</string>
     <color name="song_complete">#85c4ff</color>

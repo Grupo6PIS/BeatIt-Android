@@ -23,8 +23,8 @@ public class TextAndColor extends Challenge {
 	
 	
 	public TextAndColor(String challengeId, String name, Integer level,
-			int maxAttempt) {
-		super(challengeId, name, level, maxAttempt);
+			int maxAttempt, String color) {
+		super(challengeId, name, level, maxAttempt, color);
 		
 		this.successCount = 0;
 		

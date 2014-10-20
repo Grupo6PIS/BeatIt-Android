@@ -9,8 +9,8 @@ public class SongComplete extends Challenge {
 	
 	private long succeed_times;
 	
-	public SongComplete(String challengeId, String name, Integer level, int maxAttempt) {
-		super(challengeId, name, level, maxAttempt);
+	public SongComplete(String challengeId, String name, Integer level, int maxAttempt, String color) {
+		super(challengeId, name, level, maxAttempt, color);
 
 			switch (level) {
 

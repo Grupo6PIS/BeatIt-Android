@@ -15,8 +15,8 @@ public class BouncingGame extends Challenge {
 	
 	private long succeed_times;
 	
-	public BouncingGame(String challengeId, String name, Integer level, int maxAttempt) {
-		super(challengeId, name, level, maxAttempt);
+	public BouncingGame(String challengeId, String name, Integer level, int maxAttempt, String color) {
+		super(challengeId, name, level, maxAttempt,color);
 
 			switch (level) {
 

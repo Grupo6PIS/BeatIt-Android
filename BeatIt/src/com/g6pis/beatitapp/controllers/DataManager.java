@@ -10,9 +10,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.g6pis.beatitapp.challenges.shutthedog.ShutTheDog;
 import com.g6pis.beatitapp.challenges.bouncinggame.BouncingGame;
 import com.g6pis.beatitapp.challenges.invitefriends.CanYouPlay;
+import com.g6pis.beatitapp.challenges.shutthedog.ShutTheDog;
+import com.g6pis.beatitapp.challenges.songcomplete.SongComplete;
 import com.g6pis.beatitapp.challenges.textandcolor.TextAndColor;
 import com.g6pis.beatitapp.challenges.usainbolt.UsainBolt;
 import com.g6pis.beatitapp.challenges.wakemeup.WakeMeUp;
@@ -115,44 +116,63 @@ public class DataManager {
 				String challengeId = jsonChallenge.getString("id");
 				String name = jsonChallenge.getString("challengeName");
 				int level = jsonChallenge.getInt("challengeLevel");
+				String color = jsonChallenge.getString("colorHex");
+				int maxAttempts = jsonChallenge.getInt("maxAttempts");
 				switch (Integer.parseInt(challengeId)) {
 				case 1: {
 					UsainBolt usainBolt = new UsainBolt(challengeId, name,
-							level, 3);
+							level, maxAttempts, color);
 					challenges.add(usainBolt);
 				}
 					break;
 				case 2: {
-					WakeMeUp wakeMeUp = new WakeMeUp(challengeId, name, level,
-							3);
+					WakeMeUp wakeMeUp = new WakeMeUp(challengeId, name, level, maxAttempts,color);
 					challenges.add(wakeMeUp);
 				}
 					break;
 				case 3: {
 					CanYouPlay canYouPlay = new CanYouPlay(challengeId, name,
-							level, 3);
+							level, maxAttempts, color);
 					challenges.add(canYouPlay);
 				}
 					break;
 				case 4: {
 					ShutTheDog shutTheDog = new ShutTheDog(challengeId, name,
-							level, 3);
+							level, maxAttempts, color);
 					challenges.add(shutTheDog);
 
 				}
 					break;
 				case 5: {
 					BouncingGame bouncingGame = new BouncingGame(challengeId,
-							name, level, 3);
+							name, level, maxAttempts, color);
 					challenges.add(bouncingGame);
 				}
 					break;
+				/*case 6: {
+					ThrowThePhone throwThePhone = new ThrowThePhone(challengeId,
+							name, level, maxAttempts, color);
+					challenges.add(throwThePhone);
+				}
+				break;
+				case 7: {
+					CatchMe catchMe = new CatchMe(challengeId,
+							name, level, maxAttempts, color);
+					challenges.add(catchMe);
+				}
+				break;*/
 				case 8: {
 					TextAndColor textAndColor = new TextAndColor(challengeId,
-							name, level, 3);
+							name, level, maxAttempts, color);
 					challenges.add(textAndColor);
 				}
 					break;
+				case 9: {
+					SongComplete songComplete = new SongComplete(challengeId,
+							name, level, maxAttempts, color);
+					challenges.add(songComplete);
+				}
+				break;
 				}
 			}
 
@@ -263,7 +283,7 @@ public class DataManager {
 	public void sendScore(double score) {
 		try {
 			ScoreConnection scoreConnection = (ScoreConnection) new ScoreConnection()
-					.execute(user.getUserId(), Double.toString(score));
+					.execute(user.getUserId(), Double.toString(score), currentRound.getRoundId());
 			JSONObject response = scoreConnection.get();
 		} catch (InterruptedException e) {
 		} catch (ExecutionException e) {

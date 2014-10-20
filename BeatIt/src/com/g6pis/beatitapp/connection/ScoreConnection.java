@@ -20,6 +20,7 @@ public class ScoreConnection extends AsyncTask<String, Void, JSONObject>{
 		//http://beatit-udelar.rhcloud.com/user/addOrUpdateUser/
 		String userId = params[0];
 		Double score = Double.parseDouble(params[1]);
+		Integer roundId = Integer.parseInt(params[2]);
 
 		URL url;
 		JSONObject json = new JSONObject();
@@ -29,7 +30,7 @@ public class ScoreConnection extends AsyncTask<String, Void, JSONObject>{
 				conn.setDoOutput(true);
 				OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
 
-				writer.write("userID="+userId+"&score="+score);
+				writer.write("userID="+userId+"&score="+score+"&roundID="+roundId);
 				writer.flush();
 				BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 				String response = reader.readLine();
