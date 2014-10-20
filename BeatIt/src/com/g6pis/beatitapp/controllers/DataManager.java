@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import com.g6pis.beatitapp.challenges.shutthedog.ShutTheDog;
 import com.g6pis.beatitapp.challenges.bouncinggame.BouncingGame;
 import com.g6pis.beatitapp.challenges.invitefriends.CanYouPlay;
+import com.g6pis.beatitapp.challenges.textandcolor.TextAndColor;
 import com.g6pis.beatitapp.challenges.usainbolt.UsainBolt;
 import com.g6pis.beatitapp.challenges.wakemeup.WakeMeUp;
 import com.g6pis.beatitapp.connection.LoginConnection;
@@ -29,14 +30,12 @@ import com.g6pis.beatitapp.entities.User;
 
 public class DataManager {
 
-
 	private static DataManager instance = new DataManager();
 
 	private User user;
 	private Round currentRound;
 	private Map<String, State> states;
 	private Map<String, DTState> persistedStates;
-	private boolean isLogged;
 	private List<DTRanking> ranking;
 	private double scoreToSend;
 
@@ -143,10 +142,15 @@ public class DataManager {
 				}
 					break;
 				case 5: {
-					BouncingGame bouncingGame = new BouncingGame(challengeId, name,
-							level, 3);
+					BouncingGame bouncingGame = new BouncingGame(challengeId,
+							name, level, 3);
 					challenges.add(bouncingGame);
-
+				}
+					break;
+				case 8: {
+					TextAndColor textAndColor = new TextAndColor(challengeId,
+							name, level, 3);
+					challenges.add(textAndColor);
 				}
 					break;
 				}
