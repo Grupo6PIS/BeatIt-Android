@@ -159,7 +159,7 @@
                 android:layout_alignLeft="@+id/yes_button"
                 android:layout_below="@+id/textView1_text"
                 android:layout_marginLeft="1dp"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
 
             <TextView
                 android:id="@+id/TextView2"
@@ -169,7 +169,7 @@
                 android:layout_alignBottom="@+id/TextView1"
                 android:layout_marginLeft="7dp"
                 android:layout_toRightOf="@+id/textView1"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
 
             <TextView
                 android:id="@+id/TextView3"
@@ -179,7 +179,7 @@
                 android:layout_alignBottom="@+id/TextView2"
                 android:layout_marginLeft="7dp"
                 android:layout_toRightOf="@+id/TextView2"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
             
 			<TextView
 			    android:id="@+id/TextView4"
@@ -189,7 +189,7 @@
 			    android:layout_alignBottom="@+id/TextView3"
 			    android:layout_marginLeft="7dp"
 			    android:layout_toRightOf="@+id/TextView3"
-			    android:background="@color/color_texto" />
+			    android:background="@drawable/rectangle_border" />
 			
             <TextView
                 android:id="@+id/TextView5"
@@ -199,7 +199,7 @@
                 android:layout_alignBottom="@+id/TextView4"
                 android:layout_marginLeft="7dp"
                 android:layout_toRightOf="@+id/TextView4"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
         </LinearLayout>
         
         <LinearLayout
@@ -217,7 +217,7 @@
                 android:layout_height="10dp"
                 android:layout_alignLeft="@+id/yes_button"
                 android:layout_below="@+id/textView1_text"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
 	
             <TextView
                 android:id="@+id/TextView7"
@@ -227,7 +227,7 @@
                 android:layout_alignBottom="@+id/textView6"
                 android:layout_marginLeft="7dp"
                 android:layout_toRightOf="@+id/TextView6"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
 
             <TextView
                 android:id="@+id/TextView8"
@@ -237,7 +237,7 @@
                 android:layout_alignBottom="@+id/TextView7"
                 android:layout_marginLeft="7dp"
                 android:layout_toRightOf="@+id/TextView7"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
             
             <TextView
                 android:id="@+id/TextView9"
@@ -247,7 +247,7 @@
                 android:layout_alignBottom="@+id/TextView8"
                 android:layout_marginLeft="7dp"
                 android:layout_toRightOf="@+id/TextView8"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
 
             <TextView
                 android:id="@+id/TextView10"
@@ -257,7 +257,7 @@
                 android:layout_alignBottom="@+id/TextView9"
                 android:layout_marginLeft="7dp"
                 android:layout_toRightOf="@+id/TextView9"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
         </LinearLayout>
         
         <LinearLayout
@@ -275,7 +275,7 @@
                 android:layout_height="10dp"
                 android:layout_alignLeft="@+id/yes_button"
                 android:layout_below="@+id/textView1_text"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
 	
             <TextView
                 android:id="@+id/TextView12"
@@ -285,7 +285,7 @@
                 android:layout_alignBottom="@+id/textView11"
                 android:layout_marginLeft="7dp"
                 android:layout_toRightOf="@+id/TextView11"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
 
             <TextView
                 android:id="@+id/TextView13"
@@ -295,7 +295,7 @@
                 android:layout_alignBottom="@+id/TextView12"
                 android:layout_marginLeft="7dp"
                 android:layout_toRightOf="@+id/TextView12"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
             
             <TextView
                 android:id="@+id/TextView14"
@@ -305,7 +305,7 @@
                 android:layout_alignBottom="@+id/TextView13"
                 android:layout_marginLeft="7dp"
                 android:layout_toRightOf="@+id/TextView13"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
 
             <TextView
                 android:id="@+id/TextView15"
@@ -315,7 +315,7 @@
                 android:layout_alignBottom="@+id/TextView14"
                 android:layout_marginLeft="7dp"
                 android:layout_toRightOf="@+id/TextView14"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
         </LinearLayout>
 		
         <LinearLayout
@@ -333,7 +333,7 @@
                 android:layout_height="10dp"
                 android:layout_alignLeft="@+id/yes_button"
                 android:layout_below="@+id/textView1_text"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
 
             <TextView
                 android:id="@+id/TextView17"
@@ -343,7 +343,7 @@
                 android:layout_alignBottom="@+id/TextView16"
                 android:layout_marginLeft="7dp"
                 android:layout_toRightOf="@+id/TextView16"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
 
             <TextView
                 android:id="@+id/TextView18"
@@ -353,7 +353,7 @@
                 android:layout_alignBottom="@+id/TextView17"
                 android:layout_marginLeft="7dp"
                 android:layout_toRightOf="@+id/TextView17"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
             
 			<TextView
 			    android:id="@+id/TextView19"
@@ -363,7 +363,7 @@
 			    android:layout_alignBottom="@+id/TextView18"
 			    android:layout_marginLeft="7dp"
 			    android:layout_toRightOf="@+id/TextView18"
-			    android:background="@color/color_texto" />
+			    android:background="@drawable/rectangle_border" />
 			
             <TextView
                 android:id="@+id/TextView20"
@@ -373,7 +373,7 @@
                 android:layout_alignBottom="@+id/TextView19"
                 android:layout_marginLeft="7dp"
                 android:layout_toRightOf="@+id/TextView19"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
         </LinearLayout>
 
         <LinearLayout
@@ -391,7 +391,7 @@
                 android:layout_height="10dp"
                 android:layout_alignLeft="@+id/yes_button"
                 android:layout_below="@+id/textView1_text"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
 
             <TextView
                 android:id="@+id/TextView22"
@@ -401,7 +401,7 @@
                 android:layout_alignBottom="@+id/TextView21"
                 android:layout_marginLeft="7dp"
                 android:layout_toRightOf="@+id/TextView21"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
 
             <TextView
                 android:id="@+id/TextView23"
@@ -411,7 +411,7 @@
                 android:layout_alignBottom="@+id/TextView2"
                 android:layout_marginLeft="7dp"
                 android:layout_toRightOf="@+id/TextView22"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
 
             <TextView
                 android:id="@+id/TextView24"
@@ -421,7 +421,7 @@
                 android:layout_alignBottom="@+id/TextView23"
                 android:layout_marginLeft="7dp"
                 android:layout_toRightOf="@+id/TextView23"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
 
             <TextView
                 android:id="@+id/TextView25"
@@ -431,7 +431,7 @@
                 android:layout_alignBottom="@+id/TextView24"
                 android:layout_marginLeft="7dp"
                 android:layout_toRightOf="@+id/TextView24"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
         </LinearLayout>
 
         <LinearLayout
@@ -449,7 +449,7 @@
                 android:layout_height="10dp"
                 android:layout_alignLeft="@+id/yes_button"
                 android:layout_below="@+id/textView1_text"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
 
             <TextView
                 android:id="@+id/TextView27"
@@ -459,7 +459,7 @@
                 android:layout_alignBottom="@+id/TextView26"
                 android:layout_marginLeft="7dp"
                 android:layout_toRightOf="@+id/TextView26"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
 
             <TextView
                 android:id="@+id/TextView28"
@@ -469,7 +469,7 @@
                 android:layout_alignBottom="@+id/TextView27"
                 android:layout_marginLeft="7dp"
                 android:layout_toRightOf="@+id/TextView27"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
 
             <TextView
                 android:id="@+id/TextView29"
@@ -479,7 +479,7 @@
                 android:layout_alignBottom="@+id/TextView28"
                 android:layout_marginLeft="7dp"
                 android:layout_toRightOf="@+id/TextView28"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
 
             <TextView
                 android:id="@+id/TextView30"
@@ -489,7 +489,7 @@
                 android:layout_alignBottom="@+id/TextView29"
                 android:layout_marginLeft="7dp"
                 android:layout_toRightOf="@+id/TextView29"
-                android:background="@color/color_texto" />
+                android:background="@drawable/rectangle_border" />
         </LinearLayout>
         </RelativeLayout>
 
