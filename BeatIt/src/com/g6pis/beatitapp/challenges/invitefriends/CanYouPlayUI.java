@@ -7,6 +7,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -57,7 +58,6 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.can_you_play);
 
-		this.editActionBar();
 
 		uiHelper = new UiLifecycleHelper(this, null);
 		uiHelper.onCreate(savedInstanceState);
@@ -107,6 +107,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 							R.string.can_you_play_description_2));
 			break;
 		}
+		this.editActionBar();
 	}
 
 	@Override
@@ -245,8 +246,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setTitle(this.getString(R.string.app_name));
-		actionBar.setBackgroundDrawable(new ColorDrawable(getResources()
-				.getColor(R.color.can_you_play)));
+		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(canYouPlay.getColor())));
 
 	}
 

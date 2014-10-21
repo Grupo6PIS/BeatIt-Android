@@ -1,5 +1,5 @@
 package com.g6pis.beatitapp.entities;
-/*package com.g6pis.beatit.entities;
+
 
 import static org.junit.Assert.assertEquals;
 
@@ -9,7 +9,7 @@ public class ChallengeTest {
 
 	@Test
 	public void ConstructorTest() {
-		Challenge challenge = new Challenge("1","Challenge 1", 2, 3);
+		Challenge challenge = new Challenge("1","Challenge 1", 2, 3, "");
 		
 		assertEquals("1",challenge.getChallengeId());
 		assertEquals("Challenge 1",challenge.getName());
@@ -20,7 +20,7 @@ public class ChallengeTest {
 	
 	@Test
 	public void SettersTest(){
-		Challenge challenge = new Challenge("1","Challenge 1", 2, 3);
+		Challenge challenge = new Challenge("1","Challenge 1", 2, 3, "");
 		
 		
 		challenge.setChallengeId("2");
@@ -36,4 +36,3 @@ public class ChallengeTest {
 	}
 
 }
-*/

@@ -47,6 +47,14 @@ public  class Challenge{
 	public void setMaxAttempt(int maxAttempt) {
 		this.maxAttempt = maxAttempt;
 	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
+	}
 	
 	
 

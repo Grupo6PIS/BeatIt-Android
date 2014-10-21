@@ -8,25 +8,26 @@ import com.g6pis.beatitapp.entities.Challenge;
 public class TextAndColor extends Challenge {
 	private static final String CHALLENGE_ID = "8";
 	
-	private static final int TIME_LEVEL1 = 700;
-	private static final int TIME_LEVEL2 = 500;
-	private static final int COUNT_LEVEL1 = 10;
-	private static final int COUNT_LEVEL2 = 20;
-	private static final int MIN_COUNT_LEVEL1 = 5;
-	private static final int MIN_COUNT_LEVEL2 = 10;
+	private static final int TIME_LEVEL1 = 1700;
+	private static final int TIME_LEVEL2 = 1500;
+	private static final int COUNT_LEVEL1 = 15;
+	private static final int COUNT_LEVEL2 = 30;
+	private static final int MIN_COUNT_LEVEL1 = 6;
+	private static final int MIN_COUNT_LEVEL2 = 15;
 	
 	private int time;
 	private int count;
 	private int minCount;
 	
-	private int successCount;
+	private int successfulCount;
+	private int unsuccessfulCount;
 	
 	
 	public TextAndColor(String challengeId, String name, Integer level,
 			int maxAttempt, String color) {
 		super(challengeId, name, level, maxAttempt, color);
 		
-		this.successCount = 0;
+		this.successfulCount = 0;
 		
 		switch(level){
 		case 1:{
@@ -55,12 +56,16 @@ public class TextAndColor extends Challenge {
 		return minCount;
 	}
 
-	public void success() {
-		this.successCount++;
+	public void successful() {
+		this.successfulCount++;
+	}
+	
+	public void unsuccessful(){
+		this.unsuccessfulCount++;
 	}
 	
 	public int calculateScore(){
-		int score = (this.successCount - count)*20;
+		int score = (this.successfulCount - minCount)*8;
 		if(score > 0)
 			return score;
 		else
@@ -70,13 +75,21 @@ public class TextAndColor extends Challenge {
 	public void finishChallenge(){
 		DataManager.getInstance().saveScore(CHALLENGE_ID, calculateScore());
 		
-		successCount = 0;
+		reset();
 	}
 	
 	public void reset(){
-		successCount = 0;
+		this.successfulCount = 0;
+		this.unsuccessfulCount = 0;
 	}
 	
+	public int getCurrentCount(){
+		return this.successfulCount + this.unsuccessfulCount;
+	}
+	
+	public boolean isCompleted(){
+		return getCurrentCount() == count;
+	}
 	
 	
 }

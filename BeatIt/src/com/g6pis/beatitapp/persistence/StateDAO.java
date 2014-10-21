@@ -142,7 +142,7 @@ public class StateDAO extends SQLiteOpenHelper {
 						currentAttempt,
 						finished, lastFinishDateTime);
 
-				states.put(state.getChallengeId(),state);
+			states.put(state.getChallengeId(),state);
 
 			} while (cursor.moveToNext());
 		}

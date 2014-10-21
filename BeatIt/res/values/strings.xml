@@ -8,11 +8,13 @@
     <color name="gris">#f5f5f5</color>
     <color name="rojo">#d40c34</color>
     <color name="verde">#008a00</color>
+    <color name="green">#008a00</color>
     <color name="blanco">#ffffff</color>
     <color name="gris_challenge_description">#494949</color>
     <color name="gris_challenge_values">#6d6d6d</color>
     <color name="gris_tab_text_notselected">#ABABAB</color>
     <color name="azul">#3B5998</color>
+    <color name="blue">#0050EF</color>
     <color name="shutthedog">#6A659C</color>
     <color name="cobalt">#0050EF</color>
     <color name="color_texto">#0050EF</color>
@@ -114,8 +116,8 @@
     
     <!-- Usain Bolt's Strings -->
     <string name="usain_bolt">Usain Bolt</string>
-    <string name="description_usain_bolt_1">In this challenge you have to run faster than 10 km/h for 30 seconds</string>
-    <string name="description_usain_bolt_2">In this challenge you have to run faster than 15 km/h for 45 seconds</string>
+    <string name="description_usain_bolt_1">In this challenge you have to run faster than 10 km/h for 30 seconds.</string>
+    <string name="description_usain_bolt_2">In this challenge you have to run faster than 15 km/h for 45 seconds.</string>
     <string name="logo_description">Logo Usain Bolt</string>   
     
     <!-- Can You Play's Strings  -->
@@ -131,8 +133,8 @@
     <string name="sms_sent">SMS sent</string>
     <string name="android_version">Android Version</string>
     <string name="also_available">Also available for Windows Phone</string>
-    <string name="can_you_play_description_1">In this challenge you have to post a link on your Facebook and, also, send 2 SMS with the link to 2 different contacts</string>
-    <string name="can_you_play_description_2">In this challenge you have to post a link on your Facebook and, also, send 4 SMS with the link to 4 different contacts</string>
+    <string name="can_you_play_description_1">In this challenge you have to post a link on your Facebook and, also, send 2 SMS with the link to 2 different contacts.</string>
+    <string name="can_you_play_description_2">In this challenge you have to post a link on your Facebook and, also, send 4 SMS with the link to 4 different contacts.</string>
    	<string name="select_diferent_contact">Select a different contact</string>
    	<string name="select_another_contact">Select another contact</string>
    	<string name="facebook_app_not_installed">The Facebook App is not installed, but you can continue</string>
@@ -170,6 +172,16 @@
     
     <!-- Text And Color String -->
     <string name="text_and_color">Text &amp; Color</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="violet">VIOLET</string>
+    <string name="red">RED</string>
+    <string name="green">GREEN</string>
+    <string name="blue">BLUE</string>
+    <string name="yellow">YELLOW</string>
+    <string name="orange">ORANGE</string>
+        <string name="description_text_and_color_1">In this challenge you have to decide whether the text and color match. 15 colors are displayed and you must hit at least 6.</string>
+    <string name="description_text_and_color_2">In this challenge you have to decide whether the text and color match. 30 colors are displayed and you must hit at least 15.</string>
     
     <!-- Catch Me String -->
     <string name="catch_me">Catch Me</string>

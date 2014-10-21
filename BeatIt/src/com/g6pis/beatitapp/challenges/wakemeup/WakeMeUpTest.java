@@ -1,5 +1,5 @@
 package com.g6pis.beatitapp.challenges.wakemeup;
-/*
+
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
@@ -14,7 +14,7 @@ public class WakeMeUpTest {
 
 	@Test
 	public void ConstructorTest() {
-		WakeMeUp wake = new WakeMeUp("2", "Wake Me Up", 2, 3);
+		WakeMeUp wake = new WakeMeUp("2", "Wake Me Up", 2, 3, "#00ABA9");
 		
 		assertEquals("2",wake.getChallengeId());
 		assertEquals("Wake Me Up",wake.getName());
@@ -26,7 +26,7 @@ public class WakeMeUpTest {
 	
 	@Test
 	public void settersTest(){
-		WakeMeUp wake = new WakeMeUp("2", "Wake Me Up", 2, 3);
+		WakeMeUp wake = new WakeMeUp("2", "Wake Me Up", 2, 3, "#00ABA9");
 
 		Integer number_of_repetitions = wake.getNumber_of_repetitions();
 		long l_number_of_repetitions = number_of_repetitions.longValue();
@@ -47,4 +47,3 @@ public class WakeMeUpTest {
 
 	
 }
-*/

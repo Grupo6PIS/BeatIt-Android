@@ -1,18 +1,16 @@
 package com.g6pis.beatitapp.entities;
-/*package com.g6pis.beatit.entities;
+
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.junit.Test;
 
-import com.g6pis.beatit.datatypes.DTDateTime;
+import com.g6pis.beatitapp.datatypes.DTDateTime;
 
 public class StateTest {
 
@@ -22,7 +20,7 @@ public class StateTest {
 		DTDateTime dateTimeFinish = new DTDateTime();
 		List<Challenge> challenges = new ArrayList<Challenge>();
 		
-		Challenge challenge = new Challenge("1", "Challenge 1", 2, 3);
+		Challenge challenge = new Challenge("1", "Challenge 1", 2, 3,"");
 		challenges.add(challenge);
 		
 		Round round = new Round("Round 1", dateTimeStart, dateTimeFinish, challenges);
@@ -46,7 +44,7 @@ public class StateTest {
 		DTDateTime dateTimeFinish = new DTDateTime();
 		List<Challenge> challenges = new ArrayList<Challenge>();
 		
-		Challenge challenge = new Challenge("1", "Challenge 1", 2, 3);
+		Challenge challenge = new Challenge("1", "Challenge 1", 2, 3,"");
 		challenges.add(challenge);
 		
 		Round round = new Round("Round 1", dateTimeStart, dateTimeFinish, challenges);
@@ -57,7 +55,7 @@ public class StateTest {
 		
 		challenges = new ArrayList<Challenge>();
 		
-		challenge = new Challenge("2", "Challenge 2", 2, 3);
+		challenge = new Challenge("2", "Challenge 2", 2, 3,"");
 		challenges.add(challenge);
 		
 		round = new Round("Round 2", dateTimeStart, dateTimeFinish, challenges);
@@ -98,4 +96,3 @@ public class StateTest {
 	
 
 }
-*/

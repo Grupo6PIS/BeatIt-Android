@@ -1,5 +1,5 @@
 package com.g6pis.beatitapp.entities;
-/*package com.g6pis.beatit.entities;
+
 
 import static org.junit.Assert.assertEquals;
 
@@ -42,4 +42,3 @@ public class UserTest {
 			assertEquals("imageURL2", user.getImageURL());
 	}
 }
-*/

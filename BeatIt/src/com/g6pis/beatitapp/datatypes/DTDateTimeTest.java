@@ -1,5 +1,5 @@
 package com.g6pis.beatitapp.datatypes;
-/*package com.g6pis.beatit.datatypes;
+
 
 import static org.junit.Assert.*;
 
@@ -26,4 +26,4 @@ public class DTDateTimeTest {
 	}
 
 }
- */
+ 

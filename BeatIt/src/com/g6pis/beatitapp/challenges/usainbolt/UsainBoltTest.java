@@ -1,5 +1,4 @@
 package com.g6pis.beatitapp.challenges.usainbolt;
-/*package com.g6pis.beatit.challenges.usainbolt;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,7 +12,7 @@ public class UsainBoltTest {
 
 	@Test
 	public void ConstructorTest() {
-		UsainBolt usain = new UsainBolt("1", "Usain Bolt", 2, 3);
+		UsainBolt usain = new UsainBolt("1", "Usain Bolt", 2, 3,"#008A00");
 		Set<Double> speeds = new HashSet<Double>();
 		
 		assertEquals("1",usain.getChallengeId());
@@ -26,7 +25,7 @@ public class UsainBoltTest {
 	
 	@Test
 	public void SpeedsTest(){
-		UsainBolt usain = new UsainBolt("1", "Usain Bolt", 2, 3);
+		UsainBolt usain = new UsainBolt("1", "Usain Bolt", 2, 3,"#008A00");
 		
 		Double speeds = 0d;
 		Double maxSpeed = 0d;
@@ -43,7 +42,7 @@ public class UsainBoltTest {
 		
 		Double avgSpeed = speeds/speedCount;
 		
-		double score = (maxSpeed + avgSpeed)*2;
+		double score = (maxSpeed + avgSpeed)*4;
 		
 		assertEquals(maxSpeed,usain.getMaxSpeed(), 0.0);
 		assertEquals(score,usain.calculateScore(),0.0);
@@ -54,7 +53,7 @@ public class UsainBoltTest {
 	
 	@Test
 	public void settersTest(){
-		UsainBolt usain = new UsainBolt("1", "Usain Bolt", 2, 3);
+		UsainBolt usain = new UsainBolt("1", "Usain Bolt", 2, 3,"#008A00");
 		
 		Double speeds = 0d;
 		Double maxSpeed = 0d;
@@ -69,7 +68,7 @@ public class UsainBoltTest {
 		
 		Double avgSpeed = speeds/speedCount;
 		
-		double score = (maxSpeed + avgSpeed)*2;
+		double score = (maxSpeed + avgSpeed)*4;
 		
 		usain.setAvgSpeed(avgSpeed);
 		usain.setMaxSpeed(maxSpeed);
@@ -80,4 +79,4 @@ public class UsainBoltTest {
 	}
 
 }
-*/
+

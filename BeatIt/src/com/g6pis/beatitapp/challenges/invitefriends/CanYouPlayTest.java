@@ -1,5 +1,4 @@
 package com.g6pis.beatitapp.challenges.invitefriends;
-/*package com.g6pis.beatit.challenges.invitefriends;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,7 +11,7 @@ public class CanYouPlayTest {
 
 	@Test
 	public void constructorTest() {
-		CanYouPlay canYouPlay = new CanYouPlay("3", "Can You Play?", 2, 3);
+		CanYouPlay canYouPlay = new CanYouPlay("3", "Can You Play?", 2, 3, "#3B5998");
 		
 		List<String> phones = new ArrayList<String>();
 		
@@ -27,7 +26,7 @@ public class CanYouPlayTest {
 	
 	@Test
 	public void scoreTest(){
-		CanYouPlay canYouPlay = new CanYouPlay("3", "Can You Play?", 2, 3);
+		CanYouPlay canYouPlay = new CanYouPlay("3", "Can You Play?", 2, 3, "#3B5998");
 		
 		List<String> phones = new ArrayList<String>();
 		
@@ -55,4 +54,3 @@ public class CanYouPlayTest {
 	}
 
 }
-*/

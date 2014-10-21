@@ -1,15 +1,14 @@
 package com.g6pis.beatitapp.entities;
-/*package com.g6pis.beatit.entities;
+
 
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.junit.Test;
 
-import com.g6pis.beatit.datatypes.DTDateTime;
+import com.g6pis.beatitapp.datatypes.DTDateTime;
 
 public class RoundTest {
 
@@ -19,7 +18,7 @@ public class RoundTest {
 
 		for (int i = 0; i < 10; i++) {
 			Challenge challenge = new Challenge(Integer.toString(i),
-					"Challenge " + i, 2, 3);
+					"Challenge " + i, 2, 3,"");
 			challenges.add(challenge);
 		}
 
@@ -42,7 +41,7 @@ public class RoundTest {
 
 		for (int i = 0; i < 10; i++) {
 			Challenge challenge = new Challenge(Integer.toString(i),
-					"Challenge " + i, 2, 3);
+					"Challenge " + i, 2, 3,"");
 			challenges.add(challenge);
 		}
 
@@ -69,7 +68,7 @@ public class RoundTest {
 
 		for (int i = 10; i < 20; i++) {
 			Challenge challenge = new Challenge(Integer.toString(i),
-					"Challenge " + i, 2, 3);
+					"Challenge " + i, 2, 3,"");
 			challenges.add(challenge);
 		}
 
@@ -106,7 +105,7 @@ public class RoundTest {
 
 		for (int i = 0; i < 16; i++) {
 			Challenge challenge = new Challenge(Integer.toString(i),
-					"Challenge " + i, 2, 3);
+					"Challenge " + i, 2, 3,"");
 			challenges.add(challenge);
 		}
 
@@ -138,4 +137,3 @@ public class RoundTest {
 	}
 
 }
-*/

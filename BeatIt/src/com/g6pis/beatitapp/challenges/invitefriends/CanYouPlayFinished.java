@@ -3,6 +3,7 @@ package com.g6pis.beatitapp.challenges.invitefriends;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
@@ -83,8 +84,9 @@ public class CanYouPlayFinished extends Activity implements OnClickListener {
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setTitle(this.getString(R.string.app_name));
-		actionBar.setBackgroundDrawable(new ColorDrawable(getResources()
-				.getColor(R.color.can_you_play)));
+		
+		CanYouPlay canYouPlay = (CanYouPlay) DataManager.getInstance().getChallenge(CHALLENGE_ID);
+		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(canYouPlay.getColor())));
 
 		((ImageView) findViewById(R.id.imageView_Logo))
 				.setImageDrawable(getResources().getDrawable(
@@ -92,10 +94,9 @@ public class CanYouPlayFinished extends Activity implements OnClickListener {
 		((TextView) findViewById(R.id.textView_Challenge_Name))
 				.setText(getResources().getString(R.string.can_you_play));
 		((TextView) findViewById(R.id.textView_Challenge_Name))
-				.setTextColor(getResources().getColor(R.color.can_you_play));
+				.setTextColor(Color.parseColor(canYouPlay.getColor()));
 		((TableRow) findViewById(R.id.text_row))
-				.setBackgroundColor(getResources().getColor(
-						R.color.can_you_play));
+				.setBackgroundColor(Color.parseColor(canYouPlay.getColor()));
 
 		((ImageButton) findViewById(R.id.refresh_button))
 				.setVisibility(View.INVISIBLE);

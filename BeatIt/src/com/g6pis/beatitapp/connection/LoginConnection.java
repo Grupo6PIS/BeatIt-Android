@@ -58,6 +58,7 @@ public class LoginConnection extends AsyncTask<String, Void, JSONObject>{
 				}
 		} catch (MalformedURLException e) {
 		} catch (IOException e) {
+			e.printStackTrace();
 		} catch (JSONException e) {
 		}
 		

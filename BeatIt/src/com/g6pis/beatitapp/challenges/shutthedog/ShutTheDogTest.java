@@ -1,6 +1,6 @@
 package com.g6pis.beatitapp.challenges.shutthedog;
 
-/*import static org.junit.Assert.*;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -9,7 +9,7 @@ public class ShutTheDogTest {
 	
 	@Test
 	public void constructorTest() {
-		ShutTheDog std = new ShutTheDog("4", "Shut The Dog", 2, 3);
+		ShutTheDog std = new ShutTheDog("4", "Shut The Dog", 2, 3,"#6A659C");
 		
 		assertEquals("4",std.getChallengeId());
 		assertEquals("Shut The Dog",std.getName());
@@ -24,7 +24,7 @@ public class ShutTheDogTest {
 	
 	@Test
 	public void finishedTest() {
-		ShutTheDog std = new ShutTheDog("42", "Shut The Dog", 2, 3);
+		ShutTheDog std = new ShutTheDog("42", "Shut The Dog", 2, 3,"#6A659C");
 		int resultados[] = {100, 200, 300, 400, 500};
 		std.setResults(resultados);
 		std.setLives(2);
@@ -38,7 +38,7 @@ public class ShutTheDogTest {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void settersTest() {
-		ShutTheDog std = new ShutTheDog("4", "Shut The Dog", 2, 3);
+		ShutTheDog std = new ShutTheDog("4", "Shut The Dog", 2, 3,"#6A659C");
 		std.setScore(500);
 		std.setArrayLength(2);
 		std.setLives(1);
@@ -57,7 +57,7 @@ public class ShutTheDogTest {
 	@SuppressWarnings("deprecation")
 	@Test
 	public void scoreTest() {
-		ShutTheDog std = new ShutTheDog("42", "Shut The Dog", 2, 3);
+		ShutTheDog std = new ShutTheDog("42", "Shut The Dog", 2, 3,"#6A659C");
 		
 		int resultados[] = {100, 200, 300, 400, 500};
 		std.setResults(resultados);
@@ -66,4 +66,4 @@ public class ShutTheDogTest {
 		
 	}
 
-}*/
+}

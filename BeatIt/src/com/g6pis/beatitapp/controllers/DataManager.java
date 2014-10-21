@@ -10,11 +10,13 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.g6pis.beatitapp.catchme.CatchMe;
 import com.g6pis.beatitapp.challenges.bouncinggame.BouncingGame;
 import com.g6pis.beatitapp.challenges.invitefriends.CanYouPlay;
 import com.g6pis.beatitapp.challenges.shutthedog.ShutTheDog;
 import com.g6pis.beatitapp.challenges.songcomplete.SongComplete;
 import com.g6pis.beatitapp.challenges.textandcolor.TextAndColor;
+import com.g6pis.beatitapp.challenges.throwthephone.ThrowThePhone;
 import com.g6pis.beatitapp.challenges.usainbolt.UsainBolt;
 import com.g6pis.beatitapp.challenges.wakemeup.WakeMeUp;
 import com.g6pis.beatitapp.connection.LoginConnection;
@@ -117,7 +119,7 @@ public class DataManager {
 				String name = jsonChallenge.getString("challengeName");
 				int level = jsonChallenge.getInt("challengeLevel");
 				String color = jsonChallenge.getString("colorHex");
-				int maxAttempts = jsonChallenge.getInt("maxAttempts");
+				int maxAttempts = jsonChallenge.getInt("maxAttemps");
 				switch (Integer.parseInt(challengeId)) {
 				case 1: {
 					UsainBolt usainBolt = new UsainBolt(challengeId, name,
@@ -149,7 +151,7 @@ public class DataManager {
 					challenges.add(bouncingGame);
 				}
 					break;
-				/*case 6: {
+				case 6: {
 					ThrowThePhone throwThePhone = new ThrowThePhone(challengeId,
 							name, level, maxAttempts, color);
 					challenges.add(throwThePhone);
@@ -160,7 +162,7 @@ public class DataManager {
 							name, level, maxAttempts, color);
 					challenges.add(catchMe);
 				}
-				break;*/
+				break;
 				case 8: {
 					TextAndColor textAndColor = new TextAndColor(challengeId,
 							name, level, maxAttempts, color);
@@ -224,6 +226,7 @@ public class DataManager {
 		} catch (InterruptedException e) {
 		} catch (ExecutionException e) {
 		} catch (JSONException e) {
+			e.printStackTrace();
 		}
 
 		return userId;
