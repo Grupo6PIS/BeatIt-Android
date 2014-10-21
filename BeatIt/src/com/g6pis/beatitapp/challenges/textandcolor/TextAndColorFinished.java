@@ -91,9 +91,9 @@ public class TextAndColorFinished extends Activity implements OnClickListener{
 
 		((ImageView) findViewById(R.id.imageView_Logo))
 				.setImageDrawable(getResources().getDrawable(
-						R.drawable.ic_can_you_play));
+						R.drawable.ic_text_and_color));
 		((TextView) findViewById(R.id.textView_Challenge_Name))
-				.setText(getResources().getString(R.string.can_you_play));
+				.setText(getResources().getString(R.string.text_and_color));
 		((TextView) findViewById(R.id.textView_Challenge_Name))
 				.setTextColor(Color.parseColor(textAndColor.getColor()));
 		((TableRow) findViewById(R.id.text_row))
