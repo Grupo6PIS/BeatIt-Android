@@ -140,28 +140,21 @@ public class SongCompleteUI extends Activity {
 	
 	public void button1Click(View v){
 		if (!counterRunning){
-			/*Random r = new Random();
-			currentSong = r.nextInt(songCount - 0 + 1) + 0;
-			
-			String datos[][];
-			if (songcomplete.getLevel() == 1){
-				datos = allArtists;
-			} else {
-				datos = allSongs;
-			}
 			
 			Button b = (Button)findViewById(R.id.btnOpcion1);
-			b.setText(datos[currentSong][0]);
+			b.setText(getResources().getString(R.string.song_complete_started));
 			
 			Button b1 = (Button)findViewById(R.id.btnOpcion2);
-			b1.setText(datos[currentSong][1]);
+			b1.setVisibility(0);
 			
 			Button b2 = (Button)findViewById(R.id.btnOpcion3);
-			b2.setText(datos[currentSong][2]);*/
+			b2.setVisibility(0);
+			
 			roundNumber = 1;
 			pressedButton = 0;
 			handler.postDelayed(rutine, 3000);
 		} else {
+			pressedButton = 0;
 			this.buttonPressed();
 		}
 	}
@@ -208,6 +201,7 @@ public class SongCompleteUI extends Activity {
 		if (roundNumber == 5){
 			//Termino la ronda
 			roundNumber = 0;
+			songcomplete.setSucceed_times(number_of_guessed);
 			number_of_guessed = 0;
 			this.completeChallenge();	
 		} else {
@@ -297,6 +291,7 @@ public class SongCompleteUI extends Activity {
 					if (roundNumber == 5){
 						//Termino la ronda
 						roundNumber = 0;
+						songcomplete.setSucceed_times(number_of_guessed);
 						number_of_guessed = 0;
 						SongCompleteUI.this.completeChallenge();	
 					} else {

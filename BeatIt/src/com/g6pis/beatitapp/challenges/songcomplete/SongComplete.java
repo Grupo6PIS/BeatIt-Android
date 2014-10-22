@@ -30,6 +30,14 @@ public class SongComplete extends Challenge {
 		this.succeed_times = 0;
 	}
 
+	public long getSucceed_times() {
+		return succeed_times;
+	}
+
+	public void setSucceed_times(long succeed_times) {
+		this.succeed_times = succeed_times;
+	}
+
 	public void finishChallenge(){
 		DataManager.getInstance().saveScore(CHALLENGE_ID, calculateScore());
 	}

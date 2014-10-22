@@ -156,6 +156,13 @@
     <string name="shut_the_dog_started">¡Comenzó! ¡Presta atención!</string>
     <string name="shut_the_dog_lost">¡Perdiste! :( ¡Intenta de nuevo!</string>
     
+    <!-- Song Complete Strings -->
+    <string name="song_complete">Completa la Canción</string>
+    <string name="description_song_complete_1">En este desafío deberas adivinar el nombre del artista que toca la canción que suena en 20 segundos, 5 veces!</string>
+    <string name="description_song_complete_2">En este desafío deberas adivinar el nombre de la canción que suena en 10 segundos, 5 veces!</string>
+    <string name="logo_song_complete">Logo Completa la Canción</string>
+    <string name="song_complete_started">¡Comenzó! ¡Presta atención!</string>
+    <string name="song_complete_lost">¡Perdiste! :( ¡Intenta de nuevo!</string>
     
 	<!-- Bouncing Game Strings -->
     <string name="bouncing_game">Bouncing Game</string>

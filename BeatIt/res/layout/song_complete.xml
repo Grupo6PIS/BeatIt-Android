@@ -218,8 +218,8 @@
         android:layout_marginTop="10dp"
         android:background="@color/song_complete"
         android:onClick="button2Click"
-        android:text="@string/start_challenge_button"
-        android:textColor="@color/blanco" />
+        android:textColor="@color/blanco"
+        android:visibility="invisible" />
 
     <Button
         android:id="@+id/btnOpcion3"
@@ -232,7 +232,7 @@
         android:layout_toRightOf="@+id/textView_Start_Time_Value"
         android:background="@color/song_complete"
         android:onClick="button3Click"
-        android:text="@string/start_challenge_button"
-        android:textColor="@color/blanco" />
+        android:textColor="@color/blanco"
+        android:visibility="invisible" />
     
 </RelativeLayout>
