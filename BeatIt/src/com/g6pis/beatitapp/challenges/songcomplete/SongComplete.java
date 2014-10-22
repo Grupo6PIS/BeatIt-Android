@@ -5,7 +5,7 @@ import com.g6pis.beatitapp.entities.Challenge;
 
 public class SongComplete extends Challenge {
 
-	private static final String CHALLENGE_ID = "5";
+	private static final String CHALLENGE_ID = "9";
 	
 	private long succeed_times;
 	

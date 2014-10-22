@@ -21,7 +21,7 @@ import com.g6pis.beatitapp.datatypes.DTState;
 import com.g6pis.beatitapp.entities.Challenge;
 
 public class SongCompleteFinished extends Activity implements OnClickListener {
-	private static final String CHALLENGE_ID = "5";
+	private static final String CHALLENGE_ID = "9";
 	
 	private DTState state;
 

@@ -7,6 +7,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import com.facebook.Request;
@@ -69,23 +71,38 @@ public class MainActivity extends Activity {
 		imageURL = "https://graph.facebook.com/"+fbId+"/picture?type=square&width=960&height=960&access_token="+accessToken;
         
 		Session session = Session.getActiveSession();
-		boolean isClosed = session.getState().isClosed();
-		if (fbId.isEmpty()) {
-			startActivity(login);
-			finish();
-		} else {
-			StateDAO db = new StateDAO(this);
-			Map<String,DTState> persistedStates = db.getAllStates();
-			DataManager.getInstance().setStates(persistedStates);
-			userId = DataManager.getInstance().login(userId,fbId, firstName, lastName, country, imageURL);
-			if(persistedStates.isEmpty()){
-				persistedStates = DataManager.getInstance().getPersistedStates();
-				db.addStates(persistedStates);
+		if(this.isOnline()){
+			if ((fbId.isEmpty())) {
+				startActivity(login);
+				finish();
+			} else {
+				StateDAO db = new StateDAO(this);
+				Map<String,DTState> persistedStates = db.getAllStates();
+				DataManager.getInstance().setStates(persistedStates);
+				userId = DataManager.getInstance().login(userId,fbId, firstName, lastName, country, imageURL);
+				if(persistedStates.isEmpty()){
+					persistedStates = DataManager.getInstance().getPersistedStates();
+					db.addStates(persistedStates);
+				}
+				Editor editor = sharedPrefs.edit();
+				editor.putString("userId", userId);
+				editor.commit();
+				startActivity(home);
+				finish();
 			}
-			Editor editor = sharedPrefs.edit();
-			editor.putString("userId", userId);
+		}else{
+			Session.getActiveSession().closeAndClearTokenInformation();
+
+			StateDAO db = new StateDAO(this);
+			db.drop();
+			
+			sharedPrefs = getApplicationContext()
+					.getSharedPreferences(APP_SHARED_PREFS,
+							Context.MODE_PRIVATE);
+			editor = sharedPrefs.edit();
+			editor.clear();
 			editor.commit();
-			startActivity(home);
+			startActivity(login);
 			finish();
 		}
 		
@@ -162,7 +179,15 @@ public class MainActivity extends Activity {
                 }
             }
         }).executeAsync();
-
-
     }
+	
+	public boolean isOnline() {
+	    ConnectivityManager cm =
+	        (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+	    NetworkInfo netInfo = cm.getActiveNetworkInfo();
+	    if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+	        return true;
+	    }
+	    return false;
+	}
 }

@@ -93,11 +93,14 @@ public class DataManager {
 		try {
 			LoginConnection login = (LoginConnection) new LoginConnection()
 					.execute(userId, fbId, firstName, lastName, imageURL);
-			JSONObject jsonUser = login.get();
-			userId = jsonUser.getString("_id");
+			JSONObject json = login.get();
+			if(!json.getBoolean("error")){
+				JSONObject jsonUser = json.getJSONObject("user");
+				userId = jsonUser.getString("_id");
 
 			user = new User(userId, fbId, firstName, lastName, country,
 					imageURL);
+			}
 
 			// Server getRound
 			RoundConnection roundConnection = (RoundConnection) new RoundConnection()
@@ -197,6 +200,8 @@ public class DataManager {
 			String persistedRoundId = this.getPersistedRoundId();
 			if (!persistedRoundId.equals(currentRound.getRoundId())) {
 				persistedStates = new HashMap<String, DTState>();
+				//Si el array de states que viene del servidor no es vacío -> creo los states a partir de ahí
+				//Sino -> los creo de 0.
 				for (Challenge challenge : currentRound.getChallenges()) {
 					State state = new State(currentRound, challenge, user);
 					states.put(challenge.getChallengeId(), state);
