@@ -73,9 +73,6 @@ public class TextAndColorUI extends Activity implements OnClickListener {
 			((TextView) findViewById(R.id.textView_Description_Value_2))
 					.setText(getResources().getString(
 							R.string.description_text_and_color_1));
-			((LinearLayout)findViewById(R.id.progress4_layout)).setVisibility(View.INVISIBLE);
-			((LinearLayout)findViewById(R.id.progress5_layout)).setVisibility(View.INVISIBLE);
-			((LinearLayout)findViewById(R.id.progress6_layout)).setVisibility(View.INVISIBLE);
 			break;
 		case 2:
 			((TextView) findViewById(R.id.textView_Description_Value_2))
@@ -120,6 +117,7 @@ public class TextAndColorUI extends Activity implements OnClickListener {
 	@Override
 	public void onBackPressed() {
 		textAndColor.reset();
+		timer.cancel();
 		Intent home = new Intent(this, Home.class);
 		startActivity(home);
 		this.finish();
@@ -139,6 +137,7 @@ public class TextAndColorUI extends Activity implements OnClickListener {
 		// Respond to the action bar's Up/Home button
 		case android.R.id.home:
 			textAndColor.reset();
+			timer.cancel();
 			Intent home = new Intent(this, Home.class);
 			startActivity(home);
 			this.finish();
@@ -172,6 +171,8 @@ public class TextAndColorUI extends Activity implements OnClickListener {
 			
 			timer.cancel();
 			changeWord();
+
+				
 			
 		}
 			break;
@@ -368,51 +369,71 @@ public class TextAndColorUI extends Activity implements OnClickListener {
 			((TextView)findViewById(R.id.TextView15)).setBackgroundColor(color);
 			break;
 		case 16:
-			((TextView)findViewById(R.id.TextView16)).setBackgroundColor(color);
+			resetProgress();
+			((TextView)findViewById(R.id.TextView1)).setBackgroundColor(color);
 			break;
 		case 17:
-			((TextView)findViewById(R.id.TextView17)).setBackgroundColor(color);
+			((TextView)findViewById(R.id.TextView2)).setBackgroundColor(color);
 			break;
 		case 18:
-			((TextView)findViewById(R.id.TextView18)).setBackgroundColor(color);
+			((TextView)findViewById(R.id.TextView3)).setBackgroundColor(color);
 			break;
 		case 19:
-			((TextView)findViewById(R.id.TextView19)).setBackgroundColor(color);
+			((TextView)findViewById(R.id.TextView4)).setBackgroundColor(color);
 			break;
 		case 20:
-			((TextView)findViewById(R.id.TextView20)).setBackgroundColor(color);
+			((TextView)findViewById(R.id.TextView5)).setBackgroundColor(color);
 			break;
 		case 21:
-			((TextView)findViewById(R.id.TextView21)).setBackgroundColor(color);
+			((TextView)findViewById(R.id.TextView6)).setBackgroundColor(color);
 			break;
 		case 22:
-			((TextView)findViewById(R.id.TextView22)).setBackgroundColor(color);
+			((TextView)findViewById(R.id.TextView7)).setBackgroundColor(color);
 			break;
 		case 23:
-			((TextView)findViewById(R.id.TextView23)).setBackgroundColor(color);
+			((TextView)findViewById(R.id.TextView8)).setBackgroundColor(color);
 			break;
 		case 24:
-			((TextView)findViewById(R.id.TextView24)).setBackgroundColor(color);
+			((TextView)findViewById(R.id.TextView9)).setBackgroundColor(color);
 			break;
 		case 25:
-			((TextView)findViewById(R.id.TextView25)).setBackgroundColor(color);
+			((TextView)findViewById(R.id.TextView10)).setBackgroundColor(color);
 			break;
 		case 26:
-			((TextView)findViewById(R.id.TextView26)).setBackgroundColor(color);
+			((TextView)findViewById(R.id.TextView11)).setBackgroundColor(color);
 			break;
 		case 27:
-			((TextView)findViewById(R.id.TextView27)).setBackgroundColor(color);
+			((TextView)findViewById(R.id.TextView12)).setBackgroundColor(color);
 			break;
 		case 28:
-			((TextView)findViewById(R.id.TextView28)).setBackgroundColor(color);
+			((TextView)findViewById(R.id.TextView13)).setBackgroundColor(color);
 			break;
 		case 29:
-			((TextView)findViewById(R.id.TextView29)).setBackgroundColor(color);
+			((TextView)findViewById(R.id.TextView14)).setBackgroundColor(color);
 			break;
 		case 30:
-			((TextView)findViewById(R.id.TextView30)).setBackgroundColor(color);
+			((TextView)findViewById(R.id.TextView15)).setBackgroundColor(color);
 			break;
 		}
+	}
+	
+	@SuppressWarnings("deprecation")
+	public void resetProgress(){
+		((TextView)findViewById(R.id.TextView1)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
+		((TextView)findViewById(R.id.TextView2)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
+		((TextView)findViewById(R.id.TextView3)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
+		((TextView)findViewById(R.id.TextView4)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
+		((TextView)findViewById(R.id.TextView5)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
+		((TextView)findViewById(R.id.TextView6)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
+		((TextView)findViewById(R.id.TextView7)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
+		((TextView)findViewById(R.id.TextView8)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
+		((TextView)findViewById(R.id.TextView9)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
+		((TextView)findViewById(R.id.TextView10)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
+		((TextView)findViewById(R.id.TextView11)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
+		((TextView)findViewById(R.id.TextView12)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
+		((TextView)findViewById(R.id.TextView13)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
+		((TextView)findViewById(R.id.TextView14)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
+		((TextView)findViewById(R.id.TextView15)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
 	}
 	
 }
