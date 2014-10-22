@@ -116,7 +116,7 @@
         android:src="@drawable/ic_calla_al_perro" />
 
     <Button
-        android:id="@+id/start_button"
+        android:id="@+id/btnOpcion1"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_alignLeft="@+id/textView_To_Beat_Value"

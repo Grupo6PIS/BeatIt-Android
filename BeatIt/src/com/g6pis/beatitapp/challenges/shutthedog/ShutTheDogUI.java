@@ -173,7 +173,7 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 	}
 	
 	public void comenzar(View v){
-		Button b = (Button)findViewById(R.id.start_button);
+		Button b = (Button)findViewById(R.id.btnOpcion1);
 		b.setText(R.string.shut_the_dog_started);
 		b.setBackgroundColor(getResources().getColor(R.color.shutthedog));
 		b.setEnabled(false);
@@ -222,7 +222,7 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 					it = 0;
 					secondCount=0;
 					
-					Button b = (Button)findViewById(R.id.start_button);
+					Button b = (Button)findViewById(R.id.btnOpcion1);
 					b.setText(R.string.shut_the_dog_lost);
 					b.setBackgroundColor(getResources().getColor(R.color.red));
 					b.setEnabled(true);
@@ -269,7 +269,7 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 			  mp.stop();
 			  c.cancel();
 			  
-			  Button b = (Button)findViewById(R.id.start_button);
+			  Button b = (Button)findViewById(R.id.btnOpcion1);
 			  b.setText(it+1 + " !");
 			  
 			  results[it] = secondCount;

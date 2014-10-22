@@ -15,27 +15,23 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.hardware.Sensor;
-import android.hardware.SensorEvent;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
-public class SongCompleteUI extends Activity implements SensorEventListener {
-	private static final String CHALLENGE_ID = "4";
+public class SongCompleteUI extends Activity {
+	private static final String CHALLENGE_ID = "9";
 	private SongComplete songcomplete;
 	private DTState state;
 	
-	private SensorManager mSensorManager;
-	private Sensor mSensor;
 	private MediaPlayer mp;
 	private Handler handler = new Handler();
 	
@@ -44,33 +40,46 @@ public class SongCompleteUI extends Activity implements SensorEventListener {
 	
 	CountDownTimer c;
 	
-	int number_of_barks = 0;
-	int rangeMin[];
-	int rangeMax[];
+	int number_of_guessed = 0;
 	
 	//Rangos nivel 1
-	int minRange1[] = {2,2,2};
-	int maxRange1[] = {4,4,4};
+	String allSongs[][] = {
+			{"Perro","Gato","Mono"},
+			{"Perro2","Gato2","Mono2"},
+			{"Perro3","Gato3","Mono3"},
+	};
+	
+	String allArtists[][] = {
+			{"Perro","Gato","Mono"},
+			{"Perro2","Gato2","Mono2"},
+			{"Perro3","Gato3","Mono3"},
+	};
+	
+	String correctSongs[] = {"Perro", "Perro2", "Perro3"};
+	String correctArtists[] = {"Perro", "Perro2", "Perro3"};
+	
+	String datos[][]; //auxiliar
 	
 	//Rangos nivel 2
-	int minRange2[] = {2,2,2,2,2};
-	int maxRange2[] = {3,3,3,3,3};
-	
-	//Array de resultados
-	int results[] = new int[5];
+	int correctCounter = 0;
+	private int secondCount;
+	private int songCount = 3;
+	private int roundNumber;
+	private int currentSong;
+	private int pressedButton;
+	private int maxDelay; //en segundos
+	private boolean counterRunning;
+	private ProgressBar bar;
+
 	int it = 0;
 	boolean firstTime = true;
-	
-	private int secondCount;
-	int maxDelay = 5; //en segundos
-	
+		
 	boolean hasWon = true;
-	double score = 0;
 	 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.shut_the_dog);
+		setContentView(R.layout.song_complete);
 		
 		songcomplete = (SongComplete) DataManager.getInstance().getChallenge(
 				CHALLENGE_ID);
@@ -87,27 +96,32 @@ public class SongCompleteUI extends Activity implements SensorEventListener {
 			((TextView)findViewById(R.id.textView_To_Beat)).setVisibility(View.INVISIBLE);
 		}
 		
-		switch(songcomplete.getLevel()){
-		case 1: ((TextView)findViewById(R.id.textView_Description_Value_2)).setText(getResources().getString(R.string.description_shut_the_dog_1));
-		case 2: ((TextView)findViewById(R.id.textView_Description_Value_2)).setText(getResources().getString(R.string.description_shut_the_dog_2));
-		}
+		//todo: arreglar el tema de la descripcion
+		/*switch(songcomplete.getLevel()){
+			case 1: ((TextView)findViewById(R.id.textView_Description_Value_2)).setText(getResources().getString(R.string.description_shut_the_dog_1));
+			case 2: ((TextView)findViewById(R.id.textView_Description_Value_2)).setText(getResources().getString(R.string.description_shut_the_dog_2));
+		}*/
 		
+		if (songcomplete.getLevel() == 1){
+			datos = allArtists;
+		} else {
+			datos = allSongs;
+		}
 
 		this.editActionBar();
 		
+		counterRunning = false;
 		if (songcomplete.getLevel() == 1){
-			number_of_barks = 3;
-			rangeMin = minRange1;
-			rangeMax = maxRange1;
+			maxDelay = 10;
 		} else {
-			number_of_barks = 5;
-			rangeMin = minRange2;
-			rangeMax = maxRange2;
+			maxDelay = 20;
 		}
-		mp = MediaPlayer.create(this, R.raw.bark);
-		mp.setLooping(true);
-		mSensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
-		mSensor = mSensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+		
+		//cargo el progessbar
+		bar = (ProgressBar)findViewById(R.id.progressBar_Song_Complete);
+		bar.setIndeterminate(false); // May not be necessary
+		bar.setMax(maxDelay*1000);
+		
 	}
 	
 	/***Useful Functions***/
@@ -123,32 +137,104 @@ public class SongCompleteUI extends Activity implements SensorEventListener {
 
 		return date;
 	}
-
-
-	public double getScore() {
-		return score;
-	}
-
-	public void setScore(double score) {
-		this.score = score;
+	
+	public void button1Click(View v){
+		if (!counterRunning){
+			/*Random r = new Random();
+			currentSong = r.nextInt(songCount - 0 + 1) + 0;
+			
+			String datos[][];
+			if (songcomplete.getLevel() == 1){
+				datos = allArtists;
+			} else {
+				datos = allSongs;
+			}
+			
+			Button b = (Button)findViewById(R.id.btnOpcion1);
+			b.setText(datos[currentSong][0]);
+			
+			Button b1 = (Button)findViewById(R.id.btnOpcion2);
+			b1.setText(datos[currentSong][1]);
+			
+			Button b2 = (Button)findViewById(R.id.btnOpcion3);
+			b2.setText(datos[currentSong][2]);*/
+			roundNumber = 1;
+			pressedButton = 0;
+			handler.postDelayed(rutine, 3000);
+		} else {
+			this.buttonPressed();
+		}
 	}
 	
-	public void comenzar(View v){
-		Button b = (Button)findViewById(R.id.start_button);
-		b.setText(R.string.shut_the_dog_started);
-		b.setBackgroundColor(getResources().getColor(R.color.song_complete));
-		b.setEnabled(false);
+	public void button2Click(View v){
+		pressedButton = 1;
+		this.buttonPressed();
+	}
+	
+	public void button3Click(View v){
+		pressedButton = 2;
+		this.buttonPressed();
+	}
+	
+	private void buttonPressed(){
+		secondCount = 0;
+		counterRunning = false;
+		c.cancel();
+		mp.stop();
 		
-		Random r = new Random();
-		int segundosComienzo = r.nextInt(rangeMax[it] - rangeMin[it] + 1) + rangeMin[it];
-		int tiempo = segundosComienzo * 1000;
+		LinearLayout l = null;
+		switch(roundNumber){
+			case 1: l= (LinearLayout)findViewById(R.id.bar1);
+					break;
+			case 2: l= (LinearLayout)findViewById(R.id.bar2);
+					break;
+			case 3: l= (LinearLayout)findViewById(R.id.bar3);
+					break;
+			case 4: l= (LinearLayout)findViewById(R.id.bar4);
+					break;
+			case 5: l= (LinearLayout)findViewById(R.id.bar5);
+					break;
+		}
 		
-		handler.postDelayed(rutine, tiempo);
+		if (checkResult()){
+			//Acerto
+			number_of_guessed ++;
+			l.setBackgroundColor(getResources().getColor(R.color.verde));
+		} else {
+			//No acerto
+			l.setBackgroundColor(getResources().getColor(R.color.red));
+		}
+		
+		if (roundNumber == 5){
+			//Termino la ronda
+			roundNumber = 0;
+			number_of_guessed = 0;
+			this.completeChallenge();	
+		} else {
+			//Sigue la ronda
+			roundNumber++;
+			handler.postDelayed(rutine, 2000);
+		}
 	}
 	
 	private Runnable rutine = new Runnable() {
 		@Override
 		public void run() {
+			Random r = new Random();
+			currentSong = r.nextInt(songCount);
+			
+			Button b = (Button)findViewById(R.id.btnOpcion1);
+			b.setText(datos[currentSong][0]);
+			
+			Button b1 = (Button)findViewById(R.id.btnOpcion2);
+			b1.setText(datos[currentSong][1]);
+			
+			Button b2 = (Button)findViewById(R.id.btnOpcion3);
+			b2.setText(datos[currentSong][2]);
+			
+			mp = MediaPlayer.create(SongCompleteUI.this, R.raw.bark);
+			mp.setLooping(true);
+			
 			if (mp != null){
 				mp.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
 				    @Override
@@ -166,36 +252,81 @@ public class SongCompleteUI extends Activity implements SensorEventListener {
 					}
 				}
 			}
-			
-			mSensorManager.registerListener(SongCompleteUI.this, mSensor, SensorManager.SENSOR_DELAY_NORMAL);	
-			
+						
 			c = new CountDownTimer(maxDelay*1000, 1) {
 				
 				public void onTick(long millisUntilFinished) {
 					secondCount++;
+					counterRunning = true;
+					
+					//Cargo la progressbar
+					int mils = (int) millisUntilFinished;
+					bar.setProgress((maxDelay*1000) - mils);
 				}
 				
 				public void onFinish() {
-					//PERDIO
-					mSensorManager.unregisterListener(SongCompleteUI.this, mSensor);
-					
+					//PERDIO					
+					secondCount = 0;
+					counterRunning = false;
+					c.cancel();
 					mp.stop();
-					it = 0;
-					secondCount=0;
 					
-					Button b = (Button)findViewById(R.id.start_button);
-					b.setText(R.string.shut_the_dog_lost);
-					b.setBackgroundColor(getResources().getColor(R.color.red));
-					b.setEnabled(true);
+					LinearLayout l = null;
+					switch(roundNumber){
+						case 1: l= (LinearLayout)findViewById(R.id.bar1);
+								break;
+						case 2: l= (LinearLayout)findViewById(R.id.bar2);
+								break;
+						case 3: l= (LinearLayout)findViewById(R.id.bar3);
+								break;
+						case 4: l= (LinearLayout)findViewById(R.id.bar4);
+								break;
+						case 5: l= (LinearLayout)findViewById(R.id.bar5);
+								break;
+					}
+					
+					if (checkResult()){
+						//Acerto
+						number_of_guessed ++;
+						l.setBackgroundColor(getResources().getColor(R.color.verde));
+					} else {
+						//No acerto
+						l.setBackgroundColor(getResources().getColor(R.color.red));
+					}
+					
+					if (roundNumber == 5){
+						//Termino la ronda
+						roundNumber = 0;
+						number_of_guessed = 0;
+						SongCompleteUI.this.completeChallenge();	
+					} else {
+						//Sigue la ronda
+						roundNumber++;
+						handler.postDelayed(rutine, 2000);
+					}
 				}
 				
 			}.start();
 		}
 	};
 
-	 protected void onResume() {
+	protected void onResume() {
 	  super.onResume();
-	 }
+	}
+	
+	private boolean checkResult(){
+		boolean ret = false;
+		
+		if(songcomplete.getLevel() == 1){
+			if(allArtists[currentSong][pressedButton].equals(correctArtists[currentSong]))
+				ret = true;
+		} else {
+			if(allSongs[currentSong][pressedButton].equals(correctSongs[currentSong]))
+				ret = true;
+		}
+		
+		return ret;
+	}
 	 
 	// Customize ActionBar
 	public void editActionBar() {
@@ -210,9 +341,6 @@ public class SongCompleteUI extends Activity implements SensorEventListener {
 		
 	 protected void onPause() {
 	  super.onPause();
-	  if (mSensorManager != null){
-		  mSensorManager.unregisterListener(this);
-	  }
 	 }
 
 	 public void onAccuracyChanged(Sensor sensor, int accuracy) {
@@ -221,52 +349,15 @@ public class SongCompleteUI extends Activity implements SensorEventListener {
 	 public void onPrepared(MediaPlayer player) {
 		 player.start();
 	 }
-
-
-	 public void onSensorChanged(SensorEvent event) {
-	  if (event.values[0] <= 3) {
-		  if (mp != null){
-			  mSensorManager.unregisterListener(SongCompleteUI.this, mSensor);
-			  mp.stop();
-			  c.cancel();
-			  
-			  Button b = (Button)findViewById(R.id.start_button);
-			  b.setText(it+1 + " !");
-			  
-			  results[it] = secondCount;
-			  secondCount = 0;
-			  
-			  if (it <= (number_of_barks-1)){
-				it++;
-				if (it !=number_of_barks){
-					Random r = new Random();
-					int segundosComienzo = r.nextInt(rangeMax[it] - rangeMin[it] + 1) + rangeMin[it];
-					int tiempo = segundosComienzo * 1000;
-					handler.postDelayed(rutine, tiempo);					
-				}
-			  }
-			  
-			  if(it == number_of_barks){
-				  //GANO EL DESAFIO
-				  //Calculo el puntaje
-				  //songcomplete.setHasWon(true);
-				  //songcomplete.setResults(results);
-				  this.completeChallenge();
-			  }
-		  }
-	  } else {
-		  //Esta lejos
-	  }
-	 }
 	 
 	 public void completeChallenge() {
-			Intent finished = new Intent(this, SongCompleteFinished.class);
-			startActivity(finished);
-			this.finish();
-			songcomplete.finishChallenge();
-			StateDAO db = new StateDAO(this);
-			db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
-		}
+		Intent finished = new Intent(this, SongCompleteFinished.class);
+		startActivity(finished);
+		this.finish();
+		songcomplete.finishChallenge();
+		StateDAO db = new StateDAO(this);
+		db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
+	}
 	 
 	 @Override
 		public void onBackPressed() {
