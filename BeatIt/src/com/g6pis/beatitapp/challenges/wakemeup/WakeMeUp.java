@@ -72,7 +72,7 @@ public class WakeMeUp extends Challenge {
 
 	//@Override
 	public double calculateScore(){
-		return (succeed_times)*20;
+		return (succeed_times)*80;
 	}
 		
 }
