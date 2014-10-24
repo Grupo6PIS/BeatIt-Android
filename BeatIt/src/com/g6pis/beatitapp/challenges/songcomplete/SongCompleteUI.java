@@ -41,29 +41,33 @@ public class SongCompleteUI extends Activity {
 	CountDownTimer c;
 	
 	int number_of_guessed = 0;
-	
+
 	//Rangos nivel 1
-	String allSongs[][] = {
-			{"Perro","Gato","Mono"},
-			{"Perro2","Gato2","Mono2"},
-			{"Perro3","Gato3","Mono3"},
-	};
-	
 	String allArtists[][] = {
-			{"Perro","Gato","Mono"},
-			{"Perro2","Gato2","Mono2"},
-			{"Perro3","Gato3","Mono3"},
+			{ "Red Hot Chili Peppers", "Led Zeppelin", "Foo Fighters" },
+			{ "Pitbull", "Flo Rida", "LMFAO" },
+			{ "David Guetta", "Calvin Harris", "Avicii" },
+			{ "Bruno Mars", "Justin Timberlake", "Maroon 5" },
+			{ "Usher", "Pharrell Williams", "Kanye West" },
 	};
 	
-	String correctSongs[] = {"Perro", "Perro2", "Perro3"};
-	String correctArtists[] = {"Perro", "Perro2", "Perro3"};
+	String allSongs[][] = {
+			{ "Paradise City", "November Rain", "Sweet Child O' Mine" },
+			{ "Satisfaction", "Angie", "Start Me Up" },
+			{ "One More Night", "Animals", "She Will Be Loved" },
+			{ "Hey Jude", "Yesterday", "Let It Be" },
+			{ "It's My Life", "Crazy", "Always" },
+	};
+	
+	String correctArtists[] = {"Red Hot Chili Peppers", "Flo Rida", "Avicii", "Maroon 5", "Pharrell Williams"};
+	String correctSongs[] = {"Sweet Child O' Mine", "Angie", "One More Night", "Let It Be", "It's My Life"};
 	
 	String datos[][]; //auxiliar
 	
 	//Rangos nivel 2
 	int correctCounter = 0;
 	private int secondCount;
-	private int songCount = 3;
+	private int songCount = 5;
 	private int roundNumber;
 	private int currentSong;
 	private int pressedButton;
@@ -226,7 +230,33 @@ public class SongCompleteUI extends Activity {
 			Button b2 = (Button)findViewById(R.id.btnOpcion3);
 			b2.setText(datos[currentSong][2]);
 			
-			mp = MediaPlayer.create(SongCompleteUI.this, R.raw.bark);
+			if (songcomplete.getLevel() == 1){
+				switch(currentSong){
+					case 0: mp = MediaPlayer.create(SongCompleteUI.this, R.raw.song1level1);
+							break;
+					case 1: mp = MediaPlayer.create(SongCompleteUI.this, R.raw.song2level1);
+							break;
+					case 2: mp = MediaPlayer.create(SongCompleteUI.this, R.raw.song3level1);
+							break;
+					case 3: mp = MediaPlayer.create(SongCompleteUI.this, R.raw.song4level1);
+							break;
+					case 4: mp = MediaPlayer.create(SongCompleteUI.this, R.raw.song5level1);
+							break;
+				}
+			} else {
+				switch(currentSong){
+					case 0: mp = MediaPlayer.create(SongCompleteUI.this, R.raw.song1level2);
+							break;
+					case 1: mp = MediaPlayer.create(SongCompleteUI.this, R.raw.song2level2);
+							break;
+					case 2: mp = MediaPlayer.create(SongCompleteUI.this, R.raw.song3level2);
+							break;
+					case 3: mp = MediaPlayer.create(SongCompleteUI.this, R.raw.song4level2);
+							break;
+					case 4: mp = MediaPlayer.create(SongCompleteUI.this, R.raw.song5level2);
+							break;
+				}
+			}
 			mp.setLooping(true);
 			
 			if (mp != null){

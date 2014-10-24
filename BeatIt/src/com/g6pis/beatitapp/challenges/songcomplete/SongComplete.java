@@ -44,7 +44,7 @@ public class SongComplete extends Challenge {
 
 	//@Override
 	public double calculateScore(){
-		return (succeed_times)*5;
+		return (succeed_times)*40;
 	}
 	
 }
