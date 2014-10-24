@@ -1,8 +1,6 @@
 package com.g6pis.beatitapp.challenges.songcomplete;
 
 import java.io.IOException;
-import java.util.Random;
-
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
 import com.g6pis.beatitapp.controllers.DataManager;
@@ -121,6 +119,8 @@ public class SongCompleteUI extends Activity {
 			maxDelay = 20;
 		}
 		
+		currentSong = 0;
+		
 		//cargo el progessbar
 		bar = (ProgressBar)findViewById(R.id.progressBar_Song_Complete);
 		bar.setIndeterminate(false); // May not be necessary
@@ -209,6 +209,9 @@ public class SongCompleteUI extends Activity {
 			number_of_guessed = 0;
 			this.completeChallenge();	
 		} else {
+			if (currentSong != 5){
+				currentSong++;				
+			}
 			//Sigue la ronda
 			roundNumber++;
 			handler.postDelayed(rutine, 2000);
@@ -218,9 +221,6 @@ public class SongCompleteUI extends Activity {
 	private Runnable rutine = new Runnable() {
 		@Override
 		public void run() {
-			Random r = new Random();
-			currentSong = r.nextInt(songCount);
-			
 			Button b = (Button)findViewById(R.id.btnOpcion1);
 			b.setText(datos[currentSong][0]);
 			
@@ -318,6 +318,10 @@ public class SongCompleteUI extends Activity {
 						l.setBackgroundColor(getResources().getColor(R.color.red));
 					}
 					
+					if (currentSong != 5){
+						currentSong++;				
+					}
+					
 					if (roundNumber == 5){
 						//Termino la ronda
 						roundNumber = 0;
@@ -386,6 +390,15 @@ public class SongCompleteUI extends Activity {
 	 
 	 @Override
 		public void onBackPressed() {
+		 	secondCount = 0;
+			counterRunning = false;
+			c.cancel();
+			if (mp.isPlaying()){
+				mp.stop();				
+			}
+			roundNumber = 0;
+			songcomplete.setSucceed_times(number_of_guessed);
+			number_of_guessed = 0;
 			Intent home = new Intent(this, Home.class);
 			startActivity(home);
 			this.finish();
@@ -404,6 +417,15 @@ public class SongCompleteUI extends Activity {
 			switch (item.getItemId()) {
 			// Respond to the action bar's Up/Home button
 			case android.R.id.home:
+				secondCount = 0;
+				counterRunning = false;
+				c.cancel();
+				if (mp.isPlaying()){
+					mp.stop();				
+				}
+				roundNumber = 0;
+				songcomplete.setSucceed_times(number_of_guessed);
+				number_of_guessed = 0;
 				Intent home = new Intent(this, Home.class);
 				startActivity(home);
 				this.finish();
