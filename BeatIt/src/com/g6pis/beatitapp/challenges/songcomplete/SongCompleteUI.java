@@ -391,8 +391,10 @@ public class SongCompleteUI extends Activity {
 	 @Override
 		public void onBackPressed() {
 		 	secondCount = 0;
+		 	if (counterRunning){
+		 		c.cancel();
+		 	}
 			counterRunning = false;
-			c.cancel();
 			if (mp.isPlaying()){
 				mp.stop();				
 			}
@@ -418,8 +420,10 @@ public class SongCompleteUI extends Activity {
 			// Respond to the action bar's Up/Home button
 			case android.R.id.home:
 				secondCount = 0;
+				if (counterRunning){
+			 		c.cancel();
+			 	}
 				counterRunning = false;
-				c.cancel();
 				if (mp.isPlaying()){
 					mp.stop();				
 				}
