@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,17 +41,17 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 	private static final int FACEBOOK_DIALOG = 60;
 
 	private UiLifecycleHelper uiHelper;
-	private Button facebookButton;
-	private Button smsButton;
-	private Button selectContactButton;
-	private Button doneButton;
+	private ImageButton facebookButton;
+	private ImageButton smsButton;
+	private ImageButton selectContactButton;
+	private ImageButton doneButton;
 
 	private String phone;
 
 	private CanYouPlay canYouPlay;
 	private DTState state;
 
-	private Dialog challengeCompletedDialog;
+	private Dialog challengeNotCompletedDialog;
 	private Dialog facebookDialog;
 
 	@Override
@@ -62,15 +63,17 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 		uiHelper = new UiLifecycleHelper(this, null);
 		uiHelper.onCreate(savedInstanceState);
 
-		challengeCompletedDialog = onCreateDialog(CHALLENGE_COMPLETED_DIALOG);
-		challengeCompletedDialog.hide();
+		challengeNotCompletedDialog = onCreateDialog(CHALLENGE_COMPLETED_DIALOG);
+		challengeNotCompletedDialog.hide();
 		facebookDialog = onCreateDialog(FACEBOOK_DIALOG);
 		facebookDialog.hide();
-
-		facebookButton = (Button) findViewById(R.id.facebook_post_button);
-		smsButton = (Button) findViewById(R.id.send_SMS_button);
-		selectContactButton = (Button) findViewById(R.id.select_contact_button);
-		doneButton = (Button) findViewById(R.id.done_button);
+		
+		
+		
+		facebookButton = (ImageButton) findViewById(R.id.facebook_post_button);
+		smsButton = (ImageButton) findViewById(R.id.send_SMS_button);
+		selectContactButton = (ImageButton) findViewById(R.id.select_contact_button);
+		doneButton = (ImageButton) findViewById(R.id.done_button);
 		doneButton.setOnClickListener(this);
 		selectContactButton.setOnClickListener(this);
 		facebookButton.setOnClickListener(this);
@@ -187,9 +190,6 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 									.getNativeDialogCompletionGesture(data);
 							if (!completionGesture.equals("cancel")) {
 								canYouPlay.fbPost();
-								if (canYouPlay.isCompleted()) {
-									challengeCompletedDialog.show();
-								}
 							}
 						}
 					});
@@ -222,7 +222,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		switch (v.getId()) {
+		switch (v.getId()) {	
 		case R.id.facebook_post_button:
 			postOnFacebook();
 			break;
@@ -233,7 +233,10 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 			sendSms();
 			break;
 		case R.id.done_button:
-			completeChallenge();
+			if (!canYouPlay.isCompleted())
+				challengeNotCompletedDialog.show();
+			else
+				completeChallenge();
 			break;
 		}
 
@@ -244,6 +247,8 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 		actionBar.setCustomView(R.layout.action_bar);
 		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setDisplayUseLogoEnabled(false);
+		actionBar.setLogo(getResources().getDrawable(R.drawable.app_logo));
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setTitle(this.getString(R.string.app_name));
 		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(canYouPlay.getColor())));
@@ -270,9 +275,6 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 			((Button) findViewById(R.id.facebook_post_button))
 					.setClickable(false);
 			canYouPlay.fbPost();
-			if (canYouPlay.isCompleted()) {
-				challengeCompletedDialog.show();
-			}
 
 		}
 	}
@@ -308,9 +310,6 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 					Toast.LENGTH_LONG).show();
 
 			canYouPlay.smsSent();
-			if (canYouPlay.isCompleted()) {
-				challengeCompletedDialog.show();
-			}
 
 		} catch (Exception ex) {
 
@@ -373,7 +372,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 			builder.setCancelable(true);
 			builder.setPositiveButton(R.string.continue_button,
 					new OkOnClickListener());
-			builder.setNegativeButton(R.string.view_finished,
+			builder.setNegativeButton(R.string.cancel,
 					new CancelOnClickListener());
 			return builder.create();
 		}
@@ -392,13 +391,14 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 	private final class CancelOnClickListener implements
 			DialogInterface.OnClickListener {
 		public void onClick(DialogInterface dialog, int which) {
-			completeChallenge();
+			
 		}
 	}
 
 	private final class OkOnClickListener implements
 			DialogInterface.OnClickListener {
 		public void onClick(DialogInterface dialog, int which) {
+			completeChallenge();
 		}
 	}
 	
