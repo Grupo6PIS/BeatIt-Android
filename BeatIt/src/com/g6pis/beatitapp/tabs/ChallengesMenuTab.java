@@ -21,6 +21,8 @@ import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
 import com.g6pis.beatitapp.challenges.bouncinggame.BouncingGameFinished;
 import com.g6pis.beatitapp.challenges.bouncinggame.BouncingGameUI;
+import com.g6pis.beatitapp.challenges.catchme.CatchMeFinished;
+import com.g6pis.beatitapp.challenges.catchme.CatchMeUI;
 import com.g6pis.beatitapp.challenges.invitefriends.CanYouPlayFinished;
 import com.g6pis.beatitapp.challenges.invitefriends.CanYouPlayUI;
 import com.g6pis.beatitapp.challenges.shutthedog.ShutTheDogFinished;
@@ -132,7 +134,7 @@ public class ChallengesMenuTab extends Fragment implements
 						ThrowThePhoneUI.class);
 			else
 				challenge = new Intent(getActivity().getApplicationContext(),
-						ThrowThePhoneFinished.class);
+						ThrowThePhoneFinished.class); */
 		} else if (adapter.getItem(position).getChallengeId()
 				.equals(ID_Catch_Me)) {
 			if (adapter.getItem(position).getCurrentAttempt() == 0)
@@ -140,7 +142,7 @@ public class ChallengesMenuTab extends Fragment implements
 						CatchMeUI.class);
 			else
 				challenge = new Intent(getActivity().getApplicationContext(),
-						CatchMeFinished.class);*/
+						CatchMeFinished.class);
 
 		} else if (adapter.getItem(position).getChallengeId()
 				.equals(ID_TextAndColor)) {

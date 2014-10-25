@@ -185,6 +185,9 @@
     
     <!-- Catch Me String -->
     <string name="catch_me">Atrápame Si Puedes</string>
+    <string name="description_catch_me_1">En este desafío deberás presionar en un lapso de 45 segundos los puntos que se iluminen . Deberás acertar la mayor cantidad posible.</string>
+    <string name="description_catch_me_2">En este desafío deberás presionar en un lapso de 30 segundos los puntos que se iluminen . Deberás acertar la mayor cantidad posible.</string>
+    
     
     <!-- Throw The Phone String -->
     <string name="throw_the_phone">Celular Volador</string>

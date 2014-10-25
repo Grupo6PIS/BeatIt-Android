@@ -185,6 +185,9 @@
     
     <!-- Catch Me String -->
     <string name="catch_me">Catch Me</string>
+    <string name="description_catch_Me_1">In this challenge you must pressed the points lighted up within 45 seconds . You must hit as many as possible.</string>
+    <string name="description_catch_Me_2">In this challenge you must pressed the points lighted up within 30 seconds . You must hit as many as possible.</string>
+   
     
     <!-- Throw The Phone String -->
     <string name="throw_the_phone">Throw The Phone</string>

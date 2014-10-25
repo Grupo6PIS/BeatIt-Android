@@ -10,8 +10,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.g6pis.beatitapp.catchme.CatchMe;
 import com.g6pis.beatitapp.challenges.bouncinggame.BouncingGame;
+import com.g6pis.beatitapp.challenges.catchme.CatchMe;
 import com.g6pis.beatitapp.challenges.invitefriends.CanYouPlay;
 import com.g6pis.beatitapp.challenges.shutthedog.ShutTheDog;
 import com.g6pis.beatitapp.challenges.songcomplete.SongComplete;
