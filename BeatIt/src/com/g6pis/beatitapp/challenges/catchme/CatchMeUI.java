@@ -225,23 +225,6 @@ public class CatchMeUI extends Activity implements OnClickListener {
 			return timer;
 		}
 		
-//		public CountDownTimer createTimer(){
-//			CountDownTimer timer = new CountDownTimer(catchMe.getTimeSpan(), catchMe.getTimeSpan()) {
-//				public void onTick(long millisUntilFinished) {
-////					int progress = (int)(millisUntilFinished*100)/catchMe.getTimeSpan();
-////					progressBar.setProgress(progress);
-//				}
-//
-//				public void onFinish() {
-//					Log.d("CatchMe", "Finish Time ");
-//					changeColorProgress(getResources().getColor(R.color.red));
-//					changeButton();
-//				}
-//			};
-//			
-//			return timer;
-//		}
-		
 	
 		public void changeButton(){
 		
@@ -317,7 +300,7 @@ public class CatchMeUI extends Activity implements OnClickListener {
 				totalTimer.start();
 			
 			}else{
-				Log.i("CatchMe", "Termino");
+//				Log.i("CatchMe", "Termino");
 				catchMe.finishChallenge(good);
 				Intent challengeFinished = new Intent(this, CatchMeFinished.class);
 				startActivity(challengeFinished);
