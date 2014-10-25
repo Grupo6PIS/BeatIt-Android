@@ -42,7 +42,7 @@
         android:layout_alignRight="@+id/textView_Challenge_Name"
         android:layout_alignStart="@+id/textView_Description"
         android:layout_below="@+id/textView_Description"
-        android:text="@string/description_catch_Me_1"
+        android:text="@string/description_catch_me_1"
         android:textColor="@color/gris_challenge_description"
         android:textSize="18sp" />
 
