@@ -12,8 +12,8 @@ public class CatchMe extends Challenge {
 	private static final int TIME_LEVEL1 = 45000;
 	private static final int TIME_LEVEL2 = 30000;
 	
-	private static final int TIME_SPAN_LEVEL1 = 1000;
-	private static final int TIME_SPAN_LEVEL2 = 1000;
+	private static final int TIME_SPAN_LEVEL1 = 500;
+	private static final int TIME_SPAN_LEVEL2 = 500;
 	
 	
 	private int time;
@@ -68,7 +68,7 @@ public class CatchMe extends Challenge {
 		this.unsuccessfulCount++;
 	}
 
-	private int calculateScore(int good) {
+	public int calculateScore(int good) {
 		int score = 0;
 		for (int i = 0; i < good; i++) {
 			if (good < 5) {
@@ -101,7 +101,7 @@ public class CatchMe extends Challenge {
 	}
 
 	public boolean isCompleted() {
-		Log.d("CatchMe", "IsComplete" + ((getCurrentCount() == totalCount) || (this.unsuccessfulCount > 0)));
+		
 		return (getCurrentCount() == totalCount) || (this.unsuccessfulCount > 0);
 	}
 }
