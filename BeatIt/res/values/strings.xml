@@ -138,6 +138,7 @@
    	<string name="select_diferent_contact">Select a different contact</string>
    	<string name="select_another_contact">Select another contact</string>
    	<string name="facebook_app_not_installed">The Facebook App is not installed, but you can continue</string>
+   	<string name="challenge_not_completed">Challenge not completed!</string>
     
     <!-- Despertame A Tiempo Strings -->
     <string name="wake_me_up">Wake Me Up</string>
