@@ -179,7 +179,6 @@ public class ThrowThePhoneUI extends Activity implements SensorEventListener, On
 	
 	@Override
 	public void onClick(View v) {
-		((Button) findViewById(R.id.start_challenge_button)).setVisibility(View.INVISIBLE);
 		this.attentionDialog.show();
 
 	}
@@ -315,6 +314,9 @@ public class ThrowThePhoneUI extends Activity implements SensorEventListener, On
 	private final class CancelOnClickListener implements
 			DialogInterface.OnClickListener {
 		public void onClick(DialogInterface dialog, int which) {
+			((Button) findViewById(R.id.start_challenge_button)).setText(R.string.start_challenge_button);
+			((Button) findViewById(R.id.start_challenge_button)).setClickable(true);
+			
 			
 		}
 	}
@@ -322,6 +324,8 @@ public class ThrowThePhoneUI extends Activity implements SensorEventListener, On
 	private final class OkOnClickListener implements
 			DialogInterface.OnClickListener {
 		public void onClick(DialogInterface dialog, int which) {
+			((Button) findViewById(R.id.start_challenge_button)).setText(R.string.ready_to_fly);
+			((Button) findViewById(R.id.start_challenge_button)).setClickable(false);
 			challengeStarted = true;
 		}
 	}

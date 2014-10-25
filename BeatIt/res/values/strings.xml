@@ -197,6 +197,7 @@
     <string name="attention_text">Before launching the device up, try to tave a proper position to catch it when it comes down, we are NOT responsabe for any damage of your cellphone</string>
     <string name="come_on">Come on!</string>
     <string name="im_scared">I\'m scared!</string>
+    <string name="ready_to_fly">I\'m ready to fly!</string>
     
     <!-- Facebook app ID -->
     <string name="facebook_app_id">829846350380023</string>

@@ -15,10 +15,8 @@ public class TextAndColorTest {
 		assertEquals(2,textAndColor.getLevel());
 		assertEquals(3,textAndColor.getMaxAttempt());
 		assertEquals("#0050EF",textAndColor.getColor());
-		assertEquals(30,textAndColor.getCount());
 		assertEquals(1500,textAndColor.getTime());
-		assertEquals(15,textAndColor.getMinCount());
-		assertEquals(0,textAndColor.getCurrentCount());
+
 		
 		
 		textAndColor = new TextAndColor("8", "Text & Color", 1, 3, "#0050EF");
@@ -28,10 +26,8 @@ public class TextAndColorTest {
 		assertEquals(1,textAndColor.getLevel());
 		assertEquals(3,textAndColor.getMaxAttempt());
 		assertEquals("#0050EF",textAndColor.getColor());
-		assertEquals(15,textAndColor.getCount());
+		assertEquals(0,textAndColor.getCount());
 		assertEquals(1700,textAndColor.getTime());
-		assertEquals(6,textAndColor.getMinCount());
-		assertEquals(0,textAndColor.getCurrentCount());
 		
 	}
 	
@@ -40,25 +36,28 @@ public class TextAndColorTest {
 		TextAndColor textAndColor = new TextAndColor("8", "Text & Color", 1, 3, "#0050EF");
 		
 		
-		assertEquals(0,textAndColor.getCurrentCount());
+		assertEquals(0,textAndColor.getCount());
 		
-		textAndColor.successful();
-		textAndColor.successful();
+		textAndColor.addCount();
+		textAndColor.addCount();
 		
-		assertEquals(2,textAndColor.getCurrentCount());
-		assertEquals(0,textAndColor.calculateScore());
-		assertFalse(textAndColor.isCompleted());
+		assertEquals(2,textAndColor.getCount());
+		assertEquals(2,textAndColor.calculateScore());
 		
 		textAndColor.reset();
-		
-		for(int i=0;i<14;i++){
-			textAndColor.successful();
+		int score = 0;
+		for(int i=1;i<16;i++){
+			textAndColor.addCount();
+			if(i<=5){
+				score += 1;
+			}else if (i<=10){
+				score += 5;
+			}else
+				score += 10;
 		}
-		textAndColor.unsuccessful();
 		
-		assertEquals(15,textAndColor.getCurrentCount());
-		assertEquals(64,textAndColor.calculateScore());
-		assertTrue(textAndColor.isCompleted());
+		assertEquals(15,textAndColor.getCount());
+		assertEquals(score,textAndColor.calculateScore());
 		
 	}
 

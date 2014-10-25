@@ -6,6 +6,7 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -14,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -33,8 +35,8 @@ public class TextAndColorUI extends Activity implements OnClickListener {
 	private TextAndColor textAndColor;
 	private DTState state;
 	
-	private Button yesButton;
-	private Button noButton;
+	private ImageButton yesButton;
+	private ImageButton noButton;
 	private Button startButton;
 	private ProgressBar progressBar;
 	private CountDownTimer timer;
@@ -81,9 +83,9 @@ public class TextAndColorUI extends Activity implements OnClickListener {
 			break;
 		}
 		
-		yesButton = (Button) findViewById(R.id.yes_button);
+		yesButton = (ImageButton) findViewById(R.id.yes_button);
 		yesButton.setOnClickListener(this);
-		noButton = (Button) findViewById(R.id.no_button);
+		noButton = (ImageButton) findViewById(R.id.no_button);
 		noButton.setOnClickListener(this);
 		startButton = (Button) findViewById(R.id.start_button);
 		startButton.setOnClickListener(this);
@@ -157,19 +159,18 @@ public class TextAndColorUI extends Activity implements OnClickListener {
 			noButton.setVisibility(View.VISIBLE);
 			startButton.setVisibility(View.INVISIBLE);
 			progressBar.setProgress(100);
+			timer.start();
 			
 		}
 			break;
 		case R.id.yes_button:{
 			if(color==word){
-				textAndColor.successful();
-				changeColorProgress(getResources().getColor(R.color.green));
+				textAndColor.addCount();;
+				changeColorProgress();
 			}else{
-				textAndColor.unsuccessful();
-				changeColorProgress(getResources().getColor(R.color.red));
+				completeChallenge();
 			}
 			
-			timer.cancel();
 			changeWord();
 
 				
@@ -178,14 +179,13 @@ public class TextAndColorUI extends Activity implements OnClickListener {
 			break;
 		case R.id.no_button:{
 			if(color!=word){
-				textAndColor.successful();
-				changeColorProgress(getResources().getColor(R.color.green));
+				textAndColor.addCount();;
+				changeColorProgress();
 			}else{
-				textAndColor.unsuccessful();
-				changeColorProgress(getResources().getColor(R.color.red));
+				completeChallenge();
 			}
 			
-			timer.cancel();
+
 			changeWord();
 		}
 			break;
@@ -209,12 +209,11 @@ public class TextAndColorUI extends Activity implements OnClickListener {
 			public void onTick(long millisUntilFinished) {
 				int progress = (int)(millisUntilFinished*100)/textAndColor.getTime();
 				progressBar.setProgress(progress);
+				
 			}
 
 			public void onFinish() {
-				textAndColor.unsuccessful();
-				changeColorProgress(getResources().getColor(R.color.red));
-				changeWord();
+				completeChallenge();
 			}
 		};
 		
@@ -222,17 +221,42 @@ public class TextAndColorUI extends Activity implements OnClickListener {
 	}
 	
 	public void changeWord(){
-		if(!textAndColor.isCompleted()){
 			TextView text = ((TextView) findViewById(R.id.textView_text));
 			Random colorRand = new Random();
 			color = colorRand.nextInt(6)+1;
 			switch(color){
-				case 1: text.setTextColor(getResources().getColor(R.color.violet));break;
-				case 2: text.setTextColor(getResources().getColor(R.color.red));break;
-				case 3: text.setTextColor(getResources().getColor(R.color.green));break;
-				case 4: text.setTextColor(getResources().getColor(R.color.blue));break;
-				case 5: text.setTextColor(getResources().getColor(R.color.yellow));break;
-				case 6: text.setTextColor(getResources().getColor(R.color.orange));break;
+				case 1:{
+					text.setTextColor(getResources().getColor(R.color.violet));
+					progressBar.getProgressDrawable().setColorFilter(getResources().getColor(R.color.violet),Mode.SRC_IN);
+
+				}
+				break;
+				case 2:{
+					text.setTextColor(getResources().getColor(R.color.red));
+					progressBar.getProgressDrawable().setColorFilter(getResources().getColor(R.color.red),Mode.SRC_IN);
+				}
+				break;
+				case 3:{
+					text.setTextColor(getResources().getColor(R.color.green));
+					progressBar.getProgressDrawable().setColorFilter(getResources().getColor(R.color.green),Mode.SRC_IN);
+				}
+				break;
+				case 4:{
+					text.setTextColor(getResources().getColor(R.color.blue));
+					progressBar.getProgressDrawable().setColorFilter(getResources().getColor(R.color.blue),Mode.SRC_IN);
+				}
+				break;
+				case 5:{
+					text.setTextColor(getResources().getColor(R.color.yellow));		
+					progressBar.getProgressDrawable().setColorFilter(getResources().getColor(R.color.yellow),Mode.SRC_IN);
+				}
+				break;
+				case 6:{
+					text.setTextColor(getResources().getColor(R.color.orange));	
+					progressBar.getProgressDrawable().setColorFilter(getResources().getColor(R.color.orange),Mode.SRC_IN);
+				}
+				break;
+				
 				
 			}
 				
@@ -247,20 +271,7 @@ public class TextAndColorUI extends Activity implements OnClickListener {
 				case 6: text.setText(getResources().getString(R.string.orange));break;
 			
 			}
-			
-			timer.start();
-		}else{
-			
-			textAndColor.finishChallenge();
-			Intent challengeFinished = new Intent(this, TextAndColorFinished.class);
-			startActivity(challengeFinished);
-			this.finish();
-			StateDAO db = new StateDAO(this);
-			db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
-			
-		}
 		
-	
 	}
 	
 	public String getDurationString(){
@@ -320,120 +331,82 @@ public class TextAndColorUI extends Activity implements OnClickListener {
         
     }
 	
-	public void changeColorProgress(int color){
-		switch(textAndColor.getCurrentCount()){
+	public void changeColorProgress(){
+		switch(textAndColor.getCount()){
 		case 1:
-			((TextView)findViewById(R.id.TextView1)).setBackgroundColor(color);
-			break;
-			
+			((LinearLayout)findViewById(R.id.bar1)).setBackgroundColor(getResources().getColor(R.color.red));
+			break;			
 		case 2:
-			((TextView)findViewById(R.id.TextView2)).setBackgroundColor(color);
+			((LinearLayout)findViewById(R.id.bar2)).setBackgroundColor(getResources().getColor(R.color.red));
 			break;
 		case 3:
-			((TextView)findViewById(R.id.TextView3)).setBackgroundColor(color);
+			((LinearLayout)findViewById(R.id.bar3)).setBackgroundColor(getResources().getColor(R.color.red));
 			break;
 		case 4:
-			((TextView)findViewById(R.id.TextView4)).setBackgroundColor(color);
+			((LinearLayout)findViewById(R.id.bar4)).setBackgroundColor(getResources().getColor(R.color.red));
 			break;
 		case 5:
-			((TextView)findViewById(R.id.TextView5)).setBackgroundColor(color);
+			((LinearLayout)findViewById(R.id.bar5)).setBackgroundColor(getResources().getColor(R.color.red));
 			break;
-		case 6:
-			((TextView)findViewById(R.id.TextView6)).setBackgroundColor(color);
+		case 6:{
+			resetProgress();
+			((LinearLayout)findViewById(R.id.bar1)).setBackgroundColor(getResources().getColor(R.color.yellow));
+			((TextView)findViewById(R.id.progress_number)).setTextColor(getResources().getColor(R.color.yellow));
+		}
 			break;
 		case 7:
-			((TextView)findViewById(R.id.TextView7)).setBackgroundColor(color);
+			((LinearLayout)findViewById(R.id.bar2)).setBackgroundColor(getResources().getColor(R.color.yellow));
 			break;
 		case 8:
-			((TextView)findViewById(R.id.TextView8)).setBackgroundColor(color);
+			((LinearLayout)findViewById(R.id.bar3)).setBackgroundColor(getResources().getColor(R.color.yellow));
 			break;
 		case 9:
-			((TextView)findViewById(R.id.TextView9)).setBackgroundColor(color);
+			((LinearLayout)findViewById(R.id.bar4)).setBackgroundColor(getResources().getColor(R.color.yellow));
 			break;
 		case 10:
-			((TextView)findViewById(R.id.TextView10)).setBackgroundColor(color);
+			((LinearLayout)findViewById(R.id.bar5)).setBackgroundColor(getResources().getColor(R.color.yellow));
 			break;
-		case 11:
-			((TextView)findViewById(R.id.TextView11)).setBackgroundColor(color);
+		case 11:{
+			resetProgress();
+			((LinearLayout)findViewById(R.id.bar1)).setBackgroundColor(getResources().getColor(R.color.green));
+			((TextView)findViewById(R.id.progress_number)).setTextColor(getResources().getColor(R.color.green));
+		}
 			break;
 		case 12:
-			((TextView)findViewById(R.id.TextView12)).setBackgroundColor(color);
+			((LinearLayout)findViewById(R.id.bar2)).setBackgroundColor(getResources().getColor(R.color.green));
 			break;
 		case 13:
-			((TextView)findViewById(R.id.TextView13)).setBackgroundColor(color);
+			((LinearLayout)findViewById(R.id.bar3)).setBackgroundColor(getResources().getColor(R.color.green));
 			break;
 		case 14:
-			((TextView)findViewById(R.id.TextView14)).setBackgroundColor(color);
+			((LinearLayout)findViewById(R.id.bar4)).setBackgroundColor(getResources().getColor(R.color.green));
 			break;
 		case 15:
-			((TextView)findViewById(R.id.TextView15)).setBackgroundColor(color);
-			break;
-		case 16:
-			resetProgress();
-			((TextView)findViewById(R.id.TextView1)).setBackgroundColor(color);
-			break;
-		case 17:
-			((TextView)findViewById(R.id.TextView2)).setBackgroundColor(color);
-			break;
-		case 18:
-			((TextView)findViewById(R.id.TextView3)).setBackgroundColor(color);
-			break;
-		case 19:
-			((TextView)findViewById(R.id.TextView4)).setBackgroundColor(color);
-			break;
-		case 20:
-			((TextView)findViewById(R.id.TextView5)).setBackgroundColor(color);
-			break;
-		case 21:
-			((TextView)findViewById(R.id.TextView6)).setBackgroundColor(color);
-			break;
-		case 22:
-			((TextView)findViewById(R.id.TextView7)).setBackgroundColor(color);
-			break;
-		case 23:
-			((TextView)findViewById(R.id.TextView8)).setBackgroundColor(color);
-			break;
-		case 24:
-			((TextView)findViewById(R.id.TextView9)).setBackgroundColor(color);
-			break;
-		case 25:
-			((TextView)findViewById(R.id.TextView10)).setBackgroundColor(color);
-			break;
-		case 26:
-			((TextView)findViewById(R.id.TextView11)).setBackgroundColor(color);
-			break;
-		case 27:
-			((TextView)findViewById(R.id.TextView12)).setBackgroundColor(color);
-			break;
-		case 28:
-			((TextView)findViewById(R.id.TextView13)).setBackgroundColor(color);
-			break;
-		case 29:
-			((TextView)findViewById(R.id.TextView14)).setBackgroundColor(color);
-			break;
-		case 30:
-			((TextView)findViewById(R.id.TextView15)).setBackgroundColor(color);
+			((LinearLayout)findViewById(R.id.bar5)).setBackgroundColor(getResources().getColor(R.color.green));
 			break;
 		}
+		
+		((TextView)findViewById(R.id.progress_number)).setText(Integer.toString(textAndColor.getCount()));
+		
+	}
+	
+	public void completeChallenge(){
+		timer.cancel();
+		textAndColor.finishChallenge();
+		Intent challengeFinished = new Intent(this, TextAndColorFinished.class);
+		startActivity(challengeFinished);
+		this.finish();
+		StateDAO db = new StateDAO(this);
+		db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
 	}
 	
 	@SuppressWarnings("deprecation")
 	public void resetProgress(){
-		((TextView)findViewById(R.id.TextView1)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-		((TextView)findViewById(R.id.TextView2)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-		((TextView)findViewById(R.id.TextView3)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-		((TextView)findViewById(R.id.TextView4)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-		((TextView)findViewById(R.id.TextView5)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-		((TextView)findViewById(R.id.TextView6)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-		((TextView)findViewById(R.id.TextView7)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-		((TextView)findViewById(R.id.TextView8)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-		((TextView)findViewById(R.id.TextView9)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-		((TextView)findViewById(R.id.TextView10)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-		((TextView)findViewById(R.id.TextView11)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-		((TextView)findViewById(R.id.TextView12)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-		((TextView)findViewById(R.id.TextView13)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-		((TextView)findViewById(R.id.TextView14)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-		((TextView)findViewById(R.id.TextView15)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
+		((LinearLayout)findViewById(R.id.bar1)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
+		((LinearLayout)findViewById(R.id.bar2)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
+		((LinearLayout)findViewById(R.id.bar3)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
+		((LinearLayout)findViewById(R.id.bar4)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
+		((LinearLayout)findViewById(R.id.bar5)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
 	}
 	
 }
