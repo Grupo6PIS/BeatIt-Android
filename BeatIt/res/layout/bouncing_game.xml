@@ -5,38 +5,48 @@
     android:background="@color/gris"
     tools:context=".BouncingGameUI2" >
 
-    <ImageView
-        android:id="@+id/imageView_Logo"
+    <RelativeLayout
+        android:id="@+id/title_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView_Challenge"
-        android:layout_alignParentLeft="true"
         android:layout_marginLeft="22dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/logo_description"
-        android:src="@drawable/ic_bouncing_game" />
+        android:layout_marginRight="22dp"
+        android:gravity="center" >
 
-    <TextView
-        android:id="@+id/textView_Challenge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="15dp"
-        android:layout_toRightOf="@+id/imageView_Logo"
-        android:layout_marginLeft="16dp"
-        android:text="@string/bouncing_game"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/bouncing"
-        android:textSize="34sp"
-        android:textStyle="bold" />
+        <TextView
+            android:id="@+id/textView_Challenge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="15dp"
+            android:layout_toRightOf="@+id/imageView_Logo"
+            android:text="@string/bouncing_game"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/bouncing"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/imageView_Logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="22dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/logo_description"
+            android:src="@drawable/ic_bouncing_game" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/textView_Description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView_Logo"
-        android:layout_below="@+id/imageView_Logo"
-        android:layout_marginTop="30dp"
+        android:layout_alignLeft="@+id/title_layout"
+        android:layout_below="@+id/title_layout"
+        android:layout_marginTop="15dp"
         android:text="@string/description"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="bold" />
@@ -48,7 +58,6 @@
         android:layout_alignLeft="@+id/textView_Description"
         android:layout_below="@+id/textView_Description"
         android:layout_marginRight="22dp"
-        android:layout_marginTop="20dp"
         android:text="@string/description_bouncing_game_2"
         android:textColor="@color/gris_challenge_description"
         android:textSize="18sp" />
@@ -75,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView_Description_Value"
         android:layout_below="@+id/textView_Description_Value"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15dp"
         android:text="@string/start_time"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -95,7 +104,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView_Duration"
         android:layout_below="@+id/textView_Duration"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="29dp"
         android:text="@string/to_beat"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -119,10 +128,10 @@
         android:id="@+id/start_challenge_button"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/textView_To_Beat_Value"
         android:layout_alignLeft="@+id/textView_To_Beat_Value"
         android:layout_alignRight="@+id/textView_Description_Value"
-        android:layout_marginTop="16dp"
+        android:layout_below="@+id/textView_To_Beat_Value"
+        android:layout_marginTop="15dp"
         android:background="@color/bouncing"
         android:text="@string/start_challenge_button"
         android:textColor="#FFFFFF"

@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/imageView_Logo"
         android:layout_below="@+id/imageView_Logo"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="15dp"
         android:text="@string/description"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="bold" />
@@ -48,7 +48,6 @@
         android:layout_alignLeft="@+id/textView_Description"
         android:layout_below="@+id/textView_Description"
         android:layout_marginRight="22dp"
-        android:layout_marginTop="20dp"
         android:text="@string/description_usain_bolt_2"
         android:textColor="@color/gris_challenge_description"
         android:textSize="18sp" />
@@ -60,7 +59,7 @@
         android:layout_alignLeft="@+id/start_challenge_button"
         android:layout_alignRight="@+id/start_challenge_button"
         android:layout_below="@+id/textView_Time_Left_Value"
-        android:layout_marginTop="22dp"
+        android:layout_marginTop="15dp"
         android:background="@color/rojo"
         android:gravity="center"
         android:text="@string/speed_value"
@@ -75,7 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView_Description_Value_2"
         android:layout_below="@+id/textView_Description_Value_2"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="15dp"
         android:text="@string/start_time"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -95,7 +94,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView_Duration"
         android:layout_below="@+id/textView_Duration"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="29dp"
         android:text="@string/to_beat"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -119,10 +118,10 @@
         android:id="@+id/start_challenge_button"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_below="@+id/textView_To_Beat_Value"
         android:layout_alignLeft="@+id/textView_To_Beat_Value"
         android:layout_alignRight="@+id/textView_Description_Value_2"
-        android:layout_marginTop="16dp"
+        android:layout_below="@+id/textView_To_Beat_Value"
+        android:layout_marginTop="15dp"
         android:background="@color/usain_bolt"
         android:text="@string/start_challenge_button"
         android:textColor="#FFFFFF"

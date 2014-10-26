@@ -175,19 +175,8 @@
         android:layout_marginTop="15dp" >
 
         <ImageButton
-            android:id="@+id/facebook_post_button"
-            android:layout_width="97dp"
-            android:layout_height="40dp"
-            android:layout_alignTop="@+id/select_contact_button"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/select_contact_button"
-            android:background="@color/can_you_play"
-            android:gravity="center"
-            android:src="@drawable/facebook_icon" />
-
-        <ImageButton
             android:id="@+id/select_contact_button"
-            android:layout_width="97dp"
+            android:layout_width="90dp"
             android:layout_height="40dp"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
@@ -198,11 +187,13 @@
 
         <ImageButton
             android:id="@+id/send_SMS_button"
-            android:layout_width="97dp"
+            android:layout_width="90dp"
             android:layout_height="40dp"
             android:layout_alignBaseline="@+id/select_contact_button"
             android:layout_alignBottom="@+id/select_contact_button"
             android:layout_alignEnd="@+id/select_contact_button"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
             android:layout_alignRight="@+id/select_contact_button"
             android:background="@color/can_you_play"
             android:gravity="center"
@@ -211,13 +202,28 @@
 
         <ImageButton
             android:id="@+id/done_button"
-            android:layout_width="97dp"
+            android:layout_width="wrap_content"
             android:layout_height="40dp"
+            android:layout_alignParentRight="false"
+            android:layout_alignParentTop="true"
             android:layout_alignTop="@+id/facebook_post_button"
             android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/facebook_post_button"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@+id/facebook_post_button"
+            android:layout_toRightOf="@+id/select_contact_button"
             android:background="@color/can_you_play"
             android:src="@drawable/yes_button" />
+
+        <ImageButton
+            android:id="@+id/facebook_post_button"
+            android:layout_width="90dp"
+            android:layout_height="40dp"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:background="@color/can_you_play"
+            android:gravity="center"
+            android:src="@drawable/facebook_icon" />
+
     </RelativeLayout>
 
 </RelativeLayout>

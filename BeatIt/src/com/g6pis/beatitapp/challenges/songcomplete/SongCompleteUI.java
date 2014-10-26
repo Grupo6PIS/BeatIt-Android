@@ -395,8 +395,10 @@ public class SongCompleteUI extends Activity {
 		 		c.cancel();
 		 	}
 			counterRunning = false;
-			if (mp.isPlaying()){
-				mp.stop();				
+			if(mp !=null){
+				if (mp.isPlaying()){
+					mp.stop();				
+				}
 			}
 			roundNumber = 0;
 			songcomplete.setSucceed_times(number_of_guessed);
@@ -424,8 +426,10 @@ public class SongCompleteUI extends Activity {
 			 		c.cancel();
 			 	}
 				counterRunning = false;
-				if (mp.isPlaying()){
-					mp.stop();				
+				if(mp !=null){
+					if (mp.isPlaying()){
+						mp.stop();				
+					}
 				}
 				roundNumber = 0;
 				songcomplete.setSucceed_times(number_of_guessed);
