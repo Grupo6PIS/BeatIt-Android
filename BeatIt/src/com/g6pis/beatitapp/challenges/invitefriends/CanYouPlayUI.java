@@ -368,7 +368,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 		case CHALLENGE_COMPLETED_DIALOG: {
 			builder.setMessage(R.string.want_to_continue);
 			builder.setTitle(getResources().getString(
-					R.string.challenge_completed));
+					R.string.challenge_not_completed));
 			builder.setCancelable(true);
 			builder.setPositiveButton(R.string.continue_button,
 					new OkOnClickListener());

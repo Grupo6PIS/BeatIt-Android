@@ -138,6 +138,7 @@
    	<string name="select_diferent_contact">Select a different contact</string>
    	<string name="select_another_contact">Select another contact</string>
    	<string name="facebook_app_not_installed">The Facebook App is not installed, but you can continue</string>
+   	<string name="challenge_not_completed">Challenge not completed!</string>
     
     <!-- Despertame A Tiempo Strings -->
     <string name="wake_me_up">Wake Me Up</string>
@@ -185,9 +186,19 @@
     
     <!-- Catch Me String -->
     <string name="catch_me">Catch Me</string>
+    <string name="description_catch_me_1">In this challenge you must pressed the points lighted up within 45 seconds . You must hit as many as possible.</string>
+    <string name="description_catch_me_2">In this challenge you must pressed the points lighted up within 30 seconds . You must hit as many as possible.</string>
+   
     
     <!-- Throw The Phone String -->
     <string name="throw_the_phone">Throw The Phone</string>
+    <string name="descritpion_throw_the_phone_1">In this challenge you should throw the phone upward to 1 meter high.</string>
+    <string name="descritpion_throw_the_phone_2">In this challenge you should throw the phone upward to 2 meters high.</string>
+    <string name="attention">Attention!</string>
+    <string name="attention_text">Before launching the device up, try to tave a proper position to catch it when it comes down, we are NOT responsabe for any damage of your cellphone</string>
+    <string name="come_on">Come on!</string>
+    <string name="im_scared">I\'m scared!</string>
+    <string name="ready_to_fly">I\'m ready to fly!</string>
     
     <!-- Facebook app ID -->
     <string name="facebook_app_id">829846350380023</string>

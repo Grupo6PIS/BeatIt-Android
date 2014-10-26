@@ -7,7 +7,6 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Contacts.Intents.UI;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +20,8 @@ import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
 import com.g6pis.beatitapp.challenges.bouncinggame.BouncingGameFinished;
 import com.g6pis.beatitapp.challenges.bouncinggame.BouncingGameUI;
+import com.g6pis.beatitapp.challenges.catchme.CatchMeFinished;
+import com.g6pis.beatitapp.challenges.catchme.CatchMeUI;
 import com.g6pis.beatitapp.challenges.invitefriends.CanYouPlayFinished;
 import com.g6pis.beatitapp.challenges.invitefriends.CanYouPlayUI;
 import com.g6pis.beatitapp.challenges.shutthedog.ShutTheDogFinished;
@@ -29,6 +30,8 @@ import com.g6pis.beatitapp.challenges.songcomplete.SongCompleteFinished;
 import com.g6pis.beatitapp.challenges.songcomplete.SongCompleteUI;
 import com.g6pis.beatitapp.challenges.textandcolor.TextAndColorFinished;
 import com.g6pis.beatitapp.challenges.textandcolor.TextAndColorUI;
+import com.g6pis.beatitapp.challenges.throwthephone.ThrowThePhoneFinished;
+import com.g6pis.beatitapp.challenges.throwthephone.ThrowThePhoneUI;
 import com.g6pis.beatitapp.challenges.usainbolt.UsainBoltFinished;
 import com.g6pis.beatitapp.challenges.usainbolt.UsainBoltUI;
 import com.g6pis.beatitapp.challenges.wakemeup.WakeMeUpFinished;
@@ -125,14 +128,14 @@ public class ChallengesMenuTab extends Fragment implements
 				challenge = new Intent(getActivity().getApplicationContext(),
 						BouncingGameFinished.class);
 
-		/*} else if (adapter.getItem(position).getChallengeId()
+		} else if (adapter.getItem(position).getChallengeId()
 				.equals(ID_Throw_The_Phone)) {
 			if (adapter.getItem(position).getCurrentAttempt() == 0)
 				challenge = new Intent(getActivity().getApplicationContext(),
 						ThrowThePhoneUI.class);
 			else
 				challenge = new Intent(getActivity().getApplicationContext(),
-						ThrowThePhoneFinished.class);
+						ThrowThePhoneFinished.class); 
 		} else if (adapter.getItem(position).getChallengeId()
 				.equals(ID_Catch_Me)) {
 			if (adapter.getItem(position).getCurrentAttempt() == 0)
@@ -140,7 +143,7 @@ public class ChallengesMenuTab extends Fragment implements
 						CatchMeUI.class);
 			else
 				challenge = new Intent(getActivity().getApplicationContext(),
-						CatchMeFinished.class);*/
+						CatchMeFinished.class);
 
 		} else if (adapter.getItem(position).getChallengeId()
 				.equals(ID_TextAndColor)) {

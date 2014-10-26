@@ -195,7 +195,7 @@
         <activity
             android:name="com.g6pis.beatitapp.challenges.wakemeup.WakeMeUpFinished"
             android:screenOrientation="portrait" >
-            android:parentActivityName="com.g6pis.beatit.MainActivity" 
+            android:parentActivityName="com.g6pis.beatit.MainActivity" 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.g6pis.beatit.Home" />
@@ -212,6 +212,42 @@
         
         <activity
             android:name="com.g6pis.beatitapp.challenges.songcomplete.SongCompleteFinished"
+            android:screenOrientation="portrait" >
+                         android:parentActivityName="com.g6pis.beatit.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.g6pis.beatit.Home" />
+        </activity>
+        
+         <activity
+            android:name="com.g6pis.beatitapp.challenges.catchme.CatchMeUI"
+            android:screenOrientation="portrait" >
+	        android:parentActivityName="com.g6pis.beatit.MainActivity" >
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.g6pis.beatit.Home" />
+        </activity>
+        
+        <activity
+            android:name="com.g6pis.beatitapp.challenges.catchme.CatchMeFinished"
+            android:screenOrientation="portrait" >
+            android:parentActivityName="com.g6pis.beatit.Home" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.g6pis.beatit.Home" />
+        </activity>
+                <activity
+            android:name="com.g6pis.beatitapp.challenges.throwthephone.ThrowThePhoneUI"
+            android:screenOrientation="portrait" >
+            android:parentActivityName="com.g6pis.beatit.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.g6pis.beatit.Home" />
+        </activity>
+        
+        <activity
+            android:name="com.g6pis.beatitapp.challenges.throwthephone.ThrowThePhoneFinished"
             android:screenOrientation="portrait" >
                          android:parentActivityName="com.g6pis.beatit.MainActivity" >
             <meta-data
