@@ -25,9 +25,9 @@ import android.widget.TextView;
 
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
-import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.datatypes.DTDateTime;
 import com.g6pis.beatitapp.datatypes.DTState;
+import com.g6pis.beatitapp.interfaces.Factory;
 import com.g6pis.beatitapp.persistence.StateDAO;
 
 public class ThrowThePhoneUI extends Activity implements SensorEventListener, OnClickListener {
@@ -51,9 +51,9 @@ public class ThrowThePhoneUI extends Activity implements SensorEventListener, On
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.throw_the_phone);
 
-		throwThePhone = (ThrowThePhone) DataManager.getInstance().getChallenge(
+		throwThePhone = (ThrowThePhone) Factory.getInstance().getIDataManager().getChallenge(
 				CHALLENGE_ID);
-		state = DataManager.getInstance().getState(CHALLENGE_ID);
+		state = Factory.getInstance().getIDataManager().getState(CHALLENGE_ID);
 
 		((TextView) findViewById(R.id.textView_Challenge_Name))
 				.setTextColor(Color.parseColor(throwThePhone.getColor()));
@@ -289,7 +289,7 @@ public class ThrowThePhoneUI extends Activity implements SensorEventListener, On
 		this.finish();
 		throwThePhone.finishChallenge();
 		StateDAO db = new StateDAO(this);
-		db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
+		db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));
 		
 	}
 	

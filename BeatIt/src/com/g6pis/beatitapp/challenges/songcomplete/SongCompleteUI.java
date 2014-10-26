@@ -1,12 +1,6 @@
 package com.g6pis.beatitapp.challenges.songcomplete;
 
 import java.io.IOException;
-import com.g6pis.beatitapp.Home;
-import com.g6pis.beatitapp.R;
-import com.g6pis.beatitapp.controllers.DataManager;
-import com.g6pis.beatitapp.datatypes.DTDateTime;
-import com.g6pis.beatitapp.datatypes.DTState;
-import com.g6pis.beatitapp.persistence.StateDAO;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -24,6 +18,13 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.g6pis.beatitapp.Home;
+import com.g6pis.beatitapp.R;
+import com.g6pis.beatitapp.datatypes.DTDateTime;
+import com.g6pis.beatitapp.datatypes.DTState;
+import com.g6pis.beatitapp.interfaces.Factory;
+import com.g6pis.beatitapp.persistence.StateDAO;
 
 public class SongCompleteUI extends Activity {
 	private static final String CHALLENGE_ID = "9";
@@ -83,9 +84,9 @@ public class SongCompleteUI extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.song_complete);
 		
-		songcomplete = (SongComplete) DataManager.getInstance().getChallenge(
+		songcomplete = (SongComplete) Factory.getInstance().getIDataManager().getChallenge(
 				CHALLENGE_ID);
-		state = DataManager.getInstance().getState(CHALLENGE_ID);
+		state = Factory.getInstance().getIDataManager().getState(CHALLENGE_ID);
 		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(state
 				.getDateTimeStart().toString());
 		((TextView) findViewById(R.id.textView_Duration_Value))
@@ -385,7 +386,7 @@ public class SongCompleteUI extends Activity {
 		this.finish();
 		songcomplete.finishChallenge();
 		StateDAO db = new StateDAO(this);
-		db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
+		db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));
 	}
 	 
 	 @Override

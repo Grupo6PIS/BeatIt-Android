@@ -16,9 +16,9 @@ import android.widget.TextView;
 
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
-import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.datatypes.DTState;
 import com.g6pis.beatitapp.entities.Challenge;
+import com.g6pis.beatitapp.interfaces.Factory;
 
 public class SongCompleteFinished extends Activity implements OnClickListener {
 	private static final String CHALLENGE_ID = "9";
@@ -30,7 +30,7 @@ public class SongCompleteFinished extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.challenge_finished);
 		
-		state = DataManager.getInstance().getState(CHALLENGE_ID);
+		state = Factory.getInstance().getIDataManager().getState(CHALLENGE_ID);
 		
 		this.editLayout();
 
@@ -42,7 +42,7 @@ public class SongCompleteFinished extends Activity implements OnClickListener {
 		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(state
 				.getDateTimeStart().toString());
 		
-		Challenge challenge = DataManager.getInstance().getChallenge(CHALLENGE_ID);
+		Challenge challenge = Factory.getInstance().getIDataManager().getChallenge(CHALLENGE_ID);
 		((TextView) findViewById(R.id.textView_Attempts_Value))
 		.setText(state.getCurrentAttempt() + "/" + challenge.getMaxAttempt());
 

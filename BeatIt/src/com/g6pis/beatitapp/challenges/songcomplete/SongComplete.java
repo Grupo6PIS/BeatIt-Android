@@ -1,7 +1,7 @@
 package com.g6pis.beatitapp.challenges.songcomplete;
 
-import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.entities.Challenge;
+import com.g6pis.beatitapp.interfaces.Factory;
 
 public class SongComplete extends Challenge {
 
@@ -39,7 +39,7 @@ public class SongComplete extends Challenge {
 	}
 
 	public void finishChallenge(){
-		DataManager.getInstance().saveScore(CHALLENGE_ID, calculateScore());
+		Factory.getInstance().getIDataManager().saveScore(CHALLENGE_ID, calculateScore());
 	}
 
 	//@Override

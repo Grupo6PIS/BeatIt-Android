@@ -13,13 +13,13 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.ImageButton;
 
 import com.facebook.Session;
-import com.g6pis.beatitapp.controllers.DataManager;
+import com.g6pis.beatitapp.interfaces.Factory;
+import com.g6pis.beatitapp.interfaces.IDataManager;
 import com.g6pis.beatitapp.persistence.StateDAO;
 import com.g6pis.beatitapp.tabs.ChallengesMenuTab;
 import com.g6pis.beatitapp.tabs.ProfileTab;
@@ -35,7 +35,6 @@ public class Home extends FragmentActivity implements OnClickListener {
 	SharedPreferences sharedPrefs;
 	Editor editor;
 	private boolean isUserLoggedIn;
-	public DataManager datamanager;
 	public ImageButton refreshButton;
 	public ImageButton retryButton;
 	public Dialog confirmationDialog;
@@ -149,7 +148,7 @@ public class Home extends FragmentActivity implements OnClickListener {
 			StateDAO db = new StateDAO(this);
 			db.drop();
 
-			datamanager.getInstance().logout();
+			Factory.getInstance().getIDataManager().logout();
 			sharedPrefs = getApplicationContext()
 					.getSharedPreferences(APP_SHARED_PREFS,
 							Context.MODE_PRIVATE);

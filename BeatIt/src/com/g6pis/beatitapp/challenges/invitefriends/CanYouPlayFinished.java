@@ -17,9 +17,9 @@ import android.widget.TextView;
 
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
-import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.datatypes.DTState;
 import com.g6pis.beatitapp.entities.Challenge;
+import com.g6pis.beatitapp.interfaces.Factory;
 
 public class CanYouPlayFinished extends Activity implements OnClickListener {
 	private static final String CHALLENGE_ID = "3";
@@ -31,7 +31,7 @@ public class CanYouPlayFinished extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.challenge_finished);
 
-		state = DataManager.getInstance().getState(CHALLENGE_ID);
+		state = Factory.getInstance().getIDataManager().getState(CHALLENGE_ID);
 
 		this.editLayout();
 
@@ -42,7 +42,7 @@ public class CanYouPlayFinished extends Activity implements OnClickListener {
 		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(state
 				.getDateTimeStart().toString());
 		
-		Challenge challenge = DataManager.getInstance().getChallenge(CHALLENGE_ID);
+		Challenge challenge = Factory.getInstance().getIDataManager().getChallenge(CHALLENGE_ID);
 		((TextView) findViewById(R.id.textView_Attempts_Value))
 		.setText(state.getCurrentAttempt() + "/" + challenge.getMaxAttempt());
 		
@@ -85,7 +85,7 @@ public class CanYouPlayFinished extends Activity implements OnClickListener {
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setTitle(this.getString(R.string.app_name));
 		
-		CanYouPlay canYouPlay = (CanYouPlay) DataManager.getInstance().getChallenge(CHALLENGE_ID);
+		CanYouPlay canYouPlay = (CanYouPlay) Factory.getInstance().getIDataManager().getChallenge(CHALLENGE_ID);
 		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(canYouPlay.getColor())));
 
 		((ImageView) findViewById(R.id.imageView_Logo))

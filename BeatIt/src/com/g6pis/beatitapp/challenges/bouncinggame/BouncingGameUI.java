@@ -26,6 +26,7 @@ import com.g6pis.beatitapp.R;
 import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.datatypes.DTDateTime;
 import com.g6pis.beatitapp.datatypes.DTState;
+import com.g6pis.beatitapp.interfaces.Factory;
 import com.g6pis.beatitapp.persistence.StateDAO;
 
 public class BouncingGameUI extends Activity implements SensorEventListener, OnClickListener {
@@ -66,13 +67,12 @@ public class BouncingGameUI extends Activity implements SensorEventListener, OnC
 		this.editActionBar(); 
 		this.viewAssignment();
 		
-		bouncingGame = (BouncingGame) DataManager.getInstance().getChallenge(CHALLENGE_ID);
-		state = DataManager.getInstance().getState(CHALLENGE_ID);
+		bouncingGame = (BouncingGame) Factory.getInstance().getIDataManager().getChallenge(CHALLENGE_ID);
+		state = Factory.getInstance().getIDataManager().getState(CHALLENGE_ID);
 		
 		mp_success = MediaPlayer.create(this, R.raw.success);
 		mp_fail = MediaPlayer.create(this, R.raw.fail);
-		
-		DataManager dm = DataManager.getInstance();
+
 		
 		switch (bouncingGame.getLevel()) {
 
@@ -96,12 +96,12 @@ public class BouncingGameUI extends Activity implements SensorEventListener, OnC
 		}
 		
 		if (attemps < MAX_ATTEMPS) {
-			this.setLevel(((DTState) dm.getState(CHALLENGE_ID)).getChallengeLevel());
+			this.setLevel(((DTState) Factory.getInstance().getIDataManager().getState(CHALLENGE_ID)).getChallengeLevel());
 			
 			startButton = (Button) findViewById(R.id.start_challenge_button);
 			startButton.setOnClickListener(this);
 			
-			this.setDateTimeStart(dm.getCurrentRound().getDateTimeStart());
+			this.setDateTimeStart(Factory.getInstance().getIDataManager().getCurrentRound().getDateTimeStart());
 			((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(this.getDateTimeStart().toString());
 			((TextView) findViewById(R.id.textView_Duration_Value))
 			.setText(this.getDurationString());

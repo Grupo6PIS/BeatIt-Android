@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.entities.Challenge;
+import com.g6pis.beatitapp.interfaces.Factory;
 
 public class CatchMe extends Challenge {
 
@@ -84,7 +85,7 @@ public class CatchMe extends Challenge {
 	}
 
 	public void finishChallenge(int good) {
-		DataManager.getInstance().saveScore(CHALLENGE_ID, calculateScore(good));
+		Factory.getInstance().getIDataManager().saveScore(CHALLENGE_ID, calculateScore(good));
 
 		reset();
 	}

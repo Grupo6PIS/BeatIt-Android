@@ -30,8 +30,9 @@ import com.g6pis.beatitapp.entities.Challenge;
 import com.g6pis.beatitapp.entities.Round;
 import com.g6pis.beatitapp.entities.State;
 import com.g6pis.beatitapp.entities.User;
+import com.g6pis.beatitapp.interfaces.IDataManager;
 
-public class DataManager {
+public class DataManager implements IDataManager {
 
 	private static DataManager instance = new DataManager();
 

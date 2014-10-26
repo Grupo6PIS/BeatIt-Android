@@ -1,15 +1,7 @@
 package com.g6pis.beatitapp.challenges.usainbolt;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-
-import android.widget.TextView;
-
-
-
-import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.entities.Challenge;
+import com.g6pis.beatitapp.interfaces.Factory;
 
 public class UsainBolt extends Challenge {
 	private static final String CHALLENGE_ID 		= "1";
@@ -82,7 +74,7 @@ public class UsainBolt extends Challenge {
 	}
 	
 	public void finishChallenge(){
-		DataManager.getInstance().saveScore(CHALLENGE_ID, calculateScore());
+		Factory.getInstance().getIDataManager().saveScore(CHALLENGE_ID, calculateScore());
 		
 		this.maxSpeed = 0.0;
 		this.avgSpeed = 0.0;

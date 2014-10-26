@@ -3,8 +3,8 @@ package com.g6pis.beatitapp.challenges.invitefriends;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.entities.Challenge;
+import com.g6pis.beatitapp.interfaces.Factory;
 
 public class CanYouPlay extends Challenge {
 	private static final String CHALLENGE_ID = "3";
@@ -89,7 +89,7 @@ public class CanYouPlay extends Challenge {
 	
 	
 	public void finishChallenge(){
-		DataManager.getInstance().saveScore(CHALLENGE_ID, calculateScore());
+		Factory.getInstance().getIDataManager().saveScore(CHALLENGE_ID, calculateScore());
 		
 		phones = new ArrayList<String>();
 		smsSent = 0;

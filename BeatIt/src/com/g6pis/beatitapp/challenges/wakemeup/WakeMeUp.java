@@ -1,7 +1,7 @@
 package com.g6pis.beatitapp.challenges.wakemeup;
 
-import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.entities.Challenge;
+import com.g6pis.beatitapp.interfaces.Factory;
 
 public class WakeMeUp extends Challenge {
 	private static final String CHALLENGE_ID = "2";
@@ -67,7 +67,7 @@ public class WakeMeUp extends Challenge {
 	}
 
 	public void finishChallenge(){
-		DataManager.getInstance().saveScore(CHALLENGE_ID, calculateScore());
+		Factory.getInstance().getIDataManager().saveScore(CHALLENGE_ID, calculateScore());
 	}
 
 	//@Override

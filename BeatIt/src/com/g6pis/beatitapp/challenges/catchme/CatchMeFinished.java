@@ -7,6 +7,7 @@ import com.g6pis.beatitapp.challenges.textandcolor.TextAndColorUI;
 import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.datatypes.DTState;
 import com.g6pis.beatitapp.entities.Challenge;
+import com.g6pis.beatitapp.interfaces.Factory;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -36,7 +37,7 @@ public class CatchMeFinished extends Activity implements OnClickListener{
 		
 		setContentView(R.layout.challenge_finished);
 
-		state = DataManager.getInstance().getState(CHALLENGE_ID);
+		state = Factory.getInstance().getIDataManager().getState(CHALLENGE_ID);
 
 		this.editLayout();
 
@@ -47,7 +48,7 @@ public class CatchMeFinished extends Activity implements OnClickListener{
 		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(state
 				.getDateTimeStart().toString());
 		
-		Challenge challenge = DataManager.getInstance().getChallenge(CHALLENGE_ID);
+		Challenge challenge = Factory.getInstance().getIDataManager().getChallenge(CHALLENGE_ID);
 		((TextView) findViewById(R.id.textView_Attempts_Value))
 		.setText(state.getCurrentAttempt() + "/" + challenge.getMaxAttempt());
 		
@@ -90,7 +91,7 @@ public class CatchMeFinished extends Activity implements OnClickListener{
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setTitle(this.getString(R.string.app_name));
 		
-		CatchMe catchMe =(CatchMe) DataManager.getInstance().getChallenge(CHALLENGE_ID);
+		CatchMe catchMe =(CatchMe) Factory.getInstance().getIDataManager().getChallenge(CHALLENGE_ID);
 				
 		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(catchMe.getColor())));
 

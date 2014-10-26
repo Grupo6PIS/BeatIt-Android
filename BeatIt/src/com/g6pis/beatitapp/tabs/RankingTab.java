@@ -22,6 +22,7 @@ import com.g6pis.beatitapp.R;
 import com.g6pis.beatitapp.connection.ImageLoadTask;
 import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.datatypes.DTRanking;
+import com.g6pis.beatitapp.interfaces.Factory;
 //import com.g6pis.beatit.AdaptadorRanking;
 
  
@@ -45,7 +46,7 @@ public class RankingTab extends Fragment implements OnItemClickListener, OnClick
         ranking = (ListView) rootView.findViewById(R.id.Ranking_list);
 		ranking.setOnItemClickListener(this);
 		
-		DataManager dm = (DataManager) DataManager.getInstance();
+		DataManager dm = (DataManager) Factory.getInstance().getIDataManager();
         List <DTRanking> rankings = dm.getRanking();
         int total_rankings = rankings.size();
 		DTRanking[] items=new DTRanking[total_rankings];
@@ -71,10 +72,10 @@ public class RankingTab extends Fragment implements OnItemClickListener, OnClick
    			long id) {
     	String item = adapter.getItem(position).getUserName();
     	
-    	String username = activity.datamanager.getInstance().getUser()
+    	String username = Factory.getInstance().getIDataManager().getUser()
   				.getFirstName()
   				+ " "
-  				+ activity.datamanager.getInstance().getUser().getLastName();
+  				+ Factory.getInstance().getIDataManager().getUser().getLastName();
     	
     	if(item.equals(username)){
     		((Home)this.getActivity()).goToProfileFragment();
@@ -113,10 +114,10 @@ public class RankingTab extends Fragment implements OnItemClickListener, OnClick
           userName.setText(ranking.getUserName());
           score.setText(Integer.toString(ranking.getScore()));
           new ImageLoadTask(ranking.getImageURL(), profilePicture).execute(null, null);
-          String username = activity.datamanager.getInstance().getUser()
+          String username = Factory.getInstance().getIDataManager().getUser()
   				.getFirstName()
   				+ " "
-  				+ activity.datamanager.getInstance().getUser().getLastName();
+  				+ Factory.getInstance().getIDataManager().getUser().getLastName();
           if(ranking.getUserName().equals(username)){
         	  user.setVisibility(View.VISIBLE);
         	  rowView.setBackgroundColor(getResources().getColor(R.color.blanco));
@@ -134,7 +135,7 @@ public class RankingTab extends Fragment implements OnItemClickListener, OnClick
 	@Override
 	public void onClick(View v) {
 		
-		DataManager dm = (DataManager) DataManager.getInstance();
+		DataManager dm = (DataManager) Factory.getInstance().getIDataManager();
 		dm.updateRanking();
 		List <DTRanking> rankings = dm.getRanking();
         int total_rankings = rankings.size();

@@ -1,9 +1,7 @@
 package com.g6pis.beatitapp.challenges.shutthedog;
 
-import android.util.Log;
-
-import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.entities.Challenge;
+import com.g6pis.beatitapp.interfaces.Factory;
 
 public class ShutTheDog extends Challenge{
 	private static final String CHALLENGE_ID = "4";
@@ -90,7 +88,7 @@ public class ShutTheDog extends Challenge{
 	
 	
 	public void finishChallenge(){
-		DataManager.getInstance().saveScore(CHALLENGE_ID, calculateScore());
+		Factory.getInstance().getIDataManager().saveScore(CHALLENGE_ID, calculateScore());
 		
 		lives = 0;
 		hasWon = false;

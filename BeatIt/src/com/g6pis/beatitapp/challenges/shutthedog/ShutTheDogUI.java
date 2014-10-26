@@ -3,13 +3,6 @@ package com.g6pis.beatitapp.challenges.shutthedog;
 import java.io.IOException;
 import java.util.Random;
 
-import com.g6pis.beatitapp.Home;
-import com.g6pis.beatitapp.R;
-import com.g6pis.beatitapp.controllers.DataManager;
-import com.g6pis.beatitapp.datatypes.DTDateTime;
-import com.g6pis.beatitapp.datatypes.DTState;
-import com.g6pis.beatitapp.persistence.StateDAO;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -22,12 +15,18 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.g6pis.beatitapp.Home;
+import com.g6pis.beatitapp.R;
+import com.g6pis.beatitapp.datatypes.DTDateTime;
+import com.g6pis.beatitapp.datatypes.DTState;
+import com.g6pis.beatitapp.interfaces.Factory;
+import com.g6pis.beatitapp.persistence.StateDAO;
 
 public class ShutTheDogUI extends Activity implements SensorEventListener {
 	private static final String CHALLENGE_ID = "4";
@@ -72,9 +71,9 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.shut_the_dog);
 		
-		shutthedog = (ShutTheDog) DataManager.getInstance().getChallenge(
+		shutthedog = (ShutTheDog) Factory.getInstance().getIDataManager().getChallenge(
 				CHALLENGE_ID);
-		state = DataManager.getInstance().getState(CHALLENGE_ID);
+		state = Factory.getInstance().getIDataManager().getState(CHALLENGE_ID);
 		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(state
 				.getDateTimeStart().toString());
 		((TextView) findViewById(R.id.textView_Duration_Value))
@@ -304,7 +303,7 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 			this.finish();
 			shutthedog.finishChallenge();
 			StateDAO db = new StateDAO(this);
-			db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
+			db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));
 		}
 	 
 	 @Override

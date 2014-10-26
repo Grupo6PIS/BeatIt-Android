@@ -22,6 +22,7 @@ import com.facebook.UiLifecycleHelper;
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
 import com.g6pis.beatitapp.connection.ImageLoadTask;
+import com.g6pis.beatitapp.interfaces.Factory;
 
 public class ProfileTab extends Fragment implements OnClickListener {
 	private static final int CONFIRMATION_DIALOG = 60;
@@ -66,15 +67,15 @@ public class ProfileTab extends Fragment implements OnClickListener {
 		username = (TextView) rootView.findViewById(R.id.textView_username_ranking);
 		country = (TextView) rootView.findViewById(R.id.textView_user_country);
 
-		username.setText(activity.datamanager.getInstance().getUser()
+		username.setText(Factory.getInstance().getIDataManager().getUser()
 				.getFirstName()
 				+ " "
-				+ activity.datamanager.getInstance().getUser().getLastName());
+				+ Factory.getInstance().getIDataManager().getUser().getLastName());
 
-		country.setText(activity.datamanager.getInstance().getUser()
+		country.setText(Factory.getInstance().getIDataManager().getUser()
 				.getCountry());
 
-		new ImageLoadTask(activity.datamanager.getInstance().getUser()
+		new ImageLoadTask(Factory.getInstance().getIDataManager().getUser()
 				.getImageURL(), profilePicture).execute(null, null);
 
 		((Home) getActivity()).refreshButton.setVisibility(View.INVISIBLE);

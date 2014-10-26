@@ -38,6 +38,7 @@ import com.g6pis.beatitapp.challenges.wakemeup.WakeMeUpFinished;
 import com.g6pis.beatitapp.challenges.wakemeup.WakeMeUpUI;
 import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.datatypes.DTState;
+import com.g6pis.beatitapp.interfaces.Factory;
 
 public class ChallengesMenuTab extends Fragment implements
 		AdapterView.OnItemClickListener {
@@ -69,7 +70,7 @@ public class ChallengesMenuTab extends Fragment implements
 				.findViewById(R.id.challengesMenu_list);
 		challengeMenu.setOnItemClickListener(this);
 
-		DataManager dm = (DataManager) DataManager.getInstance();
+		DataManager dm = (DataManager) Factory.getInstance().getIDataManager();
 		List<DTState> challenges = dm.getChallenges();
 		int total_challenges = challenges.size();
 		DTState[] items = new DTState[total_challenges];

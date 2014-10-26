@@ -1,7 +1,7 @@
 package com.g6pis.beatitapp.challenges.throwthephone;
 
-import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.entities.Challenge;
+import com.g6pis.beatitapp.interfaces.Factory;
 
 public class ThrowThePhone extends Challenge {
 	private String CHALLENGE_ID = "6";
@@ -50,7 +50,7 @@ public class ThrowThePhone extends Challenge {
 	}
 	
 	public void finishChallenge(){
-		DataManager.getInstance().saveScore(CHALLENGE_ID, calculateScore());
+		Factory.getInstance().getIDataManager().saveScore(CHALLENGE_ID, calculateScore());
 	}
 	
 }

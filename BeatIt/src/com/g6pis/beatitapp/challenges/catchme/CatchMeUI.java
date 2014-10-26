@@ -2,7 +2,6 @@ package com.g6pis.beatitapp.challenges.catchme;
 
 import java.util.Random;
 
-import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
@@ -10,21 +9,19 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
-import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.datatypes.DTDateTime;
 import com.g6pis.beatitapp.datatypes.DTState;
+import com.g6pis.beatitapp.interfaces.Factory;
 import com.g6pis.beatitapp.persistence.StateDAO;
 
 public class CatchMeUI extends Activity implements OnClickListener {
@@ -49,9 +46,9 @@ public class CatchMeUI extends Activity implements OnClickListener {
 			setContentView(R.layout.catch_me);
 
 
-			catchMe = (CatchMe) DataManager.getInstance().getChallenge(
+			catchMe = (CatchMe) Factory.getInstance().getIDataManager().getChallenge(
 					CHALLENGE_ID);
-			state = DataManager.getInstance().getState(CHALLENGE_ID);
+			state = Factory.getInstance().getIDataManager().getState(CHALLENGE_ID);
 			((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(state
 					.getDateTimeStart().toString());
 			((TextView) findViewById(R.id.textView_Duration_Value))
@@ -306,7 +303,7 @@ public class CatchMeUI extends Activity implements OnClickListener {
 				startActivity(challengeFinished);
 				this.finish();
 				StateDAO db = new StateDAO(this);
-				db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
+				db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));
 				
 			}
 			

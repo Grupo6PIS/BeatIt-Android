@@ -19,6 +19,7 @@ import com.g6pis.beatitapp.R;
 import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.datatypes.DTState;
 import com.g6pis.beatitapp.entities.Challenge;
+import com.g6pis.beatitapp.interfaces.Factory;
 
 public class BouncingGameFinished extends Activity implements OnClickListener {
 	private static final String CHALLENGE_ID = "5";
@@ -30,7 +31,7 @@ public class BouncingGameFinished extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.challenge_finished);
 		
-		state = DataManager.getInstance().getState(CHALLENGE_ID);
+		state = Factory.getInstance().getIDataManager().getState(CHALLENGE_ID);
 		
 		this.editLayout();
 

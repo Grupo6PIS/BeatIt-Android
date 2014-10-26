@@ -29,9 +29,9 @@ import com.facebook.UiLifecycleHelper;
 import com.facebook.widget.FacebookDialog;
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
-import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.datatypes.DTDateTime;
 import com.g6pis.beatitapp.datatypes.DTState;
+import com.g6pis.beatitapp.interfaces.Factory;
 import com.g6pis.beatitapp.persistence.StateDAO;
 
 public class CanYouPlayUI extends Activity implements OnClickListener {
@@ -79,9 +79,9 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 		facebookButton.setOnClickListener(this);
 		smsButton.setOnClickListener(this);
 
-		canYouPlay = (CanYouPlay) DataManager.getInstance().getChallenge(
+		canYouPlay = (CanYouPlay) Factory.getInstance().getIDataManager().getChallenge(
 				CHALLENGE_ID);
-		state = DataManager.getInstance().getState(CHALLENGE_ID);
+		state = Factory.getInstance().getIDataManager().getState(CHALLENGE_ID);
 		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(state
 				.getDateTimeStart().toString());
 		((TextView) findViewById(R.id.textView_Duration_Value))
@@ -328,7 +328,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 		this.finish();
 		canYouPlay.finishChallenge();
 		StateDAO db = new StateDAO(this);
-		db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
+		db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));
 	}
 
 	@Override

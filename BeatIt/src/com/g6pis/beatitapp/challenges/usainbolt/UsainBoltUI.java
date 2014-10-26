@@ -19,13 +19,12 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 
-
 //import com.g6pis.beatit.persistence.UsainBoltDAO;
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
-import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.datatypes.DTDateTime;
 import com.g6pis.beatitapp.datatypes.DTState;
+import com.g6pis.beatitapp.interfaces.Factory;
 import com.g6pis.beatitapp.persistence.StateDAO;
 //import com.g6pis.beatit.persistence.UsainBoltDAO;
 
@@ -86,9 +85,9 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 			startChallengeButton.setClickable(false);
 		}
 
-		usainBolt = (UsainBolt) DataManager.getInstance().getChallenge(
+		usainBolt = (UsainBolt) Factory.getInstance().getIDataManager().getChallenge(
 				CHALLENGE_ID);
-		state = DataManager.getInstance().getState(CHALLENGE_ID);
+		state = Factory.getInstance().getIDataManager().getState(CHALLENGE_ID);
 		 
 
 		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(state.getDateTimeStart().toString());
@@ -188,7 +187,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 			public void onFinish() {
 				usainBolt.finishChallenge();
 				StateDAO db = new StateDAO(getApplicationContext());
-				db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
+				db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));
 				completeChallenge();
 			}
 		};
@@ -321,7 +320,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 				usainBolt.setAvgSpeed(0);
 				usainBolt.finishChallenge();
 				StateDAO db = new StateDAO(this);
-				db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
+				db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));
 				this.challengeStarted = false;
 				textViewTimeLeftValue.setText(
 						getResources().getString(R.string.time_left) + " "

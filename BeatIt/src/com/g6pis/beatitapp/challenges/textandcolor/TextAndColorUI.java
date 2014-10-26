@@ -23,9 +23,9 @@ import android.widget.TextView;
 
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
-import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.datatypes.DTDateTime;
 import com.g6pis.beatitapp.datatypes.DTState;
+import com.g6pis.beatitapp.interfaces.Factory;
 import com.g6pis.beatitapp.persistence.StateDAO;
 
 
@@ -51,9 +51,9 @@ public class TextAndColorUI extends Activity implements OnClickListener {
 		setContentView(R.layout.text_and_color);
 
 
-		textAndColor = (TextAndColor) DataManager.getInstance().getChallenge(
+		textAndColor = (TextAndColor) Factory.getInstance().getIDataManager().getChallenge(
 				CHALLENGE_ID);
-		state = DataManager.getInstance().getState(CHALLENGE_ID);
+		state = Factory.getInstance().getIDataManager().getState(CHALLENGE_ID);
 		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(state
 				.getDateTimeStart().toString());
 		((TextView) findViewById(R.id.textView_Duration_Value))
@@ -397,7 +397,7 @@ public class TextAndColorUI extends Activity implements OnClickListener {
 		startActivity(challengeFinished);
 		this.finish();
 		StateDAO db = new StateDAO(this);
-		db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
+		db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));
 	}
 	
 	@SuppressWarnings("deprecation")

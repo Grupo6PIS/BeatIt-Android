@@ -15,7 +15,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
-import android.support.annotation.ColorRes;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -28,6 +27,7 @@ import com.g6pis.beatitapp.R;
 import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.datatypes.DTDateTime;
 import com.g6pis.beatitapp.datatypes.DTState;
+import com.g6pis.beatitapp.interfaces.Factory;
 import com.g6pis.beatitapp.persistence.StateDAO;
 
 public class WakeMeUpUI extends Activity implements SensorEventListener, OnClickListener {
@@ -85,13 +85,12 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 		this.editActionBar(); 
 		this.viewAssignment();
 		
-		wakeMeUp = (WakeMeUp) DataManager.getInstance().getChallenge(CHALLENGE_ID);
-		state = DataManager.getInstance().getState(CHALLENGE_ID);
+		wakeMeUp = (WakeMeUp) Factory.getInstance().getIDataManager().getChallenge(CHALLENGE_ID);
+		state = Factory.getInstance().getIDataManager().getState(CHALLENGE_ID);
 		
 		mp_success = MediaPlayer.create(this, R.raw.success);
 		mp_fail = MediaPlayer.create(this, R.raw.fail);
 		
-		DataManager dm = DataManager.getInstance();
 		
 		switch (wakeMeUp.getLevel()) {
 
@@ -115,14 +114,14 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 		}
 		
 		if (attemps < MAX_ATTEMPS) {
-			this.setLevel(((DTState) dm.getState(CHALLENGE_ID)).getChallengeLevel());
+			this.setLevel(((DTState) Factory.getInstance().getIDataManager().getState(CHALLENGE_ID)).getChallengeLevel());
 			number_of_repetitions = wakeMeUp.getNumber_of_repetitions();
 			hidden_secs = wakeMeUp.getHidden_secs();
 			
 			startButton = (Button) findViewById(R.id.start_button_wake_me_up);
 			startButton.setOnClickListener(this);
 			
-			this.setDateTimeStart(dm.getCurrentRound().getDateTimeStart());
+			this.setDateTimeStart(Factory.getInstance().getIDataManager().getCurrentRound().getDateTimeStart());
 			((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(this.getDateTimeStart().toString());
 			((TextView) findViewById(R.id.textView_Duration_Value))
 			.setText(this.getDurationString());
@@ -375,7 +374,7 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 		
 
 		StateDAO db = new StateDAO(getApplicationContext());
-		db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
+		db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));
 		wakeMeUp.reset();
 		
 		// Activity Challenge Finished

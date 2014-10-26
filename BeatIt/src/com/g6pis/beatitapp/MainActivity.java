@@ -19,6 +19,7 @@ import com.facebook.UiLifecycleHelper;
 import com.facebook.model.GraphUser;
 import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.datatypes.DTState;
+import com.g6pis.beatitapp.interfaces.Factory;
 import com.g6pis.beatitapp.persistence.StateDAO;
 
 public class MainActivity extends Activity {
@@ -78,10 +79,10 @@ public class MainActivity extends Activity {
 			} else {
 				StateDAO db = new StateDAO(this);
 				Map<String,DTState> persistedStates = db.getAllStates();
-				DataManager.getInstance().setStates(persistedStates);
-				userId = DataManager.getInstance().login(userId,fbId, firstName, lastName, country, imageURL);
+				Factory.getInstance().getIDataManager().setStates(persistedStates);
+				userId = Factory.getInstance().getIDataManager().login(userId,fbId, firstName, lastName, country, imageURL);
 				if(persistedStates.isEmpty()){
-					persistedStates = DataManager.getInstance().getPersistedStates();
+					persistedStates = Factory.getInstance().getIDataManager().getPersistedStates();
 					db.addStates(persistedStates);
 				}
 				Editor editor = sharedPrefs.edit();

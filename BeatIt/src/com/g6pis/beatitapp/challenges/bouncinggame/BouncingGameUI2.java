@@ -27,6 +27,7 @@ import android.widget.ImageView;
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
 import com.g6pis.beatitapp.controllers.DataManager;
+import com.g6pis.beatitapp.interfaces.Factory;
 import com.g6pis.beatitapp.persistence.StateDAO;
 
 public class BouncingGameUI2 extends Activity implements SensorEventListener {
@@ -67,7 +68,7 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
         super.onCreate(savedInstanceState);
         
         this.editActionBar();
-        bouncingGame = (BouncingGame) DataManager.getInstance().getChallenge(CHALLENGE_ID);
+        bouncingGame = (BouncingGame) Factory.getInstance().getIDataManager().getChallenge(CHALLENGE_ID);
         
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         accelerometer = sensorManager
@@ -286,7 +287,7 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
 		
 
 		StateDAO db = new StateDAO(getApplicationContext());
-		db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
+		db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));
 		bouncingGame.reset();
 		
 		// Activity Challenge Finished
