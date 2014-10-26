@@ -2,15 +2,6 @@ package com.g6pis.beatitapp.challenges.bouncinggame;
 
 import java.util.concurrent.TimeUnit;
 
-import com.g6pis.beatitapp.Home;
-import com.g6pis.beatitapp.R;
-import com.g6pis.beatitapp.challenges.bouncinggame.BouncingGame;
-import com.g6pis.beatitapp.challenges.bouncinggame.BouncingGameFinished;
-import com.g6pis.beatitapp.controllers.DataManager;
-import com.g6pis.beatitapp.datatypes.DTDateTime;
-import com.g6pis.beatitapp.datatypes.DTState;
-import com.g6pis.beatitapp.persistence.StateDAO;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
@@ -23,13 +14,19 @@ import android.hardware.SensorManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.g6pis.beatitapp.Home;
+import com.g6pis.beatitapp.R;
+import com.g6pis.beatitapp.controllers.DataManager;
+import com.g6pis.beatitapp.datatypes.DTDateTime;
+import com.g6pis.beatitapp.datatypes.DTState;
+import com.g6pis.beatitapp.persistence.StateDAO;
 
 public class BouncingGameUI extends Activity implements SensorEventListener, OnClickListener {
 	private static final String CHALLENGE_ID = "5";
@@ -46,10 +43,8 @@ public class BouncingGameUI extends Activity implements SensorEventListener, OnC
 	private Integer level;
 	
 	private TextView startButton;
-	private TextView textViewTimeLeftValue;
-	private TextView textViewResult;
 	
-	private static final long INITIAL_COUNTER_VALUE = 10000; // In milliseconds
+	private static final long INITIAL_COUNTER_VALUE = 60000; // In milliseconds
 	
 	private CountDownTimer timer;
 	//private double score = 0;
@@ -60,7 +55,7 @@ public class BouncingGameUI extends Activity implements SensorEventListener, OnC
 	private MediaPlayer mp_success;
 	private MediaPlayer mp_fail;
 	
-	private BouncingGame bouncingGame;
+	private static BouncingGame bouncingGame;
 	private DTState state;
 	
 	@Override
@@ -116,11 +111,6 @@ public class BouncingGameUI extends Activity implements SensorEventListener, OnC
 			
 			String t_initial_counter_value = String.format("%d", INITIAL_COUNTER_VALUE/1000);
 			
-			textViewTimeLeftValue = (TextView) findViewById(R.id.textView_Time_Left_Value);
-			textViewTimeLeftValue.setText(t_initial_counter_value);
-			
-			textViewResult = (TextView) findViewById(R.id.textView_Result);
-									
 			timer = this.createTimer();
 		}
 		else {
@@ -144,15 +134,13 @@ public class BouncingGameUI extends Activity implements SensorEventListener, OnC
 				else {
 					hms = String.format("??");
 				}
-				textViewTimeLeftValue.setText(hms);
+				//textViewTimeLeftValue.setText(hms);
 			}
 
 			public void onFinish() {
 				if (timerRunning) {
 					bouncingGame.finishChallenge();
 					stopTimer();
-					textViewTimeLeftValue.setText("Demoraste mucho !");
-					//textViewResult.setText("Demoraste mucho !");
 				}
 			}
 		};
@@ -166,17 +154,12 @@ public class BouncingGameUI extends Activity implements SensorEventListener, OnC
 			switch (v.getId()) {
 				case R.id.start_challenge_button: {
 					startButton.setVisibility(View.INVISIBLE);
-					textViewTimeLeftValue.setVisibility(View.VISIBLE);
-					
-					Handler handler = new Handler(); 
-				    handler.postDelayed(new Runnable() { 
-				         public void run() { 
-				        	 textViewResult.setVisibility(View.INVISIBLE); 
-				         } 
-				    }, 1000); 
-					//textViewResult.setVisibility(View.INVISIBLE);
 					this.timer.start();
 					this.timerRunning = true;
+					
+					Intent home = new Intent(this, BouncingGameUI2.class);
+					startActivity(home);
+					this.finish();
 				}
 				break;
 			}
@@ -185,8 +168,6 @@ public class BouncingGameUI extends Activity implements SensorEventListener, OnC
 	
 	public void viewAssignment() {
 		startButton = (TextView) findViewById(R.id.start_challenge_button);
-		textViewTimeLeftValue = (TextView) findViewById(R.id.textView_Time_Left_Value);
-		textViewResult = (TextView) findViewById(R.id.textView_Result);
 	}
 	
 	protected void onPause() {
@@ -277,36 +258,18 @@ public class BouncingGameUI extends Activity implements SensorEventListener, OnC
 
 	@Override
 	public void onSensorChanged(SensorEvent sensorEvent) {
-	    Sensor mySensor = sensorEvent.sensor;
-	    
-	    if (timerRunning) {
-	    	if (mySensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-		        float x = sensorEvent.values[0];
-		        float y = sensorEvent.values[1];
-		        float z = sensorEvent.values[2];
-		 
-		        long curTime = System.currentTimeMillis();
-		 
-		        if ((curTime - lastUpdate) > 100) {
-		            long diffTime = (curTime - lastUpdate);
-		            lastUpdate = curTime;
-		 
-		            float speed = Math.abs(x + y + z - last_x - last_y - last_z)/ diffTime * 10000;
-		            last_x = x;
-		            last_y = y;
-		            last_z = z;
-		            if (speed > SHAKE_THRESHOLD) {
-		            	stopTimer();
-		            }
-		 
-		        }
-		    }
-	    }
+	}
+	
+	public static BouncingGame getBouncingGameInstance () {
+		return bouncingGame;
 	}
 	
 	public void completeChallenge() {
 		senSensorManager.unregisterListener(this);
 		timer = null;
+		
+		bouncingGame.setSucceed_times(bouncingGame.getSucceed_times() + 1);
+		System.out.println("----- Succeed: " + bouncingGame.getSucceed_times());
 		
 		//bouncingGame.setSucceed_times(getSucceed_times());
 		bouncingGame.finishChallenge();

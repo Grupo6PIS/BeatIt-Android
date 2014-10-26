@@ -92,18 +92,18 @@ public class BouncingGameFinished extends Activity implements OnClickListener {
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setTitle(this.getString(R.string.app_name));
 		actionBar.setBackgroundDrawable(new ColorDrawable(getResources()
-				.getColor(R.color.wake_me_up)));
+				.getColor(R.color.bouncing)));
 
 		((ImageView) findViewById(R.id.imageView_Logo))
 				.setImageDrawable(getResources().getDrawable(
-						R.drawable.ic_despertame_a_tiempo));
+						R.drawable.ic_bouncing_game));
 		((TextView) findViewById(R.id.textView_Challenge_Name))
-				.setText(getResources().getString(R.string.wake_me_up));
+				.setText(getResources().getString(R.string.bouncing_game));
 		((TextView) findViewById(R.id.textView_Challenge_Name))
-				.setTextColor(getResources().getColor(R.color.wake_me_up));
+				.setTextColor(getResources().getColor(R.color.bouncing));
 		((TableRow) findViewById(R.id.text_row))
 				.setBackgroundColor(getResources().getColor(
-						R.color.wake_me_up));
+						R.color.bouncing));
 
 		((ImageButton) findViewById(R.id.refresh_button))
 				.setVisibility(View.INVISIBLE);

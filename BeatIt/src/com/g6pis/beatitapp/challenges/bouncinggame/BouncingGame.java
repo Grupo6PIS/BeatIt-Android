@@ -1,11 +1,5 @@
 package com.g6pis.beatitapp.challenges.bouncinggame;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
-
-import android.widget.TextView;
-
 import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.entities.Challenge;
 
@@ -13,10 +7,10 @@ public class BouncingGame extends Challenge {
 
 	private static final String CHALLENGE_ID 		= "5";
 	
-	private long succeed_times;
+	private int succeed_times;
 	
 	public BouncingGame(String challengeId, String name, Integer level, int maxAttempt, String color) {
-		super(challengeId, name, level, maxAttempt,color);
+		super(challengeId, name, level, 999,color);
 
 			switch (level) {
 
@@ -31,6 +25,15 @@ public class BouncingGame extends Challenge {
 			}
 		
 	}
+	
+	public int getSucceed_times() {
+		return succeed_times;
+	}
+
+
+	public void setSucceed_times(int succeed_times) {
+		this.succeed_times = succeed_times;
+	}
 
 	public void reset(){
 		this.succeed_times = 0;
@@ -42,7 +45,7 @@ public class BouncingGame extends Challenge {
 
 	//@Override
 	public double calculateScore(){
-		return (succeed_times)*5;
+		return (succeed_times)*10;
 	}
 	
 }
