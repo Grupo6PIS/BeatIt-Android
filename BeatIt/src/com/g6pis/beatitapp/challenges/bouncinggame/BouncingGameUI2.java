@@ -46,7 +46,9 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
     public PointF red_center;
     public PointF black_center;
     
+    private float x_min;
     private float x_max;
+    private float y_min;
     private float y_max;
     
     Paint pTextCollision = new Paint();
@@ -74,12 +76,22 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
 
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        x_max = 500;
-        y_max = 800;
+        //x_max = 500;
+        //y_max = 800;
+        x_max = metrics.widthPixels - 150;
+        y_max = metrics.heightPixels - 350;
+        x_min = 10;
+        y_min = 10;
+        x = x_min;
+        y = y_min;
         
         red_center = new PointF(x,y);
         pTextCollision.setTextSize(26);
+        pTextCollision.setColor(Color.RED);
+        pTextCollision.setTextScaleX(2);
         pTextTime.setTextSize(26);
+        pTextTime.setColor(Color.RED);
+        pTextTime.setTextScaleX(2);
         
         timer = this.createTimer();
         
@@ -165,7 +177,6 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
     @Override
     public void onAccuracyChanged(Sensor arg0, int arg1) {
         // TODO Auto-generated method stub
-
     }
 
 	private void stopTimer() {
@@ -178,8 +189,8 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
     	PointF red = new PointF();
     	Random r = new Random();
     	
-    	red.x = r.nextInt((int) x_max);
-    	red.y = r.nextInt((int) y_max);
+    	red.x = r.nextInt((int) x_max) + x_min;
+    	red.y = r.nextInt((int) y_max) + y_min;
     	
     	if (first == false && existCollision (red.x, red.y, red_radius, black_center.x, black_center.y, black_radius)) {
 			return relocateBall(false);
@@ -210,13 +221,13 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
             // Stay the ball on the screen
             if (x > x_max) {
                 x = x_max;
-            } else if (x < 0) {
-                x = 0;
+            } else if (x < x_min) {
+                x = x_min;
             }
             if (y > y_max) {
                 y = y_max;
-            } else if (y < 0) {
-                y = 0;
+            } else if (y < y_min) {
+                y = y_min;
             }
             
             red_center.x = x;
@@ -282,8 +293,8 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
         	black_ball.setBounds((int) black_center.x, (int) black_center.y, (int) (black_center.x + black_radius), (int) (black_center.y + black_radius));
             black_ball.draw(canvas);
             
-            canvas.drawText("Colisiones: " + collision_times, 500, 500, pTextCollision);
-            canvas.drawText("Tiempo: " + seconds, 500, 700, pTextTime);
+            canvas.drawText("Colisiones: " + collision_times, 10, y_max + 175, pTextCollision);
+            canvas.drawText("Tiempo: " + seconds, 450, y_max + 175, pTextTime);
         	
             red_ball.setBounds((int) x, (int) y, (int) (x + red_radius), (int) (y + red_radius));
             red_ball.draw(canvas);
