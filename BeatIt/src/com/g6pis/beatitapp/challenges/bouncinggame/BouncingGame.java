@@ -1,6 +1,5 @@
 package com.g6pis.beatitapp.challenges.bouncinggame;
 
-import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.entities.Challenge;
 import com.g6pis.beatitapp.interfaces.Factory;
 

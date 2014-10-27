@@ -24,7 +24,6 @@ import android.widget.TextView;
 
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
-import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.datatypes.DTDateTime;
 import com.g6pis.beatitapp.datatypes.DTState;
 import com.g6pis.beatitapp.interfaces.Factory;
@@ -69,8 +68,6 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 	private MediaPlayer mp_fail;
 	
 	private CountDownTimer timer;
-	//private double score = 0;
-	//private long succeed_times = 0;
 	private long attemps = 0;
 	private long MAX_ATTEMPS = 3;
 	
@@ -165,10 +162,8 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 
 			public void onFinish() {
 				if (timerRunning) {
-					wakeMeUp.finishChallenge();
 					stopTimer();
 					textViewTimeLeftValue.setText("Demoraste mucho !");
-					//textViewResult.setText("Demoraste mucho !");
 				}
 			}
 		};
@@ -190,7 +185,6 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 				        	 textViewResult.setVisibility(View.INVISIBLE); 
 				         } 
 				    }, 1000); 
-					//textViewResult.setVisibility(View.INVISIBLE);
 					this.timer.start();
 					this.timerRunning = true;
 				}
@@ -282,9 +276,6 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 			mp_fail.start();
 		}
 		
-		
-		//textViewResult.setVisibility(View.VISIBLE);
-		//textViewResult.setText(Double.toString(time));
 		timer.cancel();
 
 		number_of_repetitions--;
@@ -367,11 +358,7 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 		senSensorManager.unregisterListener(this);
 		timer = null;
 		
-		//wakeMeUp.setSucceed_times(getSucceed_times());
 		wakeMeUp.finishChallenge();
-		
-		setAttemps(getAttemps()+1);
-		
 
 		StateDAO db = new StateDAO(getApplicationContext());
 		db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));

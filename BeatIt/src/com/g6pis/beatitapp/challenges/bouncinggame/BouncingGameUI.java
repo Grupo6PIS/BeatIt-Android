@@ -1,7 +1,5 @@
 package com.g6pis.beatitapp.challenges.bouncinggame;
 
-import java.util.concurrent.TimeUnit;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
@@ -11,9 +9,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,11 +19,9 @@ import android.widget.TextView;
 
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
-import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.datatypes.DTDateTime;
 import com.g6pis.beatitapp.datatypes.DTState;
 import com.g6pis.beatitapp.interfaces.Factory;
-import com.g6pis.beatitapp.persistence.StateDAO;
 
 public class BouncingGameUI extends Activity implements SensorEventListener, OnClickListener {
 	private static final String CHALLENGE_ID = "5";
@@ -37,25 +31,13 @@ public class BouncingGameUI extends Activity implements SensorEventListener, OnC
 	private DTDateTime dateTimeStart;
 	
 	private boolean timerRunning = false;
-	private long lastUpdate = 0;
-	private float last_x, last_y, last_z;
-	private static final int SHAKE_THRESHOLD = 300;
-	
 	private Integer level;
 	
 	private TextView startButton;
 	
-	private static final long INITIAL_COUNTER_VALUE = 60000; // In milliseconds
-	
-	private CountDownTimer timer;
-	//private double score = 0;
-	//private long succeed_times = 0;
 	private long attemps = 0;
 	private long MAX_ATTEMPS = 3;
 
-	private MediaPlayer mp_success;
-	private MediaPlayer mp_fail;
-	
 	private static BouncingGame bouncingGame;
 	private DTState state;
 	
@@ -69,10 +51,6 @@ public class BouncingGameUI extends Activity implements SensorEventListener, OnC
 		
 		bouncingGame = (BouncingGame) Factory.getInstance().getIDataManager().getChallenge(CHALLENGE_ID);
 		state = Factory.getInstance().getIDataManager().getState(CHALLENGE_ID);
-		
-		mp_success = MediaPlayer.create(this, R.raw.success);
-		mp_fail = MediaPlayer.create(this, R.raw.fail);
-
 		
 		switch (bouncingGame.getLevel()) {
 
@@ -108,44 +86,10 @@ public class BouncingGameUI extends Activity implements SensorEventListener, OnC
 	        senSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
 	        senAccelerometer = senSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 	        senSensorManager.registerListener(this, senAccelerometer , SensorManager.SENSOR_DELAY_NORMAL);
-			
-			String t_initial_counter_value = String.format("%d", INITIAL_COUNTER_VALUE/1000);
-			
-			timer = this.createTimer();
 		}
 		else {
 			completeChallenge();
 		}
-		
-	}
-	
-	
-	public CountDownTimer createTimer(){
-		CountDownTimer timer = new CountDownTimer(INITIAL_COUNTER_VALUE, 10) {
-			
-			public void onTick(long millisUntilFinished) {
-				
-				long millis = millisUntilFinished;
-				String hms;
-				if (millis <= 0) {
-					hms = String.format("%d", 
-							TimeUnit.MILLISECONDS.toSeconds(millis));
-				}
-				else {
-					hms = String.format("??");
-				}
-				//textViewTimeLeftValue.setText(hms);
-			}
-
-			public void onFinish() {
-				if (timerRunning) {
-					bouncingGame.finishChallenge();
-					stopTimer();
-				}
-			}
-		};
-		
-		return timer;
 	}
 	
 	@Override
@@ -154,8 +98,6 @@ public class BouncingGameUI extends Activity implements SensorEventListener, OnC
 			switch (v.getId()) {
 				case R.id.start_challenge_button: {
 					startButton.setVisibility(View.INVISIBLE);
-					this.timer.start();
-					this.timerRunning = true;
 					
 					Intent home = new Intent(this, BouncingGameUI2.class);
 					startActivity(home);
@@ -165,7 +107,7 @@ public class BouncingGameUI extends Activity implements SensorEventListener, OnC
 			}
 		}
 	}
-	
+
 	public void viewAssignment() {
 		startButton = (TextView) findViewById(R.id.start_challenge_button);
 	}
@@ -228,33 +170,6 @@ public class BouncingGameUI extends Activity implements SensorEventListener, OnC
 	public void onAccuracyChanged(Sensor arg0, int arg1) {
 		// TODO Auto-generated method stub
 	}
-	
-	private void stopTimer() {
-		timerRunning = false;
-/*		time = g_millis - MAX;
-		textViewResult.setVisibility(View.VISIBLE);
-		if (Math.abs(time) < TOLERANCE) {
-			bouncingGame.setSucceed_times(bouncingGame.getSucceed_times() + 1);
-			// Show performance
-			textViewResult.setText(getResources().getString(R.string.success));
-			textViewResult.setBackgroundColor(getResources().getColor(R.color.verde));
-			mp_success.start();
-		}
-		else {
-			// Show performance
-			textViewResult.setText(getResources().getString(R.string.fail));
-			textViewResult.setBackgroundColor(getResources().getColor(R.color.red));
-			mp_fail.start();
-		}
-		
-*/		
-		//textViewResult.setVisibility(View.VISIBLE);
-		//textViewResult.setText(Double.toString(time));
-		timer.cancel();
-
-		completeChallenge();
-	}
-	
 
 	@Override
 	public void onSensorChanged(SensorEvent sensorEvent) {
@@ -265,22 +180,6 @@ public class BouncingGameUI extends Activity implements SensorEventListener, OnC
 	}
 	
 	public void completeChallenge() {
-		senSensorManager.unregisterListener(this);
-		timer = null;
-		
-		bouncingGame.setSucceed_times(bouncingGame.getSucceed_times() + 1);
-		System.out.println("----- Succeed: " + bouncingGame.getSucceed_times());
-		
-		//bouncingGame.setSucceed_times(getSucceed_times());
-		bouncingGame.finishChallenge();
-		
-		setAttemps(getAttemps()+1);
-		
-
-		StateDAO db = new StateDAO(getApplicationContext());
-		db.updateState(DataManager.getInstance().getState(CHALLENGE_ID));
-		bouncingGame.reset();
-		
 		// Activity Challenge Finished
 		Intent finished = new Intent(this, BouncingGameFinished.class);
 
@@ -368,6 +267,4 @@ public class BouncingGameUI extends Activity implements SensorEventListener, OnC
 		return result;
         
     }
-
-
 }

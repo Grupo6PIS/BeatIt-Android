@@ -26,7 +26,6 @@ import android.widget.ImageView;
 
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
-import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.interfaces.Factory;
 import com.g6pis.beatitapp.persistence.StateDAO;
 
@@ -52,8 +51,6 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
     
     Paint pTextCollision = new Paint();
     Paint pTextTime = new Paint();   
-    
-    
     
 	private boolean timerRunning = false;
 	private static final long INITIAL_COUNTER_VALUE = 60000; // In milliseconds
@@ -102,7 +99,6 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
 
 			public void onFinish() {
 				if (timerRunning) {
-					bouncingGame.finishChallenge();
 					stopTimer();
 				}
 			}
@@ -135,7 +131,6 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
 	@Override
 	public void onBackPressed(){
 		timerRunning = false;
-		//bouncingGame.reset();
 		Intent home = new Intent(this, Home.class);
 		startActivity(home);
 		this.finish();
@@ -148,7 +143,6 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
 		switch (item.getItemId()) {
 		// Respond to the action bar's Up/Home button
 		case android.R.id.home:
-			//bouncingGame.reset();
 			Intent home = new Intent(this, Home.class);
 			startActivity(home);
 			this.finish();
@@ -176,27 +170,7 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
 
 	private void stopTimer() {
 		timerRunning = false;
-/*		time = g_millis - MAX;
-		textViewResult.setVisibility(View.VISIBLE);
-		if (Math.abs(time) < TOLERANCE) {
-			bouncingGame.setSucceed_times(bouncingGame.getSucceed_times() + 1);
-			// Show performance
-			textViewResult.setText(getResources().getString(R.string.success));
-			textViewResult.setBackgroundColor(getResources().getColor(R.color.verde));
-			mp_success.start();
-		}
-		else {
-			// Show performance
-			textViewResult.setText(getResources().getString(R.string.fail));
-			textViewResult.setBackgroundColor(getResources().getColor(R.color.red));
-			mp_fail.start();
-		}
-		
-*/		
-		//textViewResult.setVisibility(View.VISIBLE);
-		//textViewResult.setText(Double.toString(time));
 		timer.cancel();
-
 		completeChallenge();
 	}
 	
@@ -249,17 +223,6 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
             red_center.y = y;
 
             if (existCollision(red_center.x, red_center.y, red_radius, black_center.x, black_center.y, black_radius)) {
-
-/*
-            	System.out.println("----- Distance: " + getDistance(red_center.x, red_center.y, red_radius, black_center.x, black_center.y, black_radius));
-                System.out.println("----- PosX_red: " + red_center.x);
-                System.out.println("----- PosX_black: " + black_center.x);
-                System.out.println("----- PosY_red: " + red_center.y);
-                System.out.println("----- PosY_black: " + black_center.y);
-                System.out.println("----- Radio_red: " + red_radius);
-                System.out.println("----- Radio_black: " + black_radius);
-                System.out.println("----------------");
-*/
             	collision_times += 1;
             	System.out.println("----- Colisiones: " + collision_times);
             	bouncingGame.setSucceed_times(collision_times);
@@ -277,15 +240,8 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
     	sensorManager.unregisterListener(this);
 		timer = null;
 		
-		bouncingGame.setSucceed_times(bouncingGame.getSucceed_times() + 1);
-		System.out.println("----- Succeed: " + bouncingGame.getSucceed_times());
-		
-		//bouncingGame.setSucceed_times(getSucceed_times());
 		bouncingGame.finishChallenge();
 		
-		setAttemps(getAttemps()+1);
-		
-
 		StateDAO db = new StateDAO(getApplicationContext());
 		db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));
 		bouncingGame.reset();
