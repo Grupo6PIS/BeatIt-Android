@@ -122,10 +122,12 @@ public class ChallengesMenuTab extends Fragment implements
 						ShutTheDogFinished.class);
 		} else if (adapter.getItem(position).getChallengeId()
 				.equals(ID_Bouncing_Game)) {
-			if (adapter.getItem(position).getCurrentAttempt() == 0)
-				challenge = new Intent(getActivity().getApplicationContext(),
-						BouncingGameUI.class);
-			else
+			if (adapter.getItem(position).getCurrentAttempt() == 0){
+				/*challenge = new Intent(getActivity().getApplicationContext(),
+						BouncingGameUI.class);*/
+				((Home)getActivity()).challenge = Integer.parseInt(ID_Bouncing_Game);
+			((Home)getActivity()).challengeDialog.show();
+			}else
 				challenge = new Intent(getActivity().getApplicationContext(),
 						BouncingGameFinished.class);
 
@@ -139,10 +141,12 @@ public class ChallengesMenuTab extends Fragment implements
 						ThrowThePhoneFinished.class); 
 		} else if (adapter.getItem(position).getChallengeId()
 				.equals(ID_Catch_Me)) {
-			if (adapter.getItem(position).getCurrentAttempt() == 0)
-				challenge = new Intent(getActivity().getApplicationContext(),
-						CatchMeUI.class);
-			else
+			if (adapter.getItem(position).getCurrentAttempt() == 0){
+				/*challenge = new Intent(getActivity().getApplicationContext(),
+						CatchMeUI.class);*/
+				((Home)getActivity()).challenge = Integer.parseInt(ID_Catch_Me);
+			((Home)getActivity()).challengeDialog.show();
+			}else
 				challenge = new Intent(getActivity().getApplicationContext(),
 						CatchMeFinished.class);
 
@@ -164,8 +168,10 @@ public class ChallengesMenuTab extends Fragment implements
 						SongCompleteFinished.class);
 
 		}
-		startActivity(challenge);
-		this.getActivity().finish();
+		if(challenge != null){
+			startActivity(challenge);
+			this.getActivity().finish();
+		}
 	}
 
 	private class MyAdapter extends ArrayAdapter<DTState> {

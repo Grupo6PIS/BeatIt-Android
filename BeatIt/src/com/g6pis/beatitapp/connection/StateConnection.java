@@ -13,24 +13,31 @@ import org.json.JSONObject;
 
 import android.os.AsyncTask;
 
-public class ScoreConnection extends AsyncTask<String, Void, JSONObject>{
-
+public class StateConnection extends AsyncTask<String, Void, JSONObject> {
+	
 	@Override
 	protected JSONObject doInBackground(String... params) {
 
 		String userId = params[0];
-		Double score = Double.parseDouble(params[1]);
-		Integer roundId = Integer.parseInt(params[2]);
+		Integer roundId = Integer.parseInt(params[1]);
+		Integer challengeId = Integer.parseInt(params[2]);
+		Integer attempts = Integer.parseInt(params[3]);
+		Boolean finished = Boolean.getBoolean(params[4]);
+		Double bestScore = Double.parseDouble(params[5]);
+		Double lastScore = Double.parseDouble(params[6]);
+		
+
 
 		URL url;
 		JSONObject json = new JSONObject();
 		try {
-				url = new URL("http://beatit-udelar.rhcloud.com/round/sendScore/"); 
+				url = new URL("http://beatit-udelar.rhcloud.com/user/sendState/"); 
 				URLConnection conn = url.openConnection();
 				conn.setDoOutput(true);
 				OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
 
-				writer.write("userID="+userId+"&score="+score+"&roundID="+roundId);
+				writer.write("userId="+userId+"&roundId="+roundId+"&challengeId="+challengeId+"&attemps="+attempts+"&finished"+finished+
+							"&stat_date=&bestScore="+bestScore+"&lastScore="+lastScore);
 				writer.flush();
 				BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
 				String response = reader.readLine();
@@ -41,6 +48,4 @@ public class ScoreConnection extends AsyncTask<String, Void, JSONObject>{
 		}
 		return json;
 	}
-
-
 }

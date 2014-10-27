@@ -23,6 +23,7 @@ import com.g6pis.beatitapp.connection.LoginConnection;
 import com.g6pis.beatitapp.connection.RankingConnection;
 import com.g6pis.beatitapp.connection.RoundConnection;
 import com.g6pis.beatitapp.connection.ScoreConnection;
+import com.g6pis.beatitapp.connection.StateConnection;
 import com.g6pis.beatitapp.datatypes.DTDateTime;
 import com.g6pis.beatitapp.datatypes.DTRanking;
 import com.g6pis.beatitapp.datatypes.DTState;
@@ -95,10 +96,12 @@ public class DataManager implements IDataManager {
 			LoginConnection login = (LoginConnection) new LoginConnection()
 					.execute(userId, fbId, firstName, lastName, imageURL);
 			JSONObject json = login.get();
+			JSONArray jsonStates = new JSONArray();
 			if(!json.getBoolean("error")){
 				JSONObject jsonUser = json.getJSONObject("user");
 				userId = jsonUser.getString("_id");
-
+				JSONObject jsonStatesObj = jsonUser.getJSONObject("roundState");
+				jsonStates = jsonStatesObj.getJSONArray("challenges");
 			user = new User(userId, fbId, firstName, lastName, country,
 					imageURL);
 			}
@@ -201,13 +204,39 @@ public class DataManager implements IDataManager {
 			String persistedRoundId = this.getPersistedRoundId();
 			if (!persistedRoundId.equals(currentRound.getRoundId())) {
 				persistedStates = new HashMap<String, DTState>();
-				//Si el array de states que viene del servidor no es vacío -> creo los states a partir de ahí
-				//Sino -> los creo de 0.
-				for (Challenge challenge : currentRound.getChallenges()) {
-					State state = new State(currentRound, challenge, user);
-					states.put(challenge.getChallengeId(), state);
-					DTState dtState = new DTState(state);
-					persistedStates.put(challenge.getChallengeId(), dtState);
+				if((jsonStates != null) && jsonStates.length() > 0){
+					for(int i = 0; i < jsonStates.length(); i++){
+						JSONObject jsonState = jsonStates.getJSONObject(i);
+						Challenge challenge = currentRound.getChallenge(jsonState.getString("challengeId"));
+						int currentAttempt = currentRound.getChallenge(jsonState.getString("challengeId")).getMaxAttempt() - jsonState.getInt("attemps");
+						DTDateTime lastFInishDateTime = new DTDateTime();
+						State state = new State(currentRound,challenge , user,
+												jsonState.getBoolean("finished"),
+												jsonState.getInt("bestScore"), 
+												jsonState.getInt("lastScore"),
+												currentAttempt, lastFInishDateTime);
+						
+						states.put(challenge.getChallengeId(), state);
+						DTState dtState = new DTState(state);
+						persistedStates.put(challenge.getChallengeId(), dtState);
+					}
+					if(jsonStates.length() != currentRound.getChallenges().size()){
+						for (Challenge challenge : currentRound.getChallenges()) {
+							if(!states.containsKey(challenge.getChallengeId())){
+								State state = new State(currentRound, challenge, user);
+								states.put(challenge.getChallengeId(), state);
+								DTState dtState = new DTState(state);
+								persistedStates.put(challenge.getChallengeId(), dtState);
+							}
+						}
+					}
+				}else{
+					for (Challenge challenge : currentRound.getChallenges()) {
+						State state = new State(currentRound, challenge, user);
+						states.put(challenge.getChallengeId(), state);
+						DTState dtState = new DTState(state);
+						persistedStates.put(challenge.getChallengeId(), dtState);
+					}
 				}
 			} else {
 				for (Challenge challenge : currentRound.getChallenges()) {
@@ -239,6 +268,24 @@ public class DataManager implements IDataManager {
 	}
 
 	public void logout() {
+		
+			for (Map.Entry<String, State> entry : states.entrySet()) {
+				
+				String userId = entry.getValue().getUser().getUserId();
+				String roundId = entry.getValue().getRound().getRoundId();
+				String challengeId = entry.getValue().getChallenge().getChallengeId();
+				String attempts = Integer.toString(entry.getValue().getChallenge().getMaxAttempt() - entry.getValue().getCurrentAttempt());
+				String finished = Boolean.toString(entry.getValue().isFinished());
+				String bestScore = Double.toString(entry.getValue().getMaxScore());
+				String lastScore = Double.toString(entry.getValue().getLastScore());
+			try {	
+				StateConnection scoreConnection = (StateConnection) new StateConnection()
+						.execute(userId,roundId,challengeId,attempts,finished,bestScore,lastScore);
+				JSONObject response = scoreConnection.get();
+			} catch (InterruptedException e) {
+			} catch (ExecutionException e) {
+		}
+		}
 		user = null;
 		persistedStates = new HashMap<String, DTState>();
 	}

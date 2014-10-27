@@ -87,7 +87,7 @@
     <string name="max_score">Puntaje Máximo</string>
 	<string name="last_score">Último Puntaje</string>
 	<string name="logout_confirmation_title">¿Estás seguro que quieres cerrar sesión?</string>
-	<string name="logout_confirmation">Se perderán todos los datos</string>
+	<string name="logout_confirmation">Se perderán todos los datos no guardados</string>
 	<string name="challenge_completed">/¡Desafío Completado!</string>
 	<string name="want_to_continue">¿Quieres continuar?</string>
 	<string name="continue_button">Continuar</string>
@@ -108,6 +108,8 @@
 	<string name="second">segundo</string>
 	<string name="week">semana</string>
 	<string name="weeks">semanas</string>
+	<string name="challenge_under_construction">Este desafío está en construcción, puede contener errores. </string>
+	<string name="challenge_under_construction_title">¿Desea continuar?</string>
 	
     <!-- Profile Strings -->
     <string name="username">Juan Pérez</string>

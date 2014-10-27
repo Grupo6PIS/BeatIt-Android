@@ -2,6 +2,7 @@ package com.g6pis.beatitapp.challenges.catchme;
 
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
+import com.g6pis.beatitapp.challenges.bouncinggame.BouncingGameUI;
 import com.g6pis.beatitapp.challenges.textandcolor.TextAndColor;
 import com.g6pis.beatitapp.challenges.textandcolor.TextAndColorUI;
 import com.g6pis.beatitapp.controllers.DataManager;
@@ -11,6 +12,9 @@ import com.g6pis.beatitapp.interfaces.Factory;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -24,17 +28,20 @@ import android.widget.ImageView;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class CatchMeFinished extends Activity implements OnClickListener{
+public class CatchMeFinished extends Activity implements OnClickListener,
+		android.content.DialogInterface.OnClickListener {
 
-	
 	private static final String CHALLENGE_ID = "7";
+	private static final int CHALLENGE_DIALOG = 50;
 
 	private DTState state;
+
+	private Dialog dialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		setContentView(R.layout.challenge_finished);
 
 		state = Factory.getInstance().getIDataManager().getState(CHALLENGE_ID);
@@ -47,11 +54,14 @@ public class CatchMeFinished extends Activity implements OnClickListener{
 				.toString(state.getMaxScore()));
 		((TextView) findViewById(R.id.textView_Start_Time_Value)).setText(state
 				.getDateTimeStart().toString());
-		
-		Challenge challenge = Factory.getInstance().getIDataManager().getChallenge(CHALLENGE_ID);
-		((TextView) findViewById(R.id.textView_Attempts_Value))
-		.setText(state.getCurrentAttempt() + "/" + challenge.getMaxAttempt());
-		
+
+		Challenge challenge = Factory.getInstance().getIDataManager()
+				.getChallenge(CHALLENGE_ID);
+		((TextView) findViewById(R.id.textView_Attempts_Value)).setText(state
+				.getCurrentAttempt() + "/" + challenge.getMaxAttempt());
+
+		dialog = onCreateDialog(CHALLENGE_DIALOG);
+		dialog.hide();
 
 	}
 
@@ -67,6 +77,7 @@ public class CatchMeFinished extends Activity implements OnClickListener{
 		switch (item.getItemId()) {
 		// Respond to the action bar's Up/Home button
 		case android.R.id.home:
+			dialog.dismiss();
 			Intent home = new Intent(this, Home.class);
 			startActivity(home);
 			this.finish();
@@ -77,6 +88,7 @@ public class CatchMeFinished extends Activity implements OnClickListener{
 
 	@Override
 	public void onBackPressed() {
+		dialog.dismiss();
 		Intent home = new Intent(this, Home.class);
 		startActivity(home);
 		this.finish();
@@ -90,10 +102,12 @@ public class CatchMeFinished extends Activity implements OnClickListener{
 		actionBar.setDisplayHomeAsUpEnabled(true);
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setTitle(this.getString(R.string.app_name));
-		
-		CatchMe catchMe =(CatchMe) Factory.getInstance().getIDataManager().getChallenge(CHALLENGE_ID);
-				
-		actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor(catchMe.getColor())));
+
+		CatchMe catchMe = (CatchMe) Factory.getInstance().getIDataManager()
+				.getChallenge(CHALLENGE_ID);
+
+		actionBar.setBackgroundDrawable(new ColorDrawable(Color
+				.parseColor(catchMe.getColor())));
 
 		((ImageView) findViewById(R.id.imageView_Logo))
 				.setImageDrawable(getResources().getDrawable(
@@ -102,8 +116,8 @@ public class CatchMeFinished extends Activity implements OnClickListener{
 				.setText(getResources().getString(R.string.catch_me));
 		((TextView) findViewById(R.id.textView_Challenge_Name))
 				.setTextColor(Color.parseColor(catchMe.getColor()));
-		((TableRow) findViewById(R.id.text_row))
-				.setBackgroundColor(Color.parseColor(catchMe.getColor()));
+		((TableRow) findViewById(R.id.text_row)).setBackgroundColor(Color
+				.parseColor(catchMe.getColor()));
 
 		((ImageButton) findViewById(R.id.refresh_button))
 				.setVisibility(View.INVISIBLE);
@@ -119,10 +133,41 @@ public class CatchMeFinished extends Activity implements OnClickListener{
 
 	@Override
 	public void onClick(View v) {
+		dialog.show();
+
+	}
+
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		switch (id) {
+		case CHALLENGE_DIALOG: {
+			builder.setMessage(R.string.challenge_under_construction);
+			builder.setTitle(getResources().getString(
+					R.string.challenge_under_construction_title));
+			builder.setCancelable(true);
+			builder.setPositiveButton(R.string.continue_button, this);
+			builder.setNegativeButton(R.string.cancel,
+					new CancelOnClickListener());
+			return builder.create();
+		}
+
+		}
+		return super.onCreateDialog(id);
+	}
+
+	private final class CancelOnClickListener implements
+			DialogInterface.OnClickListener {
+		public void onClick(DialogInterface dialog, int which) {
+		}
+	}
+
+	@Override
+	public void onClick(DialogInterface dialog, int which) {
 		Intent intent = new Intent(this, CatchMeUI.class);
 		startActivity(intent);
 		finish();
 
 	}
-	
+
 }

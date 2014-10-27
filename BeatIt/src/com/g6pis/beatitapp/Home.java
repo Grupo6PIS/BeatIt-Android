@@ -18,8 +18,9 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.facebook.Session;
+import com.g6pis.beatitapp.challenges.bouncinggame.BouncingGameUI;
+import com.g6pis.beatitapp.challenges.catchme.CatchMeUI;
 import com.g6pis.beatitapp.interfaces.Factory;
-import com.g6pis.beatitapp.interfaces.IDataManager;
 import com.g6pis.beatitapp.persistence.StateDAO;
 import com.g6pis.beatitapp.tabs.ChallengesMenuTab;
 import com.g6pis.beatitapp.tabs.ProfileTab;
@@ -27,6 +28,7 @@ import com.g6pis.beatitapp.tabs.RankingTab;
 
 public class Home extends FragmentActivity implements OnClickListener {
 	private static final int CONFIRMATION_DIALOG = 60;
+	private static final int CHALLENGE_DIALOG = 50;
 	// Declare Tab Variable
 	public static Context appContext;
 	ActionBar.Tab Tab1, Tab2, Tab3;
@@ -38,14 +40,16 @@ public class Home extends FragmentActivity implements OnClickListener {
 	public ImageButton refreshButton;
 	public ImageButton retryButton;
 	public Dialog confirmationDialog;
-	
+	public Dialog challengeDialog;
+	public int challenge = 0;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabs);
 
 		ActionBar actionBar = getActionBar();
-		//actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+		// actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 		actionBar.setCustomView(R.layout.action_bar);
 		actionBar.setDisplayHomeAsUpEnabled(false);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -71,9 +75,11 @@ public class Home extends FragmentActivity implements OnClickListener {
 		actionBar.addTab(tab1);
 		actionBar.addTab(tab2);
 		actionBar.addTab(tab3);
-		
+
 		this.confirmationDialog = onCreateDialog(CONFIRMATION_DIALOG);
 		this.confirmationDialog.hide();
+		this.challengeDialog = onCreateDialog(CHALLENGE_DIALOG);
+		this.challengeDialog.hide();
 	}
 
 	class MyTabsListener implements ActionBar.TabListener {
@@ -102,7 +108,7 @@ public class Home extends FragmentActivity implements OnClickListener {
 	@Override
 	protected void onResume() {
 		super.onResume();
-	
+
 	}
 
 	@Override
@@ -122,9 +128,20 @@ public class Home extends FragmentActivity implements OnClickListener {
 		switch (id) {
 		case CONFIRMATION_DIALOG: {
 			builder.setMessage(R.string.logout_confirmation);
-			builder.setTitle(getResources().getString(R.string.logout_confirmation_title));
+			builder.setTitle(getResources().getString(
+					R.string.logout_confirmation_title));
 			builder.setCancelable(true);
 			builder.setPositiveButton(R.string.ok, this);
+			builder.setNegativeButton(R.string.cancel,
+					new CancelOnClickListener());
+			return builder.create();
+		}
+		case CHALLENGE_DIALOG: {
+			builder.setMessage(R.string.challenge_under_construction);
+			builder.setTitle(getResources().getString(
+					R.string.challenge_under_construction_title));
+			builder.setCancelable(true);
+			builder.setPositiveButton(R.string.continue_button, this);
 			builder.setNegativeButton(R.string.cancel,
 					new CancelOnClickListener());
 			return builder.create();
@@ -140,18 +157,18 @@ public class Home extends FragmentActivity implements OnClickListener {
 		}
 	}
 
-
-		@Override
-		public void onClick(DialogInterface dialog, int which) {
+	@Override
+	public void onClick(DialogInterface dialog, int which) {
+		switch (challenge) {
+		case 0: {
 			Session.getActiveSession().closeAndClearTokenInformation();
 
 			StateDAO db = new StateDAO(this);
 			db.drop();
 
 			Factory.getInstance().getIDataManager().logout();
-			sharedPrefs = getApplicationContext()
-					.getSharedPreferences(APP_SHARED_PREFS,
-							Context.MODE_PRIVATE);
+			sharedPrefs = getApplicationContext().getSharedPreferences(
+					APP_SHARED_PREFS, Context.MODE_PRIVATE);
 			editor = sharedPrefs.edit();
 			editor.clear();
 			editor.commit();
@@ -160,5 +177,20 @@ public class Home extends FragmentActivity implements OnClickListener {
 			startActivity(mainActivity);
 			this.finish();
 		}
+			break;
+		case 5: {
+			Intent intent = new Intent(this, BouncingGameUI.class);
+			startActivity(intent);
+			this.finish();
+		}
+			break;
+		case 7: {
+			Intent intent = new Intent(this, CatchMeUI.class);
+			startActivity(intent);
+			this.finish();
+		}
+			break;
+		}
+	}
 
 }

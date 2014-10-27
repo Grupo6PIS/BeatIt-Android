@@ -88,7 +88,7 @@
 	<string name="max_score">Max. Score</string>
 	<string name="last_score">Last Score</string>
 	<string name="logout_confirmation_title">Are you sure you want to log out?</string>
-	<string name="logout_confirmation">All data will be lost</string>
+	<string name="logout_confirmation">All unsaved data will be lost</string>
 	<string name="challenge_completed">Challenge Not Completed!</string>
 	<string name="want_to_continue">Do you want to continue?</string>
 	<string name="continue_button">Continue</string>
@@ -109,6 +109,8 @@
 	<string name="second">second</string>
 	<string name="week">week</string>
 	<string name="weeks">weeks</string>
+	<string name="challenge_under_construction">This challenge is under construction, it may contain errors.</string>
+	<string name="challenge_under_construction_title">Do you want to continue?</string>
 	
     <!-- Profile Strings -->
     <string name="username">Juan Pérez</string>

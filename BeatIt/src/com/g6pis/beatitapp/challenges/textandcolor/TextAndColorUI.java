@@ -167,26 +167,22 @@ public class TextAndColorUI extends Activity implements OnClickListener {
 			if(color==word){
 				textAndColor.addCount();;
 				changeColorProgress();
+				changeWord();
 			}else{
 				completeChallenge();
 			}
-			
-			changeWord();
 
-				
-			
 		}
 			break;
 		case R.id.no_button:{
 			if(color!=word){
-				textAndColor.addCount();;
+				textAndColor.addCount();
 				changeColorProgress();
+				changeWord();
 			}else{
 				completeChallenge();
 			}
-			
 
-			changeWord();
 		}
 			break;
 		}
