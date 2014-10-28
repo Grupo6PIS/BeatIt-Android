@@ -274,7 +274,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 			uiHelper.trackPendingDialogCall(shareDialog.present());
 		} catch (FacebookException ex) {
 			facebookDialog.show();
-			((Button) findViewById(R.id.facebook_post_button))
+			((ImageButton) findViewById(R.id.facebook_post_button))
 					.setClickable(false);
 			canYouPlay.fbPost();
 
@@ -384,7 +384,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 					R.string.facebook_post));
 			builder.setCancelable(true);
 			builder.setPositiveButton(R.string.continue_button,
-					new OkOnClickListener());
+					new ContinueOnClickListener());
 			return builder.create();
 		}
 		return super.onCreateDialog(id);
@@ -401,6 +401,11 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 			DialogInterface.OnClickListener {
 		public void onClick(DialogInterface dialog, int which) {
 			completeChallenge();
+		}
+	}
+	private final class ContinueOnClickListener implements
+		DialogInterface.OnClickListener {
+		public void onClick(DialogInterface dialog, int which) {
 		}
 	}
 	

@@ -48,8 +48,6 @@ public class Login extends Activity {
 		  uiHelper.onCreate(savedInstanceState);
 		
 
-		this.getActionBar().hide();
-
 		LoginButton loginButton = ((LoginButton) findViewById(R.id.login_button));
 		loginButton.setReadPermissions(Arrays.asList("email", "user_location"));
 	
