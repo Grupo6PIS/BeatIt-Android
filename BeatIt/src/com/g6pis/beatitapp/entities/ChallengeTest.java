@@ -1,7 +1,7 @@
 package com.g6pis.beatitapp.entities;
 
 
-import static org.junit.Assert.assertEquals;
+/*import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -36,3 +36,4 @@ public class ChallengeTest {
 	}
 
 }
+*/

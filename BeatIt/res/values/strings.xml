@@ -183,8 +183,8 @@
     <string name="blue">BLUE</string>
     <string name="yellow">YELLOW</string>
     <string name="orange">ORANGE</string>
-        <string name="description_text_and_color_1">In this challenge you have to decide whether the text and color match. 15 colors are displayed and you must hit at least 6.</string>
-    <string name="description_text_and_color_2">In this challenge you have to decide whether the text and color match. 30 colors are displayed and you must hit at least 15.</string>
+        <string name="description_text_and_color_1">In this challenge you have to decide whether the text and color match. You have 60 seconds to hit as many as possible.</string>
+    <string name="description_text_and_color_2">In this challenge you have to decide whether the text and color match. You have 45 seconds to hit as many as possible.</string>
     
     <!-- Catch Me String -->
     <string name="catch_me">Catch Me</string>

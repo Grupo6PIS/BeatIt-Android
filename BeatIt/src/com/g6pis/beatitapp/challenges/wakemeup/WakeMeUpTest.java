@@ -1,6 +1,6 @@
 package com.g6pis.beatitapp.challenges.wakemeup;
 
-import static org.junit.Assert.assertEquals;
+/*import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -47,3 +47,4 @@ public class WakeMeUpTest {
 
 	
 }
+*/

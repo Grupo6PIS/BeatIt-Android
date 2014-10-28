@@ -183,8 +183,8 @@
     <string name="blue">AZUL</string>
     <string name="yellow">AMARILLO</string>
     <string name="orange">ANARANJADO</string>
-    <string name="description_text_and_color_1">En este desafío tienes que decidir si el texto y el color coinciden. Se mostrarán 15 colores y deberás acertar como mínimo 6.</string>
-    <string name="description_text_and_color_2">En este desafío tienes que decidir si el texto y el color coinciden. Se mostrarán 30 colores y deberás acertar como mínimo 15.</string>
+    <string name="description_text_and_color_1">En este desafío tienes que decidir si el texto y el color coinciden. Tienes 60 segundos para acertar la mayor cantidad posible.</string>
+    <string name="description_text_and_color_2">En este desafío tienes que decidir si el texto y el color coinciden. Tienes 45 segundos para acertar la mayor cantidad posible.</string>
     
     <!-- Catch Me String -->
     <string name="catch_me">Atrápame Si Puedes</string>

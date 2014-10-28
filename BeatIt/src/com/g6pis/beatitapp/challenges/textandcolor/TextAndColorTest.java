@@ -1,6 +1,6 @@
 package com.g6pis.beatitapp.challenges.textandcolor;
 
-import static org.junit.Assert.*;
+/*import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -62,3 +62,4 @@ public class TextAndColorTest {
 	}
 
 }
+*/
