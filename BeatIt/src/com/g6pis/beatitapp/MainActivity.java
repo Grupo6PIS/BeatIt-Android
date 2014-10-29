@@ -3,6 +3,7 @@ package com.g6pis.beatitapp;
 import java.util.Map;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -80,7 +81,21 @@ public class MainActivity extends Activity {
 				StateDAO db = new StateDAO(this);
 				Map<String,DTState> persistedStates = db.getAllStates();
 				Factory.getInstance().getIDataManager().setStates(persistedStates);
-				userId = Factory.getInstance().getIDataManager().login(userId,fbId, firstName, lastName, country, imageURL);
+				final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+				progressDialog.setTitle(getResources().getString(R.string.loading_progress));
+				progressDialog.setMessage(getResources().getString(R.string.please_wait));
+				progressDialog.setIndeterminate(true);
+				progressDialog.setCancelable(false);
+				progressDialog.show();
+				Thread t = new Thread(){
+				    public void run(){
+				    	userId = Factory.getInstance().getIDataManager().login(userId,fbId, firstName, lastName, country, imageURL);
+				    	progressDialog.dismiss();
+				    	startActivity(home);
+				    	finish();
+				    }
+				};
+				t.start();
 				if(persistedStates.isEmpty()){
 					persistedStates = Factory.getInstance().getIDataManager().getPersistedStates();
 					db.addStates(persistedStates);
@@ -88,8 +103,6 @@ public class MainActivity extends Activity {
 				Editor editor = sharedPrefs.edit();
 				editor.putString("userId", userId);
 				editor.commit();
-				startActivity(home);
-				finish();
 			}
 		}else{
 			Session.getActiveSession().closeAndClearTokenInformation();

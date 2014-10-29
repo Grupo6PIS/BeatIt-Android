@@ -200,39 +200,48 @@ public class ChallengesMenuTab extends Fragment implements
 			if (s.getChallengeId().equals(ID_Usain_Bolt)) {
 				challengeName.setText(getResources().getString(
 						R.string.usain_bolt));
+				challengeName.setTextColor(getResources().getColor(R.color.usain_bolt));
 				challengeIcon.setImageResource(R.drawable.ic_usain_bolt);
 			} else if (s.getChallengeId().equals(ID_Wake_Me_Up)) {
 				challengeName.setText(getResources().getString(
 						R.string.wake_me_up));
+				challengeName.setTextColor(getResources().getColor(R.color.wake_me_up));
 				challengeIcon
 						.setImageResource(R.drawable.ic_despertame_a_tiempo);
 			} else if (s.getChallengeId().equals(ID_Can_You_Play)) {
 				challengeName.setText(getResources().getString(
 						R.string.can_you_play));
+				challengeName.setTextColor(getResources().getColor(R.color.can_you_play));
 				challengeIcon.setImageResource(R.drawable.ic_can_you_play);
 			} else if (s.getChallengeId().equals(ID_Calla_Al_Perro)) {
 				challengeName.setText(getResources().getString(
 						R.string.shut_the_dog));
+				challengeName.setTextColor(getResources().getColor(R.color.shutthedog));
 				challengeIcon.setImageResource(R.drawable.ic_calla_al_perro);
 			} else if (s.getChallengeId().equals(ID_Bouncing_Game)) {
 				challengeName.setText(getResources().getString(
 						R.string.bouncing_game));
+				challengeName.setTextColor(getResources().getColor(R.color.bouncing));
 				challengeIcon.setImageResource(R.drawable.ic_bouncing_game);
 			} else if (s.getChallengeId().equals(ID_Throw_The_Phone)) {
 				challengeName.setText(getResources().getString(
 						R.string.throw_the_phone));
+				challengeName.setTextColor(getResources().getColor(R.color.volador));
 				challengeIcon.setImageResource(R.drawable.ic_throw_the_phone);
 			} else if (s.getChallengeId().equals(ID_Catch_Me)) {
 				challengeName.setText(getResources().getString(
 						R.string.catch_me));
+				challengeName.setTextColor(getResources().getColor(R.color.atrapame));
 				challengeIcon.setImageResource(R.drawable.ic_catch_me);
 			} else if (s.getChallengeId().equals(ID_TextAndColor)) {
 				challengeName.setText(getResources().getString(
 						R.string.text_and_color));
+				challengeName.setTextColor(getResources().getColor(R.color.color_texto));
 				challengeIcon.setImageResource(R.drawable.ic_text_and_color);
 			} else if (s.getChallengeId().equals(ID_SongComplete)) {
 				challengeName.setText(getResources().getString(
 						R.string.song_complete));
+				challengeName.setTextColor(getResources().getColor(R.color.song_complete));
 				challengeIcon.setImageResource(R.drawable.ic_song_complete);
 			}
 

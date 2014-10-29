@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
@@ -43,6 +44,7 @@ public class Home extends FragmentActivity implements OnClickListener {
 	public Dialog confirmationDialog;
 	public Dialog challengeDialog;
 	public int challenge = 0;
+
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -165,17 +167,30 @@ public class Home extends FragmentActivity implements OnClickListener {
 
 			StateDAO db = new StateDAO(this);
 			db.drop();
-
-			Factory.getInstance().getIDataManager().logout();
+			final ProgressDialog progressDialog = new ProgressDialog(Home.this);
+			progressDialog.setTitle(getResources().getString(R.string.saving_progress));
+			progressDialog.setMessage(getResources().getString(R.string.please_wait));
+			progressDialog.setIndeterminate(true);
+			progressDialog.setCancelable(false);
+			progressDialog.show();
+			Thread t = new Thread(){
+			    public void run(){
+			    	Factory.getInstance().getIDataManager().logout();
+					Intent mainActivity = new Intent(getApplicationContext(),
+							MainActivity.class);
+					progressDialog.dismiss();
+					startActivity(mainActivity);
+					finish();
+			    }
+			};
+			t.start();
+			
 			sharedPrefs = getApplicationContext().getSharedPreferences(
 					APP_SHARED_PREFS, Context.MODE_PRIVATE);
 			editor = sharedPrefs.edit();
 			editor.clear();
 			editor.commit();
-			Intent mainActivity = new Intent(getApplicationContext(),
-					MainActivity.class);
-			startActivity(mainActivity);
-			this.finish();
+
 		}
 			break;
 		case 5: {

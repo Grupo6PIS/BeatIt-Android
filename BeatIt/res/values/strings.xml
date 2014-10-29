@@ -77,7 +77,7 @@
     <string name="challenges_tab">Challenges</string>
     <string name="profile_tab">Profile</string>
     <string name="ranking_tab">Ranking</string>
-    <string name="logout">Logout</string>
+    <string name="logout">Log out</string>
     <string name="settings">Settings</string>
     <string name="notifications">Notifications</string>
     <string name="public_profile">Public Profile</string>
@@ -112,6 +112,10 @@
 	<string name="weeks"> weeks</string>
 	<string name="challenge_under_construction">This challenge is under construction, it may contain errors.</string>
 	<string name="challenge_under_construction_title">Do you want to continue?</string>
+	<string name="saving_progress">Saving your progress</string>
+	<string name="please_wait">Please wait..</string>
+	<string name="loading_progress">Loading your progress</string>
+	<string name="updating_ranking">Updating ranking</string>
 	
     <!-- Profile Strings -->
     <string name="username">Juan Pérez</string>

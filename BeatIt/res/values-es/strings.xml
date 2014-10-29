@@ -111,6 +111,10 @@
 	<string name="weeks"> semanas</string>
 	<string name="challenge_under_construction">Este desafío está en construcción, puede contener errores. </string>
 	<string name="challenge_under_construction_title">¿Desea continuar?</string>
+	<string name="saving_progress">Guardando su progreso</string>
+	<string name="please_wait">Por favor espera..</string>
+	<string name="loading_progress">Loading your progress</string>
+	<string name="updating_ranking">Actualizando ranking</string>
 	
     <!-- Profile Strings -->
     <string name="username">Juan Pérez</string>
