@@ -29,7 +29,7 @@ public class StateDAO extends SQLiteOpenHelper {
 		String CREATE_USAINBOLT_TABLE = "CREATE TABLE State ( "
 				+ "challengeId STRING, " + "roundId STRING, "
 				+ "maxScore DOUBLE, " + "lastScore DOUBLE, " + "currentAttempt INTEGER, "
-				+ "isFinished BOOLEAN, " + "lastFinishDateTime STRING, "
+				+ "isFinished BOOLEAN, " + "finishSeconds LONG, "
 				+ "FOREIGN KEY(challengeId) REFERENCES Challenge(challengeId)"
 				+ ");";
 
@@ -62,10 +62,8 @@ public class StateDAO extends SQLiteOpenHelper {
 		values.put("LastScore", state.getLastScore());
 		values.put("currentAttempt", state.getCurrentAttempt());
 		values.put("isFinished", state.isFinished());
-		if(state.getLastFinishDateTime() != null)
-			values.put("lastFinishDateTime", state.getLastFinishDateTime().toString());
-		else
-			values.put("lastFinishDateTime", "");
+		values.put("finishSeconds", state.getFinishSeconds());
+
 			
 		// Insert
 		db.insert("State", null, values);
@@ -104,12 +102,11 @@ public class StateDAO extends SQLiteOpenHelper {
 		int currentAttempt = Integer.parseInt(cursor.getString(4));
 		String isFinished = cursor.getString(5);
 		boolean finished = "1".equals(isFinished);
-		if(!cursor.getString(6).isEmpty())
-			lastFinishDateTime = new DTDateTime(cursor.getString(6));
+		long duration = Long.parseLong(cursor.getString(6));
 		DTState state = new DTState(cursor.getString(0), cursor.getString(1),
 				Double.parseDouble(cursor.getString(2)),Double.parseDouble(cursor.getString(3)),
 				currentAttempt,
-				finished, lastFinishDateTime);
+				finished, duration);
 
 		return state;
 
@@ -131,16 +128,14 @@ public class StateDAO extends SQLiteOpenHelper {
 			do {
 
 				// 4. build state object
-				DTDateTime lastFinishDateTime = null;
 				int currentAttempt = Integer.parseInt(cursor.getString(4));
 				String isFinished = cursor.getString(5);
 				boolean finished = "1".equals(isFinished);
-				if(!cursor.getString(6).isEmpty())
-					lastFinishDateTime = new DTDateTime(cursor.getString(6));
+				Long finishSeconds = Long.parseLong(cursor.getString(6));
 				DTState state = new DTState(cursor.getString(0), cursor.getString(1),
 						Double.parseDouble(cursor.getString(2)),Double.parseDouble(cursor.getString(3)),
 						currentAttempt,
-						finished, lastFinishDateTime);
+						finished, finishSeconds);
 
 			states.put(state.getChallengeId(),state);
 
@@ -164,7 +159,7 @@ public class StateDAO extends SQLiteOpenHelper {
 		values.put("lastScore", state.getLastScore());
 		values.put("currentAttempt", state.getCurrentAttempt());
 		values.put("isFinished", state.isFinished());
-		values.put("lastFinishDateTime", state.getLastFinishDateTime().toString());
+		values.put("finishSeconds", state.getFinishSeconds());
 
 		// 3. updating row
 		int i = db.update("State", // table

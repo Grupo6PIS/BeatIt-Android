@@ -1,5 +1,10 @@
 package com.g6pis.beatitapp.challenges.invitefriends;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.TimeZone;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -18,9 +23,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
-import android.widget.Button;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +34,6 @@ import com.facebook.UiLifecycleHelper;
 import com.facebook.widget.FacebookDialog;
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
-import com.g6pis.beatitapp.datatypes.DTDateTime;
 import com.g6pis.beatitapp.datatypes.DTState;
 import com.g6pis.beatitapp.interfaces.Factory;
 import com.g6pis.beatitapp.persistence.StateDAO;
@@ -410,60 +413,49 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 	}
 	
 	public String getDurationString(){
+		
+		double finishSeconds = state.getFinishSeconds();
+		Calendar cal = new GregorianCalendar(TimeZone.getTimeZone("GMT")); 
+		Date date = cal.getTime();
+		double currentSeconds = date.getTime()/1000;
+
+		double duration = (finishSeconds - currentSeconds);
 		String result = "";
-		DTDateTime now = new DTDateTime();
-		
-		String difference = state.getDateTimeFinish().diff(now);
-		Integer diff = state.getDateTimeFinish().diff(now, difference);
-		
-		if(difference.equals("year"))
-			if(diff > 1)
-				result = diff + " " + getResources().getString(R.string.years);
-			else
-				result = diff + " " + getResources().getString(R.string.year);
-		
-		if(difference.equals("month"))
-			if(diff > 1)
-				result = diff + " " + getResources().getString(R.string.months);
-			else
-				result = diff + " " + getResources().getString(R.string.month);
-
-		if(difference.equals("day"))
-			if(diff > 1){
-				if(diff > 6){
-					if(diff > 13){
-						diff = (int) Math.ceil(diff/7);
-						result = diff + " " + getResources().getString(R.string.weeks);
+		int d = ((int)duration);
+		if(duration/60 > 0){
+			duration = Math.ceil(duration/60);
+			if(duration/60 > 0){
+				duration = Math.ceil(duration/60);
+				if(duration/24 > 0){
+					duration = Math.ceil(duration/24);
+					if(duration/7 > 0){
+						duration = Math.ceil(duration/7);
+						if(duration > 1)
+							result = ((int)duration) + getResources().getString(R.string.weeks);
+						else
+							result = ((int)duration) + getResources().getString(R.string.week);
 					}else{
-						diff = (int) Math.ceil(diff/7);
-						result = diff + " " + getResources().getString(R.string.week);
+						if(duration > 1)
+							result = ((int)duration) + getResources().getString(R.string.days);
+						else
+							result = ((int)duration) + getResources().getString(R.string.day);
 					}
-						
-				}else
-					result = diff + " " + getResources().getString(R.string.days);
-			}else
-				result = diff + " " + getResources().getString(R.string.day);
-
-		if(difference.equals("hour"))
-			if(diff > 1)
-				result = diff + " " + getResources().getString(R.string.hours);
-			else
-				result = diff + " " + getResources().getString(R.string.hour);
-		
-		if(difference.equals("minute"))
-			if(diff > 1)
-				result = diff + " " + getResources().getString(R.string.minutes);
-			else
-				result = diff + " " + getResources().getString(R.string.minute);
-		
-		if(difference.equals("second"))
-			if(diff > 1)
-				result = diff + " " + getResources().getString(R.string.seconds);
-			else
-				result = diff + " " + getResources().getString(R.string.second);
-		
+				}else{
+					if(duration > 1)
+						result = ((int)duration) + getResources().getString(R.string.hours);
+					else
+						result = ((int)duration) + getResources().getString(R.string.hour);
+				}
+			}else{
+				if(duration > 1)
+					result = ((int)duration) + getResources().getString(R.string.minutes);
+				else
+					result = ((int)duration) + getResources().getString(R.string.minute);
+			}
+		}else{
+				result = getResources().getString(R.string.few_seconds);
+		}
 		return result;
-        
     }
 	
 

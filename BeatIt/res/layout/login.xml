@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView_user_country"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="15dp"
         android:gravity="center_vertical"
         android:orientation="horizontal" >
 
@@ -45,10 +45,10 @@
         android:id="@+id/textView_user_country"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
         android:layout_below="@+id/relativeLayout1"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="15dp"
         android:text="@string/app_description"
         android:textSize="19sp" />
 
@@ -56,19 +56,20 @@
         android:id="@+id/login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/linear_facebook"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/textView_user_country"
+        android:layout_alignRight="@+id/textView_user_country"
+        android:layout_alignTop="@+id/linear_facebook" />
 
     <RelativeLayout
         android:id="@+id/relativeLayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/textView_user_country"
         android:layout_alignLeft="@+id/textView_user_country"
-         android:layout_alignStart="@+id/textView_user_country"
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/textView_user_country"
-        android:layout_alignEnd="@+id/textView_user_country"
-        android:layout_marginTop="17dp"
+        android:layout_alignStart="@+id/textView_user_country"
+        android:layout_marginTop="15dp"
         android:gravity="center_vertical" >
 
         <ImageView

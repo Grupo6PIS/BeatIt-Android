@@ -97,11 +97,16 @@ public class DataManager implements IDataManager {
 					.execute(userId, fbId, firstName, lastName, imageURL);
 			JSONObject json = login.get();
 			JSONArray jsonStates = new JSONArray();
+			JSONArray jsonStatesArr = new JSONArray();
 			if(!json.getBoolean("error")){
 				JSONObject jsonUser = json.getJSONObject("user");
 				userId = jsonUser.getString("_id");
-				JSONObject jsonStatesObj = jsonUser.getJSONObject("roundState");
-				jsonStates = jsonStatesObj.getJSONArray("challenges");
+				Object obj = jsonUser.get("roundState");
+				if(obj instanceof JSONObject)
+					jsonStates = ((JSONObject)obj).getJSONArray("challenges");
+				else
+					jsonStatesArr = ((JSONArray)obj);
+			
 			user = new User(userId, fbId, firstName, lastName, country,
 					imageURL);
 			}
@@ -116,6 +121,7 @@ public class DataManager implements IDataManager {
 			DTDateTime dateTimeStart = new DTDateTime(Long.parseLong(startDate));
 			String endDate = round.getString("end_date");
 			DTDateTime dateTimeFinish = new DTDateTime(Long.parseLong(endDate));
+			long finishSeconds =  Long.parseLong(endDate)/1000;
 
 			// Round Challenges
 			JSONArray jsonChallenges = round.getJSONArray("challengeList");
@@ -198,8 +204,15 @@ public class DataManager implements IDataManager {
 			}
 
 			currentRound = new Round(roundId, dateTimeStart, dateTimeFinish,
-					challenges);
-
+					challenges, finishSeconds);
+			
+			for(int i = 0; i< jsonStatesArr.length();i++){
+				JSONObject jsonStatesObj = jsonStatesArr.getJSONObject(i);
+				if(currentRound.getRoundId().equals(jsonStatesObj.getString("roundId"))){
+					jsonStates = jsonStatesObj.getJSONArray("challenges");
+				}
+			}
+			
 			states = new HashMap<String, State>();
 			String persistedRoundId = this.getPersistedRoundId();
 			if (!persistedRoundId.equals(currentRound.getRoundId())) {
@@ -209,12 +222,10 @@ public class DataManager implements IDataManager {
 						JSONObject jsonState = jsonStates.getJSONObject(i);
 						Challenge challenge = currentRound.getChallenge(jsonState.getString("challengeId"));
 						int currentAttempt = currentRound.getChallenge(jsonState.getString("challengeId")).getMaxAttempt() - jsonState.getInt("attemps");
-						DTDateTime lastFInishDateTime = new DTDateTime();
 						State state = new State(currentRound,challenge , user,
-												jsonState.getBoolean("finished"),
 												jsonState.getInt("bestScore"), 
 												jsonState.getInt("lastScore"),
-												currentAttempt, lastFInishDateTime);
+												currentAttempt);
 						
 						states.put(challenge.getChallengeId(), state);
 						DTState dtState = new DTState(state);
@@ -240,17 +251,12 @@ public class DataManager implements IDataManager {
 				}
 			} else {
 				for (Challenge challenge : currentRound.getChallenges()) {
-					State state = new State(currentRound, challenge, user,
-							persistedStates.get(challenge.getChallengeId())
-									.isFinished(), persistedStates.get(
+					State state = new State(currentRound, challenge, user, persistedStates.get(
 									challenge.getChallengeId()).getMaxScore(),
 							persistedStates.get(challenge.getChallengeId())
 									.getLastScore(), persistedStates.get(
 									challenge.getChallengeId())
-									.getCurrentAttempt(), persistedStates.get(
-									challenge.getChallengeId())
-									.getLastFinishDateTime());
-
+									.getCurrentAttempt());
 					states.put(challenge.getChallengeId(), state);
 					DTState dtState = new DTState(state);
 					persistedStates.put(challenge.getChallengeId(), dtState);

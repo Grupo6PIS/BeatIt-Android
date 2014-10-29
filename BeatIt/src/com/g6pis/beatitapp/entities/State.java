@@ -12,7 +12,6 @@ public class State {
 	private double maxScore;
 	private double lastScore;
 	private int currentAttempt;
-	private DTDateTime lastFinishDateTime;
 	
 	public State(Round round, Challenge challenge, User user){
 		this.round = round;
@@ -25,15 +24,14 @@ public class State {
 		
 	}
 	
-	public State(Round round, Challenge challenge, User user, boolean finished, double maxScore, double lastScore, int currentAttempt, DTDateTime lastFInishDateTime){
+	public State(Round round, Challenge challenge, User user, double maxScore, double lastScore, int currentAttempt){
 		this.round = round;
 		this.challenge = challenge;
 		this.user = user;
-		this.finished = finished;
 		this.maxScore = maxScore;
 		this.lastScore = lastScore;
 		this.currentAttempt = currentAttempt;
-		this.lastFinishDateTime = lastFInishDateTime;
+		this.finished = currentAttempt >= challenge.getMaxAttempt();
 	}
 	
 	
@@ -90,19 +88,10 @@ public class State {
 		return lastScore;
 	}
 	
-	public DTDateTime getLastFinishDateTime() {
-		return lastFinishDateTime;
-	}
-
-	public void setLastFinishDateTime(DTDateTime lastFinishDateTime) {
-		this.lastFinishDateTime = lastFinishDateTime;
-	}
 
 	public boolean setNewScore(double lastScore) {
 		this.lastScore = lastScore;
 		
-		
-		lastFinishDateTime = new DTDateTime();
 		
 		this.currentAttempt++;
 		if(this.currentAttempt >= this.challenge.getMaxAttempt()){
