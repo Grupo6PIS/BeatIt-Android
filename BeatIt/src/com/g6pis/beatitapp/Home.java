@@ -50,12 +50,11 @@ public class Home extends FragmentActivity implements OnClickListener {
 		setContentView(R.layout.tabs);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		ActionBar actionBar = getActionBar();
-		// actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 		actionBar.setCustomView(R.layout.action_bar);
 		actionBar.setDisplayHomeAsUpEnabled(false);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 		setTitle(R.string.app_name);
-		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM | ActionBar.DISPLAY_SHOW_HOME);
 		refreshButton = (ImageButton) findViewById(R.id.refresh_button);
 		retryButton = (ImageButton) findViewById(R.id.retry_button);
 		retryButton.setVisibility(View.INVISIBLE);
