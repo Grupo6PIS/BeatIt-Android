@@ -160,6 +160,10 @@ public class SongCompleteUI extends Activity {
 			Button b2 = (Button)findViewById(R.id.btnOpcion3);
 			b2.setVisibility(0);
 			
+			b.setEnabled(false);
+			b1.setEnabled(false);
+			b2.setEnabled(false);
+			
 			roundNumber = 1;
 			pressedButton = 0;
 			handler.postDelayed(rutine, 3000);
@@ -184,6 +188,15 @@ public class SongCompleteUI extends Activity {
 		counterRunning = false;
 		c.cancel();
 		mp.stop();
+		
+		Button b = (Button)findViewById(R.id.btnOpcion1);
+		b.setEnabled(false);
+		
+		Button b1 = (Button)findViewById(R.id.btnOpcion2);
+		b1.setEnabled(false);
+		
+		Button b2 = (Button)findViewById(R.id.btnOpcion3);
+		b2.setEnabled(false);
 		
 		LinearLayout l = null;
 		switch(roundNumber){
@@ -235,6 +248,10 @@ public class SongCompleteUI extends Activity {
 			
 			Button b2 = (Button)findViewById(R.id.btnOpcion3);
 			b2.setText(datos[currentSong][2]);
+			
+			b.setEnabled(true);
+			b1.setEnabled(true);
+			b2.setEnabled(true);
 			
 			if (songcomplete.getLevel() == 1){
 				switch(currentSong){
@@ -300,6 +317,15 @@ public class SongCompleteUI extends Activity {
 					counterRunning = false;
 					c.cancel();
 					mp.stop();
+					
+					Button b = (Button)findViewById(R.id.btnOpcion1);
+					b.setEnabled(false);
+					
+					Button b1 = (Button)findViewById(R.id.btnOpcion2);
+					b1.setEnabled(false);
+					
+					Button b2 = (Button)findViewById(R.id.btnOpcion3);
+					b2.setEnabled(false);
 					
 					LinearLayout l = null;
 					switch(roundNumber){

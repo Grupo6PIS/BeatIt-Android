@@ -35,6 +35,7 @@
     <color name="steel">#647687</color>
     <color name="fb_blue">#3B5998</color>
     <color name="can_you_play">#3B5998</color>
+    <color name="song_complete">#e3c800</color>
     
     
     <!-- General Application Strings -->
@@ -214,5 +215,4 @@
     
     <!-- Facebook app ID -->
     <string name="facebook_app_id">829846350380023</string>
-    <color name="song_complete">#85c4ff</color>
 </resources>
