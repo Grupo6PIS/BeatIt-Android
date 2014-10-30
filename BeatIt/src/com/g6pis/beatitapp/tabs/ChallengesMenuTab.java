@@ -3,7 +3,7 @@ package com.g6pis.beatitapp.tabs;
 import java.util.List;
 import java.util.Random;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -64,7 +64,7 @@ public class ChallengesMenuTab extends Fragment implements
 		View rootView = inflater.inflate(R.layout.challenge_menu_tab,
 				container, false);
 
-		((Home) getActivity()).refreshButton.setVisibility(View.INVISIBLE);
+//		((Home) getActivity()).refreshButton.setVisibility(View.INVISIBLE);
 
 		challengeMenu = (ListView) rootView
 				.findViewById(R.id.challengesMenu_list);

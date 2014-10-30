@@ -2,7 +2,7 @@ package com.g6pis.beatitapp.tabs;
 
 import java.util.List;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -59,7 +59,6 @@ public class RankingTab extends Fragment implements OnItemClickListener, OnClick
 		adapter = new MyAdapter(getActivity().getApplicationContext(),items);
         ranking.setAdapter(adapter);
 		
-        activity.refreshButton.setVisibility(View.VISIBLE);
         activity.refreshButton.setOnClickListener(this);
         
         

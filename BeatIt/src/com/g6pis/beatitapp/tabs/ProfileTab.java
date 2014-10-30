@@ -1,6 +1,6 @@
 package com.g6pis.beatitapp.tabs;
 
-import android.app.Fragment;
+import android.support.v4.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
@@ -78,7 +78,7 @@ public class ProfileTab extends Fragment implements OnClickListener {
 		new ImageLoadTask(Factory.getInstance().getIDataManager().getUser()
 				.getImageURL(), profilePicture).execute(null, null);
 
-		((Home) getActivity()).refreshButton.setVisibility(View.INVISIBLE);
+
 		
 		PackageManager manager = activity.getPackageManager();
 		PackageInfo info;

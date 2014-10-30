@@ -15,6 +15,8 @@ import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
+import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ImageButton;
@@ -27,8 +29,9 @@ import com.g6pis.beatitapp.persistence.StateDAO;
 import com.g6pis.beatitapp.tabs.ChallengesMenuTab;
 import com.g6pis.beatitapp.tabs.ProfileTab;
 import com.g6pis.beatitapp.tabs.RankingTab;
+import com.g6pis.beatitapp.tabs.TabsPagerAdapter;
 
-public class Home extends FragmentActivity implements OnClickListener {
+public class Home extends FragmentActivity implements OnClickListener, ActionBar.TabListener, OnPageChangeListener {
 	private static final int CONFIRMATION_DIALOG = 60;
 	private static final int CHALLENGE_DIALOG = 50;
 	// Declare Tab Variable
@@ -44,6 +47,10 @@ public class Home extends FragmentActivity implements OnClickListener {
 	public Dialog confirmationDialog;
 	public Dialog challengeDialog;
 	public int challenge = 0;
+	
+	private ViewPager viewPager;
+    private TabsPagerAdapter mAdapter;
+    private ActionBar actionBar;
 
 
 	@Override
@@ -51,7 +58,7 @@ public class Home extends FragmentActivity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabs);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		ActionBar actionBar = getActionBar();
+		actionBar = getActionBar();
 		actionBar.setCustomView(R.layout.action_bar);
 		actionBar.setDisplayHomeAsUpEnabled(false);
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
@@ -60,23 +67,23 @@ public class Home extends FragmentActivity implements OnClickListener {
 		refreshButton = (ImageButton) findViewById(R.id.refresh_button);
 		retryButton = (ImageButton) findViewById(R.id.retry_button);
 		retryButton.setVisibility(View.INVISIBLE);
+    	refreshButton.setVisibility(View.INVISIBLE);
 
-		ActionBar.Tab tab1 = actionBar.newTab()
-				.setText(R.string.challenges_tab);
-		ActionBar.Tab tab2 = actionBar.newTab().setText(R.string.ranking_tab);
-		ActionBar.Tab tab3 = actionBar.newTab().setText(R.string.profile_tab);
-
-		Fragment challengesMenuTab = new ChallengesMenuTab();
-		Fragment rankingTab = new RankingTab();
-		Fragment profileTab = new ProfileTab();
-
-		tab1.setTabListener(new MyTabsListener(challengesMenuTab));
-		tab2.setTabListener(new MyTabsListener(rankingTab));
-		tab3.setTabListener(new MyTabsListener(profileTab));
-
-		actionBar.addTab(tab1);
-		actionBar.addTab(tab2);
-		actionBar.addTab(tab3);
+		
+		
+		
+		viewPager = (ViewPager) findViewById(R.id.fragment_placeholder);
+		mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
+		viewPager.setAdapter(mAdapter);
+		viewPager.setOnPageChangeListener(this);
+	
+		actionBar.addTab(actionBar.newTab().setText(R.string.challenges_tab)
+				.setTabListener(this));
+		actionBar.addTab(actionBar.newTab().setText(R.string.ranking_tab)
+				.setTabListener(this));
+		actionBar.addTab(actionBar.newTab().setText(R.string.profile_tab)
+				.setTabListener(this));
+		
 
 		this.confirmationDialog = onCreateDialog(CONFIRMATION_DIALOG);
 		this.confirmationDialog.hide();
@@ -84,29 +91,7 @@ public class Home extends FragmentActivity implements OnClickListener {
 		this.challengeDialog.hide();
 	}
 
-	class MyTabsListener implements ActionBar.TabListener {
-		public Fragment fragment;
-
-		public MyTabsListener(Fragment fragment) {
-			this.fragment = fragment;
-		}
-
-		@Override
-		public void onTabReselected(Tab tab, FragmentTransaction ft) {
-			// do what you want when tab is reselected, I do nothing
-		}
-
-		@Override
-		public void onTabSelected(Tab tab, FragmentTransaction ft) {
-			ft.replace(R.id.fragment_placeholder, fragment);
-		}
-
-		@Override
-		public void onTabUnselected(Tab tab, FragmentTransaction ft) {
-			ft.remove(fragment);
-		}
-	}
-
+	
 	@Override
 	protected void onResume() {
 		super.onResume();
@@ -207,5 +192,41 @@ public class Home extends FragmentActivity implements OnClickListener {
 			break;
 		}
 	}
+	
+	
+	@Override
+    public void onTabReselected(Tab tab, FragmentTransaction ft) {
+    }
+ 
+    @Override
+    public void onTabSelected(Tab tab, FragmentTransaction ft) {
+        // on tab selected
+        // show respected fragment view
+        viewPager.setCurrentItem(tab.getPosition());
+    }
+ 
+    @Override
+    public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        // on changing the page
+        // make respected tab selected
+        actionBar.setSelectedNavigationItem(position);
+        if(position==1)
+        	refreshButton.setVisibility(View.VISIBLE);
+        else
+        	refreshButton.setVisibility(View.INVISIBLE);
+        	
+    }
+ 
+    @Override
+    public void onPageScrolled(int arg0, float arg1, int arg2) {
+    }
+ 
+    @Override
+    public void onPageScrollStateChanged(int arg0) {
+    }
 
 }

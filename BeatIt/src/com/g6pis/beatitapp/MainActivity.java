@@ -27,13 +27,7 @@ public class MainActivity extends Activity {
 	private static final String APP_SHARED_PREFS = "asdasd_preferences";
 	private boolean isResumed = false;
 	private UiLifecycleHelper uiHelper;
-	private Session.StatusCallback callback = new Session.StatusCallback() {
-		@Override
-		public void call(Session session, SessionState state,
-				Exception exception) {
-			onSessionStateChange(session, state, exception);
-		}
-	}; 
+	
 
 	private Intent home;
 	private Intent login;
@@ -56,8 +50,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 
 		
-		uiHelper = new UiLifecycleHelper(this, callback);
-		uiHelper.onCreate(savedInstanceState);
+		
 
 		home = new Intent(this, Home.class);
 		login = new Intent(this, Login.class);
@@ -125,75 +118,36 @@ public class MainActivity extends Activity {
 	@Override
 	public void onResume() {
 		super.onResume();
-		uiHelper.onResume();
+
 		isResumed = true;
 	}
 
 	@Override
 	public void onPause() {
 		super.onPause();
-		uiHelper.onPause();
+
 		isResumed = false;
 	}
 
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		uiHelper.onActivityResult(requestCode, resultCode, data);
+
 	}
 
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		uiHelper.onDestroy();
+
 	}
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-		uiHelper.onSaveInstanceState(outState);
+
 
 	}
 
-	private void onSessionStateChange(Session session, SessionState state,
-			Exception exception) {
-		if (isResumed) {
-
-			// check for the OPENED state instead of session.isOpened() since
-			// for the
-			// OPENED_TOKEN_UPDATED state, the selection fragment should already
-			// be showing.
-			if (state.equals(SessionState.OPENED)) {
-				userId = DataManager.getInstance().login(userId,fbId, firstName, lastName, country, imageURL);
-				Editor editor = sharedPrefs.edit();
-				editor.putString("userId", userId);
-				editor.commit();
-				startActivity(home);
-			} else if (state.isClosed()) {
-				startActivity(login);
-			}
-			finish();
-		}
-	}
-	
-	
-	private void makeMeRequest(final Session session) {
-        Request.newMeRequest(session, new Request.GraphUserCallback() {
-            @Override
-            public void onCompleted(GraphUser user, Response response) {
-                if (session == Session.getActiveSession()) {
-                    if (user != null) {
-                    	firstName = user.getFirstName();
-                    	lastName = user.getLastName();
-                        fbId =  user.getId();
-                        country = user.getLocation().getName();
-                    }
-                }
-                if (response.getError() != null) {
-                }
-            }
-        }).executeAsync();
-    }
 	
 	public boolean isOnline() {
 	    ConnectivityManager cm =
