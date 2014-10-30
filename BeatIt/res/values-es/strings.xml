@@ -99,14 +99,14 @@
 	<string name="days"> días</string>
 	<string name="hours"> horas</string>
 	<string name="minutes"> minutos</string>
-	<string name="seconds">segundos</string>
+	<string name="seconds"> segundos</string>
 	<string name="few_seconds">Pocos segundos</string>
 	<string name="year"> año</string>
 	<string name="month"> mes</string>
 	<string name="day"> día</string>
 	<string name="hour"> hora</string>
 	<string name="minute"> minuto</string>
-	<string name="second">segundo</string>
+	<string name="second"> segundo</string>
 	<string name="week"> semana</string>
 	<string name="weeks"> semanas</string>
 	<string name="challenge_under_construction">Este desafío está en construcción, puede contener errores. </string>

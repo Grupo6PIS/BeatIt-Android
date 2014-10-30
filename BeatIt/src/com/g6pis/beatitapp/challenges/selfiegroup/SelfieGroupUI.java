@@ -152,42 +152,42 @@ public class SelfieGroupUI extends Activity implements OnClickListener {
 		double duration = (finishSeconds - currentSeconds);
 		String result = "";
 		int d = ((int) duration);
-		if (duration / 60 > 0) {
+		if ((duration / 60) > 1) {
 			duration = Math.ceil(duration / 60);
-			if (duration / 60 > 0) {
+			if ((duration / 60) > 1) {
 				duration = Math.ceil(duration / 60);
-				if (duration / 24 > 0) {
+				if ((duration / 24) > 1) {
 					duration = Math.ceil(duration / 24);
-					if (duration / 7 > 0) {
+					if ((duration / 7) > 1) {
 						duration = Math.ceil(duration / 7);
 						if (duration > 1)
-							result = ((int) duration)
+							result = ((int) duration) + " "
 									+ getResources().getString(R.string.weeks);
 						else
-							result = ((int) duration)
+							result = ((int) duration)+ " "
 									+ getResources().getString(R.string.week);
 					} else {
 						if (duration > 1)
-							result = ((int) duration)
+							result = ((int) duration)+ " "
 									+ getResources().getString(R.string.days);
 						else
-							result = ((int) duration)
+							result = ((int) duration)+ " "
 									+ getResources().getString(R.string.day);
 					}
 				} else {
 					if (duration > 1)
-						result = ((int) duration)
+						result = ((int) duration)+ " "
 								+ getResources().getString(R.string.hours);
 					else
-						result = ((int) duration)
+						result = ((int) duration)+ " "
 								+ getResources().getString(R.string.hour);
 				}
 			} else {
 				if (duration > 1)
-					result = ((int) duration)
+					result = ((int) duration)+ " "
 							+ getResources().getString(R.string.minutes);
 				else
-					result = ((int) duration)
+					result = ((int) duration)+ " "
 							+ getResources().getString(R.string.minute);
 			}
 		} else {

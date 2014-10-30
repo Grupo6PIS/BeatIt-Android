@@ -189,51 +189,59 @@ public class ThrowThePhoneUI extends Activity implements SensorEventListener, On
 
 	}
 
-public String getDurationString(){
-		
+	public String getDurationString() {
+
 		double finishSeconds = state.getFinishSeconds();
-		Calendar cal = new GregorianCalendar(TimeZone.getTimeZone("GMT")); 
+		Calendar cal = new GregorianCalendar(TimeZone.getTimeZone("GMT"));
 		Date date = cal.getTime();
-		double currentSeconds = date.getTime()/1000;
+		double currentSeconds = date.getTime() / 1000;
 
 		double duration = (finishSeconds - currentSeconds);
 		String result = "";
-		int d = ((int)duration);
-		if(duration/60 > 0){
-			duration = Math.ceil(duration/60);
-			if(duration/60 > 0){
-				duration = Math.ceil(duration/60);
-				if(duration/24 > 0){
-					duration = Math.ceil(duration/24);
-					if(duration/7 > 0){
-						duration = Math.ceil(duration/7);
-						if(duration > 1)
-							result = ((int)duration) + getResources().getString(R.string.weeks);
+		int d = ((int) duration);
+		if ((duration / 60) > 1) {
+			duration = Math.ceil(duration / 60);
+			if ((duration / 60) > 1) {
+				duration = Math.ceil(duration / 60);
+				if ((duration / 24) > 1) {
+					duration = Math.ceil(duration / 24);
+					if ((duration / 7) > 1) {
+						duration = Math.ceil(duration / 7);
+						if (duration > 1)
+							result = ((int) duration) + " "
+									+ getResources().getString(R.string.weeks);
 						else
-							result = ((int)duration) + getResources().getString(R.string.week);
-					}else{
-						if(duration > 1)
-							result = ((int)duration) + getResources().getString(R.string.days);
+							result = ((int) duration)+ " "
+									+ getResources().getString(R.string.week);
+					} else {
+						if (duration > 1)
+							result = ((int) duration)+ " "
+									+ getResources().getString(R.string.days);
 						else
-							result = ((int)duration) + getResources().getString(R.string.day);
+							result = ((int) duration)+ " "
+									+ getResources().getString(R.string.day);
 					}
-				}else{
-					if(duration > 1)
-						result = ((int)duration) + getResources().getString(R.string.hours);
+				} else {
+					if (duration > 1)
+						result = ((int) duration)+ " "
+								+ getResources().getString(R.string.hours);
 					else
-						result = ((int)duration) + getResources().getString(R.string.hour);
+						result = ((int) duration)+ " "
+								+ getResources().getString(R.string.hour);
 				}
-			}else{
-				if(duration > 1)
-					result = ((int)duration) + getResources().getString(R.string.minutes);
+			} else {
+				if (duration > 1)
+					result = ((int) duration)+ " "
+							+ getResources().getString(R.string.minutes);
 				else
-					result = ((int)duration) + getResources().getString(R.string.minute);
+					result = ((int) duration)+ " "
+							+ getResources().getString(R.string.minute);
 			}
-		}else{
-				result = getResources().getString(R.string.few_seconds);
+		} else {
+			result = getResources().getString(R.string.few_seconds);
 		}
 		return result;
-    }
+	}
 
 	@SuppressLint("UseValueOf")
 	@Override
