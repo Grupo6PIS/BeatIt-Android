@@ -3,10 +3,10 @@ package com.g6pis.beatitapp.tabs;
 import java.util.List;
 import java.util.Random;
 
-import android.support.v4.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,11 +19,11 @@ import android.widget.TextView;
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
 import com.g6pis.beatitapp.challenges.bouncinggame.BouncingGameFinished;
-import com.g6pis.beatitapp.challenges.bouncinggame.BouncingGameUI;
 import com.g6pis.beatitapp.challenges.catchme.CatchMeFinished;
-import com.g6pis.beatitapp.challenges.catchme.CatchMeUI;
 import com.g6pis.beatitapp.challenges.invitefriends.CanYouPlayFinished;
 import com.g6pis.beatitapp.challenges.invitefriends.CanYouPlayUI;
+import com.g6pis.beatitapp.challenges.selfiegroup.SelfieGroupFinished;
+import com.g6pis.beatitapp.challenges.selfiegroup.SelfieGroupUI;
 import com.g6pis.beatitapp.challenges.shutthedog.ShutTheDogFinished;
 import com.g6pis.beatitapp.challenges.shutthedog.ShutTheDogUI;
 import com.g6pis.beatitapp.challenges.songcomplete.SongCompleteFinished;
@@ -53,10 +53,9 @@ public class ChallengesMenuTab extends Fragment implements
 	private static final String ID_Bouncing_Game = "5";
 	private static final String ID_Throw_The_Phone = "6";
 	private static final String ID_Catch_Me = "7";
-	private static final String ID_TextAndColor = "8";
-	private static final String ID_SongComplete = "9";
-
-	// private static final String ID_ = "10";
+	private static final String ID_Text_And_Color = "8";
+	private static final String ID_Song_Complete = "9";
+	private static final String ID_Selfie_Group = "10";
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -151,7 +150,7 @@ public class ChallengesMenuTab extends Fragment implements
 						CatchMeFinished.class);
 
 		} else if (adapter.getItem(position).getChallengeId()
-				.equals(ID_TextAndColor)) {
+				.equals(ID_Text_And_Color)) {
 			if (adapter.getItem(position).getCurrentAttempt() == 0)
 				challenge = new Intent(getActivity().getApplicationContext(),
 						TextAndColorUI.class);
@@ -159,13 +158,22 @@ public class ChallengesMenuTab extends Fragment implements
 				challenge = new Intent(getActivity().getApplicationContext(),
 						TextAndColorFinished.class);
 		} else if (adapter.getItem(position).getChallengeId()
-				.equals(ID_SongComplete)) {
+				.equals(ID_Song_Complete)) {
 			if (adapter.getItem(position).getCurrentAttempt() == 0)
 				challenge = new Intent(getActivity().getApplicationContext(),
 						SongCompleteUI.class);
 			else
 				challenge = new Intent(getActivity().getApplicationContext(),
 						SongCompleteFinished.class);
+
+		} else if (adapter.getItem(position).getChallengeId()
+				.equals(ID_Selfie_Group)) {
+			if (adapter.getItem(position).getCurrentAttempt() == 0)
+				challenge = new Intent(getActivity().getApplicationContext(),
+						SelfieGroupUI.class);
+			else
+				challenge = new Intent(getActivity().getApplicationContext(),
+						SelfieGroupFinished.class);
 
 		}
 		if(challenge != null){
@@ -233,16 +241,21 @@ public class ChallengesMenuTab extends Fragment implements
 						R.string.catch_me));
 				challengeName.setTextColor(getResources().getColor(R.color.atrapame));
 				challengeIcon.setImageResource(R.drawable.ic_catch_me);
-			} else if (s.getChallengeId().equals(ID_TextAndColor)) {
+			} else if (s.getChallengeId().equals(ID_Text_And_Color)) {
 				challengeName.setText(getResources().getString(
 						R.string.text_and_color));
 				challengeName.setTextColor(getResources().getColor(R.color.color_texto));
 				challengeIcon.setImageResource(R.drawable.ic_text_and_color);
-			} else if (s.getChallengeId().equals(ID_SongComplete)) {
+			} else if (s.getChallengeId().equals(ID_Song_Complete)) {
 				challengeName.setText(getResources().getString(
 						R.string.song_complete));
 				challengeName.setTextColor(getResources().getColor(R.color.song_complete));
 				challengeIcon.setImageResource(R.drawable.ic_song_complete);
+			} else if (s.getChallengeId().equals(ID_Selfie_Group)) {
+				challengeName.setText(getResources().getString(
+						R.string.selfie_group));
+				challengeName.setTextColor(getResources().getColor(R.color.selfie));
+				challengeIcon.setImageResource(R.drawable.ic_selfie_group);
 			}
 
 			if (s.getCurrentAttempt() == 0)

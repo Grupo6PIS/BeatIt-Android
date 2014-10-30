@@ -13,6 +13,7 @@ import org.json.JSONObject;
 import com.g6pis.beatitapp.challenges.bouncinggame.BouncingGame;
 import com.g6pis.beatitapp.challenges.catchme.CatchMe;
 import com.g6pis.beatitapp.challenges.invitefriends.CanYouPlay;
+import com.g6pis.beatitapp.challenges.selfiegroup.SelfieGroup;
 import com.g6pis.beatitapp.challenges.shutthedog.ShutTheDog;
 import com.g6pis.beatitapp.challenges.songcomplete.SongComplete;
 import com.g6pis.beatitapp.challenges.textandcolor.TextAndColor;
@@ -188,8 +189,17 @@ public class DataManager implements IDataManager {
 					challenges.add(songComplete);
 				}
 				break;
+				case 10:{
+					SelfieGroup selfieGroup = new SelfieGroup(challengeId,
+							name, level, maxAttempts, color);
+					challenges.add(selfieGroup);
+				}
+				break;
 				}
 			}
+			SelfieGroup selfieGroup = new SelfieGroup("10",
+					"Selfie Group", 1, 3, "#FA6800");
+			challenges.add(selfieGroup);
 
 			JSONArray jsonRanking = round.getJSONArray("ranking");
 			ranking = new ArrayList<DTRanking>();
