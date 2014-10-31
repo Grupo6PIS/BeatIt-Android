@@ -76,7 +76,7 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         //x_max = 500;
         //y_max = 800;
-        x_max = metrics.widthPixels - 150;
+        x_max = metrics.widthPixels - 135;
         y_max = metrics.heightPixels - 350;
         x_min = 0;
         y_min = 0;

@@ -227,7 +227,6 @@ public class BouncingGameUI extends Activity implements SensorEventListener, OnC
 
 		double duration = (finishSeconds - currentSeconds);
 		String result = "";
-		int d = ((int) duration);
 		if ((duration / 60) > 1) {
 			duration = Math.ceil(duration / 60);
 			if ((duration / 60) > 1) {

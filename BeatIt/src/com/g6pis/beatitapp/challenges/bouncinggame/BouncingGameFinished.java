@@ -4,7 +4,6 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
@@ -12,23 +11,19 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.WindowManager;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import com.facebook.Session;
 import com.g6pis.beatitapp.Home;
-import com.g6pis.beatitapp.MainActivity;
 import com.g6pis.beatitapp.R;
-import com.g6pis.beatitapp.challenges.catchme.CatchMeUI;
 import com.g6pis.beatitapp.controllers.DataManager;
 import com.g6pis.beatitapp.datatypes.DTState;
 import com.g6pis.beatitapp.entities.Challenge;
 import com.g6pis.beatitapp.interfaces.Factory;
-import com.g6pis.beatitapp.persistence.StateDAO;
 
 public class BouncingGameFinished extends Activity implements OnClickListener,
 		android.content.DialogInterface.OnClickListener {
