@@ -6,8 +6,10 @@ import com.g6pis.beatitapp.interfaces.Factory;
 public class BouncingGame extends Challenge {
 
 	private static final String CHALLENGE_ID 		= "5";
+	private static final long INITIAL_COUNTER_VALUE = 60000; // In milliseconds
 	
-	private int succeed_times;
+	private int collision_times;
+	private long time;
 	
 	public BouncingGame(String challengeId, String name, Integer level, int maxAttempt, String color) {
 		super(challengeId, name, level, 999,color);
@@ -15,28 +17,41 @@ public class BouncingGame extends Challenge {
 			switch (level) {
 
 			case 1: {
-				this.succeed_times = 0;
+				this.collision_times = 0;
 			}
 				break;
 			case 2: {
-				this.succeed_times = 0;
+				this.collision_times = 0;
 			}
 				break;
 			}
+			
+			this.time = INITIAL_COUNTER_VALUE;
 		
 	}
 	
-	public int getSucceed_times() {
-		return succeed_times;
+	public long getTime() {
+		return time;
 	}
 
+	public void setTime(long time) {
+		this.time = time;
+	}
 
-	public void setSucceed_times(int succeed_times) {
-		this.succeed_times = succeed_times;
+	public int getCollision_times() {
+		return collision_times;
+	}
+
+	public void increaseCollision_times() {
+		this.collision_times = this.collision_times + 1;
+	}
+
+	public void setCollision_times(int collision_times) {
+		this.collision_times = collision_times;
 	}
 
 	public void reset(){
-		this.succeed_times = 0;
+		this.collision_times = 0;
 	}
 
 	public void finishChallenge(){
@@ -45,7 +60,7 @@ public class BouncingGame extends Challenge {
 
 	//@Override
 	public double calculateScore(){
-		return (succeed_times)*10;
+		return (collision_times)*10;
 	}
 	
 }

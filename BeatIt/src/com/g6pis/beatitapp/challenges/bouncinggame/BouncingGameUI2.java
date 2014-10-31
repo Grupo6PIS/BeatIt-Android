@@ -38,7 +38,6 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
     ShapeDrawable red_ball = new ShapeDrawable();
     ShapeDrawable black_ball = new ShapeDrawable();
     
-    public int collision_times = 0;
     public float x, x_black;
     public float y, y_black;
     public float red_radius = 150;
@@ -56,11 +55,9 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
     Paint pTextTime = new Paint();   
     
 	private boolean timerRunning = false;
-	private static final long INITIAL_COUNTER_VALUE = 60000; // In milliseconds
 	
 	private CountDownTimer timer;
 	private int seconds;
-	private long attemps = 0;
 	private BouncingGame bouncingGame;
 	
 	@Override
@@ -81,8 +78,8 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
         //y_max = 800;
         x_max = metrics.widthPixels - 150;
         y_max = metrics.heightPixels - 350;
-        x_min = 10;
-        y_min = 10;
+        x_min = 0;
+        y_min = 0;
         x = x_min;
         y = y_min;
         
@@ -104,7 +101,7 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
     }
     
 	public CountDownTimer createTimer(){
-		CountDownTimer timer = new CountDownTimer(INITIAL_COUNTER_VALUE, 60) {
+		CountDownTimer timer = new CountDownTimer(bouncingGame.getTime(), bouncingGame.getTime()/1000) {
 			
 			public void onTick(long millisUntilFinished) {
 				seconds = (int) (millisUntilFinished / 1000);
@@ -236,9 +233,7 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
             red_center.y = y;
 
             if (existCollision(red_center.x, red_center.y, red_radius, black_center.x, black_center.y, black_radius)) {
-            	collision_times += 1;
-            	System.out.println("----- Colisiones: " + collision_times);
-            	bouncingGame.setSucceed_times(collision_times);
+            	bouncingGame.increaseCollision_times();
             	if (0.9 * red_radius < 10)
             		red_radius = 10;
             	else
@@ -266,14 +261,6 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
 		this.finish();
 	}
     
-    public long getAttemps() {
-		return attemps;
-	}
-
-	public void setAttemps(long attemps) {
-		this.attemps = attemps;
-	}
-    
     public class AnimatedView extends ImageView {
 
         public AnimatedView(Context context) {
@@ -295,7 +282,7 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
         	black_ball.setBounds((int) black_center.x, (int) black_center.y, (int) (black_center.x + black_radius), (int) (black_center.y + black_radius));
             black_ball.draw(canvas);
             
-            canvas.drawText("Colisiones: " + collision_times, 10, y_max + 175, pTextCollision);
+            canvas.drawText("Colisiones: " + bouncingGame.getCollision_times(), 10, y_max + 175, pTextCollision);
             canvas.drawText("Tiempo: " + seconds, 450, y_max + 175, pTextTime);
         	
             red_ball.setBounds((int) x, (int) y, (int) (x + red_radius), (int) (y + red_radius));
