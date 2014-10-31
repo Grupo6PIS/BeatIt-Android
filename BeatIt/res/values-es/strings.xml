@@ -113,7 +113,7 @@
 	<string name="challenge_under_construction_title">¿Desea continuar?</string>
 	<string name="saving_progress">Guardando su progreso</string>
 	<string name="please_wait">Por favor espera..</string>
-	<string name="loading_progress">Loading your progress</string>
+	<string name="loading_progress">Cargando tu progreso</string>
 	<string name="updating_ranking">Actualizando ranking</string>
 	
     <!-- Profile Strings -->
