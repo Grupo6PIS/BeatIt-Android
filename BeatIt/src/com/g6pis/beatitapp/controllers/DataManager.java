@@ -167,7 +167,7 @@ public class DataManager implements IDataManager {
 					break;
 				case 6: {
 					ThrowThePhone throwThePhone = new ThrowThePhone(challengeId,
-							name, level, maxAttempts, color);
+							name, level, 50, color);
 					challenges.add(throwThePhone);
 				}
 				break;

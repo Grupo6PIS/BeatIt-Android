@@ -120,9 +120,9 @@ public class SongCompleteUI extends Activity {
 		
 		counterRunning = false;
 		if (songcomplete.getLevel() == 1){
-			maxDelay = 10;
-		} else {
 			maxDelay = 20;
+		} else {
+			maxDelay = 10;
 		}
 		
 		currentSong = 0;

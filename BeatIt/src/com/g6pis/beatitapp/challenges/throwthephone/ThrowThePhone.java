@@ -6,8 +6,8 @@ import com.g6pis.beatitapp.interfaces.Factory;
 public class ThrowThePhone extends Challenge {
 	private String CHALLENGE_ID = "6";
 	
-	private static int MIN_HEIGHT_1 = 100;
-	private static int MIN_HEIGHT_2 = 200;
+	private static int MIN_HEIGHT_1 = 50;
+	private static int MIN_HEIGHT_2 = 50;
 
 	private int minHeight;
 	private int heightReached;

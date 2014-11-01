@@ -31,7 +31,7 @@ public class State {
 		this.maxScore = maxScore;
 		this.lastScore = lastScore;
 		this.currentAttempt = currentAttempt;
-		this.finished = currentAttempt >= challenge.getMaxAttempt();
+		this.finished = false;
 	}
 	
 	
