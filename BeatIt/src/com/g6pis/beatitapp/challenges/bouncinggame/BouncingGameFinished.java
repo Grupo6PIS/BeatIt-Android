@@ -2,9 +2,6 @@ package com.g6pis.beatitapp.challenges.bouncinggame;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -25,14 +22,10 @@ import com.g6pis.beatitapp.datatypes.DTState;
 import com.g6pis.beatitapp.entities.Challenge;
 import com.g6pis.beatitapp.interfaces.Factory;
 
-public class BouncingGameFinished extends Activity implements OnClickListener,
-		android.content.DialogInterface.OnClickListener {
+public class BouncingGameFinished extends Activity implements OnClickListener {
 	private static final String CHALLENGE_ID = "5";
-	private static final int CHALLENGE_DIALOG = 50;
 
 	private DTState state;
-
-	private Dialog dialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -59,9 +52,6 @@ public class BouncingGameFinished extends Activity implements OnClickListener,
 		((TextView) findViewById(R.id.textView_Attempts_Value)).setText(state
 				.getCurrentAttempt() + "/" + challenge.getMaxAttempt());
 
-		dialog = onCreateDialog(CHALLENGE_DIALOG);
-		dialog.hide();
-
 	}
 
 	@Override
@@ -76,7 +66,6 @@ public class BouncingGameFinished extends Activity implements OnClickListener,
 		switch (item.getItemId()) {
 		// Respond to the action bar's Up/Home button
 		case android.R.id.home:
-			dialog.dismiss();
 			Intent home = new Intent(this, Home.class);
 			startActivity(home);
 			this.finish();
@@ -87,13 +76,13 @@ public class BouncingGameFinished extends Activity implements OnClickListener,
 
 	@Override
 	public void onClick(View v) {
-		dialog.show();
-
+		Intent intent = new Intent(this, BouncingGameUI.class);
+		startActivity(intent);
+		this.finish();
 	}
 
 	@Override
 	public void onBackPressed() {
-		dialog.dismiss();
 		Intent home = new Intent(this, Home.class);
 		startActivity(home);
 		this.finish();
@@ -130,39 +119,6 @@ public class BouncingGameFinished extends Activity implements OnClickListener,
 			((ImageButton) findViewById(R.id.retry_button))
 					.setVisibility(View.VISIBLE);
 		}
-
-	}
-
-	@Override
-	protected Dialog onCreateDialog(int id) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		switch (id) {
-		case CHALLENGE_DIALOG: {
-			builder.setMessage(R.string.challenge_under_construction);
-			builder.setTitle(getResources().getString(
-					R.string.challenge_under_construction_title));
-			builder.setCancelable(true);
-			builder.setPositiveButton(R.string.continue_button, this);
-			builder.setNegativeButton(R.string.cancel,
-					new CancelOnClickListener());
-			return builder.create();
-		}
-
-		}
-		return super.onCreateDialog(id);
-	}
-
-	private final class CancelOnClickListener implements
-			DialogInterface.OnClickListener {
-		public void onClick(DialogInterface dialog, int which) {
-		}
-	}
-
-	@Override
-	public void onClick(DialogInterface dialog, int which) {
-		Intent intent = new Intent(this, BouncingGameUI.class);
-		startActivity(intent);
-		this.finish();
 
 	}
 

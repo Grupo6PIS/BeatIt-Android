@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
 import com.g6pis.beatitapp.challenges.bouncinggame.BouncingGameFinished;
+import com.g6pis.beatitapp.challenges.bouncinggame.BouncingGameUI;
 import com.g6pis.beatitapp.challenges.catchme.CatchMeFinished;
 import com.g6pis.beatitapp.challenges.invitefriends.CanYouPlayFinished;
 import com.g6pis.beatitapp.challenges.invitefriends.CanYouPlayUI;
@@ -95,37 +96,31 @@ public class ChallengesMenuTab extends Fragment implements
 			else
 				challenge = new Intent(getActivity().getApplicationContext(),
 						UsainBoltFinished.class);
-		} else if (adapter.getItem(position).getChallengeId()
-				.equals(ID_Wake_Me_Up)) {
+		} else if (adapter.getItem(position).getChallengeId().equals(ID_Wake_Me_Up)) {
 			if (adapter.getItem(position).getCurrentAttempt() == 0)
 				challenge = new Intent(getActivity().getApplicationContext(),
 						WakeMeUpUI.class);
 			else
 				challenge = new Intent(getActivity().getApplicationContext(),
 						WakeMeUpFinished.class);
-		} else if (adapter.getItem(position).getChallengeId()
-				.equals(ID_Can_You_Play)) {
+		} else if (adapter.getItem(position).getChallengeId().equals(ID_Can_You_Play)) {
 			if (adapter.getItem(position).getCurrentAttempt() == 0)
 				challenge = new Intent(getActivity().getApplicationContext(),
 						CanYouPlayUI.class);
 			else
 				challenge = new Intent(getActivity().getApplicationContext(),
 						CanYouPlayFinished.class);
-		} else if (adapter.getItem(position).getChallengeId()
-				.equals(ID_Calla_Al_Perro)) {
+		} else if (adapter.getItem(position).getChallengeId().equals(ID_Calla_Al_Perro)) {
 			if (adapter.getItem(position).getCurrentAttempt() == 0)
 				challenge = new Intent(getActivity().getApplicationContext(),
 						ShutTheDogUI.class);
 			else
 				challenge = new Intent(getActivity().getApplicationContext(),
 						ShutTheDogFinished.class);
-		} else if (adapter.getItem(position).getChallengeId()
-				.equals(ID_Bouncing_Game)) {
+		} else if (adapter.getItem(position).getChallengeId().equals(ID_Bouncing_Game)) {
 			if (adapter.getItem(position).getCurrentAttempt() == 0){
-				/*challenge = new Intent(getActivity().getApplicationContext(),
-						BouncingGameUI.class);*/
-				((Home)getActivity()).challenge = Integer.parseInt(ID_Bouncing_Game);
-			((Home)getActivity()).challengeDialog.show();
+				challenge = new Intent(getActivity().getApplicationContext(),
+						BouncingGameUI.class);
 			}else
 				challenge = new Intent(getActivity().getApplicationContext(),
 						BouncingGameFinished.class);

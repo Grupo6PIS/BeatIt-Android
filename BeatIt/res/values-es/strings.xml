@@ -174,8 +174,8 @@
     
 	<!-- Bouncing Game Strings -->
     <string name="bouncing_game">Bouncing Game</string>
-    <string name="description_bouncing_game_1">En este desafío deberás chocar la bola roja con la gris la mayor cantidad de veces posible.\nSolamente tienes 60 segundos!</string>
-    <string name="description_bouncing_game_2">En este desafío deberás chocar la bola roja con la gris la mayor cantidad de veces posible.\nSolamente tienes 60 segundos!</string>
+    <string name="description_bouncing_game_1">En este desafío deberás chocar la bola roja con la gris la mayor cantidad de veces posible.\nSolamente tienes 45 segundos!</string>
+    <string name="description_bouncing_game_2">En este desafío deberás chocar la bola roja con la gris la mayor cantidad de veces posible.\nSolamente tienes 45 segundos!</string>
     <string name="logo_bouncing_game">Bouncing Game Logo</string>
     
     <!-- Text And Color String -->
