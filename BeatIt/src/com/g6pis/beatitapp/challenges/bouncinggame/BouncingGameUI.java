@@ -51,6 +51,7 @@ public class BouncingGameUI extends Activity implements SensorEventListener, OnC
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.bouncing_game);
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
 		this.editActionBar(); 
 		this.viewAssignment();

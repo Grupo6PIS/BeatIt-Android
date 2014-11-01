@@ -11,6 +11,7 @@ import android.content.SharedPreferences.Editor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.view.WindowManager;
 
 import com.facebook.Request;
 import com.facebook.Response;
@@ -48,6 +49,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 		
 		
@@ -71,8 +73,8 @@ public class MainActivity extends Activity {
 				startActivity(login);
 				finish();
 			} else {
-				StateDAO db = new StateDAO(this);
-				Map<String,DTState> persistedStates = db.getAllStates();
+				final StateDAO db = new StateDAO(this);
+				final Map<String,DTState> persistedStates = db.getAllStates();
 				Factory.getInstance().getIDataManager().setStates(persistedStates);
 				final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
 				progressDialog.setTitle(getResources().getString(R.string.loading_progress));
@@ -86,16 +88,17 @@ public class MainActivity extends Activity {
 				    	progressDialog.dismiss();
 				    	startActivity(home);
 				    	finish();
+				    	if(persistedStates.isEmpty()){
+				    		Map<String,DTState> persistedStates = Factory.getInstance().getIDataManager().getPersistedStates();
+							db.addStates(persistedStates);
+						}
+						Editor editor = sharedPrefs.edit();
+						editor.putString("userId", userId);
+						editor.commit();
 				    }
 				};
 				t.start();
-				if(persistedStates.isEmpty()){
-					persistedStates = Factory.getInstance().getIDataManager().getPersistedStates();
-					db.addStates(persistedStates);
-				}
-				Editor editor = sharedPrefs.edit();
-				editor.putString("userId", userId);
-				editor.commit();
+				
 			}
 		}else{
 			Session.getActiveSession().closeAndClearTokenInformation();

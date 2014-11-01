@@ -50,7 +50,7 @@ public class TextAndColor extends Challenge {
 	
 	public int calculateScore(){
 		int score = 0;
-		for(int i = 0; i < count; i++){
+		for(int i =1 ; i <= count; i++){
 			if(i<=5)
 				score += MIN_COUNT_LEVEL1;
 			else if(i<= 25)

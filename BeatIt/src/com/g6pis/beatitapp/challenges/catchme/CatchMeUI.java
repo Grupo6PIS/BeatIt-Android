@@ -49,7 +49,7 @@ public class CatchMeUI extends Activity implements OnClickListener {
 		protected void onCreate(Bundle savedInstanceState) {
 			super.onCreate(savedInstanceState);
 			setContentView(R.layout.catch_me);
-
+			getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 			catchMe = (CatchMe) Factory.getInstance().getIDataManager().getChallenge(
 					CHALLENGE_ID);

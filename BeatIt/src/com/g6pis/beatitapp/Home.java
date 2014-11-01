@@ -57,6 +57,7 @@ public class Home extends FragmentActivity implements OnClickListener, ActionBar
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.tabs);
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		actionBar = getActionBar();
 		actionBar.setCustomView(R.layout.action_bar);

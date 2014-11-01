@@ -88,7 +88,7 @@ public class SongCompleteUI extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.song_complete);
-		
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		songcomplete = (SongComplete) Factory.getInstance().getIDataManager().getChallenge(
 				CHALLENGE_ID);
 		state = Factory.getInstance().getIDataManager().getState(CHALLENGE_ID);

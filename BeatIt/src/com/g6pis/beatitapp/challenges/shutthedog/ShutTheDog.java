@@ -100,9 +100,9 @@ public class ShutTheDog extends Challenge{
 	}
 	
 	public void reset(){
-		/*phones = new ArrayList<String>();
-		smsSent = 0;
-		fbPost = 0;*/
+		lives = 0;
+		hasWon = false;
+		results = new int[3];
 	}
 
 }

@@ -55,7 +55,7 @@ public class ThrowThePhoneUI extends Activity implements SensorEventListener, On
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.throw_the_phone);
-
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		throwThePhone = (ThrowThePhone) Factory.getInstance().getIDataManager().getChallenge(
 				CHALLENGE_ID);
 		state = Factory.getInstance().getIDataManager().getState(CHALLENGE_ID);

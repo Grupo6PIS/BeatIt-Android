@@ -122,8 +122,8 @@
     
     <!-- Strings del desafío Usain Bolt -->
     <string name="challenge">Usain Bolt</string>
-    <string name="description_usain_bolt_1">En este desafío debes correr a mas de 10 km/h durante 30 segundos.</string>
-    <string name="description_usain_bolt_2">En este desafío debes correr a mas de 15 km/h durante 45 segundos.</string>
+    <string name="description_usain_bolt_1">En este desafío deberás correr a más de 10 km/h durante 30 segundos.</string>
+    <string name="description_usain_bolt_2">En este desafío deberás correr a más de 15 km/h durante 45 segundos.</string>
     <string name="logo_description">Logo de Usain Bolt</string>
     
     <!-- Can You Play's Strings  -->
@@ -139,18 +139,18 @@
     <string name="sms_sent">SMS enviados</string>
     <string name="android_version">Versión para Android</string>
     <string name="also_available">También disponible para Windows Phone</string>
-    <string name="can_you_play_description_1">En este desafío deberás publicar un link en tu biografía de Facebook y deberás, también, enviar dos mensajes de texto a dos contactos diferentes con el link.</string>
-    <string name="can_you_play_description_2">En este desafío deberás publicar un link en tu biografía de Facebook y deberás, también, enviar cuatro mensajes de texto a cuatro contactos diferentes con el link.</string>
+    <string name="can_you_play_description_1">En este desafío deberás publicar un link en tu biografía de Facebook y deberás, también, enviar dos mensajes de texto a dos contactos diferentes con el link.\nCuántos más invites mayor puntaje</string>
+    <string name="can_you_play_description_2">En este desafío deberás publicar un link en tu biografía de Facebook y deberás, también, enviar cuatro mensajes de texto a cuatro contactos diferentes con el link.\nCuántos más invites mayor puntaje!</string>
    <string name="select_diferent_contact">Selecciona un contacto diferente</string>
    <string name="select_another_contact">Selecciona otro contacto</string>
    <string name="facebook_app_not_installed">La aplicación de Facebook no está instalada pero puedes continuar</string>
    <string name="challenge_not_completed">¡Desafío no completado!</string>
     
     <!-- Wake Me Up Strings -->
-    <string name="wake_me_up">Despertame A Tiempo</string>
+    <string name="wake_me_up">Despiértame A Tiempo</string>
     <string name="description_wake_me_up">En este desafío deberás agitar el celular cuando la cuenta regresiva llegue a 0 segundos. Deberás realizar cuatro intentos.</string>
-    <string name="description_wake_me_up_1">En este desafío deberás agitar el celular cuando la cuenta regresiva llegue a 0 segundos. Deberás realizar tres intentos.</string>
-    <string name="description_wake_me_up_2">En este desafío deberás agitar el celular cuando la cuenta regresiva llegue a 0 segundos. Deberás realizar cuatro intentos.</string>
+    <string name="description_wake_me_up_1">En este desafío deberás agitar el celular cuando creas que el timer finalizó.\nEl timer se ocultará tres veces así que presta atención.</string>
+    <string name="description_wake_me_up_2">En este desafío deberás agitar el celular cuando creas que el timer finalizó.\nEl timer se ocultará cuatro veces así que presta atención.</string>
     <string name="logo_wake_me_up">Logo Despertame A Tiempo</string>
     <string name="restart">Reintentar</string>
     <string name="success">Ganaste !</string>
@@ -158,24 +158,24 @@
 
     <!-- Shut The Dog Strings -->
     <string name="shut_the_dog">Calla Al Perro</string>
-    <string name="description_shut_the_dog_1">En este desafío deberás callar al perro cuando ladre, colocando la mano sobre el celular lo más rápido posible. El perro ladrará tres veces.</string>
-    <string name="description_shut_the_dog_2">En este desafío deberás callar al perro cuando ladre, colocando la mano sobre el celular lo más rápido posible. El perro ladrará cinco veces.</string>
+    <string name="description_shut_the_dog_1">En este desafío deberás callar al perro cuando ladre, para ello debes colocar la mano sobre el celular lo más rápido posible.\nEl perro ladrará tres veces.</string>
+    <string name="description_shut_the_dog_2">En este desafío deberás callar al perro cuando ladre, para ello debes colocar la mano sobre el celular lo más rápido posible.\nEl perro ladrará cinco veces.</string>
     <string name="logo_shut_the_dog">Logo Calla al Perro</string>
     <string name="shut_the_dog_started">¡Comenzó! ¡Presta atención!</string>
     <string name="shut_the_dog_lost">¡Perdiste! :( ¡Intenta de nuevo!</string>
     
     <!-- Song Complete Strings -->
-    <string name="song_complete">Completa la Canción</string>
-    <string name="description_song_complete_1">En este desafío deberas adivinar el nombre del artista que toca la canción que suena en 20 segundos, cinco veces!</string>
-    <string name="description_song_complete_2">En este desafío deberas adivinar el nombre de la canción que suena en 10 segundos, cinco veces!</string>
+    <string name="song_complete">Song Quiz</string>
+    <string name="description_song_complete_1">En este desafío deberás adivinar el nombre del artista de cada canción que sonará por 10 segundos.\nRecuerda que son cinco canciones!</string>
+    <string name="description_song_complete_2">En este desafío deberás adivinar el nombre de cada canción que sonará por 20 segundos.\nRecuerda que son cinco canciones!</string>
     <string name="logo_song_complete">Logo Completa la Canción</string>
     <string name="song_complete_started">¡Comenzó! ¡Presta atención!</string>
     <string name="song_complete_lost">¡Perdiste! :( ¡Intenta de nuevo!</string>
     
 	<!-- Bouncing Game Strings -->
     <string name="bouncing_game">Bouncing Game</string>
-    <string name="description_bouncing_game_1">En este desafío deberás colisionar la bola roja con la gris la mayor cantidad de veces posible.</string>
-    <string name="description_bouncing_game_2">En este desafío deberás colisionar la bola roja con la gris la mayor cantidad de veces posible.</string>
+    <string name="description_bouncing_game_1">En este desafío deberás chocar la bola roja con la gris la mayor cantidad de veces posible.\nSolamente tienes 60 segundos!</string>
+    <string name="description_bouncing_game_2">En este desafío deberás chocar la bola roja con la gris la mayor cantidad de veces posible.\nSolamente tienes 60 segundos!</string>
     <string name="logo_bouncing_game">Bouncing Game Logo</string>
     
     <!-- Text And Color String -->
@@ -188,29 +188,30 @@
     <string name="blue">AZUL</string>
     <string name="yellow">AMARILLO</string>
     <string name="orange">ANARANJADO</string>
-    <string name="description_text_and_color_1">En este desafío tienes que decidir si el texto y el color coinciden. Tienes 60 segundos para acertar la mayor cantidad posible.</string>
-    <string name="description_text_and_color_2">En este desafío tienes que decidir si el texto y el color coinciden. Tienes 45 segundos para acertar la mayor cantidad posible.</string>
+    <string name="description_text_and_color_1">En este desafío tienes que decidir si el texto y el color coinciden.\nTienes 60 segundos para acertar la mayor cantidad posible.</string>
+    <string name="description_text_and_color_2">En este desafío tienes que decidir si el texto y el color coinciden.\nTienes 45 segundos para acertar la mayor cantidad posible.</string>
     
     <!-- Catch Me String -->
     <string name="catch_me">Atrápame Si Puedes</string>
-    <string name="description_catch_me_1">En este desafío deberás presionar en un lapso de 45 segundos los puntos que se iluminen . Deberás acertar la mayor cantidad posible.</string>
-    <string name="description_catch_me_2">En este desafío deberás presionar en un lapso de 30 segundos los puntos que se iluminen . Deberás acertar la mayor cantidad posible.</string>
+    <string name="description_catch_me_1">En este desafío deberás pulsar el botón que se enciende lo más rápido posible, solamente tienes 30 segundos!\nRecuerda, cuanto más rápido mayor puntaje!</string>
+    <string name="description_catch_me_2">En este desafío deberás pulsar el botón que se enciende lo más rápido posible, solamente tienes 45 segundos!\nRecuerda, cuanto más rápido mayor puntaje!</string>
     
     
     <!-- Throw The Phone String -->
     <string name="throw_the_phone">Celular Volador</string>
-	    <string name="descritpion_throw_the_phone_1">En este desafío debes lanzar el celular hacia arriba hasta alcanzar un metro de altura.</string>
-    <string name="descritpion_throw_the_phone_2">En este desafío debes lanzar el celular hacia arriba hasta alcanzar dos metros de altura.</string>
+	    <string name="descritpion_throw_the_phone_1">En este desafío deberás lanzar el celular hacia arriba hasta alcanzar un(dos) metro(s) de altura como mínimo.\nRecuerda, cuanto más alto mayor puntaje!</string>
+    <string name="descritpion_throw_the_phone_2">En este desafío deberás lanzar el celular hacia arriba hasta alcanzar un(dos) metro(s) de altura como mínimo.\nRecuerda, cuanto más alto mayor puntaje!</string>
     <string name="attention">Atención!</string>
     <string name="attention_text">Antes de lanzar el dispositivo hacia arriba, procure tener una posición adecuada para capturarlo cuando el mismo venga bajando.</string>
     <string name="come_on">Vamos!</string>
     <string name="im_scared">Tengo miedo!</string>
     <string name="ready_to_fly">Estoy listo para volar!</string>
-    
+   
     <!-- Selfie Group String -->
-    <string name="selfie_group">Selfie En Grupo</string>
+    <string name="selfie_group">Selfie Groupie</string>
     <string name="description_selfie_group_1">En este desafío deberás sacarte una foto con dos o más personas. Cuántas más personas, más puntos!</string>
     <string name="description_selfie_group_2">En este desafío deberás sacarte una foto con cinco o más personas. Cuántas más personas, más puntos!</string>
+    <string name="light_dialog">Por favor, ten en consideración que deben distinguirse bien las caras, busca algún lugar con buena luminosidad.</string>
     
     <!-- Facebook app ID -->
     <string name="facebook_app_id">829846350380023</string>

@@ -74,7 +74,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.usain_bolt);
-
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		this.editActionBar();
 		this.viewAssignment();
 

@@ -1,6 +1,6 @@
 package com.g6pis.beatitapp.challenges.textandcolor;
 
-/*import static org.junit.Assert.*;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -15,7 +15,7 @@ public class TextAndColorTest {
 		assertEquals(2,textAndColor.getLevel());
 		assertEquals(3,textAndColor.getMaxAttempt());
 		assertEquals("#0050EF",textAndColor.getColor());
-		assertEquals(1500,textAndColor.getTime());
+		assertEquals(45000,textAndColor.getTime());
 
 		
 		
@@ -27,7 +27,7 @@ public class TextAndColorTest {
 		assertEquals(3,textAndColor.getMaxAttempt());
 		assertEquals("#0050EF",textAndColor.getColor());
 		assertEquals(0,textAndColor.getCount());
-		assertEquals(1700,textAndColor.getTime());
+		assertEquals(60000,textAndColor.getTime());
 		
 	}
 	
@@ -45,21 +45,13 @@ public class TextAndColorTest {
 		assertEquals(2,textAndColor.calculateScore());
 		
 		textAndColor.reset();
-		int score = 0;
 		for(int i=1;i<16;i++){
 			textAndColor.addCount();
-			if(i<=5){
-				score += 1;
-			}else if (i<=10){
-				score += 5;
-			}else
-				score += 10;
 		}
 		
 		assertEquals(15,textAndColor.getCount());
-		assertEquals(score,textAndColor.calculateScore());
+		assertEquals(55,textAndColor.calculateScore());
 		
 	}
 
 }
-*/

@@ -141,8 +141,8 @@
     <string name="sms_sent">SMS sent</string>
     <string name="android_version">Android Version</string>
     <string name="also_available">Also available for Windows Phone</string>
-    <string name="can_you_play_description_1">In this challenge you have to post a link on your Facebook and, also, send two SMS with the link to two different contacts.</string>
-    <string name="can_you_play_description_2">In this challenge you have to post a link on your Facebook and, also, send four SMS with the link to four different contacts.</string>
+    <string name="can_you_play_description_1">In this challenge you have to post a link on your Facebook and, also, send two SMS with the link to two different contacts.\nRemember more friends more score!</string>
+    <string name="can_you_play_description_2">In this challenge you have to post a link on your Facebook and, also, send four SMS with the link to four different contacts.\nRemember more friends more score!</string>
    	<string name="select_diferent_contact">Select a different contact</string>
    	<string name="select_another_contact">Select another contact</string>
    	<string name="facebook_app_not_installed">The Facebook App is not installed, but you can continue</string>
@@ -150,8 +150,8 @@
     
     <!-- Despertame A Tiempo Strings -->
     <string name="wake_me_up">Wake Me Up</string>
-    <string name="description_wake_me_up_1">In this challenge you have to shake your phone when the countdown reaches 0 seconds. You will have three attempts.</string>
-    <string name="description_wake_me_up_2">In this challenge you have to shake your phone when the countdown reaches 0 seconds. You will have four attempts.</string>
+    <string name="description_wake_me_up_1">In this challenge you have to shake your phone when you thinks the timer has ended.\nThe timer will hide three times, so pay attention.</string>
+    <string name="description_wake_me_up_2">In this challenge you have to shake your phone when you thinks the timer has ended.\nThe timer will hide four times, so pay attention.</string>
     <string name="logo_wake_me_up">Wake Me Up Logo</string>
     <string name="restart">Restart</string>
     <string name="success">Success !</string>
@@ -159,22 +159,22 @@
     
     <!-- Shut The Dog Strings -->
     <string name="shut_the_dog">Shut The Dog</string>
-    <string name="description_shut_the_dog_1">In this challenge you have to shut the barking dog up by putting your hand close to the phone as soon as possible. The dog will bark three times</string>
-    <string name="description_shut_the_dog_2">In this challenge you have to shut the barking dog up by putting your hand close to the phone as soon as possible. The dog will bark five times</string>
+    <string name="description_shut_the_dog_1">In this challenge you have to shut the barking dog up by putting your hand close to the phone as soon as possible.\nThe dog will bark three times.</string>
+    <string name="description_shut_the_dog_2">In this challenge you have to shut the barking dog up by putting your hand close to the phone as soon as possible.\nThe dog will bark five times</string>
     <string name="logo_shut_the_dog">Logo Shut The Dog</string>
     <string name="shut_the_dog_started">Game Started! Pay Attention to the sound!</string>
     <string name="shut_the_dog_lost">You lost! :( Try again!</string>
     
 	<!-- Bouncing Game Strings -->
     <string name="bouncing_game">Bouncing Game</string>
-    <string name="description_bouncing_game_1">In this challenge you have to hit the red ball with the grey one several times.</string>
-    <string name="description_bouncing_game_2">In this challenge you have to hit the red ball with the grey one several times.</string>
+    <string name="description_bouncing_game_1">In this challenge you have to bump the red ball against gray as many times as possible.\nYou only have 60 seconds!.</string>
+    <string name="description_bouncing_game_2">In this challenge you have to bump the red ball against gray as many times as possible.\nYou only have 60 seconds!.</string>
     <string name="logo_bouncing_game">Bouncing Game Logo</string>
     
     <!-- Song Complete Strings -->
-    <string name="song_complete">Song Complete</string>
-    <string name="description_song_complete_1">In this challenge you have to guess the artist\'s name of the midi song sounding for 10 seconds, five times!</string>
-    <string name="description_song_complete_2">In this challenge you have to guess the exact name of the midi song sounding for 10 seconds, five times!</string>
+    <string name="song_complete">Song Quiz</string>
+    <string name="description_song_complete_1">In this challenge you have to guess the song\'s name of each song that will be played for 10 seconds.\nRemember there will be 5 songs!</string>
+    <string name="description_song_complete_2">In this challenge you have to guess the artist\'s name of each song that will be played for 10 seconds.\nRemember there will be 5 songs!</string>
     <string name="logo_song_complete">Logo Song Complete</string>
     <string name="song_complete_started">Game Started! Pay Attention to the sound!</string>
     <string name="song_complete_lost">You lost! :( Try again!</string>
@@ -189,19 +189,19 @@
     <string name="blue">BLUE</string>
     <string name="yellow">YELLOW</string>
     <string name="orange">ORANGE</string>
-        <string name="description_text_and_color_1">In this challenge you have to decide whether the text and color match. You have 60 seconds to hit as many as possible.</string>
-    <string name="description_text_and_color_2">In this challenge you have to decide whether the text and color match. You have 45 seconds to hit as many as possible.</string>
+        <string name="description_text_and_color_1">In this challenge you have to decide whether the text and color match.\nYou have 60 seconds to hit as many as possible.</string>
+    <string name="description_text_and_color_2">In this challenge you have to decide whether the text and color match.\nYou have 45 seconds to hit as many as possible.</string>
     
     <!-- Catch Me String -->
     <string name="catch_me">Catch Me</string>
-    <string name="description_catch_me_1">In this challenge you must pressed the points lighted up within 45 seconds . You must hit as many as possible.</string>
-    <string name="description_catch_me_2">In this challenge you must pressed the points lighted up within 30 seconds . You must hit as many as possible.</string>
+    <string name="description_catch_me_1">In this challenge you have to press lighted circles as quickly as possible. Hurry up, you only have 30 seconds!\nRemember, the faster, the highest score!</string>
+    <string name="description_catch_me_2">In this challenge you have to press lighted circles as quickly as possible. Hurry up, you only have 45 seconds!\nRemember, the faster, the highest score!</string>
    
     
     <!-- Throw The Phone String -->
     <string name="throw_the_phone">Throw The Phone</string>
-    <string name="descritpion_throw_the_phone_1">In this challenge you should throw the phone upward to one meter high.</string>
-    <string name="descritpion_throw_the_phone_2">In this challenge you should throw the phone upward to two meters high.</string>
+    <string name="descritpion_throw_the_phone_1">In this challenge you have to throw the phone upward one meter at a minimum height.\nRemember, the higher higher score!</string>
+    <string name="descritpion_throw_the_phone_2">In this challenge you have to throw the phone upward two meters at a minimum height.\nRemember, the higher higher score!</string>
     <string name="attention">Attention!</string>
     <string name="attention_text">Before launching the device up, try to have a proper position to catch it when it comes down, we are NOT responsabe for any damage of your cellphone</string>
     <string name="come_on">Come on!</string>
@@ -209,9 +209,10 @@
     <string name="ready_to_fly">I\'m ready to fly!</string>
     
     <!-- Selfie Group String -->
-    <string name="selfie_group">Selfie Group</string>
-    <string name="description_selfie_group_1">In this challenge you have to take a picture with two or more people. The more people, the more points!</string>
-    <string name="description_selfie_group_2">In this challenge you have to take a pciture with five or more people. The more people, the more points!</string>
+    <string name="selfie_group">Selfie Groupie</string>
+    <string name="description_selfie_group_1">In this challenge you have to take a picture with two or more people.\nRemember that more faces in the pictures, means highest score!</string>
+    <string name="description_selfie_group_2">In this challenge you have to take a picture with two (five) or more people.\nRemember that more faces in the pictures, means highest score!</string>
+    <string name="light_dialog">Please keep in mind that should be distinguished either faces, look forward to some place with good light.</string>
     
     <!-- Facebook app ID -->
     <string name="facebook_app_id">829846350380023</string>

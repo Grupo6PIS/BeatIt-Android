@@ -44,7 +44,7 @@ public class CatchMeFinished extends Activity implements OnClickListener,
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.challenge_finished);
-
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		state = Factory.getInstance().getIDataManager().getState(CHALLENGE_ID);
 
 		this.editLayout();

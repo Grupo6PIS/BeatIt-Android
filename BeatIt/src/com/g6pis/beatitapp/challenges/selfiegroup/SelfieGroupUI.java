@@ -5,24 +5,15 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
-
-
-import com.g6pis.beatitapp.Home;
-import com.g6pis.beatitapp.R;
-import com.g6pis.beatitapp.challenges.selfiegroup.SelfieGroup;
-import com.g6pis.beatitapp.challenges.selfiegroup.SelfieGroupUI;
-import com.g6pis.beatitapp.challenges.textandcolor.TextAndColor;
-import com.g6pis.beatitapp.datatypes.DTState;
-import com.g6pis.beatitapp.entities.Challenge;
-import com.g6pis.beatitapp.interfaces.Factory;
-import com.g6pis.beatitapp.persistence.StateDAO;
-
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.Color;
 import android.graphics.Bitmap.Config;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.FaceDetector;
 import android.media.FaceDetector.Face;
@@ -33,28 +24,32 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TableRow;
 import android.widget.TextView;
+
+import com.g6pis.beatitapp.Home;
+import com.g6pis.beatitapp.R;
+import com.g6pis.beatitapp.datatypes.DTState;
+import com.g6pis.beatitapp.interfaces.Factory;
+import com.g6pis.beatitapp.persistence.StateDAO;
 
 public class SelfieGroupUI extends Activity implements OnClickListener {
 	private static final String CHALLENGE_ID = "10";
-	
+
 	static final int REQUEST_IMAGE_CAPTURE = 100;
+	static final int LIGHT_DIALOG = 50;
 
 	private DTState state;
 	private SelfieGroup selfieGroup;
 
 	private Button startButton;
 	private Bitmap cameraBitmap;
+	private Dialog lightDialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.selfie_group);
-
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		selfieGroup = (SelfieGroup) Factory.getInstance().getIDataManager()
 				.getChallenge(CHALLENGE_ID);
 		state = Factory.getInstance().getIDataManager().getState(CHALLENGE_ID);
@@ -73,6 +68,9 @@ public class SelfieGroupUI extends Activity implements OnClickListener {
 					.setVisibility(View.INVISIBLE);
 
 		}
+
+		lightDialog = onCreateDialog(LIGHT_DIALOG);
+		lightDialog.hide();
 
 		switch (selfieGroup.getLevel()) {
 		case 1:
@@ -164,30 +162,30 @@ public class SelfieGroupUI extends Activity implements OnClickListener {
 							result = ((int) duration) + " "
 									+ getResources().getString(R.string.weeks);
 						else
-							result = ((int) duration)+ " "
+							result = ((int) duration) + " "
 									+ getResources().getString(R.string.week);
 					} else {
 						if (duration > 1)
-							result = ((int) duration)+ " "
+							result = ((int) duration) + " "
 									+ getResources().getString(R.string.days);
 						else
-							result = ((int) duration)+ " "
+							result = ((int) duration) + " "
 									+ getResources().getString(R.string.day);
 					}
 				} else {
 					if (duration > 1)
-						result = ((int) duration)+ " "
+						result = ((int) duration) + " "
 								+ getResources().getString(R.string.hours);
 					else
-						result = ((int) duration)+ " "
+						result = ((int) duration) + " "
 								+ getResources().getString(R.string.hour);
 				}
 			} else {
 				if (duration > 1)
-					result = ((int) duration)+ " "
+					result = ((int) duration) + " "
 							+ getResources().getString(R.string.minutes);
 				else
-					result = ((int) duration)+ " "
+					result = ((int) duration) + " "
 							+ getResources().getString(R.string.minute);
 			}
 		} else {
@@ -207,51 +205,81 @@ public class SelfieGroupUI extends Activity implements OnClickListener {
 		actionBar.setTitle(this.getString(R.string.app_name));
 		actionBar.setBackgroundDrawable(new ColorDrawable(Color
 				.parseColor(selfieGroup.getColor())));
-		startButton.setBackgroundColor(Color.parseColor(selfieGroup.getColor()));
-		((TextView)findViewById(R.id.textView_Challenge)).setTextColor(Color.parseColor(selfieGroup.getColor()));
+		startButton
+				.setBackgroundColor(Color.parseColor(selfieGroup.getColor()));
+		((TextView) findViewById(R.id.textView_Challenge)).setTextColor(Color
+				.parseColor(selfieGroup.getColor()));
 
 	}
 
 	@Override
 	public void onClick(View v) {
-		Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
-	    
-	    startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
-		
+		lightDialog.show();
+
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-	    if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-	        cameraBitmap = (Bitmap) data.getExtras().get("data");
-	        
-	        int picWidth = cameraBitmap.getWidth();
-			int picHeight= cameraBitmap.getHeight();
-			if(picWidth % 2 != 0){
-				picWidth = picWidth -1;
+		if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+			cameraBitmap = (Bitmap) data.getExtras().get("data");
+
+			int picWidth = cameraBitmap.getWidth();
+			int picHeight = cameraBitmap.getHeight();
+			if (picWidth % 2 != 0) {
+				picWidth = picWidth - 1;
 			}
 			Bitmap tmpBmp = cameraBitmap.copy(Config.RGB_565, true);
-			tmpBmp = Bitmap.createBitmap(tmpBmp,0,0,picWidth,picHeight);
-			
-					
-			FaceDetector faceDet = new FaceDetector(tmpBmp.getWidth(), tmpBmp.getHeight(), 50);
+			tmpBmp = Bitmap.createBitmap(tmpBmp, 0, 0, picWidth, picHeight);
+
+			FaceDetector faceDet = new FaceDetector(tmpBmp.getWidth(),
+					tmpBmp.getHeight(), 50);
 			Face[] faceList = new Face[50];
-			
-			selfieGroup.setPeople(faceDet.findFaces(tmpBmp,faceList));
+
+			selfieGroup.setPeople(faceDet.findFaces(tmpBmp, faceList));
 			challengeComplete();
 
-	    }
+		}
 	}
-	
-	public void challengeComplete(){
+
+	public void challengeComplete() {
 		selfieGroup.finishChallenge();
-		
+
 		Intent intent = new Intent(this, SelfieGroupFinished.class);
 		startActivity(intent);
 		finish();
-		
+
 		StateDAO db = new StateDAO(getApplicationContext());
-		db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));
+		db.updateState(Factory.getInstance().getIDataManager()
+				.getState(CHALLENGE_ID));
 	}
+
+	@Override
+	protected Dialog onCreateDialog(int id) {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		switch (id) {
+		case LIGHT_DIALOG: {
+			builder.setMessage(R.string.light_dialog);
+			builder.setTitle(getResources().getString(
+					R.string.attention));
+			builder.setCancelable(true);
+			builder.setPositiveButton(R.string.continue_button,
+					new OkOnClickListener());
+		}
+			return builder.create();
+		}
+		return super.onCreateDialog(id);
+	}
+
+	private final class OkOnClickListener implements
+			DialogInterface.OnClickListener {
+		public void onClick(DialogInterface dialog, int which) {
+			Intent intent = new Intent(
+					android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+
+			startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
+			
+		}
+	}
+	
 
 }

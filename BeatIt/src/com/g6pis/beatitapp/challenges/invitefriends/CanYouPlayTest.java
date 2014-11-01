@@ -1,6 +1,6 @@
 package com.g6pis.beatitapp.challenges.invitefriends;
 
-/*import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,4 +53,4 @@ public class CanYouPlayTest {
 		assertEquals(phones,canYouPlay.getPhones());
 	}
 
-}*/
+}

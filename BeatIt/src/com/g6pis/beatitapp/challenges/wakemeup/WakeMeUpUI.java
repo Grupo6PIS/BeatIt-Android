@@ -83,7 +83,7 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.wake_me_up);
-		
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		this.editActionBar(); 
 		this.viewAssignment();
 		

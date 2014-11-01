@@ -1,6 +1,6 @@
 package com.g6pis.beatitapp.challenges.shutthedog;
 
-/*import static org.junit.Assert.*;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
@@ -29,13 +29,13 @@ public class ShutTheDogTest {
 		std.setResults(resultados);
 		std.setLives(2);
 		
-		std.finishChallenge();
+		std.reset();
 		
 		assertEquals(0,std.getLives());
 		assertEquals(false,std.isHasWon());	
 	}
 	
-	@SuppressWarnings("deprecation")
+
 	@Test
 	public void settersTest() {
 		ShutTheDog std = new ShutTheDog("4", "Shut The Dog", 2, 3,"#6A659C");
@@ -46,7 +46,7 @@ public class ShutTheDogTest {
 		std.setHasWon(true);
 		std.setLevel(1);
 		
-		assertEquals(500,std.getScore());
+		assertEquals(500,std.getScore(),0);
 		assertEquals(true,std.isHasWon());
 		assertEquals(2, std.getArrayLength());
 		assertEquals(1, std.getLives());
@@ -54,7 +54,7 @@ public class ShutTheDogTest {
 		assertEquals(1, std.getLevel());
 	}
 	
-	@SuppressWarnings("deprecation")
+
 	@Test
 	public void scoreTest() {
 		ShutTheDog std = new ShutTheDog("42", "Shut The Dog", 2, 3,"#6A659C");
@@ -62,9 +62,8 @@ public class ShutTheDogTest {
 		int resultados[] = {100, 200, 300, 400, 500};
 		std.setResults(resultados);
 		
-		assertEquals(78.33, std.calculateScore());
+		assertEquals(78.3, std.calculateScore(),0.00);
 		
 	}
 
 }
-*/

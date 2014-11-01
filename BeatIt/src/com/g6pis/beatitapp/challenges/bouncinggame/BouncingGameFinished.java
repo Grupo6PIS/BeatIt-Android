@@ -38,7 +38,7 @@ public class BouncingGameFinished extends Activity implements OnClickListener,
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.challenge_finished);
-
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		state = Factory.getInstance().getIDataManager().getState(CHALLENGE_ID);
 
 		this.editLayout();

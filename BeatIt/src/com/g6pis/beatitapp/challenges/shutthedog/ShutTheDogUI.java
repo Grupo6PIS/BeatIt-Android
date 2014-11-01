@@ -75,7 +75,7 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.shut_the_dog);
-		
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		shutthedog = (ShutTheDog) Factory.getInstance().getIDataManager().getChallenge(
 				CHALLENGE_ID);
 		state = Factory.getInstance().getIDataManager().getState(CHALLENGE_ID);

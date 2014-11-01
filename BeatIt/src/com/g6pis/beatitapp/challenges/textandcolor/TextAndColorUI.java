@@ -54,7 +54,7 @@ public class TextAndColorUI extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.text_and_color);
-
+		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
 		textAndColor = (TextAndColor) Factory.getInstance().getIDataManager().getChallenge(
 				CHALLENGE_ID);
