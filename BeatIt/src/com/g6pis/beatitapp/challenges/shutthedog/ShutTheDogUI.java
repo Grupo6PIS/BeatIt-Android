@@ -96,6 +96,10 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 		case 2: ((TextView)findViewById(R.id.textView_Description_Value_2)).setText(getResources().getString(R.string.description_shut_the_dog_2));
 		}
 		
+		for (int j = 0; j<5;j++){
+			 results[j] = 0;
+		}
+		
 
 		this.editActionBar();
 		
@@ -226,10 +230,9 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 					it = 0;
 					secondCount=0;
 					
-					Button b = (Button)findViewById(R.id.btnOpcion1);
-					b.setText(R.string.shut_the_dog_lost);
-					b.setBackgroundColor(getResources().getColor(R.color.red));
-					b.setEnabled(true);
+					shutthedog.setHasWon(true);
+					shutthedog.setResults(results);
+					ShutTheDogUI.this.completeChallenge();
 				}
 				
 			}.start();
@@ -314,6 +317,12 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 	 
 	 @Override
 		public void onBackPressed() {
+		 	if(mp !=null){
+				if (mp.isPlaying()){
+					mp.stop();				
+				}
+			}
+		 	
 			Intent home = new Intent(this, Home.class);
 			startActivity(home);
 			this.finish();
@@ -332,6 +341,12 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 			switch (item.getItemId()) {
 			// Respond to the action bar's Up/Home button
 			case android.R.id.home:
+				if(mp !=null){
+					if (mp.isPlaying()){
+						mp.stop();				
+					}
+				}
+				
 				Intent home = new Intent(this, Home.class);
 				startActivity(home);
 				this.finish();
