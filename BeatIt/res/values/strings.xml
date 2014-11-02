@@ -117,6 +117,8 @@
 	<string name="please_wait">Please wait..</string>
 	<string name="loading_progress">Loading your progress</string>
 	<string name="updating_ranking">Updating ranking</string>
+	<string name="no_connection">You\'re ofline!</string>
+	<string name="no_connection_message">You are logged out and lost unsaved data</string>
 	
     <!-- Profile Strings -->
     <string name="username">Juan Pérez</string>

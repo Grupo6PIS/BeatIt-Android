@@ -12,6 +12,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -24,6 +26,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+
 
 
 
@@ -197,6 +200,12 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 				usainBolt.finishChallenge();
 				StateDAO db = new StateDAO(getApplicationContext());
 				db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));
+				SharedPreferences sharedPrefs = getApplicationContext()
+						.getSharedPreferences("asdasd_preferences",
+								Context.MODE_PRIVATE);
+				Editor editor = sharedPrefs.edit();
+				editor.putBoolean("haveToSendScore", Factory.getInstance().getIDataManager().getHaveToSendScore());
+				editor.commit();
 				completeChallenge();
 			}
 		};
@@ -221,6 +230,7 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 		startActivity(challengeFinished);
 
 		this.finish();
+
 
 	}
 	/***Useful Functions***/
@@ -331,6 +341,12 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 				usainBolt.finishChallenge();
 				StateDAO db = new StateDAO(this);
 				db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));
+				SharedPreferences sharedPrefs = getApplicationContext()
+						.getSharedPreferences("asdasd_preferences",
+								Context.MODE_PRIVATE);
+				Editor editor = sharedPrefs.edit();
+				editor.putBoolean("haveToSendScore", Factory.getInstance().getIDataManager().getHaveToSendScore());
+				editor.commit();
 				this.challengeStarted = false;
 				textViewTimeLeftValue.setText(
 						getResources().getString(R.string.time_left) + " "

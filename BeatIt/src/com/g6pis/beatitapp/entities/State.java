@@ -30,8 +30,12 @@ public class State {
 		this.user = user;
 		this.maxScore = maxScore;
 		this.lastScore = lastScore;
-		this.currentAttempt = currentAttempt;
-		this.finished = false;
+		if(currentAttempt <= challenge.getMaxAttempt())
+			this.currentAttempt = currentAttempt;
+		else
+			this.currentAttempt = challenge.getMaxAttempt();
+		
+		this.finished = currentAttempt >= challenge.getMaxAttempt();
 	}
 	
 	

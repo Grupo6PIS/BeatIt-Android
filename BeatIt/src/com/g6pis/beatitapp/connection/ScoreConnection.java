@@ -37,6 +37,7 @@ public class ScoreConnection extends AsyncTask<String, Void, JSONObject>{
 				json = new JSONObject(response);
 		} catch (MalformedURLException e) {
 		} catch (IOException e) {
+			e.printStackTrace();
 		} catch (JSONException e) {
 		}
 		return json;

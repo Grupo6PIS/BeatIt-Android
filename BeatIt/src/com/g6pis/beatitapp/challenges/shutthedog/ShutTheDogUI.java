@@ -9,7 +9,10 @@ import java.util.TimeZone;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.drawable.ColorDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -313,7 +316,14 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 			shutthedog.finishChallenge();
 			StateDAO db = new StateDAO(this);
 			db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));
-		}
+			
+			SharedPreferences sharedPrefs = getApplicationContext()
+					.getSharedPreferences("asdasd_preferences",
+							Context.MODE_PRIVATE);
+			Editor editor = sharedPrefs.edit();
+			editor.putBoolean("haveToSendScore", Factory.getInstance().getIDataManager().getHaveToSendScore());
+			editor.commit();
+	 }
 	 
 	 @Override
 		public void onBackPressed() {

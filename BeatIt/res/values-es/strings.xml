@@ -115,6 +115,8 @@
 	<string name="please_wait">Por favor espera..</string>
 	<string name="loading_progress">Cargando tu progreso</string>
 	<string name="updating_ranking">Actualizando ranking</string>
+	<string name="no_connection">Estás desconectado!</string>
+	<string name="no_connection_message">Se ha cerrado sesión y se han perdido los datos no guardados</string>
 	
     <!-- Profile Strings -->
     <string name="username">Juan Pérez</string>

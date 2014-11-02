@@ -50,7 +50,7 @@ public class Login extends Activity {
 		  uiHelper = new UiLifecycleHelper(this, callback); 
 		  uiHelper.onCreate(savedInstanceState);
 		
-
+		
 		LoginButton loginButton = ((LoginButton) findViewById(R.id.login_button));
 		loginButton.setReadPermissions(Arrays.asList("email", "user_location"));
 	
@@ -61,6 +61,7 @@ public class Login extends Activity {
 	public void onResume() {
 		super.onResume();
 		uiHelper.onResume();
+
 		if(Session.getActiveSession().getState().isOpened()){
 			((RelativeLayout) findViewById(R.id.login_relative_layout)).setVisibility(View.INVISIBLE);
 		}
@@ -105,7 +106,7 @@ public class Login extends Activity {
 				new Request.GraphUserCallback() {
 					@Override
 					public void onCompleted(GraphUser user, Response response) {
-						if (session == Session.getActiveSession()) {
+						if((session.isOpened()) && (session == Session.getActiveSession())) {
 							if (user != null) {
 								sharedPrefs =
 										  getApplicationContext().getSharedPreferences(APP_SHARED_PREFS,

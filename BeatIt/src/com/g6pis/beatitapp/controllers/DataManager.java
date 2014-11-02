@@ -44,6 +44,7 @@ public class DataManager implements IDataManager {
 	private Map<String, DTState> persistedStates;
 	private List<DTRanking> ranking;
 	private double scoreToSend;
+	private boolean haveToSendScore;
 
 	private DataManager() {
 	}
@@ -91,7 +92,7 @@ public class DataManager implements IDataManager {
 	}
 
 	public String login(String userId, String fbId, String firstName,
-			String lastName, String country, String imageURL) {
+			String lastName, String country, String imageURL, boolean haveToSendScore) {
 
 		try {
 			LoginConnection login = (LoginConnection) new LoginConnection()
@@ -167,7 +168,7 @@ public class DataManager implements IDataManager {
 					break;
 				case 6: {
 					ThrowThePhone throwThePhone = new ThrowThePhone(challengeId,
-							name, level, 50, color);
+							name, level, maxAttempts, color);
 					challenges.add(throwThePhone);
 				}
 				break;
@@ -273,6 +274,16 @@ public class DataManager implements IDataManager {
 				}
 
 			}
+			
+			this.haveToSendScore = haveToSendScore;
+			if (this.haveToSendScore) {
+				int scoreToSend = 0;
+
+				for (Map.Entry<String, State> entry : states.entrySet()) {
+					scoreToSend += entry.getValue().getMaxScore();
+				}
+				sendScore(scoreToSend);
+			}
 
 		} catch (InterruptedException e) {
 		} catch (ExecutionException e) {
@@ -284,14 +295,14 @@ public class DataManager implements IDataManager {
 	}
 
 	public void logout() {
-//			if (haveToSendScore) {
-//				int scoreToSend = 0;
-//
-//				for (Map.Entry<String, State> entry : states.entrySet()) {
-//					scoreToSend += entry.getValue().getMaxScore();
-//				}
-//				sendScore(scoreToSend);
-//			}
+			if (haveToSendScore) {
+				int scoreToSend = 0;
+
+				for (Map.Entry<String, State> entry : states.entrySet()) {
+					scoreToSend += entry.getValue().getMaxScore();
+				}
+				sendScore(scoreToSend);
+			}
 			
 			for (Map.Entry<String, State> entry : states.entrySet()) {
 				
@@ -343,7 +354,7 @@ public class DataManager implements IDataManager {
 		State state = states.get(challengeId);
 		if (state.setNewScore(score)) {
 
-			boolean haveToSendScore = true;
+			haveToSendScore = true;
 			for (Map.Entry<String, State> entry : states.entrySet()) {
 				if (entry.getValue().getCurrentAttempt() < 1)
 					haveToSendScore = false;
@@ -365,8 +376,15 @@ public class DataManager implements IDataManager {
 			ScoreConnection scoreConnection = (ScoreConnection) new ScoreConnection()
 					.execute(user.getUserId(), Double.toString(score), currentRound.getRoundId());
 			JSONObject response = scoreConnection.get();
+			if(response.has("error")){
+				if((!response.getBoolean("error")))
+					haveToSendScore = false;
+			}
+			
 		} catch (InterruptedException e) {
 		} catch (ExecutionException e) {
+		} catch (JSONException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -394,6 +412,10 @@ public class DataManager implements IDataManager {
 			return roundId;
 		}
 		return "";
+	}
+	
+	public boolean getHaveToSendScore(){
+		return haveToSendScore;
 	}
 
 }

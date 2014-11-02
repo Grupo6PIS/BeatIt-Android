@@ -23,7 +23,7 @@ public interface IDataManager {
 	public List<DTState> getChallenges();
 	public List<DTRanking> getRanking();
 	public String login(String userId, String fbId, String firstName,
-			String lastName, String country, String imageURL);
+			String lastName, String country, String imageURL, boolean haveToSendScore);
 	public void logout();
 	public void updateRanking();
 	public void saveScore(String challengeId, double score);
@@ -32,4 +32,5 @@ public interface IDataManager {
 	public Challenge getChallenge(String challengeId);
 	public Map<String, DTState> getPersistedStates();
 	public String getPersistedRoundId();
+	public boolean getHaveToSendScore();
 }

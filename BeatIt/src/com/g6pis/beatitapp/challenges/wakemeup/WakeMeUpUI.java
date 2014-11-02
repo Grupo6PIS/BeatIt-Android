@@ -10,6 +10,8 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.drawable.ColorDrawable;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -375,6 +377,12 @@ public class WakeMeUpUI extends Activity implements SensorEventListener, OnClick
 
 		startActivity(finished);
 		this.finish();
+		SharedPreferences sharedPrefs = getApplicationContext()
+				.getSharedPreferences("asdasd_preferences",
+						Context.MODE_PRIVATE);
+		Editor editor = sharedPrefs.edit();
+		editor.putBoolean("haveToSendScore", Factory.getInstance().getIDataManager().getHaveToSendScore());
+		editor.commit();
 	}
 
 	public long getAttemps() {

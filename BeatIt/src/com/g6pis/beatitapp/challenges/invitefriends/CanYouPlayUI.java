@@ -12,12 +12,13 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.PowerManager;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.Phone;
 import android.telephony.SmsManager;
@@ -41,6 +42,7 @@ import com.g6pis.beatitapp.interfaces.Factory;
 import com.g6pis.beatitapp.persistence.StateDAO;
 
 public class CanYouPlayUI extends Activity implements OnClickListener {
+	private static final String APP_SHARED_PREFS = "asdasd_preferences";
 	private static final String CHALLENGE_ID = "3";
 	private static final int PICK_CONTACT = 10;
 	private static final int CHALLENGE_COMPLETED_DIALOG = 70;
@@ -339,6 +341,12 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 		canYouPlay.finishChallenge();
 		StateDAO db = new StateDAO(this);
 		db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));
+		SharedPreferences sharedPrefs = getApplicationContext()
+				.getSharedPreferences(APP_SHARED_PREFS,
+						Context.MODE_PRIVATE);
+		Editor editor = sharedPrefs.edit();
+		editor.putBoolean("haveToSendScore", Factory.getInstance().getIDataManager().getHaveToSendScore());
+		editor.commit();
 	}
 
 	@Override

@@ -6,6 +6,8 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -267,6 +269,13 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
 
 		startActivity(finished);
 		this.finish();
+		
+		SharedPreferences sharedPrefs = getApplicationContext()
+				.getSharedPreferences("asdasd_preferences",
+						Context.MODE_PRIVATE);
+		Editor editor = sharedPrefs.edit();
+		editor.putBoolean("haveToSendScore", Factory.getInstance().getIDataManager().getHaveToSendScore());
+		editor.commit();
 	}
     
     public class AnimatedView extends ImageView {

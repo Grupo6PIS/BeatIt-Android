@@ -9,8 +9,11 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Color;
@@ -305,6 +308,13 @@ public class SelfieGroupUI extends Activity implements OnClickListener {
 		StateDAO db = new StateDAO(getApplicationContext());
 		db.updateState(Factory.getInstance().getIDataManager()
 				.getState(CHALLENGE_ID));
+		
+		SharedPreferences sharedPrefs = getApplicationContext()
+				.getSharedPreferences("asdasd_preferences",
+						Context.MODE_PRIVATE);
+		Editor editor = sharedPrefs.edit();
+		editor.putBoolean("haveToSendScore", Factory.getInstance().getIDataManager().getHaveToSendScore());
+		editor.commit();
 	}
 
 	@Override
