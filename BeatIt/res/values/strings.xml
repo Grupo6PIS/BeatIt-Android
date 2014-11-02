@@ -167,8 +167,8 @@
     
 	<!-- Bouncing Game Strings -->
     <string name="bouncing_game">Bouncing Game</string>
-    <string name="description_bouncing_game_1">In this challenge you have to bump the red ball against gray as many times as possible.\nYou only have 60 seconds!.</string>
-    <string name="description_bouncing_game_2">In this challenge you have to bump the red ball against gray as many times as possible.\nYou only have 60 seconds!.</string>
+    <string name="description_bouncing_game_1">In this challenge you have to bump the red ball against gray as many times as possible.\nYou only have 45 seconds!.</string>
+    <string name="description_bouncing_game_2">In this challenge you have to bump the red ball against gray as many times as possible.\nYou only have 45 seconds!.</string>
     <string name="logo_bouncing_game">Bouncing Game Logo</string>
     
     <!-- Song Complete Strings -->

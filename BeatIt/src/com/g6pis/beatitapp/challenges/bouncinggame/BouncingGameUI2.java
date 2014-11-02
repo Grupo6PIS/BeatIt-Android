@@ -24,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.ImageView;
+import android.os.Vibrator;
 
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
@@ -38,35 +39,37 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
     ShapeDrawable red_ball = new ShapeDrawable();
     ShapeDrawable black_ball = new ShapeDrawable();
     
-    public float x, x_black;
-    public float y, y_black;
-    public float red_radius = 150;
-    public float black_radius = 30;
-    
-    public PointF red_center;
-    public PointF black_center;
-    
+    private float x;
+    private float y;
+    private float red_radius = 150;
+    private float black_radius = 30;
+    private PointF red_center;
+    private PointF black_center;
     private float x_min;
     private float x_max;
     private float y_min;
     private float y_max;
-    
-    Paint pTextCollision = new Paint();
-    Paint pTextTime = new Paint();   
-    
-	private boolean timerRunning = false;
-	
+    private float decrease_radius_rate;
+    private boolean timerRunning = false;
+    private int seconds;
+    private Paint pTextCollision = new Paint();
+    private Paint pTextTime = new Paint();   
 	private CountDownTimer timer;
-	private int seconds;
 	private BouncingGame bouncingGame;
+	private Vibrator v;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         
+        // Get instance of Vibrator from current Context
+        v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        
         this.editActionBar();
         bouncingGame = (BouncingGame) Factory.getInstance().getIDataManager().getChallenge(CHALLENGE_ID);
+        
+        decrease_radius_rate = bouncingGame.getDecrease_radius_rate();
         
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         accelerometer = sensorManager
@@ -235,10 +238,14 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
 
             if (existCollision(red_center.x, red_center.y, red_radius, black_center.x, black_center.y, black_radius)) {
             	bouncingGame.increaseCollision_times();
-            	if (0.9 * red_radius < 10)
+
+            	// Vibrate for 100 milliseconds
+                v.vibrate(100);
+                
+            	if (decrease_radius_rate * red_radius < 10)
             		red_radius = 10;
             	else
-            		red_radius = (int) (0.9 * red_radius);
+            		red_radius = (int) (decrease_radius_rate * red_radius);
             	black_center = relocateBall(false);
             }
 
