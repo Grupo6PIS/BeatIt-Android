@@ -42,7 +42,7 @@
         android:layout_alignRight="@+id/textView_Challenge_Name"
         android:layout_alignStart="@+id/textView_Description"
         android:layout_below="@+id/textView_Description"
-        android:text="@string/description_catch_me_1"
+        android:text=""
         android:textColor="@color/gris_challenge_description"
         android:textSize="18sp" />
 
@@ -136,11 +136,12 @@
         android:id="@+id/after_strat_challenge_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/before_strat_challenge_layout"
-        android:layout_alignBottom="@+id/before_strat_challenge_layout"
         android:layout_alignLeft="@+id/before_strat_challenge_layout"
+        android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignStart="@+id/before_strat_challenge_layout"
         android:layout_alignTop="@+id/before_strat_challenge_layout"
         android:visibility="invisible" >
 
@@ -148,10 +149,11 @@
             android:id="@+id/progress_layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            
-            android:layout_marginTop="5dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginTop="10dp"
             android:gravity="center" >
 
             <LinearLayout
@@ -162,183 +164,191 @@
                 <TextView
                     android:id="@+id/TextView1"
                     android:layout_width="17dp"
-                    android:layout_height="6dp"
+                    android:layout_height="10dp"
                     android:layout_alignLeft="@+id/yes_button"
                     android:layout_below="@+id/textView1_text"
                     android:layout_marginLeft="1dp"
-                    android:background="@drawable/rectangle_border" />
+                    android:background="@drawable/rectangle_catch_me" />
 
                 <TextView
                     android:id="@+id/TextView2"
-                    android:layout_width="17dp"
-                    android:layout_height="6dp"
+                    android:layout_width="20dp"
+                    android:layout_height="10dp"
                     android:layout_alignBaseline="@+id/TextView1"
                     android:layout_alignBottom="@+id/TextView1"
-                    android:layout_marginLeft="3dp"
+                    android:layout_marginLeft="4dp"
                     android:layout_toRightOf="@+id/textView1"
-                    android:background="@drawable/rectangle_border" />
+                    android:background="@drawable/rectangle_catch_me" />
 
                 <TextView
                     android:id="@+id/TextView3"
-                    android:layout_width="17dp"
-                    android:layout_height="6dp"
+                    android:layout_width="20dp"
+                    android:layout_height="10dp"
                     android:layout_alignBaseline="@+id/TextView2"
                     android:layout_alignBottom="@+id/TextView2"
-                    android:layout_marginLeft="3dp"
+                    android:layout_marginLeft="4dp"
                     android:layout_toRightOf="@+id/TextView2"
-                    android:background="@drawable/rectangle_border" />
+                    android:background="@drawable/rectangle_catch_me" />
 
                 <TextView
                     android:id="@+id/TextView4"
-                    android:layout_width="17dp"
-                    android:layout_height="6dp"
+                    android:layout_width="20dp"
+                    android:layout_height="10dp"
                     android:layout_alignBaseline="@+id/TextView3"
                     android:layout_alignBottom="@+id/TextView3"
-                    android:layout_marginLeft="3dp"
+                    android:layout_marginLeft="4dp"
                     android:layout_toRightOf="@+id/TextView3"
-                    android:background="@drawable/rectangle_border" />
+                    android:background="@drawable/rectangle_catch_me" />
 
                 <TextView
                     android:id="@+id/TextView5"
-                    android:layout_width="17dp"
-                    android:layout_height="6dp"
+                    android:layout_width="20dp"
+                    android:layout_height="10dp"
                     android:layout_alignBaseline="@+id/TextView4"
                     android:layout_alignBottom="@+id/TextView4"
-                    android:layout_marginLeft="3dp"
+                    android:layout_marginLeft="4dp"
                     android:layout_toRightOf="@+id/TextView4"
-                    android:background="@drawable/rectangle_border" />
+                    android:background="@drawable/rectangle_catch_me" />
 
-                <TextView
-                    android:id="@+id/TextView6"
-                    android:layout_width="17dp"
-                    android:layout_height="6dp"
-                    android:layout_alignBaseline="@+id/TextView5"
-                    android:layout_alignBottom="@+id/TextView5"
-                    android:layout_marginLeft="3dp"
-                    android:layout_toRightOf="@+id/TextView5"
-                    android:background="@drawable/rectangle_border" />
+<!--                 <TextView -->
+<!--                     android:id="@+id/TextView6" -->
+<!--                     android:layout_width="17dp" -->
+<!--                     android:layout_height="6dp" -->
+<!--                     android:layout_alignBaseline="@+id/TextView5" -->
+<!--                     android:layout_alignBottom="@+id/TextView5" -->
+<!--                     android:layout_marginLeft="3dp" -->
+<!--                     android:layout_toRightOf="@+id/TextView5" -->
+<!--                     android:background="@drawable/rectangle_border" /> -->
 
-                <TextView
-                    android:id="@+id/TextView7"
-                    android:layout_width="17dp"
-                    android:layout_height="6dp"
-                    android:layout_alignBaseline="@+id/TextView6"
-                    android:layout_alignBottom="@+id/TextView6"
-                    android:layout_marginLeft="3dp"
-                    android:layout_toRightOf="@+id/TextView6"
-                    android:background="@drawable/rectangle_border" />
+<!--                 <TextView -->
+<!--                     android:id="@+id/TextView7" -->
+<!--                     android:layout_width="17dp" -->
+<!--                     android:layout_height="6dp" -->
+<!--                     android:layout_alignBaseline="@+id/TextView6" -->
+<!--                     android:layout_alignBottom="@+id/TextView6" -->
+<!--                     android:layout_marginLeft="3dp" -->
+<!--                     android:layout_toRightOf="@+id/TextView6" -->
+<!--                     android:background="@drawable/rectangle_border" /> -->
 
-                <TextView
-                    android:id="@+id/TextView8"
-                    android:layout_width="17dp"
-                    android:layout_height="6dp"
-                    android:layout_alignBaseline="@+id/TextView7"
-                    android:layout_alignBottom="@+id/TextView7"
-                    android:layout_marginLeft="3dp"
-                    android:layout_toRightOf="@+id/TextView7"
-                    android:background="@drawable/rectangle_border" />
+<!--                 <TextView -->
+<!--                     android:id="@+id/TextView8" -->
+<!--                     android:layout_width="17dp" -->
+<!--                     android:layout_height="6dp" -->
+<!--                     android:layout_alignBaseline="@+id/TextView7" -->
+<!--                     android:layout_alignBottom="@+id/TextView7" -->
+<!--                     android:layout_marginLeft="3dp" -->
+<!--                     android:layout_toRightOf="@+id/TextView7" -->
+<!--                     android:background="@drawable/rectangle_border" /> -->
 
-                <TextView
-                    android:id="@+id/TextView9"
-                    android:layout_width="17dp"
-                    android:layout_height="6dp"
-                    android:layout_alignBaseline="@+id/TextView8"
-                    android:layout_alignBottom="@+id/TextView8"
-                    android:layout_marginLeft="3dp"
-                    android:layout_toRightOf="@+id/TextView8"
-                    android:background="@drawable/rectangle_border" />
+<!--                 <TextView -->
+<!--                     android:id="@+id/TextView9" -->
+<!--                     android:layout_width="17dp" -->
+<!--                     android:layout_height="6dp" -->
+<!--                     android:layout_alignBaseline="@+id/TextView8" -->
+<!--                     android:layout_alignBottom="@+id/TextView8" -->
+<!--                     android:layout_marginLeft="3dp" -->
+<!--                     android:layout_toRightOf="@+id/TextView8" -->
+<!--                     android:background="@drawable/rectangle_border" /> -->
 
-                <TextView
-                    android:id="@+id/TextView10"
-                    android:layout_width="17dp"
-                    android:layout_height="6dp"
-                    android:layout_alignBaseline="@+id/TextView9"
-                    android:layout_alignBottom="@+id/TextView9"
-                    android:layout_marginLeft="3dp"
-                    android:layout_toRightOf="@+id/TextView9"
-                    android:background="@drawable/rectangle_border" />
+<!--                 <TextView -->
+<!--                     android:id="@+id/TextView10" -->
+<!--                     android:layout_width="17dp" -->
+<!--                     android:layout_height="6dp" -->
+<!--                     android:layout_alignBaseline="@+id/TextView9" -->
+<!--                     android:layout_alignBottom="@+id/TextView9" -->
+<!--                     android:layout_marginLeft="3dp" -->
+<!--                     android:layout_toRightOf="@+id/TextView9" -->
+<!--                     android:background="@drawable/rectangle_border" /> -->
 
-                <TextView
-                    android:id="@+id/TextView11"
-                    android:layout_width="17dp"
-                    android:layout_height="6dp"
-                    android:layout_alignBaseline="@+id/TextView10"
-                    android:layout_alignBottom="@+id/TextView10"
-                    android:layout_marginLeft="3dp"
-                    android:layout_toRightOf="@+id/TextView10"
-                    android:background="@drawable/rectangle_border" />
+<!--                 <TextView -->
+<!--                     android:id="@+id/TextView11" -->
+<!--                     android:layout_width="17dp" -->
+<!--                     android:layout_height="6dp" -->
+<!--                     android:layout_alignBaseline="@+id/TextView10" -->
+<!--                     android:layout_alignBottom="@+id/TextView10" -->
+<!--                     android:layout_marginLeft="3dp" -->
+<!--                     android:layout_toRightOf="@+id/TextView10" -->
+<!--                     android:background="@drawable/rectangle_border" /> -->
 
-                <TextView
-                    android:id="@+id/TextView12"
-                    android:layout_width="17dp"
-                    android:layout_height="6dp"
-                    android:layout_alignBaseline="@+id/TextView11"
-                    android:layout_alignBottom="@+id/TextView11"
-                    android:layout_marginLeft="3dp"
-                    android:layout_toRightOf="@+id/TextView11"
-                    android:background="@drawable/rectangle_border" />
+<!--                 <TextView -->
+<!--                     android:id="@+id/TextView12" -->
+<!--                     android:layout_width="17dp" -->
+<!--                     android:layout_height="6dp" -->
+<!--                     android:layout_alignBaseline="@+id/TextView11" -->
+<!--                     android:layout_alignBottom="@+id/TextView11" -->
+<!--                     android:layout_marginLeft="3dp" -->
+<!--                     android:layout_toRightOf="@+id/TextView11" -->
+<!--                     android:background="@drawable/rectangle_border" /> -->
 
-                <TextView
-                    android:id="@+id/TextView13"
-                    android:layout_width="17dp"
-                    android:layout_height="6dp"
-                    android:layout_alignBaseline="@+id/TextView12"
-                    android:layout_alignBottom="@+id/TextView12"
-                    android:layout_marginLeft="3dp"
-                    android:layout_toRightOf="@+id/TextView12"
-                    android:background="@drawable/rectangle_border" />
+<!--                 <TextView -->
+<!--                     android:id="@+id/TextView13" -->
+<!--                     android:layout_width="17dp" -->
+<!--                     android:layout_height="6dp" -->
+<!--                     android:layout_alignBaseline="@+id/TextView12" -->
+<!--                     android:layout_alignBottom="@+id/TextView12" -->
+<!--                     android:layout_marginLeft="3dp" -->
+<!--                     android:layout_toRightOf="@+id/TextView12" -->
+<!--                     android:background="@drawable/rectangle_border" /> -->
 
-                <TextView
-                    android:id="@+id/TextView14"
-                    android:layout_width="17dp"
-                    android:layout_height="6dp"
-                    android:layout_alignBaseline="@+id/TextView13"
-                    android:layout_alignBottom="@+id/TextView13"
-                    android:layout_marginLeft="3dp"
-                    android:layout_toRightOf="@+id/TextView13"
-                    android:background="@drawable/rectangle_border" />
+<!--                 <TextView -->
+<!--                     android:id="@+id/TextView14" -->
+<!--                     android:layout_width="17dp" -->
+<!--                     android:layout_height="6dp" -->
+<!--                     android:layout_alignBaseline="@+id/TextView13" -->
+<!--                     android:layout_alignBottom="@+id/TextView13" -->
+<!--                     android:layout_marginLeft="3dp" -->
+<!--                     android:layout_toRightOf="@+id/TextView13" -->
+<!--                     android:background="@drawable/rectangle_border" /> -->
 
-                <TextView
-                    android:id="@+id/TextView15"
-                    android:layout_width="17dp"
-                    android:layout_height="6dp"
-                    android:layout_alignBaseline="@+id/TextView14"
-                    android:layout_alignBottom="@+id/TextView14"
-                    android:layout_marginLeft="3dp"
-                    android:layout_toRightOf="@+id/TextView14"
-                    android:background="@drawable/rectangle_border" />
+<!--                 <TextView -->
+<!--                     android:id="@+id/TextView15" -->
+<!--                     android:layout_width="17dp" -->
+<!--                     android:layout_height="6dp" -->
+<!--                     android:layout_alignBaseline="@+id/TextView14" -->
+<!--                     android:layout_alignBottom="@+id/TextView14" -->
+<!--                     android:layout_marginLeft="3dp" -->
+<!--                     android:layout_toRightOf="@+id/TextView14" -->
+<!--                     android:background="@drawable/rectangle_border" /> -->
             </LinearLayout>
         </RelativeLayout>
 
-<!--         <ProgressBar -->
-<!--             android:id="@+id/progress_bar" -->
-<!--             style="?android:attr/progressBarStyleHorizontal" -->
-<!--               android:layout_alignParentLeft="true" -->
-<!--             android:layout_alignParentRight="true" -->
-<!--             android:layout_width="wrap_content" -->
-<!--             android:layout_height="wrap_content" -->
-<!--             android:layout_marginLeft="22dp" -->
-<!--             android:layout_marginStart="22dp" -->
-<!--             android:layout_marginTop="18dp" /> -->
-      
+        <!-- <ProgressBar -->
+        <!-- android:id="@+id/progress_bar" -->
+        <!-- style="?android:attr/progressBarStyleHorizontal" -->
+        <!-- android:layout_alignParentLeft="true" -->
+        <!-- android:layout_alignParentRight="true" -->
+        <!-- android:layout_width="wrap_content" -->
+        <!-- android:layout_height="wrap_content" -->
+        <!-- android:layout_marginLeft="22dp" -->
+        <!-- android:layout_marginStart="22dp" -->
+        <!-- android:layout_marginTop="18dp" /> -->
+
         <GridLayout
             android:id="@+id/GridLayout1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-             android:layout_below="@+id/progress_layout" 
-             android:layout_marginTop="10dp"
-             android:layout_marginLeft="20dp"
-              android:columnCount="4"
-            android:rowCount="3" >
-<!--             android:layout_alignLeft="@+id/progress_bar" -->
-<!--             android:layout_alignStart="@+id/progress_bar" -->
-<!--             android:layout_below="@+id/progress_bar" -->
-           
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/progress_layout"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:alignmentMode="alignBounds"
+            android:columnCount="4"
+            android:rowCount="3"
+            android:useDefaultMargins="true"
+             >
+
+            <!-- android:layout_alignLeft="@+id/progress_bar" -->
+            <!-- android:layout_alignStart="@+id/progress_bar" -->
+            <!-- android:layout_below="@+id/progress_bar" -->
 
             <Button
                 android:id="@+id/button1"
                 android:layout_column="0"
+                android:layout_margin="5dp"
                 android:layout_row="0"
+                android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
                 android:onClick="onClick" />
@@ -346,7 +356,9 @@
             <Button
                 android:id="@+id/button2"
                 android:layout_column="1"
+                android:layout_margin="5dp"
                 android:layout_row="0"
+                android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
                 android:onClick="onClick" />
@@ -354,7 +366,9 @@
             <Button
                 android:id="@+id/button3"
                 android:layout_column="2"
+                android:layout_margin="5dp"
                 android:layout_row="0"
+                android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
                 android:onClick="onClick" />
@@ -362,7 +376,9 @@
             <Button
                 android:id="@+id/button4"
                 android:layout_column="3"
+                android:layout_margin="5dp"
                 android:layout_row="0"
+                android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
                 android:onClick="onClick" />
@@ -370,7 +386,9 @@
             <Button
                 android:id="@+id/button5"
                 android:layout_column="0"
+                android:layout_margin="5dp"
                 android:layout_row="1"
+                android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
                 android:onClick="onClick" />
@@ -378,7 +396,9 @@
             <Button
                 android:id="@+id/button6"
                 android:layout_column="1"
+                android:layout_margin="5dp"
                 android:layout_row="1"
+                android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
                 android:onClick="onClick" />
@@ -386,7 +406,9 @@
             <Button
                 android:id="@+id/button7"
                 android:layout_column="2"
+                android:layout_margin="5dp"
                 android:layout_row="1"
+                android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
                 android:onClick="onClick" />
@@ -394,7 +416,9 @@
             <Button
                 android:id="@+id/button8"
                 android:layout_column="3"
+                android:layout_margin="5dp"
                 android:layout_row="1"
+                android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
                 android:onClick="onClick" />
@@ -402,7 +426,9 @@
             <Button
                 android:id="@+id/button9"
                 android:layout_column="0"
+                android:layout_margin="5dp"
                 android:layout_row="2"
+                android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
                 android:onClick="onClick" />
@@ -410,7 +436,9 @@
             <Button
                 android:id="@+id/button10"
                 android:layout_column="1"
+                android:layout_margin="5dp"
                 android:layout_row="2"
+                android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
                 android:onClick="onClick" />
@@ -418,7 +446,9 @@
             <Button
                 android:id="@+id/button11"
                 android:layout_column="2"
+                android:layout_margin="5dp"
                 android:layout_row="2"
+                android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
                 android:onClick="onClick" />
@@ -426,8 +456,9 @@
             <Button
                 android:id="@+id/button12"
                 android:layout_column="3"
-                android:layout_row="2"
                 android:layout_margin="5dp"
+                android:layout_row="2"
+                android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
                 android:onClick="onClick" />

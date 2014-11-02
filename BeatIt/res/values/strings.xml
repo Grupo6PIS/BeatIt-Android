@@ -194,8 +194,8 @@
     
     <!-- Catch Me String -->
     <string name="catch_me">Catch Me</string>
-    <string name="description_catch_me_1">In this challenge you have to press lighted circles as quickly as possible. Hurry up, you only have 30 seconds!\nRemember, the faster, the highest score!</string>
-    <string name="description_catch_me_2">In this challenge you have to press lighted circles as quickly as possible. Hurry up, you only have 45 seconds!\nRemember, the faster, the highest score!</string>
+    <string name="description_catch_me_1">In this challenge you must pressed within 30 seconds the points lighted up. You must hit as many as possible.</string>
+    <string name="description_catch_me_2">In this challenge you must pressed within 30 seconds the points lighted up. You must hit as many as possible.</string>
    
     
     <!-- Throw The Phone String -->

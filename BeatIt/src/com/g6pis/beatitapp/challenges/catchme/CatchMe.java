@@ -84,8 +84,8 @@ public class CatchMe extends Challenge {
 
 	}
 
-	public void finishChallenge(int good) {
-		Factory.getInstance().getIDataManager().saveScore(CHALLENGE_ID, calculateScore(good));
+	public void finishChallenge() {
+		Factory.getInstance().getIDataManager().saveScore(CHALLENGE_ID, calculateScore(this.successfulCount));
 
 		reset();
 	}
