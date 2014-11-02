@@ -284,14 +284,14 @@ public class DataManager implements IDataManager {
 	}
 
 	public void logout() {
-			if (haveToSendScore) {
-				int scoreToSend = 0;
-
-				for (Map.Entry<String, State> entry : states.entrySet()) {
-					scoreToSend += entry.getValue().getMaxScore();
-				}
-				sendScore(scoreToSend);
-			}
+//			if (haveToSendScore) {
+//				int scoreToSend = 0;
+//
+//				for (Map.Entry<String, State> entry : states.entrySet()) {
+//					scoreToSend += entry.getValue().getMaxScore();
+//				}
+//				sendScore(scoreToSend);
+//			}
 			
 			for (Map.Entry<String, State> entry : states.entrySet()) {
 				
