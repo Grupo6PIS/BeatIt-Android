@@ -16,8 +16,8 @@ import android.graphics.Bitmap.Config;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.FaceDetector;
-import android.media.FaceDetector.Face;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -25,6 +25,7 @@ import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+
 
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
@@ -44,7 +45,15 @@ public class SelfieGroupUI extends Activity implements OnClickListener {
 	private Button startButton;
 	private Bitmap cameraBitmap;
 	private Dialog lightDialog;
-
+	
+	
+	private int mFaceWidth = 200;
+	private int mFaceHeight = 200;   
+	private static final int MAX_FACES = 50;
+	private static String TAG = "SelfieGroupUI";
+	protected static final int GUIUPDATE_SETFACE = 999;
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -222,24 +231,69 @@ public class SelfieGroupUI extends Activity implements OnClickListener {
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
 			cameraBitmap = (Bitmap) data.getExtras().get("data");
+			cameraBitmap = cameraBitmap.copy(Config.RGB_565, true);
+//			int picWidth = cameraBitmap.getWidth();
+//			int picHeight = cameraBitmap.getHeight();
+//			if (picWidth % 2 != 0) {
+//				picWidth = picWidth - 1;
+//			}
+			
+			mFaceWidth = cameraBitmap.getWidth();
+			mFaceHeight = cameraBitmap.getHeight();  
+			
+			
+//			Bitmap tmpBmp = cameraBitmap.copy(Config.RGB_565, true);
+			//tmpBmp = Bitmap.createBitmap(tmpBmp, 0, 0, picWidth, picHeight);
+					
+			// perform face detection in setFace() in a background thread
+			doLengthyCalc();
 
-			int picWidth = cameraBitmap.getWidth();
-			int picHeight = cameraBitmap.getHeight();
-			if (picWidth % 2 != 0) {
-				picWidth = picWidth - 1;
-			}
-			Bitmap tmpBmp = cameraBitmap.copy(Config.RGB_565, true);
-			tmpBmp = Bitmap.createBitmap(tmpBmp, 0, 0, picWidth, picHeight);
-
-			FaceDetector faceDet = new FaceDetector(tmpBmp.getWidth(),
-					tmpBmp.getHeight(), 50);
-			Face[] faceList = new Face[50];
-
-			selfieGroup.setPeople(faceDet.findFaces(tmpBmp, faceList));
-			challengeComplete();
+//			FaceDetector faceDet = new FaceDetector(tmpBmp.getWidth(),
+//					tmpBmp.getHeight(), 50);
+//			Face[] faceList = new Face[50];
+//			selfieGroup.setPeople(faceDet.findFaces(tmpBmp, faceList));
+			
 
 		}
 	}
+	
+	  private void doLengthyCalc() {
+	    	Thread t = new Thread() {
+	    		
+	    		public void run() {
+	    			try {
+	    				setFace();
+	    				
+	    			} catch (Exception e) { 
+	    				Log.e(TAG, "doLengthyCalc(): " + e.toString());
+	    			}
+	    		}
+	    	};      
+
+	    	t.start();        
+	    }  
+	
+	 public void setFace() {
+	    	FaceDetector fd;
+	    	FaceDetector.Face [] faces = new FaceDetector.Face[MAX_FACES];
+	    	
+	    	int count = 0;
+	    	
+	    	try {
+	    		fd = new FaceDetector(mFaceWidth, mFaceHeight, MAX_FACES);        
+	    		count = fd.findFaces(cameraBitmap, faces);
+	    		
+	    		
+	    		Log.e(TAG, "setFace(): " + count);
+	    		
+	    	} catch (Exception e) {
+	    		Log.e(TAG, "setFace(): " + e.toString());
+	    		return;
+	    	}
+	    	
+	    	selfieGroup.setPeople(count);
+	    	challengeComplete();
+	 }
 
 	public void challengeComplete() {
 		selfieGroup.finishChallenge();
