@@ -198,9 +198,9 @@ public class DataManager implements IDataManager {
 				break;
 				}
 			}
-			SelfieGroup selfieGroup = new SelfieGroup("10",
-					"Selfie Group", 1, 3, "#FA6800");
-			challenges.add(selfieGroup);
+//			SelfieGroup selfieGroup = new SelfieGroup("10",
+//					"Selfie Group", 1, 3, "#FA6800");
+//			challenges.add(selfieGroup);
 
 			JSONArray jsonRanking = round.getJSONArray("ranking");
 			ranking = new ArrayList<DTRanking>();
@@ -352,7 +352,7 @@ public class DataManager implements IDataManager {
 
 	public void saveScore(String challengeId, double score) {
 		State state = states.get(challengeId);
-		if (state.setNewScore(score)) {
+		if ((state.setNewScore(score))||(state.getCurrentAttempt() == 1)) {
 
 			haveToSendScore = true;
 			for (Map.Entry<String, State> entry : states.entrySet()) {
