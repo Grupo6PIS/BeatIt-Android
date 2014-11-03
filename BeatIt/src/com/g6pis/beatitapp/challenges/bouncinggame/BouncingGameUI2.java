@@ -11,6 +11,7 @@ import android.content.SharedPreferences.Editor;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.ShapeDrawable;
@@ -47,10 +48,10 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
     private float black_radius = 30;
     private PointF red_center;
     private PointF black_center;
-    private float x_min;
-    private float x_max;
-    private float y_min;
-    private float y_max;
+    private int x_min;
+    private int x_max;
+    private int y_min;
+    private int y_max;
     private float decrease_radius_rate;
     private boolean timerRunning = false;
     private int seconds;
@@ -81,9 +82,8 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         //x_max = 500;
-        //y_max = 800;
-        x_max = metrics.widthPixels - 135;
-        y_max = metrics.heightPixels - 350;
+        x_max = (int) (metrics.widthPixels * 0.80);
+        y_max = (int) (metrics.heightPixels * 0.75);
         x_min = 0;
         y_min = 0;
         x = x_min;
@@ -194,8 +194,8 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
     	PointF red = new PointF();
     	Random r = new Random();
     	
-    	red.x = r.nextInt((int) x_max) + x_min;
-    	red.y = r.nextInt((int) y_max) + y_min;
+    	red.x = r.nextInt(x_max) + x_min;
+    	red.y = r.nextInt(y_max) + y_min;
     	
     	if (first == false && existCollision (red.x, red.y, red_radius, black_center.x, black_center.y, black_radius)) {
 			return relocateBall(false);
@@ -300,7 +300,7 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
             black_ball.draw(canvas);
             
             canvas.drawText("Colisiones: " + bouncingGame.getCollision_times(), 10, y_max + 175, pTextCollision);
-            canvas.drawText("Tiempo: " + seconds, 450, y_max + 175, pTextTime);
+            canvas.drawText("Tiempo: " + seconds, x_max - 150, y_max + 175, pTextTime);
         	
             red_ball.setBounds((int) x, (int) y, (int) (x + red_radius), (int) (y + red_radius));
             red_ball.draw(canvas);
