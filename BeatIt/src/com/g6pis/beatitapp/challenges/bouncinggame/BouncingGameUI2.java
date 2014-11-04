@@ -11,7 +11,6 @@ import android.content.SharedPreferences.Editor;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.graphics.PointF;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.ShapeDrawable;
@@ -22,12 +21,12 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.util.DisplayMetrics;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.WindowManager;
 import android.widget.ImageView;
-import android.os.Vibrator;
 
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
@@ -147,6 +146,7 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
 	@Override
 	public void onBackPressed(){
 		timerRunning = false;
+		bouncingGame.setCollision_times(0);
 		Intent home = new Intent(this, Home.class);
 		startActivity(home);
 		this.finish();
@@ -173,8 +173,8 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 		actionBar.setCustomView(R.layout.action_bar);
-		actionBar.setDisplayHomeAsUpEnabled(true);
-		actionBar.setHomeButtonEnabled(true);
+		//actionBar.setDisplayHomeAsUpEnabled(true);
+		//actionBar.setHomeButtonEnabled(true);
 		actionBar.setTitle(this.getString(R.string.app_name));
 		actionBar.setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.bouncing)));
 	}
