@@ -215,6 +215,7 @@
     <string name="description_selfie_group_1">In this challenge you have to take a picture with two or more people.\nRemember that more faces in the pictures, means highest score!</string>
     <string name="description_selfie_group_2">In this challenge you have to take a picture with two (five) or more people.\nRemember that more faces in the pictures, means highest score!</string>
     <string name="light_dialog">Please keep in mind that should be distinguished either faces, look forward to some place with good light.</string>
+    <string name="calculating">Calculating the number of people..</string>
     
     <!-- Facebook app ID -->
     <string name="facebook_app_id">829846350380023</string>

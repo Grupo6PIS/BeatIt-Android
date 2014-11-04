@@ -16,11 +16,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
 import com.g6pis.beatitapp.challenges.bouncinggame.BouncingGameFinished;
 import com.g6pis.beatitapp.challenges.bouncinggame.BouncingGameUI;
 import com.g6pis.beatitapp.challenges.catchme.CatchMeFinished;
+import com.g6pis.beatitapp.challenges.catchme.CatchMeUI;
 import com.g6pis.beatitapp.challenges.invitefriends.CanYouPlayFinished;
 import com.g6pis.beatitapp.challenges.invitefriends.CanYouPlayUI;
 import com.g6pis.beatitapp.challenges.selfiegroup.SelfieGroupFinished;
@@ -136,10 +136,8 @@ public class ChallengesMenuTab extends Fragment implements
 		} else if (adapter.getItem(position).getChallengeId()
 				.equals(ID_Catch_Me)) {
 			if (adapter.getItem(position).getCurrentAttempt() == 0){
-				/*challenge = new Intent(getActivity().getApplicationContext(),
-						CatchMeUI.class);*/
-				((Home)getActivity()).challenge = Integer.parseInt(ID_Catch_Me);
-			((Home)getActivity()).challengeDialog.show();
+				challenge = new Intent(getActivity().getApplicationContext(),
+						CatchMeUI.class);
 			}else
 				challenge = new Intent(getActivity().getApplicationContext(),
 						CatchMeFinished.class);

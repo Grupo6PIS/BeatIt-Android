@@ -179,18 +179,6 @@ public class Home extends FragmentActivity implements OnClickListener, ActionBar
 
 		}
 			break;
-		case 5: {
-			Intent intent = new Intent(this, BouncingGameUI.class);
-			startActivity(intent);
-			this.finish();
-		}
-			break;
-		case 7: {
-			Intent intent = new Intent(this, CatchMeUI.class);
-			startActivity(intent);
-			this.finish();
-		}
-			break;
 		}
 	}
 	

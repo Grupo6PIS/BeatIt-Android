@@ -214,6 +214,7 @@
     <string name="description_selfie_group_1">En este desafío deberás sacarte una foto con dos o más personas. Cuántas más personas, más puntos!</string>
     <string name="description_selfie_group_2">En este desafío deberás sacarte una foto con cinco o más personas. Cuántas más personas, más puntos!</string>
     <string name="light_dialog">Por favor, ten en consideración que deben distinguirse bien las caras, busca algún lugar con buena luminosidad.</string>
+    <string name="calculating">Calculando la cantidad de personas..</string>
     
     <!-- Facebook app ID -->
     <string name="facebook_app_id">829846350380023</string>

@@ -100,13 +100,15 @@ public class DataManager implements IDataManager {
 			JSONObject json = login.get();
 			JSONArray jsonStates = new JSONArray();
 			JSONArray jsonStatesArr = new JSONArray();
+			String jsonRoundId = "";
 			if(!json.getBoolean("error")){
 				JSONObject jsonUser = json.getJSONObject("user");
 				userId = jsonUser.getString("_id");
 				Object obj = jsonUser.get("roundState");
-				if(obj instanceof JSONObject)
+				if(obj instanceof JSONObject){
 					jsonStates = ((JSONObject)obj).getJSONArray("challenges");
-				else
+					jsonRoundId = ((JSONObject)obj).getString("roundId");
+				}else
 					jsonStatesArr = ((JSONArray)obj);
 			
 			user = new User(userId, fbId, firstName, lastName, country,
@@ -198,9 +200,9 @@ public class DataManager implements IDataManager {
 				break;
 				}
 			}
-//			SelfieGroup selfieGroup = new SelfieGroup("10",
-//					"Selfie Group", 1, 3, "#FA6800");
-//			challenges.add(selfieGroup);
+			SelfieGroup selfieGroup = new SelfieGroup("10",
+					"Selfie Group", 1, 3, "#FA6800");
+			challenges.add(selfieGroup);
 
 			JSONArray jsonRanking = round.getJSONArray("ranking");
 			ranking = new ArrayList<DTRanking>();
@@ -221,6 +223,7 @@ public class DataManager implements IDataManager {
 				JSONObject jsonStatesObj = jsonStatesArr.getJSONObject(i);
 				if(currentRound.getRoundId().equals(jsonStatesObj.getString("roundId"))){
 					jsonStates = jsonStatesObj.getJSONArray("challenges");
+					jsonRoundId = jsonStatesObj.getString("roundId");
 				}
 			}
 			
@@ -228,7 +231,7 @@ public class DataManager implements IDataManager {
 			String persistedRoundId = this.getPersistedRoundId();
 			if (!persistedRoundId.equals(currentRound.getRoundId())) {
 				persistedStates = new HashMap<String, DTState>();
-				if((jsonStates != null) && jsonStates.length() > 0){
+				if(((jsonStates != null) && jsonStates.length() > 0) && (jsonRoundId.equals(currentRound.getRoundId()))){
 					for(int i = 0; i < jsonStates.length(); i++){
 						JSONObject jsonState = jsonStates.getJSONObject(i);
 						Challenge challenge = currentRound.getChallenge(jsonState.getString("challengeId"));
@@ -275,7 +278,7 @@ public class DataManager implements IDataManager {
 
 			}
 			
-			this.haveToSendScore = haveToSendScore;
+			/*this.haveToSendScore = haveToSendScore;
 			if (this.haveToSendScore) {
 				int scoreToSend = 0;
 
@@ -283,7 +286,7 @@ public class DataManager implements IDataManager {
 					scoreToSend += entry.getValue().getMaxScore();
 				}
 				sendScore(scoreToSend);
-			}
+			}*/
 
 		} catch (InterruptedException e) {
 		} catch (ExecutionException e) {

@@ -29,15 +29,13 @@ import android.widget.ImageView;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-public class CatchMeFinished extends Activity implements OnClickListener,
-		android.content.DialogInterface.OnClickListener {
+public class CatchMeFinished extends Activity implements OnClickListener {
 
 	private static final String CHALLENGE_ID = "7";
 	private static final int CHALLENGE_DIALOG = 50;
 
 	private DTState state;
 
-	private Dialog dialog;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -60,10 +58,6 @@ public class CatchMeFinished extends Activity implements OnClickListener,
 				.getChallenge(CHALLENGE_ID);
 		((TextView) findViewById(R.id.textView_Attempts_Value)).setText(state
 				.getCurrentAttempt() + "/" + challenge.getMaxAttempt());
-
-		dialog = onCreateDialog(CHALLENGE_DIALOG);
-		dialog.hide();
-
 	}
 
 	@Override
@@ -78,7 +72,6 @@ public class CatchMeFinished extends Activity implements OnClickListener,
 		switch (item.getItemId()) {
 		// Respond to the action bar's Up/Home button
 		case android.R.id.home:
-			dialog.dismiss();
 			Intent home = new Intent(this, Home.class);
 			startActivity(home);
 			this.finish();
@@ -89,7 +82,6 @@ public class CatchMeFinished extends Activity implements OnClickListener,
 
 	@Override
 	public void onBackPressed() {
-		dialog.dismiss();
 		Intent home = new Intent(this, Home.class);
 		startActivity(home);
 		this.finish();
@@ -135,41 +127,11 @@ public class CatchMeFinished extends Activity implements OnClickListener,
 
 	@Override
 	public void onClick(View v) {
-		dialog.show();
-
-	}
-
-	@Override
-	protected Dialog onCreateDialog(int id) {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		switch (id) {
-		case CHALLENGE_DIALOG: {
-			builder.setMessage(R.string.challenge_under_construction);
-			builder.setTitle(getResources().getString(
-					R.string.challenge_under_construction_title));
-			builder.setCancelable(true);
-			builder.setPositiveButton(R.string.continue_button, this);
-			builder.setNegativeButton(R.string.cancel,
-					new CancelOnClickListener());
-			return builder.create();
-		}
-
-		}
-		return super.onCreateDialog(id);
-	}
-
-	private final class CancelOnClickListener implements
-			DialogInterface.OnClickListener {
-		public void onClick(DialogInterface dialog, int which) {
-		}
-	}
-
-	@Override
-	public void onClick(DialogInterface dialog, int which) {
 		Intent intent = new Intent(this, CatchMeUI.class);
 		startActivity(intent);
 		finish();
 
 	}
+
 
 }

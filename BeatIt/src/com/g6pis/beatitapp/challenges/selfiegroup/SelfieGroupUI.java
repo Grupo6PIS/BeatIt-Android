@@ -47,6 +47,7 @@ public class SelfieGroupUI extends Activity implements OnClickListener {
 
 	private Button startButton;
 	private Bitmap cameraBitmap;
+	Bitmap tmpBmp;
 	private Dialog lightDialog;
 	
 	
@@ -235,18 +236,18 @@ public class SelfieGroupUI extends Activity implements OnClickListener {
 		if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
 			cameraBitmap = (Bitmap) data.getExtras().get("data");
 			cameraBitmap = cameraBitmap.copy(Config.RGB_565, true);
-//			int picWidth = cameraBitmap.getWidth();
+			int picWidth = cameraBitmap.getWidth();
 //			int picHeight = cameraBitmap.getHeight();
-//			if (picWidth % 2 != 0) {
-//				picWidth = picWidth - 1;
-//			}
+			if (picWidth % 2 != 0) {
+				picWidth = picWidth - 1;
+			}
 			
-			mFaceWidth = cameraBitmap.getWidth();
+			mFaceWidth = picWidth;
 			mFaceHeight = cameraBitmap.getHeight();  
 			
 			
-//			Bitmap tmpBmp = cameraBitmap.copy(Config.RGB_565, true);
-			//tmpBmp = Bitmap.createBitmap(tmpBmp, 0, 0, picWidth, picHeight);
+			tmpBmp = cameraBitmap.copy(Config.RGB_565, true);
+			tmpBmp = Bitmap.createBitmap(tmpBmp, 0, 0, picWidth, cameraBitmap.getHeight());
 					
 			// perform face detection in setFace() in a background thread
 			doLengthyCalc();
@@ -255,6 +256,9 @@ public class SelfieGroupUI extends Activity implements OnClickListener {
 //					tmpBmp.getHeight(), 50);
 //			Face[] faceList = new Face[50];
 //			selfieGroup.setPeople(faceDet.findFaces(tmpBmp, faceList));
+			
+			startButton.setText(getResources().getString(R.string.calculating));
+			startButton.setClickable(false);
 			
 
 		}
@@ -284,7 +288,7 @@ public class SelfieGroupUI extends Activity implements OnClickListener {
 	    	
 	    	try {
 	    		fd = new FaceDetector(mFaceWidth, mFaceHeight, MAX_FACES);        
-	    		count = fd.findFaces(cameraBitmap, faces);
+	    		count = fd.findFaces(tmpBmp, faces);
 	    		
 	    		
 	    		Log.e(TAG, "setFace(): " + count);

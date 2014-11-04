@@ -279,7 +279,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 					.setCaption(
 							getResources().getString(R.string.also_available))
 					.setPicture(
-							"https://lh3.googleusercontent.com/Z0gp_Vw-g3ZI9ewq5MRHnNITqDpEDtWN6eh_j28UHiMkY_9b-4K5OFMVd6GWO40hdS-oVAI0Nw=w1893-h822")
+							"https://lh3.googleusercontent.com/NidRuTRsEDejkGhYgVZTMrUr2dTNqCBza1aJlgT3gO1JTI1A5O2j9V0VUtGklBAonyMSPhpL-Q=w1896-h835")
 					.build();
 			uiHelper.trackPendingDialogCall(shareDialog.present());
 		} catch (FacebookException ex) {
@@ -311,7 +311,7 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 							phone,
 							null,
 							getResources().getString(R.string.sms_text)
-									+ "\n\nAndroid:\nhttps://play.google.com/store/apps/details?id=com.g6pis.beatitapp0"
+									+ "\n\nAndroid:\nhttps://play.google.com/store/apps/details?id=com.g6pis.beatitapp"
 									+ "\n\n"
 									+ getResources().getString(
 											R.string.also_available), null,
