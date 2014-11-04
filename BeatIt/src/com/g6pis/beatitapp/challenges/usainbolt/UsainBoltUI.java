@@ -31,6 +31,8 @@ import android.widget.TextView;
 
 
 
+
+
 //import com.g6pis.beatit.persistence.UsainBoltDAO;
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
@@ -198,6 +200,17 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 
 			public void onFinish() {
 				usainBolt.finishChallenge();
+				if (Factory.getInstance().getIDataManager().getHaveToSendScore()) {
+					Thread t = new Thread() {
+						public void run() {
+
+							Factory.getInstance().getIDataManager().sendScore();
+							Factory.getInstance().getIDataManager().updateRanking();
+						}
+					};
+
+					t.start();
+				}
 				StateDAO db = new StateDAO(getApplicationContext());
 				db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));
 				SharedPreferences sharedPrefs = getApplicationContext()
@@ -339,6 +352,17 @@ public class UsainBoltUI extends Activity implements OnClickListener,
 				usainBolt.setMaxSpeed(0);
 				usainBolt.setAvgSpeed(0);
 				usainBolt.finishChallenge();
+				if (Factory.getInstance().getIDataManager().getHaveToSendScore()) {
+					Thread t = new Thread() {
+						public void run() {
+
+							Factory.getInstance().getIDataManager().sendScore();
+							Factory.getInstance().getIDataManager().updateRanking();
+						}
+					};
+
+					t.start();
+				}
 				StateDAO db = new StateDAO(this);
 				db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));
 				SharedPreferences sharedPrefs = getApplicationContext()

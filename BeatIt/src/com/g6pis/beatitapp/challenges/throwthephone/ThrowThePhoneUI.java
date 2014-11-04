@@ -285,10 +285,21 @@ public class ThrowThePhoneUI extends Activity implements SensorEventListener, On
 	}
 	
 	public void completeChallenge(){
+		throwThePhone.finishChallenge();
+		if (Factory.getInstance().getIDataManager().getHaveToSendScore()) {
+			Thread t = new Thread() {
+				public void run() {
+
+					Factory.getInstance().getIDataManager().sendScore();
+					Factory.getInstance().getIDataManager().updateRanking();
+				}
+			};
+
+			t.start();
+		}
 		Intent finished = new Intent(this, ThrowThePhoneFinished.class);
 		startActivity(finished);
 		this.finish();
-		throwThePhone.finishChallenge();
 		StateDAO db = new StateDAO(this);
 		db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));
 		SharedPreferences sharedPrefs = getApplicationContext()

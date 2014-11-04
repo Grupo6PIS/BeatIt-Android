@@ -280,12 +280,7 @@ public class DataManager implements IDataManager {
 			
 			/*this.haveToSendScore = haveToSendScore;
 			if (this.haveToSendScore) {
-				int scoreToSend = 0;
-
-				for (Map.Entry<String, State> entry : states.entrySet()) {
-					scoreToSend += entry.getValue().getMaxScore();
-				}
-				sendScore(scoreToSend);
+				sendScore();
 			}*/
 
 		} catch (InterruptedException e) {
@@ -299,12 +294,7 @@ public class DataManager implements IDataManager {
 
 	public void logout() {
 			if (haveToSendScore) {
-				int scoreToSend = 0;
-
-				for (Map.Entry<String, State> entry : states.entrySet()) {
-					scoreToSend += entry.getValue().getMaxScore();
-				}
-				sendScore(scoreToSend);
+				sendScore();
 			}
 			
 			for (Map.Entry<String, State> entry : states.entrySet()) {
@@ -362,22 +352,13 @@ public class DataManager implements IDataManager {
 				if (entry.getValue().getCurrentAttempt() < 1)
 					haveToSendScore = false;
 			}
-			if (haveToSendScore) {
-				int scoreToSend = 0;
-
-				for (Map.Entry<String, State> entry : states.entrySet()) {
-					scoreToSend += entry.getValue().getMaxScore();
-				}
-				sendScore(scoreToSend);
-				updateRanking();
-			}
 		}
 	}
 
-	public void sendScore(double score) {
+	public void sendScore() {
 		try {
 			ScoreConnection scoreConnection = (ScoreConnection) new ScoreConnection()
-					.execute(user.getUserId(), Double.toString(score), currentRound.getRoundId());
+					.execute(user.getUserId(), Double.toString(scoreToSend()), currentRound.getRoundId());
 			JSONObject response = scoreConnection.get();
 			if(response.has("error")){
 				if((!response.getBoolean("error")))
@@ -419,6 +400,16 @@ public class DataManager implements IDataManager {
 	
 	public boolean getHaveToSendScore(){
 		return haveToSendScore;
+	}
+	
+	public double scoreToSend(){
+		int scoreToSend = 0;
+
+		for (Map.Entry<String, State> entry : states.entrySet()) {
+			scoreToSend += entry.getValue().getMaxScore();
+		}
+		
+		return scoreToSend;
 	}
 
 }

@@ -27,7 +27,7 @@ public interface IDataManager {
 	public void logout();
 	public void updateRanking();
 	public void saveScore(String challengeId, double score);
-	public void sendScore(double score);
+	public void sendScore();
 	public DTState getState(String challengeId);
 	public Challenge getChallenge(String challengeId);
 	public Map<String, DTState> getPersistedStates();

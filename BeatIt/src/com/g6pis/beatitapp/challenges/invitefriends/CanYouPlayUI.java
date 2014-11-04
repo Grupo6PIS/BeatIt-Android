@@ -335,10 +335,21 @@ public class CanYouPlayUI extends Activity implements OnClickListener {
 	}
 
 	public void completeChallenge() {
+		canYouPlay.finishChallenge();
+		if (Factory.getInstance().getIDataManager().getHaveToSendScore()) {
+			Thread t = new Thread() {
+				public void run() {
+
+					Factory.getInstance().getIDataManager().sendScore();
+					Factory.getInstance().getIDataManager().updateRanking();
+				}
+			};
+
+			t.start();
+		}
 		Intent finished = new Intent(this, CanYouPlayFinished.class);
 		startActivity(finished);
 		this.finish();
-		canYouPlay.finishChallenge();
 		StateDAO db = new StateDAO(this);
 		db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));
 		SharedPreferences sharedPrefs = getApplicationContext()

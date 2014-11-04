@@ -356,6 +356,17 @@ public class CatchMeUI extends Activity implements OnClickListener {
 		} else {
 			// Log.i("CatchMe", "Termino");
 			catchMe.finishChallenge();
+			if (Factory.getInstance().getIDataManager().getHaveToSendScore()) {
+				Thread t = new Thread() {
+					public void run() {
+
+						Factory.getInstance().getIDataManager().sendScore();
+						Factory.getInstance().getIDataManager().updateRanking();
+					}
+				};
+
+				t.start();
+			}
 			Intent challengeFinished = new Intent(this, CatchMeFinished.class);
 			startActivity(challengeFinished);
 			this.finish();

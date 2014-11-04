@@ -416,10 +416,21 @@ public class SongCompleteUI extends Activity {
 	 }
 	 
 	 public void completeChallenge() {
-		Intent finished = new Intent(this, SongCompleteFinished.class);
+		 songcomplete.finishChallenge();
+		 if (Factory.getInstance().getIDataManager().getHaveToSendScore()) {
+				Thread t = new Thread() {
+					public void run() {
+
+						Factory.getInstance().getIDataManager().sendScore();
+						Factory.getInstance().getIDataManager().updateRanking();
+					}
+				};
+
+				t.start();
+			}
+		 Intent finished = new Intent(this, SongCompleteFinished.class);
 		startActivity(finished);
 		this.finish();
-		songcomplete.finishChallenge();
 		StateDAO db = new StateDAO(this);
 		db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));
 	

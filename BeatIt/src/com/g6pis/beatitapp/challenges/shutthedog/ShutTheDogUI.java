@@ -310,10 +310,21 @@ public class ShutTheDogUI extends Activity implements SensorEventListener {
 	 }
 	 
 	 public void completeChallenge() {
-			Intent finished = new Intent(this, ShutTheDogFinished.class);
+		 shutthedog.finishChallenge();
+		 if (Factory.getInstance().getIDataManager().getHaveToSendScore()) {
+				Thread t = new Thread() {
+					public void run() {
+
+						Factory.getInstance().getIDataManager().sendScore();
+						Factory.getInstance().getIDataManager().updateRanking();
+					}
+				};
+
+				t.start();
+			}
+		 Intent finished = new Intent(this, ShutTheDogFinished.class);
 			startActivity(finished);
 			this.finish();
-			shutthedog.finishChallenge();
 			StateDAO db = new StateDAO(this);
 			db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));
 			

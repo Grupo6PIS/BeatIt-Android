@@ -29,7 +29,6 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-
 import com.g6pis.beatitapp.Home;
 import com.g6pis.beatitapp.R;
 import com.g6pis.beatitapp.datatypes.DTState;
@@ -49,15 +48,13 @@ public class SelfieGroupUI extends Activity implements OnClickListener {
 	private Bitmap cameraBitmap;
 	Bitmap tmpBmp;
 	private Dialog lightDialog;
-	
-	
+
 	private int mFaceWidth = 200;
-	private int mFaceHeight = 200;   
+	private int mFaceHeight = 200;
 	private static final int MAX_FACES = 50;
 	private static String TAG = "SelfieGroupUI";
 	protected static final int GUIUPDATE_SETFACE = 999;
-	
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -237,73 +234,82 @@ public class SelfieGroupUI extends Activity implements OnClickListener {
 			cameraBitmap = (Bitmap) data.getExtras().get("data");
 			cameraBitmap = cameraBitmap.copy(Config.RGB_565, true);
 			int picWidth = cameraBitmap.getWidth();
-//			int picHeight = cameraBitmap.getHeight();
+			// int picHeight = cameraBitmap.getHeight();
 			if (picWidth % 2 != 0) {
 				picWidth = picWidth - 1;
 			}
-			
+
 			mFaceWidth = picWidth;
-			mFaceHeight = cameraBitmap.getHeight();  
-			
-			
+			mFaceHeight = cameraBitmap.getHeight();
+
 			tmpBmp = cameraBitmap.copy(Config.RGB_565, true);
-			tmpBmp = Bitmap.createBitmap(tmpBmp, 0, 0, picWidth, cameraBitmap.getHeight());
-					
+			tmpBmp = Bitmap.createBitmap(tmpBmp, 0, 0, picWidth,
+					cameraBitmap.getHeight());
+
 			// perform face detection in setFace() in a background thread
 			doLengthyCalc();
 
-//			FaceDetector faceDet = new FaceDetector(tmpBmp.getWidth(),
-//					tmpBmp.getHeight(), 50);
-//			Face[] faceList = new Face[50];
-//			selfieGroup.setPeople(faceDet.findFaces(tmpBmp, faceList));
-			
+			// FaceDetector faceDet = new FaceDetector(tmpBmp.getWidth(),
+			// tmpBmp.getHeight(), 50);
+			// Face[] faceList = new Face[50];
+			// selfieGroup.setPeople(faceDet.findFaces(tmpBmp, faceList));
+
 			startButton.setText(getResources().getString(R.string.calculating));
 			startButton.setClickable(false);
-			
 
 		}
 	}
-	
-	  private void doLengthyCalc() {
-	    	Thread t = new Thread() {
-	    		
-	    		public void run() {
-	    			try {
-	    				setFace();
-	    				
-	    			} catch (Exception e) { 
-	    				Log.e(TAG, "doLengthyCalc(): " + e.toString());
-	    			}
-	    		}
-	    	};      
 
-	    	t.start();        
-	    }  
-	
-	 public void setFace() {
-	    	FaceDetector fd;
-	    	FaceDetector.Face [] faces = new FaceDetector.Face[MAX_FACES];
-	    	
-	    	int count = 0;
-	    	
-	    	try {
-	    		fd = new FaceDetector(mFaceWidth, mFaceHeight, MAX_FACES);        
-	    		count = fd.findFaces(tmpBmp, faces);
-	    		
-	    		
-	    		Log.e(TAG, "setFace(): " + count);
-	    		
-	    	} catch (Exception e) {
-	    		Log.e(TAG, "setFace(): " + e.toString());
-	    		return;
-	    	}
-	    	
-	    	selfieGroup.setPeople(count);
-	    	challengeComplete();
-	 }
+	private void doLengthyCalc() {
+		Thread t = new Thread() {
+
+			public void run() {
+				try {
+					setFace();
+
+				} catch (Exception e) {
+					Log.e(TAG, "doLengthyCalc(): " + e.toString());
+				}
+			}
+		};
+
+		t.start();
+	}
+
+	public void setFace() {
+		FaceDetector fd;
+		FaceDetector.Face[] faces = new FaceDetector.Face[MAX_FACES];
+
+		int count = 0;
+
+		try {
+			fd = new FaceDetector(mFaceWidth, mFaceHeight, MAX_FACES);
+			count = fd.findFaces(tmpBmp, faces);
+
+			Log.e(TAG, "setFace(): " + count);
+
+		} catch (Exception e) {
+			Log.e(TAG, "setFace(): " + e.toString());
+			return;
+		}
+
+		selfieGroup.setPeople(count);
+		challengeComplete();
+	}
 
 	public void challengeComplete() {
 		selfieGroup.finishChallenge();
+		if (Factory.getInstance().getIDataManager().getHaveToSendScore()) {
+			Thread t = new Thread() {
+				public void run() {
+
+					Factory.getInstance().getIDataManager().sendScore();
+					Factory.getInstance().getIDataManager().updateRanking();
+				}
+			};
+
+			t.start();
+		}
 
 		Intent intent = new Intent(this, SelfieGroupFinished.class);
 		startActivity(intent);
@@ -312,12 +318,13 @@ public class SelfieGroupUI extends Activity implements OnClickListener {
 		StateDAO db = new StateDAO(getApplicationContext());
 		db.updateState(Factory.getInstance().getIDataManager()
 				.getState(CHALLENGE_ID));
-		
+
 		SharedPreferences sharedPrefs = getApplicationContext()
 				.getSharedPreferences("asdasd_preferences",
 						Context.MODE_PRIVATE);
 		Editor editor = sharedPrefs.edit();
-		editor.putBoolean("haveToSendScore", Factory.getInstance().getIDataManager().getHaveToSendScore());
+		editor.putBoolean("haveToSendScore", Factory.getInstance()
+				.getIDataManager().getHaveToSendScore());
 		editor.commit();
 	}
 
@@ -327,8 +334,7 @@ public class SelfieGroupUI extends Activity implements OnClickListener {
 		switch (id) {
 		case LIGHT_DIALOG: {
 			builder.setMessage(R.string.light_dialog);
-			builder.setTitle(getResources().getString(
-					R.string.attention));
+			builder.setTitle(getResources().getString(R.string.attention));
 			builder.setCancelable(true);
 			builder.setPositiveButton(R.string.continue_button,
 					new OkOnClickListener());
@@ -345,9 +351,8 @@ public class SelfieGroupUI extends Activity implements OnClickListener {
 					android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
 
 			startActivityForResult(intent, REQUEST_IMAGE_CAPTURE);
-			
+
 		}
 	}
-	
 
 }

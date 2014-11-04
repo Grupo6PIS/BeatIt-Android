@@ -259,7 +259,17 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
 		timer = null;
 		
 		bouncingGame.finishChallenge();
-		
+		if (Factory.getInstance().getIDataManager().getHaveToSendScore()) {
+			Thread t = new Thread() {
+				public void run() {
+
+					Factory.getInstance().getIDataManager().sendScore();
+					Factory.getInstance().getIDataManager().updateRanking();
+				}
+			};
+
+			t.start();
+		}
 		StateDAO db = new StateDAO(getApplicationContext());
 		db.updateState(Factory.getInstance().getIDataManager().getState(CHALLENGE_ID));
 		bouncingGame.reset();

@@ -395,6 +395,17 @@ public class TextAndColorUI extends Activity implements OnClickListener {
 	public void completeChallenge(){
 		timer.cancel();
 		textAndColor.finishChallenge();
+		if (Factory.getInstance().getIDataManager().getHaveToSendScore()) {
+			Thread t = new Thread() {
+				public void run() {
+
+					Factory.getInstance().getIDataManager().sendScore();
+					Factory.getInstance().getIDataManager().updateRanking();
+				}
+			};
+
+			t.start();
+		}
 		Intent challengeFinished = new Intent(this, TextAndColorFinished.class);
 		startActivity(challengeFinished);
 		this.finish();
