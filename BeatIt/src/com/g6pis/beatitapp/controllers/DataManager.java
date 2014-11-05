@@ -200,9 +200,6 @@ public class DataManager implements IDataManager {
 				break;
 				}
 			}
-			SelfieGroup selfieGroup = new SelfieGroup("10",
-					"Selfie Group", 1, 3, "#FA6800");
-			challenges.add(selfieGroup);
 
 			JSONArray jsonRanking = round.getJSONArray("ranking");
 			ranking = new ArrayList<DTRanking>();
@@ -278,10 +275,10 @@ public class DataManager implements IDataManager {
 
 			}
 			
-			/*this.haveToSendScore = haveToSendScore;
+			this.haveToSendScore = haveToSendScore;
 			if (this.haveToSendScore) {
 				sendScore();
-			}*/
+			}
 
 		} catch (InterruptedException e) {
 		} catch (ExecutionException e) {
