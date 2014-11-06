@@ -22,6 +22,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -39,7 +40,7 @@ public class CatchMeUI extends Activity implements OnClickListener {
 	private DTState state;
 
 	private Button startButton;
-	// private ProgressBar progressBar;
+	 private ProgressBar progressBar;
 	 private CountDownTimer timer;
 	private CountDownTimer totalTimer;
 
@@ -88,7 +89,7 @@ public class CatchMeUI extends Activity implements OnClickListener {
 
 		startButton = (Button) findViewById(R.id.start_button);
 		startButton.setOnClickListener(this);
-		// progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+		progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
 		this.editActionBar();
 
@@ -167,7 +168,7 @@ public class CatchMeUI extends Activity implements OnClickListener {
 					.setVisibility(View.VISIBLE);
 
 			startButton.setVisibility(View.INVISIBLE);
-			// progressBar.setProgress(catchMe.getTimeSpan());
+			progressBar.setProgress(catchMe.getTime());
 
 			//
 			// timer.start();
@@ -180,6 +181,20 @@ public class CatchMeUI extends Activity implements OnClickListener {
 			catchMe.successful();
 			times++;
 			changeColorProgress();
+			
+			if (!catchMe.isCompleted()) {
+
+				Button button;
+				button = ((Button) findViewById(colorId));
+
+				if (button == null)
+					button = ((Button) findViewById(R.id.button1));
+				else {
+					
+					button.setAlpha((float) 0.3);
+				}
+			}
+			
 			timer.start();
 			// good++;
 			// totalTimer.cancel();
@@ -213,15 +228,13 @@ public class CatchMeUI extends Activity implements OnClickListener {
 
 	public CountDownTimer createTotalTimer() {
 		CountDownTimer timer = new CountDownTimer(catchMe.getTime(),
-				catchMe.getTimeSpan() + 1) {
+				100 + 1) {
 			public void onTick(long millisUntilFinished) {
-				// times ++;
-
-				//				changeButton();
-				// int progress =
-				// (int)(millisUntilFinished*catchMe.getTimeSpan())/catchMe.getTime();
-				// Log.i("CatchMe", "Progress " + progress);
-				// progressBar.setProgress(progress);
+				
+				 int progress =
+				 (int)(millisUntilFinished*100)/catchMe.getTime();
+				
+				 progressBar.setProgress(progress);
 			}
 
 			public void onFinish() {
@@ -260,16 +273,16 @@ public class CatchMeUI extends Activity implements OnClickListener {
 	public void changeButton() {
 
 		if (!catchMe.isCompleted()) {
-
+//
 			Button button;
 			button = ((Button) findViewById(colorId));
-
-			if (button == null)
-				button = ((Button) findViewById(R.id.button1));
-			else {
-				// button.setBackgroundResource(R.drawable.round_button);
-				button.setAlpha((float) 0.3);
-			}
+//
+//			if (button == null)
+//				button = ((Button) findViewById(R.id.button1));
+//			else {
+//				// button.setBackgroundResource(R.drawable.round_button);
+//				button.setAlpha((float) 0.3);
+//			}
 			Random buttonRand = new Random();
 
 			color = buttonRand.nextInt(11) + 1;
@@ -573,6 +586,7 @@ public class CatchMeUI extends Activity implements OnClickListener {
 		case 76:
 			resetProgress();
 			((TextView) findViewById(R.id.TextView1)).setBackgroundColor(color);
+			
 			break;
 		// ((TextView)findViewById(R.id.TextView6)).setBackgroundColor(color);
 		// break;
@@ -664,19 +678,19 @@ public class CatchMeUI extends Activity implements OnClickListener {
 	public void resetProgress() {
 		((TextView) findViewById(R.id.TextView1))
 				.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.rectangle_border));
+						R.drawable.rectangle_border_catch_me));
 		((TextView) findViewById(R.id.TextView2))
 				.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.rectangle_border));
+						R.drawable.rectangle_border_catch_me));
 		((TextView) findViewById(R.id.TextView3))
 				.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.rectangle_border));
+						R.drawable.rectangle_border_catch_me));
 		((TextView) findViewById(R.id.TextView4))
 				.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.rectangle_border));
+						R.drawable.rectangle_border_catch_me));
 		((TextView) findViewById(R.id.TextView5))
 				.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.rectangle_border));
+						R.drawable.rectangle_border_catch_me));
 		// ((TextView)findViewById(R.id.TextView6)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
 		// ((TextView)findViewById(R.id.TextView7)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
 		// ((TextView)findViewById(R.id.TextView8)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));

@@ -145,183 +145,93 @@
         android:layout_alignTop="@+id/before_strat_challenge_layout"
         android:visibility="invisible" >
 
-        <RelativeLayout
+        <ProgressBar
+            android:id="@+id/progress_bar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/progress_layout"
+            android:layout_alignLeft="@+id/progress_layout"
+            android:layout_alignRight="@+id/progress_layout"
+            android:layout_alignStart="@+id/progress_layout"
+            android:layout_marginTop="5dp"
+           
+             />
+
+        <GridLayout
             android:id="@+id/progress_layout"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="10dp"
-            android:gravity="center" >
+            android:layout_below="@+id/progress_bar"
+            android:columnCount="5"
+            android:gravity="center"
+            android:rowCount="1"
+            android:useDefaultMargins="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginStart="20dp" >
 
-            <LinearLayout
-                android:id="@+id/progress1_layout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+            <TextView
+                android:id="@+id/TextView1"
+                android:layout_width="50dp"
+                android:layout_height="10dp"
+                android:layout_column="0"
+                android:layout_marginLeft="1dp"
+                android:layout_marginStart="1dp"
+                android:layout_row="0"
+                android:background="@drawable/rectangle_catch_me"
+                android:gravity="center_vertical|center_horizontal" />
 
-                <TextView
-                    android:id="@+id/TextView1"
-                    android:layout_width="17dp"
-                    android:layout_height="10dp"
-                    android:layout_alignLeft="@+id/yes_button"
-                    android:layout_below="@+id/textView1_text"
-                    android:layout_marginLeft="1dp"
-                    android:background="@drawable/rectangle_catch_me" />
+            <TextView
+                android:id="@+id/TextView2"
+                android:layout_width="50dp"
+                android:layout_height="10dp"
+                android:layout_column="1"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_row="0"
+                android:background="@drawable/rectangle_catch_me"
+                android:gravity="center_vertical|center_horizontal" />
 
-                <TextView
-                    android:id="@+id/TextView2"
-                    android:layout_width="20dp"
-                    android:layout_height="10dp"
-                    android:layout_alignBaseline="@+id/TextView1"
-                    android:layout_alignBottom="@+id/TextView1"
-                    android:layout_marginLeft="4dp"
-                    android:layout_toRightOf="@+id/textView1"
-                    android:background="@drawable/rectangle_catch_me" />
+            <TextView
+                android:id="@+id/TextView3"
+                android:layout_width="50dp"
+                android:layout_height="10dp"
+                android:layout_column="2"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_row="0"
+                android:background="@drawable/rectangle_catch_me"
+                android:gravity="center_vertical|center_horizontal" />
 
-                <TextView
-                    android:id="@+id/TextView3"
-                    android:layout_width="20dp"
-                    android:layout_height="10dp"
-                    android:layout_alignBaseline="@+id/TextView2"
-                    android:layout_alignBottom="@+id/TextView2"
-                    android:layout_marginLeft="4dp"
-                    android:layout_toRightOf="@+id/TextView2"
-                    android:background="@drawable/rectangle_catch_me" />
+            <TextView
+                android:id="@+id/TextView4"
+                android:layout_width="50dp"
+                android:layout_height="10dp"
+                android:layout_column="3"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_row="0"
+                android:background="@drawable/rectangle_catch_me"
+                android:gravity="center_vertical|center_horizontal" />
 
-                <TextView
-                    android:id="@+id/TextView4"
-                    android:layout_width="20dp"
-                    android:layout_height="10dp"
-                    android:layout_alignBaseline="@+id/TextView3"
-                    android:layout_alignBottom="@+id/TextView3"
-                    android:layout_marginLeft="4dp"
-                    android:layout_toRightOf="@+id/TextView3"
-                    android:background="@drawable/rectangle_catch_me" />
-
-                <TextView
-                    android:id="@+id/TextView5"
-                    android:layout_width="20dp"
-                    android:layout_height="10dp"
-                    android:layout_alignBaseline="@+id/TextView4"
-                    android:layout_alignBottom="@+id/TextView4"
-                    android:layout_marginLeft="4dp"
-                    android:layout_toRightOf="@+id/TextView4"
-                    android:background="@drawable/rectangle_catch_me" />
-
-<!--                 <TextView -->
-<!--                     android:id="@+id/TextView6" -->
-<!--                     android:layout_width="17dp" -->
-<!--                     android:layout_height="6dp" -->
-<!--                     android:layout_alignBaseline="@+id/TextView5" -->
-<!--                     android:layout_alignBottom="@+id/TextView5" -->
-<!--                     android:layout_marginLeft="3dp" -->
-<!--                     android:layout_toRightOf="@+id/TextView5" -->
-<!--                     android:background="@drawable/rectangle_border" /> -->
-
-<!--                 <TextView -->
-<!--                     android:id="@+id/TextView7" -->
-<!--                     android:layout_width="17dp" -->
-<!--                     android:layout_height="6dp" -->
-<!--                     android:layout_alignBaseline="@+id/TextView6" -->
-<!--                     android:layout_alignBottom="@+id/TextView6" -->
-<!--                     android:layout_marginLeft="3dp" -->
-<!--                     android:layout_toRightOf="@+id/TextView6" -->
-<!--                     android:background="@drawable/rectangle_border" /> -->
-
-<!--                 <TextView -->
-<!--                     android:id="@+id/TextView8" -->
-<!--                     android:layout_width="17dp" -->
-<!--                     android:layout_height="6dp" -->
-<!--                     android:layout_alignBaseline="@+id/TextView7" -->
-<!--                     android:layout_alignBottom="@+id/TextView7" -->
-<!--                     android:layout_marginLeft="3dp" -->
-<!--                     android:layout_toRightOf="@+id/TextView7" -->
-<!--                     android:background="@drawable/rectangle_border" /> -->
-
-<!--                 <TextView -->
-<!--                     android:id="@+id/TextView9" -->
-<!--                     android:layout_width="17dp" -->
-<!--                     android:layout_height="6dp" -->
-<!--                     android:layout_alignBaseline="@+id/TextView8" -->
-<!--                     android:layout_alignBottom="@+id/TextView8" -->
-<!--                     android:layout_marginLeft="3dp" -->
-<!--                     android:layout_toRightOf="@+id/TextView8" -->
-<!--                     android:background="@drawable/rectangle_border" /> -->
-
-<!--                 <TextView -->
-<!--                     android:id="@+id/TextView10" -->
-<!--                     android:layout_width="17dp" -->
-<!--                     android:layout_height="6dp" -->
-<!--                     android:layout_alignBaseline="@+id/TextView9" -->
-<!--                     android:layout_alignBottom="@+id/TextView9" -->
-<!--                     android:layout_marginLeft="3dp" -->
-<!--                     android:layout_toRightOf="@+id/TextView9" -->
-<!--                     android:background="@drawable/rectangle_border" /> -->
-
-<!--                 <TextView -->
-<!--                     android:id="@+id/TextView11" -->
-<!--                     android:layout_width="17dp" -->
-<!--                     android:layout_height="6dp" -->
-<!--                     android:layout_alignBaseline="@+id/TextView10" -->
-<!--                     android:layout_alignBottom="@+id/TextView10" -->
-<!--                     android:layout_marginLeft="3dp" -->
-<!--                     android:layout_toRightOf="@+id/TextView10" -->
-<!--                     android:background="@drawable/rectangle_border" /> -->
-
-<!--                 <TextView -->
-<!--                     android:id="@+id/TextView12" -->
-<!--                     android:layout_width="17dp" -->
-<!--                     android:layout_height="6dp" -->
-<!--                     android:layout_alignBaseline="@+id/TextView11" -->
-<!--                     android:layout_alignBottom="@+id/TextView11" -->
-<!--                     android:layout_marginLeft="3dp" -->
-<!--                     android:layout_toRightOf="@+id/TextView11" -->
-<!--                     android:background="@drawable/rectangle_border" /> -->
-
-<!--                 <TextView -->
-<!--                     android:id="@+id/TextView13" -->
-<!--                     android:layout_width="17dp" -->
-<!--                     android:layout_height="6dp" -->
-<!--                     android:layout_alignBaseline="@+id/TextView12" -->
-<!--                     android:layout_alignBottom="@+id/TextView12" -->
-<!--                     android:layout_marginLeft="3dp" -->
-<!--                     android:layout_toRightOf="@+id/TextView12" -->
-<!--                     android:background="@drawable/rectangle_border" /> -->
-
-<!--                 <TextView -->
-<!--                     android:id="@+id/TextView14" -->
-<!--                     android:layout_width="17dp" -->
-<!--                     android:layout_height="6dp" -->
-<!--                     android:layout_alignBaseline="@+id/TextView13" -->
-<!--                     android:layout_alignBottom="@+id/TextView13" -->
-<!--                     android:layout_marginLeft="3dp" -->
-<!--                     android:layout_toRightOf="@+id/TextView13" -->
-<!--                     android:background="@drawable/rectangle_border" /> -->
-
-<!--                 <TextView -->
-<!--                     android:id="@+id/TextView15" -->
-<!--                     android:layout_width="17dp" -->
-<!--                     android:layout_height="6dp" -->
-<!--                     android:layout_alignBaseline="@+id/TextView14" -->
-<!--                     android:layout_alignBottom="@+id/TextView14" -->
-<!--                     android:layout_marginLeft="3dp" -->
-<!--                     android:layout_toRightOf="@+id/TextView14" -->
-<!--                     android:background="@drawable/rectangle_border" /> -->
-            </LinearLayout>
-        </RelativeLayout>
-
-        <!-- <ProgressBar -->
-        <!-- android:id="@+id/progress_bar" -->
-        <!-- style="?android:attr/progressBarStyleHorizontal" -->
-        <!-- android:layout_alignParentLeft="true" -->
-        <!-- android:layout_alignParentRight="true" -->
-        <!-- android:layout_width="wrap_content" -->
-        <!-- android:layout_height="wrap_content" -->
-        <!-- android:layout_marginLeft="22dp" -->
-        <!-- android:layout_marginStart="22dp" -->
-        <!-- android:layout_marginTop="18dp" /> -->
+            <TextView
+                android:id="@+id/TextView5"
+                android:layout_width="50dp"
+                android:layout_height="10dp"
+                android:layout_column="4"
+                android:layout_marginLeft="4dp"
+                android:layout_marginStart="4dp"
+                android:layout_row="0"
+                android:background="@drawable/rectangle_catch_me"
+                android:gravity="center_vertical|center_horizontal" />
+        </GridLayout>
 
         <GridLayout
             android:id="@+id/GridLayout1"
@@ -330,14 +240,13 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/progress_layout"
-            android:layout_marginLeft="20dp"
-            android:layout_marginStart="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
             android:alignmentMode="alignBounds"
             android:columnCount="4"
             android:rowCount="3"
-            android:useDefaultMargins="true"
-             >
+            android:useDefaultMargins="true" >
 
             <!-- android:layout_alignLeft="@+id/progress_bar" -->
             <!-- android:layout_alignStart="@+id/progress_bar" -->

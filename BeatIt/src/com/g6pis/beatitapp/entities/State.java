@@ -36,6 +36,7 @@ public class State {
 			this.currentAttempt = challenge.getMaxAttempt();
 		
 		this.finished = currentAttempt >= challenge.getMaxAttempt();
+		
 	}
 	
 	
