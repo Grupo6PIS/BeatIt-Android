@@ -5,44 +5,52 @@
     android:background="@color/gris"
     tools:context=".MainActivity" >
 
-    <TextView
-        android:id="@+id/textView_Challenge_Name"
+    <RelativeLayout
+        android:id="@+id/title_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="15dp"
-        android:layout_toEndOf="@+id/imageView_Logo"
-        android:layout_toRightOf="@+id/imageView_Logo"
-        android:text="@string/catch_me"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/magenta"
-        android:textSize="33sp"
-        android:textStyle="bold" />
-
-    <ImageView
-        android:id="@+id/imageView_Logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView_Challenge_Name"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
         android:layout_marginLeft="22dp"
-        android:layout_marginStart="22dp"
-        android:adjustViewBounds="true"
-        android:src="@drawable/ic_catch_me" />
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="15dp" >
+
+        <ImageView
+            android:id="@+id/imageView_Logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:adjustViewBounds="true"
+            android:src="@drawable/ic_catch_me" />
+
+        <TextView
+            android:id="@+id/textView_Challenge_Name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="14dp"
+            android:layout_toEndOf="@+id/imageView_Logo"
+            android:layout_toRightOf="@+id/imageView_Logo"
+            android:text="@string/catch_me"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/magenta"
+            android:textSize="33sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/textView_Description_Value_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/textView_Challenge_Name"
+        android:layout_alignEnd="@+id/title_layout"
         android:layout_alignLeft="@+id/textView_Description"
-        android:layout_alignRight="@+id/textView_Challenge_Name"
+        android:layout_alignRight="@+id/title_layout"
         android:layout_alignStart="@+id/textView_Description"
         android:layout_below="@+id/textView_Description"
-        android:text=""
+        android:text="@string/description_catch_me_1"
         android:textColor="@color/gris_challenge_description"
         android:textSize="18sp" />
 
@@ -50,9 +58,9 @@
         android:id="@+id/textView_Description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView_Logo"
-        android:layout_alignStart="@+id/imageView_Logo"
-        android:layout_below="@+id/imageView_Logo"
+        android:layout_alignLeft="@+id/title_layout"
+        android:layout_alignStart="@+id/title_layout"
+        android:layout_below="@+id/title_layout"
         android:layout_marginTop="15dp"
         android:text="@string/description"
         android:textAppearance="?android:attr/textAppearanceMedium"
@@ -67,6 +75,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView_Description_Value_2"
+        android:layout_marginTop="15dp"
         android:visibility="visible" >
 
         <TextView
@@ -85,7 +94,7 @@
             android:layout_height="wrap_content"
             android:layout_alignLeft="@+id/textView_Duration"
             android:layout_below="@+id/textView_Duration"
-            android:layout_marginTop="28dp"
+            android:layout_marginTop="29dp"
             android:text="@string/to_beat"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -127,7 +136,6 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="22dp"
             android:layout_marginStart="22dp"
-            android:layout_marginTop="18dp"
             android:text="@string/start_time"
             android:textAppearance="?android:attr/textAppearanceMedium" />
     </RelativeLayout>
@@ -153,98 +161,90 @@
             android:layout_alignEnd="@+id/progress_layout"
             android:layout_alignLeft="@+id/progress_layout"
             android:layout_alignRight="@+id/progress_layout"
-            android:layout_alignStart="@+id/progress_layout"
-            android:layout_marginTop="5dp"
-           
-             />
+            android:layout_alignStart="@+id/progress_layout" />
 
-        <GridLayout
-            android:id="@+id/progress_layout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/progress_bar"
-            android:columnCount="5"
-            android:gravity="center"
-            android:rowCount="1"
-            android:useDefaultMargins="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="5dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="5dp"
-            android:layout_marginStart="20dp" >
+        
+        <LinearLayout
+		    android:id="@+id/progress_layout"
+		    android:layout_width="wrap_content"
+		    android:layout_height="5dp"
+		    android:layout_alignParentLeft="true"
+		    android:layout_alignParentRight="true"
+		    android:layout_below="@+id/progress_bar"
+		    android:layout_marginLeft="22dp"
+		    android:layout_marginRight="22dp"
+		    android:layout_marginTop="3dp" >
 
-            <TextView
-                android:id="@+id/TextView1"
-                android:layout_width="50dp"
-                android:layout_height="10dp"
-                android:layout_column="0"
-                android:layout_marginLeft="1dp"
-                android:layout_marginStart="1dp"
-                android:layout_row="0"
-                android:background="@drawable/rectangle_catch_me"
-                android:gravity="center_vertical|center_horizontal" />
+        <LinearLayout
+            android:id="@+id/bar1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/rectangle_catch_me"
+            android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/TextView2"
-                android:layout_width="50dp"
-                android:layout_height="10dp"
-                android:layout_column="1"
-                android:layout_marginLeft="4dp"
-                android:layout_marginStart="4dp"
-                android:layout_row="0"
-                android:background="@drawable/rectangle_catch_me"
-                android:gravity="center_vertical|center_horizontal" />
+        </LinearLayout>
 
-            <TextView
-                android:id="@+id/TextView3"
-                android:layout_width="50dp"
-                android:layout_height="10dp"
-                android:layout_column="2"
-                android:layout_marginLeft="4dp"
-                android:layout_marginStart="4dp"
-                android:layout_row="0"
-                android:background="@drawable/rectangle_catch_me"
-                android:gravity="center_vertical|center_horizontal" />
+        <LinearLayout
+            android:id="@+id/bar2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/rectangle_catch_me"
+            android:orientation="vertical" >
 
-            <TextView
-                android:id="@+id/TextView4"
-                android:layout_width="50dp"
-                android:layout_height="10dp"
-                android:layout_column="3"
-                android:layout_marginLeft="4dp"
-                android:layout_marginStart="4dp"
-                android:layout_row="0"
-                android:background="@drawable/rectangle_catch_me"
-                android:gravity="center_vertical|center_horizontal" />
+        </LinearLayout>
 
-            <TextView
-                android:id="@+id/TextView5"
-                android:layout_width="50dp"
-                android:layout_height="10dp"
-                android:layout_column="4"
-                android:layout_marginLeft="4dp"
-                android:layout_marginStart="4dp"
-                android:layout_row="0"
-                android:background="@drawable/rectangle_catch_me"
-                android:gravity="center_vertical|center_horizontal" />
-        </GridLayout>
+        <LinearLayout
+            android:id="@+id/bar3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/rectangle_catch_me"
+            android:orientation="vertical" >
 
-        <GridLayout
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bar4"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/rectangle_catch_me"
+            android:orientation="vertical" >
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/bar5"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:background="@drawable/rectangle_catch_me"
+            android:orientation="vertical" >
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+        <RelativeLayout
             android:id="@+id/GridLayout1"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:layout_below="@+id/progress_layout"
-            android:layout_marginLeft="15dp"
+            android:layout_marginLeft="22dp"
+            android:layout_marginRight="22dp"
             android:layout_marginStart="15dp"
             android:layout_marginTop="10dp"
             android:alignmentMode="alignBounds"
             android:columnCount="4"
+            android:gravity="center|top"
             android:rowCount="3"
             android:useDefaultMargins="true" >
 
@@ -254,9 +254,9 @@
 
             <Button
                 android:id="@+id/button1"
-                android:layout_column="0"
-                android:layout_margin="5dp"
-                android:layout_row="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
                 android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
@@ -264,9 +264,10 @@
 
             <Button
                 android:id="@+id/button2"
-                android:layout_column="1"
-                android:layout_margin="5dp"
-                android:layout_row="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_toRightOf="@+id/button1"
                 android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
@@ -274,9 +275,10 @@
 
             <Button
                 android:id="@+id/button3"
-                android:layout_column="2"
-                android:layout_margin="5dp"
-                android:layout_row="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_toRightOf="@+id/button2"
                 android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
@@ -284,9 +286,10 @@
 
             <Button
                 android:id="@+id/button4"
-                android:layout_column="3"
-                android:layout_margin="5dp"
-                android:layout_row="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:layout_toRightOf="@+id/button3"
                 android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
@@ -294,9 +297,10 @@
 
             <Button
                 android:id="@+id/button5"
-                android:layout_column="0"
-                android:layout_margin="5dp"
-                android:layout_row="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button1"
+                android:layout_margin="3dp"
                 android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
@@ -304,9 +308,11 @@
 
             <Button
                 android:id="@+id/button6"
-                android:layout_column="1"
-                android:layout_margin="5dp"
-                android:layout_row="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button2"
+                android:layout_margin="3dp"
+                android:layout_toRightOf="@+id/button5"
                 android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
@@ -314,9 +320,11 @@
 
             <Button
                 android:id="@+id/button7"
-                android:layout_column="2"
-                android:layout_margin="5dp"
-                android:layout_row="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button3"
+                android:layout_margin="3dp"
+                android:layout_toRightOf="@+id/button6"
                 android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
@@ -324,9 +332,11 @@
 
             <Button
                 android:id="@+id/button8"
-                android:layout_column="3"
-                android:layout_margin="5dp"
-                android:layout_row="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button4"
+                android:layout_margin="3dp"
+                android:layout_toRightOf="@+id/button7"
                 android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
@@ -334,9 +344,10 @@
 
             <Button
                 android:id="@+id/button9"
-                android:layout_column="0"
-                android:layout_margin="5dp"
-                android:layout_row="2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button5"
+                android:layout_margin="3dp"
                 android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
@@ -344,9 +355,11 @@
 
             <Button
                 android:id="@+id/button10"
-                android:layout_column="1"
-                android:layout_margin="5dp"
-                android:layout_row="2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button6"
+                android:layout_margin="3dp"
+                android:layout_toRightOf="@+id/button9"
                 android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
@@ -354,9 +367,11 @@
 
             <Button
                 android:id="@+id/button11"
-                android:layout_column="2"
-                android:layout_margin="5dp"
-                android:layout_row="2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button7"
+                android:layout_margin="3dp"
+                android:layout_toRightOf="@+id/button10"
                 android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
@@ -364,14 +379,19 @@
 
             <Button
                 android:id="@+id/button12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/button8"
                 android:layout_column="3"
-                android:layout_margin="5dp"
+                android:layout_margin="3dp"
                 android:layout_row="2"
+                android:layout_toRightOf="@+id/button11"
                 android:alpha="0.3"
                 android:background="@drawable/round_button"
                 android:gravity="center_vertical|center_horizontal"
                 android:onClick="onClick" />
-        </GridLayout>
+
+        </RelativeLayout>
     </RelativeLayout>
 
     <Button
@@ -380,7 +400,9 @@
         android:layout_height="40dp"
         android:layout_below="@+id/before_strat_challenge_layout"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
+        android:layout_marginLeft="22dp"
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="15dp"
         android:background="@color/magenta"
         android:gravity="center_vertical|center_horizontal"
         android:text="@string/start_challenge_button"

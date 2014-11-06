@@ -13,6 +13,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.graphics.Color;
+import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -22,6 +23,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -90,6 +92,7 @@ public class CatchMeUI extends Activity implements OnClickListener {
 		startButton = (Button) findViewById(R.id.start_button);
 		startButton.setOnClickListener(this);
 		progressBar = (ProgressBar) findViewById(R.id.progress_bar);
+		progressBar.getProgressDrawable().setColorFilter(getResources().getColor(R.color.atrapame),Mode.SRC_IN);
 
 		this.editActionBar();
 
@@ -478,229 +481,69 @@ public class CatchMeUI extends Activity implements OnClickListener {
 		// color = getResources().getColor(R.color.green);
 		// else
 		// color = getResources().getColor(R.color.gris);
-
-		switch (times) {
-
-		case 1:
-			((TextView) findViewById(R.id.TextView1)).setBackgroundColor(color);
-			break;
-
-		case 2:
-		case 17:
-		case 32:
-		case 47:
-		case 62:
-		case 77:
-		case 7:
-		case 22:
-		case 37:
-		case 52:
-		case 67:
-		case 82:
-		case 12:
-		case 27:
-		case 42:
-		case 57:
-		case 72:
-		case 87:
-
-			((TextView) findViewById(R.id.TextView2)).setBackgroundColor(color);
-			break;
-		case 3:
-		case 18:
-		case 33:
-		case 48:
-		case 63:
-		case 78:
-		case 8:
-		case 23:
-		case 38:
-		case 53:
-		case 68:
-		case 83:
-		case 13:
-		case 28:
-		case 43:
-		case 58:
-		case 73:
-		case 88:
-			((TextView) findViewById(R.id.TextView3)).setBackgroundColor(color);
-			break;
-		case 4:
-		case 19:
-		case 34:
-		case 49:
-		case 64:
-		case 79:
-		case 9:
-		case 24:
-		case 39:
-		case 54:
-		case 69:
-		case 84:
-		case 14:
-		case 29:
-		case 44:
-		case 59:
-		case 74:
-		case 89:
-			((TextView) findViewById(R.id.TextView4)).setBackgroundColor(color);
-			break;
-		case 5:
-		case 20:
-		case 35:
-		case 50:
-		case 65:
-		case 80:
-		case 10:
-		case 25:
-		case 40:
-		case 55:
-		case 70:
-		case 85:
-		case 15:
-		case 30:
-		case 45:
-		case 60:
-		case 75:
-		case 90:
-			((TextView) findViewById(R.id.TextView5)).setBackgroundColor(color);
-			break;
-
-		case 6:
-		case 21:
-		case 36:
-		case 51:
-		case 66:
-		case 81:
-		case 11:
-		case 26:
-		case 41:
-		case 56:
-		case 71:
-		case 86:
-		case 16:
-		case 31:
-		case 46:
-		case 61:
-		case 76:
-			resetProgress();
-			((TextView) findViewById(R.id.TextView1)).setBackgroundColor(color);
 			
-			break;
-		// ((TextView)findViewById(R.id.TextView6)).setBackgroundColor(color);
-		// break;
-		// case 7:
-		// case 22:
-		// case 37:
-		// case 52:
-		// case 67:
-		// case 82:
-		// ((TextView)findViewById(R.id.TextView7)).setBackgroundColor(color);
-		// break;
-		// case 8:
-		// case 23:
-		// case 38:
-		// case 53:
-		// case 68:
-		// case 83:
-		// ((TextView)findViewById(R.id.TextView8)).setBackgroundColor(color);
-		// break;
-		// case 9:
-		// case 24:
-		// case 39:
-		// case 54:
-		// case 69:
-		// case 84:
-		// ((TextView)findViewById(R.id.TextView9)).setBackgroundColor(color);
-		// break;
-		// case 10:
-		// case 25:
-		// case 40:
-		// case 55:
-		// case 70:
-		// case 85:
-		// ((TextView)findViewById(R.id.TextView10)).setBackgroundColor(color);
-		// break;
-		// case 11:
-		// case 26:
-		// case 41:
-		// case 56:
-		// case 71:
-		// case 86:
-		// ((TextView)findViewById(R.id.TextView11)).setBackgroundColor(color);
-		// break;
-		// case 12:
-		// case 27:
-		// case 42:
-		// case 57:
-		// case 72:
-		// case 87:
-		// ((TextView)findViewById(R.id.TextView12)).setBackgroundColor(color);
-		// break;
-		// case 13:
-		// case 28:
-		// case 43:
-		// case 58:
-		// case 73:
-		// case 88:
-		// ((TextView)findViewById(R.id.TextView13)).setBackgroundColor(color);
-		// break;
-		// case 14:
-		// case 29:
-		// case 44:
-		// case 59:
-		// case 74:
-		// case 89:
-		// ((TextView)findViewById(R.id.TextView14)).setBackgroundColor(color);
-		// break;
-		// case 15:
-		// case 30:
-		// case 45:
-		// case 60:
-		// case 75:
-		// case 90:
-		// ((TextView)findViewById(R.id.TextView15)).setBackgroundColor(color);
-		// break;
-		// case 16:
-		// case 31:
-		// case 46:
-		// case 61:
-		// case 76:
-		// resetProgress();
-		// ((TextView)findViewById(R.id.TextView1)).setBackgroundColor(color);
-		// break;
-		}
+			switch(times){
+			case 1:
+				((LinearLayout)findViewById(R.id.bar1)).setBackgroundColor(getResources().getColor(R.color.red));
+				break;			
+			case 2:
+				((LinearLayout)findViewById(R.id.bar2)).setBackgroundColor(getResources().getColor(R.color.red));
+				break;
+			case 3:
+				((LinearLayout)findViewById(R.id.bar3)).setBackgroundColor(getResources().getColor(R.color.red));
+				break;
+			case 4:
+				((LinearLayout)findViewById(R.id.bar4)).setBackgroundColor(getResources().getColor(R.color.red));
+				break;
+			case 5:
+				((LinearLayout)findViewById(R.id.bar5)).setBackgroundColor(getResources().getColor(R.color.red));
+				break;
+			case 6:{
+				resetProgress();
+				((LinearLayout)findViewById(R.id.bar1)).setBackgroundColor(getResources().getColor(R.color.yellow));
+			}
+				break;
+			case 7:
+				((LinearLayout)findViewById(R.id.bar2)).setBackgroundColor(getResources().getColor(R.color.yellow));
+				break;
+			case 8:
+				((LinearLayout)findViewById(R.id.bar3)).setBackgroundColor(getResources().getColor(R.color.yellow));
+				break;
+			case 9:
+				((LinearLayout)findViewById(R.id.bar4)).setBackgroundColor(getResources().getColor(R.color.yellow));
+				break;
+			case 10:
+				((LinearLayout)findViewById(R.id.bar5)).setBackgroundColor(getResources().getColor(R.color.yellow));
+				break;
+			case 11:{
+				resetProgress();
+				((LinearLayout)findViewById(R.id.bar1)).setBackgroundColor(getResources().getColor(R.color.green));
+			}
+				break;
+			case 12:
+				((LinearLayout)findViewById(R.id.bar2)).setBackgroundColor(getResources().getColor(R.color.green));
+				break;
+			case 13:
+				((LinearLayout)findViewById(R.id.bar3)).setBackgroundColor(getResources().getColor(R.color.green));
+				break;
+			case 14:
+				((LinearLayout)findViewById(R.id.bar4)).setBackgroundColor(getResources().getColor(R.color.green));
+				break;
+			case 15:
+				((LinearLayout)findViewById(R.id.bar5)).setBackgroundColor(getResources().getColor(R.color.green));
+				break;
+			}
+		
 
 	}
 
-	@SuppressWarnings("deprecation")
-	public void resetProgress() {
-		((TextView) findViewById(R.id.TextView1))
-				.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.rectangle_border_catch_me));
-		((TextView) findViewById(R.id.TextView2))
-				.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.rectangle_border_catch_me));
-		((TextView) findViewById(R.id.TextView3))
-				.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.rectangle_border_catch_me));
-		((TextView) findViewById(R.id.TextView4))
-				.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.rectangle_border_catch_me));
-		((TextView) findViewById(R.id.TextView5))
-				.setBackgroundDrawable(getResources().getDrawable(
-						R.drawable.rectangle_border_catch_me));
-		// ((TextView)findViewById(R.id.TextView6)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-		// ((TextView)findViewById(R.id.TextView7)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-		// ((TextView)findViewById(R.id.TextView8)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-		// ((TextView)findViewById(R.id.TextView9)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-		// ((TextView)findViewById(R.id.TextView10)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-		// ((TextView)findViewById(R.id.TextView11)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-		// ((TextView)findViewById(R.id.TextView12)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-		// ((TextView)findViewById(R.id.TextView13)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-		// ((TextView)findViewById(R.id.TextView14)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-		// ((TextView)findViewById(R.id.TextView15)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_border));
-	}
+@SuppressWarnings("deprecation")
+public void resetProgress(){
+	((LinearLayout)findViewById(R.id.bar1)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_catch_me));
+	((LinearLayout)findViewById(R.id.bar2)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_catch_me));
+	((LinearLayout)findViewById(R.id.bar3)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_catch_me));
+	((LinearLayout)findViewById(R.id.bar4)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_catch_me));
+	((LinearLayout)findViewById(R.id.bar5)).setBackgroundDrawable(getResources().getDrawable(R.drawable.rectangle_catch_me));
+}
 
 }
