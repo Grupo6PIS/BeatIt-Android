@@ -1,5 +1,5 @@
 package com.g6pis.beatitapp.challenges.throwthephone;
-
+/*
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -33,3 +33,4 @@ public class ThrowThePhoneTest {
 	}
 
 }
+*/

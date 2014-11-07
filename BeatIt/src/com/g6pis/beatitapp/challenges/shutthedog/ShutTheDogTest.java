@@ -1,5 +1,5 @@
 package com.g6pis.beatitapp.challenges.shutthedog;
-
+/*
 import static org.junit.Assert.*;
 
 import org.junit.Test;
@@ -66,4 +66,4 @@ public class ShutTheDogTest {
 		
 	}
 
-}
+}*/

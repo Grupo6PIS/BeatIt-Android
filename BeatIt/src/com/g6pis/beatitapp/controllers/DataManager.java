@@ -20,11 +20,11 @@ import com.g6pis.beatitapp.challenges.textandcolor.TextAndColor;
 import com.g6pis.beatitapp.challenges.throwthephone.ThrowThePhone;
 import com.g6pis.beatitapp.challenges.usainbolt.UsainBolt;
 import com.g6pis.beatitapp.challenges.wakemeup.WakeMeUp;
+import com.g6pis.beatitapp.connection.AllStatesConnection;
 import com.g6pis.beatitapp.connection.LoginConnection;
 import com.g6pis.beatitapp.connection.RankingConnection;
 import com.g6pis.beatitapp.connection.RoundConnection;
 import com.g6pis.beatitapp.connection.ScoreConnection;
-import com.g6pis.beatitapp.connection.StateConnection;
 import com.g6pis.beatitapp.datatypes.DTDateTime;
 import com.g6pis.beatitapp.datatypes.DTRanking;
 import com.g6pis.beatitapp.datatypes.DTState;
@@ -104,12 +104,14 @@ public class DataManager implements IDataManager {
 			if(!json.getBoolean("error")){
 				JSONObject jsonUser = json.getJSONObject("user");
 				userId = jsonUser.getString("_id");
-				Object obj = jsonUser.get("roundState");
-				if(obj instanceof JSONObject){
-					jsonStates = ((JSONObject)obj).getJSONArray("challenges");
-					jsonRoundId = ((JSONObject)obj).getString("roundId");
-				}else
-					jsonStatesArr = ((JSONArray)obj);
+				if(jsonUser.has("roundStates")){
+					Object obj = jsonUser.get("roundStates");
+					if(obj instanceof JSONObject){
+						jsonStates = ((JSONObject)obj).getJSONArray("challenges");
+						jsonRoundId = ((JSONObject)obj).getString("id");
+					}else
+						jsonStatesArr = ((JSONArray)obj);
+				}
 			
 			user = new User(userId, fbId, firstName, lastName, country,
 					imageURL);
@@ -132,7 +134,7 @@ public class DataManager implements IDataManager {
 			List<Challenge> challenges = new ArrayList<Challenge>();
 			for (int i = 0; i < jsonChallenges.length(); i++) {
 				JSONObject jsonChallenge = jsonChallenges.getJSONObject(i);
-				String challengeId = jsonChallenge.getString("id");
+				String challengeId = jsonChallenge.getString("_id");
 				String name = jsonChallenge.getString("challengeName");
 				int level = jsonChallenge.getInt("challengeLevel");
 				String color = jsonChallenge.getString("colorHex");
@@ -231,8 +233,8 @@ public class DataManager implements IDataManager {
 				if(((jsonStates != null) && jsonStates.length() > 0) && (jsonRoundId.equals(currentRound.getRoundId()))){
 					for(int i = 0; i < jsonStates.length(); i++){
 						JSONObject jsonState = jsonStates.getJSONObject(i);
-						Challenge challenge = currentRound.getChallenge(jsonState.getString("challengeId"));
-						int currentAttempt = currentRound.getChallenge(jsonState.getString("challengeId")).getMaxAttempt() - jsonState.getInt("attemps");
+						Challenge challenge = currentRound.getChallenge(jsonState.getString("id"));
+						int currentAttempt = currentRound.getChallenge(jsonState.getString("id")).getMaxAttempt() - jsonState.getInt("attemps");
 						State state = new State(currentRound,challenge , user,
 												jsonState.getInt("bestScore"), 
 												jsonState.getInt("lastScore"),
@@ -283,7 +285,6 @@ public class DataManager implements IDataManager {
 		} catch (InterruptedException e) {
 		} catch (ExecutionException e) {
 		} catch (JSONException e) {
-			e.printStackTrace();
 		}
 
 		return userId;
@@ -293,24 +294,28 @@ public class DataManager implements IDataManager {
 			if (haveToSendScore) {
 				sendScore();
 			}
-			
+			String data = "{\"roundId\":"+currentRound.getRoundId()+",\"userId\":\""+user.getUserId()+"\",\"challenges\":[";
+			int i = 1;
 			for (Map.Entry<String, State> entry : states.entrySet()) {
-				
-				String userId = entry.getValue().getUser().getUserId();
-				String roundId = entry.getValue().getRound().getRoundId();
-				String challengeId = entry.getValue().getChallenge().getChallengeId();
-				String attempts = Integer.toString(entry.getValue().getChallenge().getMaxAttempt() - entry.getValue().getCurrentAttempt());
-				String finished = Boolean.toString(entry.getValue().isFinished());
-				String bestScore = Double.toString(entry.getValue().getMaxScore());
-				String lastScore = Double.toString(entry.getValue().getLastScore());
+				data += "{\"challengeId\":"+entry.getValue().getChallenge().getChallengeId()+
+						",\"attemps\":"+Integer.toString(entry.getValue().getChallenge().getMaxAttempt() - entry.getValue().getCurrentAttempt())+
+						",\"finished\":"+Boolean.toString(entry.getValue().isFinished())+
+						",\"start_date\":\"\""+
+						",\"bestScore\":"+Double.toString(entry.getValue().getMaxScore())+
+						",\"lastScore\":"+Double.toString(entry.getValue().getLastScore())+"}";
+				if(i!=states.size())
+					data += ",";
+				i++;
+			}
+			data += "]}";		
 			try {	
-				StateConnection scoreConnection = (StateConnection) new StateConnection()
-						.execute(userId,roundId,challengeId,attempts,finished,bestScore,lastScore);
-				JSONObject response = scoreConnection.get();
+				AllStatesConnection statesConnection = (AllStatesConnection) new AllStatesConnection()
+						.execute(data);
+				JSONObject response = statesConnection.get();
 			} catch (InterruptedException e) {
 			} catch (ExecutionException e) {
-		}
-		}
+			}	
+			
 		user = null;
 		persistedStates = new HashMap<String, DTState>();
 	}
@@ -365,7 +370,6 @@ public class DataManager implements IDataManager {
 		} catch (InterruptedException e) {
 		} catch (ExecutionException e) {
 		} catch (JSONException e) {
-			e.printStackTrace();
 		}
 	}
 
