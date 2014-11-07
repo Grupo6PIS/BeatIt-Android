@@ -128,7 +128,7 @@ public class BouncingGameUI extends Activity implements SensorEventListener, OnC
 	    super.onResume();
 	    senSensorManager.registerListener(this, senAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 	}
-	/*
+	
 	@Override
 	public void onBackPressed(){
 		timerRunning = false;
@@ -138,7 +138,7 @@ public class BouncingGameUI extends Activity implements SensorEventListener, OnC
 		this.finish();
 		super.onBackPressed();
 	}
-	*/
+	
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
