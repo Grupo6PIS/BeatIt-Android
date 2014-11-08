@@ -12,6 +12,8 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PointF;
+import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.ShapeDrawable;
 import android.graphics.drawable.shapes.OvalShape;
@@ -43,8 +45,10 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
     
     private float x;
     private float y;
-    private float red_radius = 150;
-    private float black_radius = 30;
+    private static final float FIRST_RED_RADIUS = 150;
+    private static final float FIRST_BLACK_RADIUS = 30;
+    private float red_radius = FIRST_RED_RADIUS;
+    private float black_radius = FIRST_BLACK_RADIUS;
     private PointF red_center;
     private PointF black_center;
     private int x_min;
@@ -53,9 +57,13 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
     private int y_max;
     private float decrease_radius_rate;
     private boolean timerRunning = false;
+    private boolean ok = false;
     private int seconds;
+    private int actionBar_height;
+    private Paint pRect = new Paint();
     private Paint pTextCollision = new Paint();
-    private Paint pTextTime = new Paint();   
+    private Paint pTextTime = new Paint();
+    private Rect rect;
 	private CountDownTimer timer;
 	private BouncingGame bouncingGame;
 	private Vibrator v;
@@ -80,21 +88,31 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
 
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        //x_max = 500;
-        x_max = (int) (metrics.widthPixels * 0.80);
-        y_max = (int) (metrics.heightPixels * 0.75);
-        x_min = 0;
-        y_min = 0;
+        actionBar_height = 60;
+        x_max = (int) (metrics.widthPixels * 0.78 + FIRST_RED_RADIUS);
+        y_max = (int) (metrics.heightPixels * 0.78 + FIRST_RED_RADIUS);
+        x_min = 20;
+        y_min = actionBar_height + 40;
         x = x_min;
         y = y_min;
         
+
+		ActionBar actionBar = getActionBar();
+		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+		Typeface tf = Typeface.create("Roboto",Typeface.NORMAL);
+        
         red_center = new PointF(x,y);
-        pTextCollision.setTextSize(26);
-        pTextCollision.setColor(Color.RED);
-        pTextCollision.setTextScaleX(2);
-        pTextTime.setTextSize(26);
-        pTextTime.setColor(Color.RED);
-        pTextTime.setTextScaleX(2);
+        pTextCollision.setTextSize(40);
+        pTextCollision.setColor(Color.WHITE);
+        pTextCollision.setTypeface(tf);
+        
+        pTextTime.setTextSize(40);
+        pTextTime.setColor(Color.WHITE);
+        pTextTime.setTypeface(tf);
+        
+        pRect.setColor(getResources().getColor(R.color.bouncing));
+        
+        rect = new Rect(0, 0, metrics.widthPixels, actionBar_height + 30);
         
         timer = this.createTimer();
         
@@ -191,23 +209,39 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
 	}
 	
     public PointF relocateBall(boolean first) {
-    	PointF red = new PointF();
+    	PointF black = new PointF();
     	Random r = new Random();
+    	ok = false;
     	
-    	red.x = r.nextInt(x_max) + x_min;
-    	red.y = r.nextInt(y_max) + y_min;
+    	do {
+    		black.x = r.nextInt(x_max) + x_min;
+        	black.y = r.nextInt(y_max) + y_min;
+        	ok = (black.x > (float) x_min) && (black.y > (float) y_min) && (black.x + black_radius < (float) x_max) && (black.y + black_radius < (float) y_max);
+    	} while (!ok);
     	
-    	if (first == false && existCollision (red.x, red.y, red_radius, black_center.x, black_center.y, black_radius)) {
+    	System.out.println("!!!!!!!!!!!!!!!!!!!!!!");
+    	System.out.println("----- RELOCATE -----");
+    	System.out.println("----- X_min: " + x_min);
+    	System.out.println("----- X: " + black.x);
+    	System.out.println("----- X_max: " + x_max);
+    	
+    	System.out.println("----- Y_min: " + y_min);
+    	System.out.println("----- Y: " + black.y);
+    	System.out.println("----- Y_max: " + y_max);
+    	System.out.println("----- Fin RELOCATE -----");
+    	
+    	
+    	if (first == false && existCollision (black.x, black.y, black_radius, red_center.x, red_center.y, red_radius)) {
 			return relocateBall(false);
     	}
         
-    	return red;
+    	return black;
     }
     
     public boolean existCollision (float x3, float y3, float radius_a, float x2, float y2, float radius_b) {
-    	if (radius_a < 20)
-    		radius_a = 30;
-    	float distance = 2* getDistance (x3, y3, radius_a, x2, y2, radius_b);
+    	float distance = getDistance (x3, y3, radius_a, x2, y2, radius_b);
+    	if (radius_a < 100)
+    		distance *= 2;
     	return (distance <= (radius_a + radius_b));
     }
     
@@ -220,25 +254,56 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
         // TODO Auto-generated method stub
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
 
+        	x = red_center.x;
+        	y = red_center.y;
+        	
         	x -= 2* event.values[0];
-            y += 2* event.values[1];
+        	y += 2* event.values[1];
+            
+            System.out.println("---------------------------");
+            System.out.println("----- Tiempo: " + seconds);
+            System.out.println("------- RED");
+            
+            System.out.println("------- Antes");
+            System.out.println("----- X_min: " + x_min);
+            System.out.println("----- X: " + x);
+            System.out.println("----- X_max: " + x_max);
+            System.out.println("----- Y_min: " + y_min);
+            System.out.println("----- Y: " + y);
+            System.out.println("----- Y_max: " + y_max);
             
             // Stay the ball on the screen
-            if (x > x_max) {
-                x = x_max;
+            if (x + red_radius > x_max) {
+                x = x_max - red_radius;
             } else if (x < x_min) {
                 x = x_min;
             }
-            if (y > y_max) {
-                y = y_max;
+            if (y + red_radius > y_max) {
+                y = y_max - red_radius;
             } else if (y < y_min) {
                 y = y_min;
             }
             
+            System.out.println("------- Despues");
+            System.out.println("----- X: " + red_center.x);
+            System.out.println("----- Y: " + red_center.y);
+            System.out.println("----- Radio_Red: " + red_radius);
+            
             red_center.x = x;
             red_center.y = y;
+            
+            System.out.println("------- BLACK");
+            System.out.println("----- X: " + black_center.x);
+            System.out.println("----- Y: " + black_center.y);
+            System.out.println("----- Radio_Black: " + black_radius);
+            
+            
 
+            System.out.println("------------");
+            System.out.println("----- Distance: " + getDistance(red_center.x, red_center.y, red_radius, black_center.x, black_center.y, black_radius));
+            System.out.println("----- Suma de radios: " + (red_radius + black_radius));
             if (existCollision(red_center.x, red_center.y, red_radius, black_center.x, black_center.y, black_radius)) {
+            	System.out.println("-------COLISION------");
             	bouncingGame.increaseCollision_times();
 
             	// Vibrate for 100 milliseconds
@@ -250,6 +315,7 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
             		red_radius = (int) (decrease_radius_rate * red_radius);
             	black_center = relocateBall(false);
             }
+            System.out.println("---------------------------");
 
         }
     }
@@ -300,7 +366,7 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
             black_ball.setBounds((int) black_center.x, (int) black_center.y, (int) (black_center.x + black_radius), (int) (black_center.y + black_radius));
             
             red_ball = new ShapeDrawable(new OvalShape());
-            red_ball.getPaint().setColor(Color.RED);
+            red_ball.getPaint().setColor(getResources().getColor(R.color.bouncing));
             red_ball.setBounds((int) x, (int) y, (int) (x + red_radius), (int) (y + red_radius));
         }
 
@@ -309,8 +375,9 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
         	black_ball.setBounds((int) black_center.x, (int) black_center.y, (int) (black_center.x + black_radius), (int) (black_center.y + black_radius));
             black_ball.draw(canvas);
             
-            canvas.drawText("Colisiones: " + bouncingGame.getCollision_times(), 10, y_max + 175, pTextCollision);
-            canvas.drawText("Tiempo: " + seconds, x_max - 150, y_max + 175, pTextTime);
+            canvas.drawRect(rect, pRect);
+            canvas.drawText("Colisiones: " + bouncingGame.getCollision_times(), 10, actionBar_height, pTextCollision);
+            canvas.drawText("Tiempo: " + seconds, x_max - FIRST_RED_RADIUS - 50, actionBar_height, pTextTime);
         	
             red_ball.setBounds((int) x, (int) y, (int) (x + red_radius), (int) (y + red_radius));
             red_ball.draw(canvas);
@@ -319,4 +386,3 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
     }
 
 }
-
