@@ -5,6 +5,16 @@
     android:background="@color/gris"
     tools:context=".MainActivity" >
 
+<RelativeLayout
+    android:id="@+id/info_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignLeft="@+id/textView_Description_Value_2"
+    android:layout_alignRight="@+id/textView_Description_Value_2"
+    android:layout_below="@+id/textView_Description_Value_2"
+    android:layout_marginTop="15dp"
+    android:visibility="visible" >
+
     <TextView
         android:id="@+id/textView_Duration"
         android:layout_width="wrap_content"
@@ -61,13 +71,11 @@
         android:id="@+id/textView_Start_Time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/title_layout"
-        android:layout_below="@+id/title_layout"
-        android:layout_marginTop="15dp"
         android:text="@string/start_time"
         android:textAppearance="?android:attr/textAppearanceMedium" />
+</RelativeLayout>
 
-    <!--<TextView
+    <TextView
         android:id="@+id/textView_Description_Value_2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -82,17 +90,19 @@
         android:id="@+id/textView_Description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView_Logo"
-        android:layout_below="@+id/imageView_Logo"
-        android:layout_marginTop="30dp"
+        android:layout_alignLeft="@+id/title_layout"
+        android:layout_below="@+id/title_layout"
+        android:layout_marginTop="15dp"
         android:text="@string/description"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:textStyle="bold" />  -->
+        android:textStyle="bold" />
     
     <RelativeLayout
         android:id="@+id/title_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
         android:layout_marginLeft="22dp"
         android:layout_marginRight="22dp"
         android:layout_marginTop="15dp" >
@@ -122,41 +132,32 @@
 
     </RelativeLayout>
 
+<RelativeLayout
+    android:id="@+id/progress_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignLeft="@+id/textView_Description_Value_2"
+    android:layout_alignRight="@+id/textView_Description_Value_2"
+    android:layout_alignTop="@+id/info_layout"
+    android:layout_below="@+id/textView_Description_Value_2"
+    android:visibility="invisible" >
+
     <ProgressBar
         android:id="@+id/progressBar_Song_Complete"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/title_layout"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/linear_Bars"
-        android:layout_marginRight="22dp"
-        android:layout_marginTop="5dp"
-        android:layout_toRightOf="@+id/textView_Start_Time" />
-
-    <Button
-        android:id="@+id/btnOpcion1"
-        android:layout_width="250dp"
-        android:layout_height="40dp"
-        android:layout_alignLeft="@+id/title_layout"
-        android:layout_alignParentLeft="false"
-        android:layout_alignRight="@+id/progressBar_Song_Complete"
-        android:layout_below="@+id/progressBar_Song_Complete"
-        android:layout_marginTop="15dp"
-        android:background="@color/song_complete"
-        android:onClick="button1Click"
-        android:text="@string/start_challenge_button"
-        android:textColor="@color/blanco" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true" />
 
     <LinearLayout
         android:id="@+id/linear_Bars"
         android:layout_width="wrap_content"
         android:layout_height="5dp"
-        android:layout_alignLeft="@+id/textView_To_Beat_Value"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/textView_To_Beat_Value"
-        android:layout_marginRight="22dp"
-        android:layout_marginTop="15dp" >
+        android:layout_below="@+id/progressBar_Song_Complete"
+        android:layout_marginTop="6dp" >
 
         <LinearLayout
             android:id="@+id/bar1"
@@ -165,7 +166,6 @@
             android:layout_weight="1"
             android:background="@color/gris_tab_text_notselected"
             android:orientation="vertical" >
-
         </LinearLayout>
 
         <LinearLayout
@@ -176,7 +176,6 @@
             android:layout_weight="1"
             android:background="@color/gris_tab_text_notselected"
             android:orientation="vertical" >
-
         </LinearLayout>
 
         <LinearLayout
@@ -187,7 +186,6 @@
             android:layout_weight="1"
             android:background="@color/gris_tab_text_notselected"
             android:orientation="vertical" >
-
         </LinearLayout>
 
         <LinearLayout
@@ -198,7 +196,6 @@
             android:layout_weight="1"
             android:background="@color/gris_tab_text_notselected"
             android:orientation="vertical" >
-
         </LinearLayout>
 
         <LinearLayout
@@ -209,20 +206,33 @@
             android:layout_weight="1"
             android:background="@color/gris_tab_text_notselected"
             android:orientation="vertical" >
-
         </LinearLayout>
-
     </LinearLayout>
+</RelativeLayout>
+
+<Button
+    android:id="@+id/btnOpcion1"
+    android:layout_width="250dp"
+    android:layout_height="40dp"
+    android:layout_alignLeft="@+id/title_layout"
+    android:layout_alignParentLeft="false"
+    android:layout_alignRight="@+id/title_layout"
+    android:layout_below="@+id/btnOpcion3"
+    android:layout_marginTop="15dp"
+    android:background="@color/song_complete"
+    android:onClick="button1Click"
+    android:text="@string/start_challenge_button"
+    android:textColor="@color/blanco" />
 
     <Button
         android:id="@+id/btnOpcion2"
         android:layout_width="250dp"
         android:layout_height="40dp"
-        android:layout_alignLeft="@+id/btnOpcion1"
+        android:layout_alignLeft="@+id/progress_layout"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/btnOpcion1"
+        android:layout_below="@+id/progress_layout"
         android:layout_marginRight="22dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:background="@color/song_complete"
         android:onClick="button2Click"
         android:textColor="@color/blanco"
@@ -235,8 +245,7 @@
         android:layout_alignLeft="@+id/btnOpcion1"
         android:layout_alignRight="@+id/btnOpcion2"
         android:layout_below="@+id/btnOpcion2"
-        android:layout_marginTop="10dp"
-        android:layout_toRightOf="@+id/textView_Start_Time_Value"
+        android:layout_marginTop="15dp"
         android:background="@color/song_complete"
         android:onClick="button3Click"
         android:textColor="@color/blanco"
