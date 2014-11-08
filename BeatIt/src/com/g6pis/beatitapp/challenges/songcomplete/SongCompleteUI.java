@@ -12,6 +12,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.graphics.Color;
+import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.ColorDrawable;
 import android.hardware.Sensor;
 import android.media.MediaPlayer;
@@ -25,6 +27,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.g6pis.beatitapp.Home;
@@ -108,10 +111,10 @@ public class SongCompleteUI extends Activity {
 		}
 		
 		//todo: arreglar el tema de la descripcion
-		/*switch(songcomplete.getLevel()){
-			case 1: ((TextView)findViewById(R.id.textView_Description_Value_2)).setText(getResources().getString(R.string.description_shut_the_dog_1));
-			case 2: ((TextView)findViewById(R.id.textView_Description_Value_2)).setText(getResources().getString(R.string.description_shut_the_dog_2));
-		}*/
+		switch(songcomplete.getLevel()){
+			case 1: ((TextView)findViewById(R.id.textView_Description_Value_2)).setText(getResources().getString(R.string.description_song_complete_1));
+			case 2: ((TextView)findViewById(R.id.textView_Description_Value_2)).setText(getResources().getString(R.string.description_song_complete_2));
+		}
 		
 		if (songcomplete.getLevel() == 1){
 			datos = allArtists;
@@ -162,6 +165,10 @@ public class SongCompleteUI extends Activity {
 			
 			Button b2 = (Button)findViewById(R.id.btnOpcion3);
 			b2.setVisibility(0);
+			
+			((RelativeLayout)findViewById(R.id.progress_layout)).setVisibility(View.VISIBLE);
+			((RelativeLayout)findViewById(R.id.info_layout)).setVisibility(View.INVISIBLE);
+			((ProgressBar)findViewById(R.id.progressBar_Song_Complete)).getProgressDrawable().setColorFilter(Color.parseColor(songcomplete.getColor()),Mode.SRC_IN);
 			
 			b.setEnabled(false);
 			b1.setEnabled(false);
