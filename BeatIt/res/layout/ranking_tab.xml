@@ -1,9 +1,14 @@
-<ListView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/Ranking_list"
+<android.support.v4.widget.SwipeRefreshLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/gris"
-     />
-
+    android:layout_height="match_parent">
  
+    <ListView
+            android:id="@+id/ranking_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/gris" >
+        </ListView>
+ 
+</android.support.v4.widget.SwipeRefreshLayout>
