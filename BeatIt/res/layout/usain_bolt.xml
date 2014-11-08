@@ -5,13 +5,20 @@
     android:background="@color/gris"
     tools:context=".MainActivity" >
 
+<RelativeLayout
+    android:id="@+id/title_layout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="22dp"
+    android:layout_marginRight="22dp"
+    android:layout_marginTop="15dp" >
+
     <ImageView
         android:id="@+id/imageView_Logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textView_Challenge"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="22dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/logo_description"
         android:src="@drawable/ic_usain_bolt" />
@@ -21,21 +28,21 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="15dp"
+        android:layout_marginLeft="14dp"
         android:layout_toRightOf="@+id/imageView_Logo"
-        android:layout_marginLeft="16dp"
         android:text="@string/usain_bolt"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@color/usain_bolt"
         android:textSize="34sp"
         android:textStyle="bold" />
+</RelativeLayout>
 
     <TextView
         android:id="@+id/textView_Description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView_Logo"
-        android:layout_below="@+id/imageView_Logo"
+        android:layout_alignLeft="@+id/title_layout"
+        android:layout_below="@+id/title_layout"
         android:layout_marginTop="15dp"
         android:text="@string/description"
         android:textAppearance="?android:attr/textAppearanceMedium"

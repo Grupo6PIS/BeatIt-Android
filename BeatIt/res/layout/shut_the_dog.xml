@@ -21,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView_Duration"
         android:layout_below="@+id/textView_Duration"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="29dp"
         android:text="@string/to_beat"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -63,7 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView_Description_Value_2"
         android:layout_below="@+id/textView_Description_Value_2"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="15dp"
         android:text="@string/start_time"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -82,47 +82,54 @@
         android:id="@+id/textView_Description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView_Logo"
-        android:layout_below="@+id/imageView_Logo"
-        android:layout_marginTop="30dp"
+        android:layout_alignLeft="@+id/title_layout"
+        android:layout_below="@+id/title_layout"
+        android:layout_marginTop="15dp"
         android:text="@string/description"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="bold" />
     
-    <TextView
-        android:id="@+id/textView_Nombre_Desafio"
+    <RelativeLayout
+        android:id="@+id/title_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="15dp"
-        android:layout_toRightOf="@+id/imageView_Logo"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="22dp"
-        android:text="@string/shut_the_dog"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textColor="@color/shutthedog"
-        android:textSize="34sp"
-        android:textStyle="bold" />
-
-    <ImageView
-        android:id="@+id/imageView_Logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/textView_Nombre_Desafio"
-        android:layout_alignParentLeft="true"
         android:layout_marginLeft="22dp"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/logo_shut_the_dog"
-        android:src="@drawable/ic_calla_al_perro" />
+        android:layout_marginRight="22dp"
+        android:layout_marginTop="15dp" >
+
+        <ImageView
+            android:id="@+id/imageView_Logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:adjustViewBounds="true"
+            android:contentDescription="@string/logo_shut_the_dog"
+            android:src="@drawable/ic_calla_al_perro" />
+
+        <TextView
+            android:id="@+id/textView_Nombre_Desafio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="14dp"
+            android:layout_toRightOf="@+id/imageView_Logo"
+            android:text="@string/shut_the_dog"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/shutthedog"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
 
     <Button
         android:id="@+id/btnOpcion1"
         android:layout_width="250dp"
-        android:layout_height="50dp"
+        android:layout_height="40dp"
         android:layout_alignLeft="@+id/textView_To_Beat_Value"
         android:layout_alignRight="@+id/textView_Description_Value_2"
         android:layout_below="@+id/textView_To_Beat_Value"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="15dp"
         android:background="@color/shutthedog"
         android:onClick="comenzar"
         android:text="@string/start_challenge_button"

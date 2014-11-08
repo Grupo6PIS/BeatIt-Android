@@ -11,15 +11,14 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="22dp"
         android:layout_marginRight="22dp"
-        android:gravity="center" >
+        android:layout_marginTop="15dp" >
 
         <TextView
             android:id="@+id/textView_Challenge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginLeft="14dp"
             android:layout_toRightOf="@+id/imageView_Logo"
             android:text="@string/bouncing_game"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -33,7 +32,6 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="22dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/logo_description"
             android:src="@drawable/ic_bouncing_game" />

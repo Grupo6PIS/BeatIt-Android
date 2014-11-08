@@ -11,21 +11,7 @@
 	    android:layout_height="wrap_content"
 	    android:layout_marginLeft="22dp"
 	    android:layout_marginRight="22dp"
-	    android:gravity="center" >
-
-	    <TextView
-	        android:id="@+id/textView_Challenge"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignParentTop="true"
-	        android:layout_marginLeft="16dp"
-	        android:layout_marginTop="10dp"
-	        android:layout_toRightOf="@+id/imageView_Logo"
-	        android:text="@string/wake_me_up"
-	        android:textAppearance="?android:attr/textAppearanceLarge"
-	        android:textColor="@color/wake_me_up"
-	        android:textSize="34sp"
-	        android:textStyle="bold" />
+	    android:layout_marginTop="15dp" >
 
 	    <ImageView
 	        android:id="@+id/imageView_Logo"
@@ -33,10 +19,22 @@
 	        android:layout_height="wrap_content"
 	        android:layout_alignParentLeft="true"
 	        android:layout_centerVertical="true"
-	        android:layout_marginLeft="24dp"
 	        android:adjustViewBounds="true"
 	        android:contentDescription="@string/logo_wake_me_up"
 	        android:src="@drawable/ic_despertame_a_tiempo" />
+
+	    <TextView
+	        android:id="@+id/textView_Challenge"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_centerVertical="true"
+	        android:layout_marginLeft="14dp"
+	        android:layout_toRightOf="@+id/imageView_Logo"
+	        android:text="@string/wake_me_up"
+	        android:textAppearance="?android:attr/textAppearanceLarge"
+	        android:textColor="@color/wake_me_up"
+	        android:textSize="34sp"
+	        android:textStyle="bold" />
 
 	</RelativeLayout>
     

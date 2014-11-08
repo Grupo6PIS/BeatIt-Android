@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView_Start_Time"
         android:layout_below="@+id/textView_Start_Time"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="29dp"
         android:text="@string/duration"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView_Duration"
         android:layout_below="@+id/textView_Duration"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="29dp"
         android:text="@string/to_beat"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -95,11 +95,11 @@
         android:id="@+id/challenge_name_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_marginLeft="22dp"
         android:layout_marginRight="22dp"
-        android:layout_marginTop="15dp"
-        android:gravity="center_horizontal|center_vertical" >
+        android:layout_marginTop="15dp" >
 
         <ImageView
             android:id="@+id/imageView_Logo"

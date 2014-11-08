@@ -24,8 +24,6 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="24dp"
-            android:layout_marginStart="22dp"
             android:adjustViewBounds="true"
             android:contentDescription="@string/logo_description"
             android:src="@drawable/ic_can_you_play" />
@@ -36,14 +34,14 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginLeft="14dp"
+            android:layout_marginStart="14dp"
             android:layout_toEndOf="@+id/imageView_Logo"
             android:layout_toRightOf="@+id/imageView_Logo"
             android:text="@string/can_you_play"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/can_you_play"
-            android:textSize="30sp"
+            android:textSize="34sp"
             android:textStyle="bold" />
     </RelativeLayout>
 
@@ -77,7 +75,7 @@
             android:layout_below="@+id/textView_Description"
             android:text="@string/can_you_play_description_2"
             android:textColor="@color/gris_challenge_description"
-            android:textSize="15sp" />
+            android:textSize="18sp" />
 
     </RelativeLayout>
 

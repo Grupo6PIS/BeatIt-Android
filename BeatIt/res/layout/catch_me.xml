@@ -36,7 +36,7 @@
             android:text="@string/catch_me"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/magenta"
-            android:textSize="33sp"
+            android:textSize="34sp"
             android:textStyle="bold" />
 
     </RelativeLayout>
@@ -134,10 +134,13 @@
             android:id="@+id/textView_Start_Time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/textView_Description_Value"
             android:layout_marginLeft="22dp"
             android:layout_marginStart="22dp"
+            android:layout_marginTop="15dp"
             android:text="@string/start_time"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+
     </RelativeLayout>
 
     <RelativeLayout
