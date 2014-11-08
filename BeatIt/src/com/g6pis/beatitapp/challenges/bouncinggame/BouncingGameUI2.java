@@ -96,7 +96,6 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
         x = x_min;
         y = y_min;
         
-
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
 		Typeface tf = Typeface.create("Roboto",Typeface.NORMAL);
@@ -111,11 +110,9 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
         pTextTime.setTypeface(tf);
         
         pRect.setColor(getResources().getColor(R.color.bouncing));
-        
         rect = new Rect(0, 0, metrics.widthPixels, actionBar_height + 30);
         
         timer = this.createTimer();
-        
         this.timer.start();
 		this.timerRunning = true;
         
@@ -219,18 +216,6 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
         	ok = (black.x > (float) x_min) && (black.y > (float) y_min) && (black.x + black_radius < (float) x_max) && (black.y + black_radius < (float) y_max);
     	} while (!ok);
     	
-    	System.out.println("!!!!!!!!!!!!!!!!!!!!!!");
-    	System.out.println("----- RELOCATE -----");
-    	System.out.println("----- X_min: " + x_min);
-    	System.out.println("----- X: " + black.x);
-    	System.out.println("----- X_max: " + x_max);
-    	
-    	System.out.println("----- Y_min: " + y_min);
-    	System.out.println("----- Y: " + black.y);
-    	System.out.println("----- Y_max: " + y_max);
-    	System.out.println("----- Fin RELOCATE -----");
-    	
-    	
     	if (first == false && existCollision (black.x, black.y, black_radius, red_center.x, red_center.y, red_radius)) {
 			return relocateBall(false);
     	}
@@ -260,18 +245,6 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
         	x -= 2* event.values[0];
         	y += 2* event.values[1];
             
-            System.out.println("---------------------------");
-            System.out.println("----- Tiempo: " + seconds);
-            System.out.println("------- RED");
-            
-            System.out.println("------- Antes");
-            System.out.println("----- X_min: " + x_min);
-            System.out.println("----- X: " + x);
-            System.out.println("----- X_max: " + x_max);
-            System.out.println("----- Y_min: " + y_min);
-            System.out.println("----- Y: " + y);
-            System.out.println("----- Y_max: " + y_max);
-            
             // Stay the ball on the screen
             if (x + red_radius > x_max) {
                 x = x_max - red_radius;
@@ -284,26 +257,10 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
                 y = y_min;
             }
             
-            System.out.println("------- Despues");
-            System.out.println("----- X: " + red_center.x);
-            System.out.println("----- Y: " + red_center.y);
-            System.out.println("----- Radio_Red: " + red_radius);
-            
             red_center.x = x;
             red_center.y = y;
             
-            System.out.println("------- BLACK");
-            System.out.println("----- X: " + black_center.x);
-            System.out.println("----- Y: " + black_center.y);
-            System.out.println("----- Radio_Black: " + black_radius);
-            
-            
-
-            System.out.println("------------");
-            System.out.println("----- Distance: " + getDistance(red_center.x, red_center.y, red_radius, black_center.x, black_center.y, black_radius));
-            System.out.println("----- Suma de radios: " + (red_radius + black_radius));
             if (existCollision(red_center.x, red_center.y, red_radius, black_center.x, black_center.y, black_radius)) {
-            	System.out.println("-------COLISION------");
             	bouncingGame.increaseCollision_times();
 
             	// Vibrate for 100 milliseconds
@@ -315,7 +272,6 @@ public class BouncingGameUI2 extends Activity implements SensorEventListener {
             		red_radius = (int) (decrease_radius_rate * red_radius);
             	black_center = relocateBall(false);
             }
-            System.out.println("---------------------------");
 
         }
     }
