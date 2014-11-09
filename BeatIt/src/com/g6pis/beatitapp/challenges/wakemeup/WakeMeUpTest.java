@@ -27,6 +27,9 @@ public class WakeMeUpTest {
 	@Test
 	public void settersTest(){
 		WakeMeUp wake = new WakeMeUp("2", "Wake Me Up", 2, 3, "#00ABA9");
+		
+		int succeed_times = 3;
+		long hidden_secs = 7;
 
 		Integer number_of_repetitions = wake.getNumber_of_repetitions();
 		long l_number_of_repetitions = number_of_repetitions.longValue();
@@ -35,16 +38,18 @@ public class WakeMeUpTest {
 		long l_expected_number_of_repetitions = expected_number_of_repetitions.longValue();
 		
 		
-		wake.setSucceed_times(3);
+		wake.setSucceed_times(succeed_times);
 		wake.setNumber_of_repetitions(expected_number_of_repetitions);
-		wake.setHidden_secs(7);
+		wake.setHidden_secs(hidden_secs);
 		
-		assertEquals(3,wake.getSucceed_times());
+		assertEquals(succeed_times, wake.getSucceed_times());
 		assertEquals(l_expected_number_of_repetitions, l_number_of_repetitions);
-		assertEquals(7,wake.getHidden_secs());
+		assertEquals(hidden_secs, wake.getHidden_secs());
+		assertEquals((long) (succeed_times*80), (long) wake.calculateScore());
 		
+		wake.reset();
+		assertEquals(0,wake.getSucceed_times());
 	}
 
-	
 }
 */
