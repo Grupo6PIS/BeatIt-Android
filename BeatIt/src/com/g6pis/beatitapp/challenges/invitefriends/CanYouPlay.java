@@ -97,7 +97,7 @@ public class CanYouPlay extends Challenge {
 	}
 	
 	public boolean isCompleted(){
-		return ((fbPost == minFBPost)&&(smsSent == minSMS));
+		return ((fbPost >= minFBPost)&&(smsSent >= minSMS));
 	}
 	
 	public void reset(){
