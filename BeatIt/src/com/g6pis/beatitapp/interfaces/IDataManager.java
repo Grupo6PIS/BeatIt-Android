@@ -33,4 +33,5 @@ public interface IDataManager {
 	public Map<String, DTState> getPersistedStates();
 	public String getPersistedRoundId();
 	public boolean getHaveToSendScore();
+	public boolean isNewRound();
 }

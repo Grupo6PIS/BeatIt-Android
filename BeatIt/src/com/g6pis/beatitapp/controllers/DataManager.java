@@ -45,6 +45,7 @@ public class DataManager implements IDataManager {
 	private List<DTRanking> ranking;
 	private double scoreToSend;
 	private boolean haveToSendScore;
+	private boolean newRound = false;
 
 	private DataManager() {
 	}
@@ -274,6 +275,7 @@ public class DataManager implements IDataManager {
 								.put(challenge.getChallengeId(), dtState);
 					}
 				}
+				newRound = true;
 			} else {
 				for (Challenge challenge : currentRound.getChallenges()) {
 					State state = new State(currentRound, challenge, user,
@@ -431,6 +433,10 @@ public class DataManager implements IDataManager {
 		}
 
 		return scoreToSend;
+	}
+	
+	public boolean isNewRound(){
+		return newRound;
 	}
 
 }
