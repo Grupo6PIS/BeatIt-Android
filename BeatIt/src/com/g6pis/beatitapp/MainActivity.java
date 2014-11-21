@@ -111,13 +111,14 @@ public class MainActivity extends Activity implements OnClickListener {
 									.getInstance().getIDataManager()
 									.getPersistedStates();
 							db.addStates(persistedStates);
-						}else if(Factory.getInstance().getIDataManager().isNewRound()){
-							db.drop();
-							StateDAO db = new StateDAO(getApplicationContext());
-							Map<String, DTState> persistedStates = Factory
-									.getInstance().getIDataManager()
-									.getPersistedStates();
-							db.addStates(persistedStates);	
+						}else{ 
+							if(Factory.getInstance().getIDataManager().isNewRound()){
+								db.drop();
+								Map<String, DTState> persistedStates = Factory
+										.getInstance().getIDataManager()
+										.getPersistedStates();
+								db.addStates(persistedStates);	
+							}
 						}
 						Editor editor = sharedPrefs.edit();
 						editor.putString("userId", userId);

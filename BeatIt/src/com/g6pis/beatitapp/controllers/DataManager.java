@@ -233,8 +233,9 @@ public class DataManager implements IDataManager {
 
 			states = new HashMap<String, State>();
 			String persistedRoundId = this.getPersistedRoundId();
-			if (!persistedRoundId.equals(currentRound.getRoundId())) {
+			if (!persistedRoundId.equals(currentRound.getRoundId())){
 				persistedStates = new HashMap<String, DTState>();
+				newRound = true;
 				if (((jsonStates != null) && jsonStates.length() > 0)
 						&& (jsonRoundId.equals(currentRound.getRoundId()))) {
 					for (int i = 0; i < jsonStates.length(); i++) {
@@ -275,7 +276,7 @@ public class DataManager implements IDataManager {
 								.put(challenge.getChallengeId(), dtState);
 					}
 				}
-				newRound = true;
+				
 			} else {
 				for (Challenge challenge : currentRound.getChallenges()) {
 					State state = new State(currentRound, challenge, user,
